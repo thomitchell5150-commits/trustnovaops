@@ -1,550 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrustNovaOps | AI-Powered CMMC 2.0 Compliance & DevSecOps Automation</title>
-    <meta name="description" content="Achieve CMMC 2.0 certification 80% faster with 7 autonomous AI agents. Continuous compliance monitoring, automated evidence collection, and DevSecOps security for defense contractors.">
-    <meta name="keywords" content="CMMC 2.0 compliance, DevSecOps automation, defense contractor security, NIST 800-171">
-    <meta property="og:title" content="TrustNovaOps | AI-Powered CMMC 2.0 Compliance Automation">
-    <meta property="og:description" content="7 autonomous AI agents securing your defense supply chain. Achieve CMMC certification in weeks, not months.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://trustnovaops.com">
-    <link rel="canonical" href="https://www.trustnovaops.com/">
-    <meta name="robots" content="index, follow">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root{--bg-deep:#050508;--bg-primary:#0a0a10;--bg-secondary:#0f0f18;--bg-tertiary:#151520;--bg-card:rgba(15,15,24,0.9);--accent-cyan:#00e5ff;--accent-green:#00ff9d;--accent-purple:#8b5cf6;--accent-orange:#ff6b35;--accent-red:#ff3b5c;--accent-yellow:#fbbf24;--text-primary:#fff;--text-secondary:#a0a0b0;--text-muted:#606070;--border-subtle:rgba(255,255,255,0.06);--border-light:rgba(255,255,255,0.1);--glow-cyan:rgba(0,229,255,0.3);--font-primary:'DM Sans',sans-serif;--font-mono:'Space Mono',monospace;--radius-sm:6px;--radius-md:12px;--radius-lg:20px;--radius-xl:28px}
-        *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:var(--font-primary);background:var(--bg-deep);color:var(--text-primary);line-height:1.6;overflow-x:hidden}
-        .bg-mesh{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;background:radial-gradient(ellipse 80% 50% at 20% 0%,rgba(0,229,255,0.08),transparent),radial-gradient(ellipse 60% 40% at 80% 100%,rgba(139,92,246,0.06),transparent)}
-        .bg-grid{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.4;background-image:linear-gradient(rgba(0,229,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.03) 1px,transparent 1px);background-size:80px 80px}
-        .container{max-width:1280px;margin:0 auto;padding:0 2rem}.section{position:relative;z-index:1;padding:6rem 0}
-        .section-label{display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-mono);font-size:0.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent-cyan);margin-bottom:1rem}.section-label::before{content:'';width:20px;height:1px;background:var(--accent-cyan)}
-        .section-title{font-size:clamp(2rem,4vw,3rem);font-weight:700;line-height:1.2;margin-bottom:1rem;letter-spacing:-1px}.section-subtitle{font-size:1.125rem;color:var(--text-secondary);max-width:600px}
-        .gradient-text{background:linear-gradient(135deg,var(--accent-cyan),var(--accent-green));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-        .btn{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.875rem 1.75rem;font-family:var(--font-primary);font-size:0.95rem;font-weight:600;text-decoration:none;border-radius:var(--radius-md);border:none;cursor:pointer;transition:all 0.25s ease}
-        .btn-primary{background:linear-gradient(135deg,var(--accent-cyan),var(--accent-green));color:var(--bg-deep);box-shadow:0 4px 24px var(--glow-cyan)}.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px var(--glow-cyan)}
-        .btn-secondary{background:transparent;color:var(--text-primary);border:1px solid var(--border-light)}.btn-secondary:hover{background:rgba(255,255,255,0.05);border-color:var(--accent-cyan)}.btn-lg{padding:1rem 2rem;font-size:1rem}
-        .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 0;background:rgba(5,5,8,0.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border-subtle);transition:padding 0.3s}
-        .nav-inner{display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:0.75rem;text-decoration:none}
-        .logo-mark{width:38px;height:38px;background:linear-gradient(135deg,var(--accent-cyan),var(--accent-green));border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-weight:700;font-size:0.9rem;color:var(--bg-deep)}
-        .logo-text{font-weight:700;font-size:1.25rem;color:var(--text-primary)}.logo-text span{color:var(--accent-cyan)}
-        .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}.nav-links a{color:var(--text-secondary);text-decoration:none;font-size:0.9rem;font-weight:500;transition:color 0.2s}.nav-links a:hover{color:var(--text-primary)}
-        .nav-cta{display:flex;gap:0.75rem}.mobile-menu-btn{display:none;background:none;border:none;cursor:pointer;padding:0.5rem}.mobile-menu-btn span{display:block;width:22px;height:2px;background:var(--text-primary);margin:5px 0}
-        .hero{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;padding:8rem 0 4rem}.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-        .hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.2);padding:0.5rem 1rem;border-radius:50px;font-size:0.8rem;color:var(--accent-cyan);margin-bottom:1.5rem}
-        .hero-badge .pulse{width:8px;height:8px;background:var(--accent-green);border-radius:50%;animation:pulse 2s infinite}@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.2)}}
-        .hero h1{font-size:clamp(2.5rem,5vw,3.75rem);font-weight:700;line-height:1.1;margin-bottom:1.5rem;letter-spacing:-2px}.hero-description{font-size:1.2rem;color:var(--text-secondary);margin-bottom:2rem;max-width:520px;line-height:1.7}
-        .hero-cta{display:flex;gap:1rem;margin-bottom:3rem}.hero-stats{display:flex;gap:2.5rem}.hero-stat-value{font-family:var(--font-mono);font-size:2rem;font-weight:700;color:var(--accent-cyan)}.hero-stat-label{font-size:0.8rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px}
-        .terminal{background:var(--bg-secondary);border:1px solid var(--border-light);border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,0.5),0 0 80px rgba(0,229,255,0.1)}
-        .terminal-header{display:flex;align-items:center;justify-content:space-between;padding:0.875rem 1.25rem;background:var(--bg-tertiary);border-bottom:1px solid var(--border-subtle)}
-        .terminal-dots{display:flex;gap:0.5rem}.terminal-dots span{width:12px;height:12px;border-radius:50%}.terminal-dots span:nth-child(1){background:#ff5f56}.terminal-dots span:nth-child(2){background:#ffbd2e}.terminal-dots span:nth-child(3){background:#27c93f}
-        .terminal-title{font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted)}.terminal-body{padding:1.25rem;font-family:var(--font-mono);font-size:0.85rem;min-height:350px;max-height:400px;overflow-y:auto}
-        .term-line{margin-bottom:0.5rem;opacity:0;animation:termFade 0.3s ease forwards}@keyframes termFade{to{opacity:1}}
-        .term-prompt{color:var(--accent-green)}.term-cmd{color:var(--text-primary)}.term-output{color:var(--text-secondary);padding-left:1rem}.term-success{color:var(--accent-green)}.term-warn{color:var(--accent-orange)}.term-info{color:var(--accent-cyan)}
-        .term-agent{display:flex;align-items:center;gap:0.5rem;padding:0.25rem 0}.term-agent-dot{width:6px;height:6px;background:var(--accent-green);border-radius:50%;animation:pulse 1.5s infinite}
-        .term-progress{height:6px;background:var(--bg-tertiary);border-radius:3px;margin:0.5rem 0;overflow:hidden}.term-progress-bar{height:100%;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-green));border-radius:3px}
-        .trust-section{position:relative;z-index:1;padding:3rem 0;border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);background:rgba(10,10,16,0.6)}
-        .trust-inner{display:flex;align-items:center;justify-content:center;gap:4rem;flex-wrap:wrap}.trust-label{font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px}.trust-badges{display:flex;align-items:center;gap:3rem}
-        .trust-badge{text-align:center;opacity:0.6;transition:opacity 0.3s}.trust-badge:hover{opacity:1}.trust-badge-icon{font-family:var(--font-mono);font-size:1.1rem;font-weight:700;color:var(--text-primary);margin-bottom:0.25rem}.trust-badge-text{font-size:0.7rem;color:var(--text-muted)}
-        .leadmagnet-section{position:relative;z-index:1;padding:5rem 0;background:linear-gradient(180deg,transparent,rgba(0,229,255,0.02),transparent)}
-        .leadmagnet-card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-xl);padding:3rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
-        .leadmagnet-content h2{font-size:2rem;margin-bottom:1rem}.leadmagnet-content p{color:var(--text-secondary);margin-bottom:1.5rem}
-        .leadmagnet-features{list-style:none;margin-bottom:1.5rem}.leadmagnet-features li{display:flex;align-items:center;gap:0.75rem;padding:0.5rem 0;color:var(--text-secondary);font-size:0.95rem}.leadmagnet-features li::before{content:'âœ“';color:var(--accent-green);font-weight:700}
-        .leadmagnet-form{background:var(--bg-tertiary);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:2rem}.leadmagnet-form h3{font-size:1.25rem;margin-bottom:0.5rem}.leadmagnet-form>p{font-size:0.9rem;color:var(--text-muted);margin-bottom:1.5rem}
-        .form-group{margin-bottom:1rem}.form-label{display:block;font-size:0.85rem;font-weight:500;margin-bottom:0.5rem;color:var(--text-secondary)}
-        .form-input,.form-select{width:100%;padding:0.875rem 1rem;background:var(--bg-primary);border:1px solid var(--border-light);border-radius:var(--radius-md);color:var(--text-primary);font-family:var(--font-primary);font-size:0.95rem;transition:border-color 0.2s}
-        .form-input:focus,.form-select:focus{outline:none;border-color:var(--accent-cyan)}.form-input::placeholder{color:var(--text-muted)}.form-note{font-size:0.75rem;color:var(--text-muted);margin-top:1rem}
-        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.form-checkbox{display:flex;align-items:flex-start;gap:0.75rem;margin-top:1rem}.form-checkbox input{margin-top:0.25rem;accent-color:var(--accent-cyan)}.form-checkbox label{font-size:0.85rem;color:var(--text-muted)}.form-checkbox a{color:var(--accent-cyan)}
-        .form-success{text-align:center;padding:2rem}.form-success-icon{width:64px;height:64px;background:rgba(0,255,157,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:2rem}.form-success h3{font-size:1.25rem;margin-bottom:0.5rem}.form-success p{color:var(--text-secondary)}
-        .agents-header{text-align:center;margin-bottom:4rem}.agents-header .section-subtitle{margin:0 auto}.agents-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.5rem}
-        .agent-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:1.75rem;transition:all 0.3s ease;position:relative;overflow:hidden}
-        .agent-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-green));opacity:0;transition:opacity 0.3s}
-        .agent-card:hover{transform:translateY(-4px);border-color:var(--border-light);box-shadow:0 20px 50px rgba(0,229,255,0.08)}.agent-card:hover::before{opacity:1}
-        .agent-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.75rem}
-        .agent-id{font-family:var(--font-mono);font-size:0.7rem;color:var(--accent-cyan);background:rgba(0,229,255,0.1);padding:0.25rem 0.75rem;border-radius:20px}
-        .agent-status{display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:var(--accent-green)}.agent-status::before{content:'';width:6px;height:6px;background:var(--accent-green);border-radius:50%;animation:pulse 1.5s infinite}
-        .agent-name{font-size:1.25rem;font-weight:700;margin-bottom:0.5rem}.agent-desc{font-size:0.9rem;color:var(--text-secondary);margin-bottom:1.25rem;line-height:1.5}
-        .agent-metrics{display:flex;gap:1.5rem}.agent-metric-value{font-family:var(--font-mono);font-size:1.1rem;font-weight:700}.agent-metric-label{font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px}
-        .agent-card.featured{border-color:var(--accent-purple)}.agent-card.featured .agent-id{background:rgba(139,92,246,0.1);color:var(--accent-purple)}.agent-card.featured::before{background:linear-gradient(90deg,var(--accent-purple),var(--accent-cyan));opacity:1}.agent-card .btn{font-size:0.85rem;padding:0.75rem 1.25rem}
-        .demo-section{background:var(--bg-secondary);border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)}.demo-header{text-align:center;margin-bottom:3rem}.demo-header .section-subtitle{margin:0 auto}
-        .demo-container{background:var(--bg-primary);border:1px solid var(--border-light);border-radius:var(--radius-xl);overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.4)}
-        .demo-tabs{display:flex;background:var(--bg-tertiary);border-bottom:1px solid var(--border-subtle);overflow-x:auto}
-        .demo-tab{padding:1rem 1.5rem;background:none;border:none;color:var(--text-muted);font-family:var(--font-primary);font-size:0.9rem;font-weight:500;cursor:pointer;transition:all 0.2s;white-space:nowrap;position:relative}
-        .demo-tab.active{color:var(--accent-cyan);background:rgba(0,229,255,0.05)}.demo-tab.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--accent-cyan)}.demo-tab:hover:not(.active){color:var(--text-primary);background:rgba(255,255,255,0.02)}
-        .demo-panel{display:none;padding:2rem;min-height:450px}.demo-panel.active{display:block;animation:fadeUp 0.3s ease}@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-        .compliance-overview{display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;padding:1.5rem;background:var(--bg-tertiary);border-radius:var(--radius-md)}
-        .compliance-score-value{font-family:var(--font-mono);font-size:3.5rem;font-weight:700;color:var(--accent-green)}.compliance-score-label{font-size:0.85rem;color:var(--text-muted)}
-        .compliance-stats{display:flex;gap:3rem}.compliance-stat{text-align:center}.compliance-stat-value{font-family:var(--font-mono);font-size:1.5rem;font-weight:700}
-        .compliance-stat-value.success{color:var(--accent-green)}.compliance-stat-value.warning{color:var(--accent-orange)}.compliance-stat-value.danger{color:var(--accent-red)}.compliance-stat-label{font-size:0.75rem;color:var(--text-muted)}
-        .compliance-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0.75rem}
-        .compliance-domain{background:var(--bg-tertiary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:1rem;text-align:center;transition:all 0.2s}.compliance-domain:hover{border-color:var(--accent-cyan);background:rgba(0,229,255,0.05)}
-        .compliance-domain-code{font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);margin-bottom:0.25rem}.compliance-domain-score{font-size:1.5rem;font-weight:700}
-        .compliance-domain-score.high{color:var(--accent-green)}.compliance-domain-score.medium{color:var(--accent-orange)}.compliance-domain-score.low{color:var(--accent-red)}
-        .compliance-domain-bar{height:3px;background:var(--bg-primary);border-radius:2px;margin-top:0.5rem;overflow:hidden}.compliance-domain-fill{height:100%;border-radius:2px}
-        .compliance-domain-fill.high{background:var(--accent-green)}.compliance-domain-fill.medium{background:var(--accent-orange)}.compliance-domain-fill.low{background:var(--accent-red)}
-        .roi-calculator{max-width:800px;margin:0 auto}.roi-inputs{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem}
-        .roi-input-group label{display:block;font-size:0.9rem;font-weight:500;color:var(--text-secondary);margin-bottom:0.75rem}
-        .roi-slider{width:100%;height:8px;-webkit-appearance:none;background:var(--bg-tertiary);border-radius:4px;outline:none}
-        .roi-slider::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--accent-cyan);cursor:pointer;box-shadow:0 2px 10px var(--glow-cyan)}
-        .roi-slider-labels{display:flex;justify-content:space-between;margin-top:0.5rem}.roi-slider-labels span{font-size:0.75rem;color:var(--text-muted)}.roi-slider-labels .current{color:var(--accent-cyan);font-weight:600}
-        .roi-results{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;padding-top:2rem;border-top:1px solid var(--border-subtle)}
-        .roi-result{text-align:center;padding:1.5rem;background:var(--bg-tertiary);border-radius:var(--radius-md)}.roi-result-value{font-family:var(--font-mono);font-size:2.25rem;font-weight:700;color:var(--accent-green);margin-bottom:0.25rem}.roi-result-label{font-size:0.85rem;color:var(--text-muted)}
-        .findings-feed{max-height:400px;overflow-y:auto}
-        .finding{display:flex;align-items:flex-start;gap:1rem;padding:1rem;background:var(--bg-tertiary);border-radius:var(--radius-md);margin-bottom:0.75rem;border-left:3px solid;animation:slideIn 0.3s ease}@keyframes slideIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
-        .finding.critical{border-left-color:var(--accent-red)}.finding.warning{border-left-color:var(--accent-orange)}.finding.info{border-left-color:var(--accent-cyan)}.finding.success{border-left-color:var(--accent-green)}
-        .finding-badge{font-family:var(--font-mono);font-size:0.65rem;font-weight:700;padding:0.25rem 0.5rem;border-radius:4px;text-transform:uppercase}
-        .finding-badge.critical{background:rgba(255,59,92,0.15);color:var(--accent-red)}.finding-badge.warning{background:rgba(255,107,53,0.15);color:var(--accent-orange)}.finding-badge.info{background:rgba(0,229,255,0.15);color:var(--accent-cyan)}.finding-badge.success{background:rgba(0,255,157,0.15);color:var(--accent-green)}
-        .finding-content{flex:1}.finding-message{font-size:0.9rem;margin-bottom:0.25rem}.finding-time{font-family:var(--font-mono);font-size:0.75rem;color:var(--text-muted)}
-        .testimonials-section{background:linear-gradient(180deg,transparent,rgba(139,92,246,0.02),transparent)}.testimonials-header{text-align:center;margin-bottom:4rem}.testimonials-header .section-subtitle{margin:0 auto}
-        .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-        .testimonial-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:2rem;transition:all 0.3s}.testimonial-card:hover{border-color:var(--border-light);transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,0.2)}
-        .testimonial-rating{color:var(--accent-yellow);margin-bottom:1rem;font-size:1.1rem;letter-spacing:2px}.testimonial-quote{font-size:1rem;line-height:1.7;color:var(--text-secondary);margin-bottom:1.5rem;font-style:italic}
-        .testimonial-author{display:flex;align-items:center;gap:1rem}
-        .testimonial-avatar{width:48px;height:48px;background:linear-gradient(135deg,var(--accent-cyan),var(--accent-purple));border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;color:var(--bg-deep)}
-        .testimonial-info h4{font-size:0.95rem;font-weight:600;margin-bottom:0.125rem}.testimonial-info p{font-size:0.8rem;color:var(--text-muted)}
-        .case-study-link{display:inline-flex;align-items:center;gap:0.5rem;margin-top:1rem;font-size:0.85rem;color:var(--accent-cyan);text-decoration:none;transition:gap 0.2s}.case-study-link:hover{gap:0.75rem}
-        .pricing-section{background:var(--bg-secondary);border-top:1px solid var(--border-subtle)}.pricing-header{text-align:center;margin-bottom:4rem}.pricing-header .section-subtitle{margin:0 auto}
-        .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1100px;margin:0 auto}
-        .pricing-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);padding:2.5rem;transition:all 0.3s;position:relative}.pricing-card:hover{border-color:var(--border-light);transform:translateY(-4px)}
-        .pricing-card.featured{border-color:var(--accent-cyan);box-shadow:0 0 60px rgba(0,229,255,0.1)}
-        .pricing-card.featured::before{content:'Most Popular';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--accent-cyan),var(--accent-green));color:var(--bg-deep);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:0.4rem 1rem;border-radius:20px}
-        .pricing-name{font-size:1.1rem;font-weight:600;color:var(--text-muted);margin-bottom:0.5rem}.pricing-price{margin-bottom:0.5rem}.pricing-price .amount{font-family:var(--font-mono);font-size:3rem;font-weight:700}.pricing-price .period{font-size:0.9rem;color:var(--text-muted)}
-        .pricing-desc{font-size:0.9rem;color:var(--text-secondary);margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--border-subtle)}
-        .pricing-features{list-style:none;margin-bottom:2rem}.pricing-features li{display:flex;align-items:flex-start;gap:0.75rem;padding:0.5rem 0;font-size:0.9rem;color:var(--text-secondary)}.pricing-features li::before{content:'âœ“';color:var(--accent-green);font-weight:700;flex-shrink:0}.pricing-card .btn{width:100%}
-        .modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);z-index:2000;display:none;align-items:center;justify-content:center;padding:2rem}
-        .modal-overlay.active{display:flex;animation:fadeIn 0.2s ease}@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-        .modal{background:var(--bg-secondary);border:1px solid var(--border-light);border-radius:var(--radius-xl);max-width:500px;width:100%;max-height:90vh;overflow-y:auto;animation:slideUp 0.3s ease}@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-        .modal-header{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2rem;border-bottom:1px solid var(--border-subtle)}.modal-title{font-size:1.25rem;font-weight:700}
-        .modal-close{background:none;border:none;color:var(--text-muted);font-size:1.5rem;cursor:pointer;padding:0.25rem;line-height:1;transition:color 0.2s}.modal-close:hover{color:var(--text-primary)}.modal-body{padding:2rem}.modal-body>p{color:var(--text-secondary);margin-bottom:1.5rem}
-        .cta-section{background:linear-gradient(180deg,var(--bg-secondary),var(--bg-deep))}.cta-inner{text-align:center;max-width:700px;margin:0 auto}
-        .cta-title{font-size:clamp(2rem,4vw,2.75rem);margin-bottom:1rem}.cta-subtitle{font-size:1.1rem;color:var(--text-secondary);margin-bottom:2.5rem}
-        .cta-form{display:flex;gap:0.75rem;max-width:480px;margin:0 auto 1.5rem}.cta-form .form-input{flex:1}.cta-note{font-size:0.85rem;color:var(--text-muted)}
-        .footer{position:relative;z-index:1;padding:4rem 0 2rem;border-top:1px solid var(--border-subtle)}
-        .footer-grid{display:grid;grid-template-columns:2fr repeat(4,1fr);gap:3rem;margin-bottom:3rem}.footer-brand p{color:var(--text-secondary);font-size:0.9rem;margin-top:1rem;max-width:280px;line-height:1.6}
-        .footer-social{display:flex;gap:0.75rem;margin-top:1.5rem}
-        .footer-social a{width:36px;height:36px;background:var(--bg-tertiary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:var(--text-secondary);text-decoration:none;transition:all 0.2s}.footer-social a:hover{background:rgba(0,229,255,0.1);border-color:var(--accent-cyan);color:var(--accent-cyan)}
-        .footer-column h4{font-size:0.85rem;font-weight:600;margin-bottom:1.25rem;color:var(--text-primary)}.footer-links{list-style:none}.footer-links li{margin-bottom:0.75rem}.footer-links a{color:var(--text-secondary);text-decoration:none;font-size:0.9rem;transition:color 0.2s}.footer-links a:hover{color:var(--accent-cyan)}
-        .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:2rem;border-top:1px solid var(--border-subtle)}.footer-copyright{font-size:0.85rem;color:var(--text-muted)}
-        .footer-legal{display:flex;gap:2rem}.footer-legal a{color:var(--text-muted);text-decoration:none;font-size:0.85rem;transition:color 0.2s}.footer-legal a:hover{color:var(--text-primary)}
-        @media(max-width:1024px){.hero-grid{grid-template-columns:1fr;text-align:center}.hero-description{margin:0 auto 2rem}.hero-cta{justify-content:center}.hero-stats{justify-content:center}.hero-visual{max-width:550px;margin:2rem auto 0}.leadmagnet-card{grid-template-columns:1fr}.compliance-grid{grid-template-columns:repeat(4,1fr)}.testimonials-grid{grid-template-columns:1fr}.pricing-grid{grid-template-columns:1fr;max-width:400px}.footer-grid{grid-template-columns:repeat(2,1fr)}}
-        @media(max-width:768px){.nav-links{display:none}.mobile-menu-btn{display:block}.nav-cta .btn-secondary{display:none}.hero{padding:6rem 0 3rem}.hero-stats{flex-direction:column;gap:1rem}.trust-inner{flex-direction:column;gap:1.5rem}.trust-badges{flex-wrap:wrap;justify-content:center;gap:1.5rem}.section{padding:4rem 0}.agents-grid{grid-template-columns:1fr}.compliance-grid{grid-template-columns:repeat(3,1fr)}.compliance-overview{flex-direction:column;gap:1.5rem}.roi-inputs{grid-template-columns:1fr}.roi-results{grid-template-columns:1fr}.cta-form{flex-direction:column}.form-row{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr;gap:2rem}.footer-bottom{flex-direction:column;gap:1rem;text-align:center}}
-        @media(max-width:480px){.compliance-grid{grid-template-columns:repeat(2,1fr)}}
-
-        /* ===== AGENT 007 DEMO ===== */
-        .a7-overlay{position:fixed;top:0;left:0;right:0;bottom:0;z-index:3000;display:none;background:rgba(5,5,8,0.95);backdrop-filter:blur(12px);overflow-y:auto}
-        .a7-overlay.active{display:block;animation:fadeIn 0.3s ease}
-        .a7-wrap{max-width:960px;margin:0 auto;padding:2rem;min-height:100vh;display:flex;flex-direction:column}
-        .a7-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:1.5rem;border-bottom:1px solid rgba(139,92,246,0.2);margin-bottom:2rem}
-        .a7-logo{display:flex;align-items:center;gap:0.75rem}
-        .a7-logo-icon{width:36px;height:36px;background:linear-gradient(135deg,#8b5cf6,#00e5ff);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-weight:700;font-size:0.7rem;color:#050508}
-        .a7-logo-text{font-weight:700;font-size:1.1rem}.a7-logo-text span{color:#8b5cf6}
-        .a7-close{background:none;border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:var(--text-muted);font-size:1.3rem;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;transition:all 0.2s}.a7-close:hover{border-color:#8b5cf6;color:#fff}
-        .a7-stage{display:none;animation:fadeUp 0.4s ease}.a7-stage.active{display:block}
-        .a7-title{font-size:1.75rem;font-weight:700;margin-bottom:0.5rem;letter-spacing:-0.5px}.a7-subtitle{color:var(--text-secondary);margin-bottom:2rem;font-size:0.95rem}
-        .a7-badge{display:inline-flex;align-items:center;gap:0.4rem;background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.25);padding:0.35rem 0.85rem;border-radius:50px;font-size:0.75rem;font-family:var(--font-mono);color:#8b5cf6;margin-bottom:1.25rem}
-        .a7-badge .dot{width:6px;height:6px;background:#8b5cf6;border-radius:50%;animation:pulse 1.5s infinite}
-
-        /* Intake form */
-        .a7-form{display:grid;gap:1.25rem;max-width:640px}
-        .a7-form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-        .a7-field label{display:block;font-size:0.8rem;font-weight:600;color:var(--text-secondary);margin-bottom:0.4rem;text-transform:uppercase;letter-spacing:0.5px}
-        .a7-field input,.a7-field select{width:100%;padding:0.75rem 1rem;background:rgba(15,15,24,0.8);border:1px solid var(--border-light);border-radius:10px;color:#fff;font-family:var(--font-primary);font-size:0.9rem;transition:border-color 0.2s}
-        .a7-field input:focus,.a7-field select:focus{outline:none;border-color:#8b5cf6;box-shadow:0 0 0 3px rgba(139,92,246,0.15)}
-        .a7-field input::placeholder{color:var(--text-muted)}
-        .a7-btn{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.9rem 2rem;font-family:var(--font-primary);font-size:0.95rem;font-weight:600;border-radius:12px;border:none;cursor:pointer;transition:all 0.25s}
-        .a7-btn-primary{background:linear-gradient(135deg,#8b5cf6,#00e5ff);color:#050508;box-shadow:0 4px 24px rgba(139,92,246,0.3)}.a7-btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(139,92,246,0.4)}
-        .a7-btn-secondary{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.15)}.a7-btn-secondary:hover{border-color:#8b5cf6;background:rgba(139,92,246,0.08)}
-        .a7-btn-lg{padding:1rem 2.5rem;font-size:1rem}
-
-        /* Risk scan */
-        .a7-risk-grid{display:grid;gap:0.75rem;margin-bottom:2rem}
-        .a7-risk{display:grid;grid-template-columns:2.5rem 1fr auto;align-items:center;gap:1rem;padding:0.85rem 1.25rem;background:rgba(15,15,24,0.7);border:1px solid var(--border-subtle);border-radius:12px;transition:all 0.3s}
-        .a7-risk.scanning{border-color:rgba(139,92,246,0.3);background:rgba(139,92,246,0.04)}
-        .a7-risk.done{border-color:rgba(0,255,157,0.2)}.a7-risk.warn{border-color:rgba(255,107,53,0.3)}.a7-risk.crit{border-color:rgba(255,59,92,0.3)}
-        .a7-risk-num{font-family:var(--font-mono);font-size:0.7rem;font-weight:700;width:2.5rem;height:2.5rem;border-radius:8px;display:flex;align-items:center;justify-content:center;background:rgba(139,92,246,0.1);color:#8b5cf6;transition:all 0.3s}
-        .a7-risk.done .a7-risk-num{background:rgba(0,255,157,0.12);color:#00ff9d}.a7-risk.warn .a7-risk-num{background:rgba(255,107,53,0.12);color:#ff6b35}.a7-risk.crit .a7-risk-num{background:rgba(255,59,92,0.12);color:#ff3b5c}
-        .a7-risk-info h4{font-size:0.9rem;font-weight:600;margin-bottom:0.15rem}.a7-risk-info p{font-size:0.75rem;color:var(--text-muted)}
-        .a7-risk-status{font-family:var(--font-mono);font-size:0.75rem;font-weight:700;padding:0.3rem 0.75rem;border-radius:6px;text-transform:uppercase;min-width:80px;text-align:center}
-        .a7-risk-status.pending{background:rgba(96,96,112,0.15);color:var(--text-muted)}.a7-risk-status.scanning-s{background:rgba(139,92,246,0.15);color:#8b5cf6;animation:scanPulse 0.8s infinite}
-        .a7-risk-status.pass{background:rgba(0,255,157,0.12);color:#00ff9d}.a7-risk-status.warning-s{background:rgba(255,107,53,0.12);color:#ff6b35}.a7-risk-status.critical-s{background:rgba(255,59,92,0.12);color:#ff3b5c}
-        @keyframes scanPulse{0%,100%{opacity:1}50%{opacity:0.4}}
-        .a7-progress-wrap{margin:1.5rem 0;padding:1.25rem;background:rgba(15,15,24,0.7);border:1px solid var(--border-subtle);border-radius:12px}
-        .a7-progress-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem}
-        .a7-progress-label{font-size:0.85rem;font-weight:600}.a7-progress-pct{font-family:var(--font-mono);font-size:1.1rem;font-weight:700;color:#8b5cf6}
-        .a7-progress-bar{height:8px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden}.a7-progress-fill{height:100%;background:linear-gradient(90deg,#8b5cf6,#00e5ff);border-radius:4px;transition:width 0.4s ease;width:0}
-        .a7-score-row{display:flex;gap:1.5rem;margin-top:1.5rem}
-        .a7-score-card{flex:1;text-align:center;padding:1.25rem;background:rgba(15,15,24,0.7);border:1px solid var(--border-subtle);border-radius:12px}
-        .a7-score-val{font-family:var(--font-mono);font-size:2rem;font-weight:700}.a7-score-lbl{font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-top:0.25rem}
-
-        /* RMF phases */
-        .a7-phases{display:grid;grid-template-columns:repeat(6,1fr);gap:0.5rem;margin-bottom:2rem}
-        .a7-phase{text-align:center;padding:1rem 0.5rem;background:rgba(15,15,24,0.7);border:1px solid var(--border-subtle);border-radius:12px;cursor:pointer;transition:all 0.3s;position:relative}
-        .a7-phase.active-phase{border-color:#00e5ff;background:rgba(0,229,255,0.06);box-shadow:0 0 20px rgba(0,229,255,0.1)}
-        .a7-phase.complete{border-color:rgba(0,255,157,0.3);background:rgba(0,255,157,0.04)}
-        .a7-phase.processing{border-color:rgba(139,92,246,0.4);animation:scanPulse 1s infinite}
-        .a7-phase-num{font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted);margin-bottom:0.25rem}.a7-phase-name{font-size:0.75rem;font-weight:600;margin-bottom:0.4rem}
-        .a7-phase-icon{font-size:1.5rem;margin-bottom:0.35rem}
-        .a7-phase-status{font-family:var(--font-mono);font-size:0.6rem;padding:0.2rem 0.5rem;border-radius:4px;display:inline-block}
-        .a7-phase-status.pending-p{background:rgba(96,96,112,0.15);color:var(--text-muted)}.a7-phase-status.running-p{background:rgba(139,92,246,0.15);color:#8b5cf6}.a7-phase-status.done-p{background:rgba(0,255,157,0.12);color:#00ff9d}
-        .a7-phase-detail{padding:1.5rem;background:rgba(15,15,24,0.7);border:1px solid var(--border-subtle);border-radius:12px;margin-bottom:1.5rem;min-height:180px}
-        .a7-phase-detail h3{font-size:1.1rem;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem}
-        .a7-artifacts{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-top:1rem}
-        .a7-artifact{display:flex;align-items:center;gap:0.6rem;padding:0.6rem 0.85rem;background:rgba(255,255,255,0.03);border:1px solid var(--border-subtle);border-radius:8px;font-size:0.8rem}
-        .a7-artifact-icon{font-size:1rem;opacity:0.7}.a7-artifact-name{color:var(--text-secondary)}.a7-artifact.generated .a7-artifact-name{color:#00ff9d}
-        .a7-controls-row{display:flex;gap:1rem;margin-top:0.75rem;flex-wrap:wrap}
-        .a7-ctrl{font-family:var(--font-mono);font-size:0.7rem;padding:0.25rem 0.6rem;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.15);border-radius:6px;color:#00e5ff}
-
-        /* Results */
-        .a7-result-hero{text-align:center;padding:2.5rem;background:linear-gradient(135deg,rgba(139,92,246,0.08),rgba(0,229,255,0.06));border:1px solid rgba(139,92,246,0.2);border-radius:20px;margin-bottom:2rem}
-        .a7-result-score{font-family:var(--font-mono);font-size:4.5rem;font-weight:700;background:linear-gradient(135deg,#8b5cf6,#00e5ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
-        .a7-result-label{font-size:1.1rem;color:var(--text-secondary);margin-top:0.5rem;margin-bottom:1.5rem}
-        .a7-result-badge{display:inline-flex;align-items:center;gap:0.4rem;background:rgba(0,255,157,0.1);border:1px solid rgba(0,255,157,0.25);padding:0.4rem 1rem;border-radius:50px;font-size:0.85rem;font-weight:600;color:#00ff9d}
-        .a7-result-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem}
-        .a7-result-stat{text-align:center;padding:1.25rem;background:rgba(15,15,24,0.7);border:1px solid var(--border-subtle);border-radius:12px}
-        .a7-result-stat-val{font-family:var(--font-mono);font-size:1.5rem;font-weight:700;color:#00e5ff}.a7-result-stat-lbl{font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-top:0.25rem}
-        .a7-package{padding:1.5rem;background:rgba(15,15,24,0.7);border:1px solid var(--border-subtle);border-radius:12px;margin-bottom:2rem}
-        .a7-package h3{font-size:1rem;margin-bottom:1rem;color:var(--text-secondary)}
-        .a7-package-items{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem}
-        .a7-package-item{display:flex;align-items:center;gap:0.6rem;padding:0.65rem 0.85rem;background:rgba(0,255,157,0.04);border:1px solid rgba(0,255,157,0.15);border-radius:8px;font-size:0.8rem;color:#00ff9d}
-        .a7-package-item span:first-child{font-size:1rem}
-        .a7-cta-row{display:flex;gap:1rem;justify-content:center;margin-top:1.5rem}
-
-        @media(max-width:768px){
-            .a7-phases{grid-template-columns:repeat(3,1fr)}
-            .a7-form-row{grid-template-columns:1fr}
-            .a7-result-grid{grid-template-columns:repeat(2,1fr)}
-            .a7-package-items{grid-template-columns:1fr}
-            .a7-score-row{flex-direction:column}
-            .a7-artifacts{grid-template-columns:1fr}
-            .a7-cta-row{flex-direction:column;align-items:stretch}
-        }
-        .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(120px);z-index:3000;background:var(--bg-tertiary);border:1px solid var(--border-light);border-radius:var(--radius-md);padding:1rem 1.75rem;display:flex;align-items:center;gap:0.75rem;box-shadow:0 12px 40px rgba(0,0,0,0.5),0 0 30px rgba(0,229,255,0.08);transition:transform 0.4s cubic-bezier(0.16,1,0.3,1),opacity 0.4s;opacity:0;pointer-events:none}
-        .toast.visible{transform:translateX(-50%) translateY(0);opacity:1;pointer-events:auto}
-        .toast-icon{width:36px;height:36px;background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
-        .toast-body{display:flex;flex-direction:column;gap:0.125rem}.toast-title{font-size:0.9rem;font-weight:600;color:var(--text-primary)}.toast-message{font-size:0.8rem;color:var(--text-muted)}
-        .toast-close{background:none;border:none;color:var(--text-muted);font-size:1.1rem;cursor:pointer;padding:0.25rem;margin-left:0.5rem;line-height:1;transition:color 0.2s}.toast-close:hover{color:var(--text-primary)}
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrustNovaOps | 7 AI Agents for CMMC 2.0</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .hero-bg { background: linear-gradient(135deg, #0a1428 0%, #1e3a8a 100%); }
+    .agent-card { transition: all 0.3s ease; }
+    .agent-card:hover { transform: translateY(-4px); border-color: rgb(59 130 246); }
+  </style>
 </head>
-<body>
-    <div class="bg-mesh"></div>
-    <div class="bg-grid"></div>
-    <nav class="nav"><div class="container nav-inner"><a href="#" class="logo"><div class="logo-mark">TN</div><span class="logo-text">Trust<span>Nova</span>Ops</span></a><ul class="nav-links"><li><a href="#agents">AI Agents</a></li><li><a href="#demo">Live Demo</a></li><li><a href="#testimonials">Customers</a></li><li><a href="#pricing">Pricing</a></li></ul><div class="nav-cta"><a href="#leadmagnet" class="btn btn-secondary">Free Checklist</a><button class="btn btn-primary" onclick="openModal('demo')">Request Demo</button></div><button class="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
-    <section class="hero"><div class="container"><div class="hero-grid"><div class="hero-content"><div class="hero-badge"><span class="pulse"></span>CMMC 2.0 Ready â€¢ SOC 2 Type II Certified</div><h1><span class="gradient-text">7 AI Agents</span><br>Securing Your<br>Defense Supply Chain</h1><p class="hero-description">Autonomous compliance monitoring that never sleeps. Achieve CMMC 2.0 certification in weeks, not monthsâ€”at a fraction of traditional assessment costs.</p><div class="hero-cta"><button class="btn btn-primary btn-lg" onclick="openModal('trial')">Start 14-Day Free Trial</button><a href="#demo" class="btn btn-secondary btn-lg">See Live Demo</a></div><div class="hero-stats"><div class="hero-stat"><div class="hero-stat-value">80%</div><div class="hero-stat-label">Cost Reduction</div></div><div class="hero-stat"><div class="hero-stat-value">&lt;5min</div><div class="hero-stat-label">Assessment Time</div></div><div class="hero-stat"><div class="hero-stat-value">110+</div><div class="hero-stat-label">CMMC Controls</div></div></div></div><div class="hero-visual"><div class="terminal"><div class="terminal-header"><div class="terminal-dots"><span></span><span></span><span></span></div><div class="terminal-title">trustnova-cli v2.4.1</div></div><div class="terminal-body" id="terminal"></div></div></div></div></div></section>
-    <section class="trust-section"><div class="container"><div class="trust-inner"><span class="trust-label">Trusted Frameworks</span><div class="trust-badges"><div class="trust-badge"><div class="trust-badge-icon">CMMC</div><div class="trust-badge-text">Level 2</div></div><div class="trust-badge"><div class="trust-badge-icon">NIST</div><div class="trust-badge-text">800-171</div></div><div class="trust-badge"><div class="trust-badge-icon">SOC 2</div><div class="trust-badge-text">Type II</div></div><div class="trust-badge"><div class="trust-badge-icon">FedRAMP</div><div class="trust-badge-text">In Process</div></div><div class="trust-badge"><div class="trust-badge-icon">DFARS</div><div class="trust-badge-text">7012</div></div></div></div></div></section>
-    <section class="leadmagnet-section section" id="leadmagnet"><div class="container"><div class="leadmagnet-card"><div class="leadmagnet-content"><span class="section-label">Free Resource</span><h2>CMMC 2.0 Readiness Checklist</h2><p>Get our comprehensive 47-point checklist used by 200+ defense contractors to prepare for CMMC certification.</p><ul class="leadmagnet-features"><li>All 110 CMMC Level 2 controls mapped</li><li>Gap assessment worksheet included</li><li>Evidence collection templates</li><li>Timeline planning guide</li><li>Cost estimation calculator</li></ul></div><div class="leadmagnet-form"><h3>Download Free Checklist</h3><p>No credit card required. Instant access.</p><form id="leadmagnet-form" onsubmit="handleLeadMagnet(event)"><div class="form-group"><label class="form-label">Work Email *</label><input type="email" class="form-input" placeholder="you@company.com" required></div><div class="form-group"><label class="form-label">Company Name *</label><input type="text" class="form-input" placeholder="Your company" required></div><div class="form-group"><label class="form-label">Company Size</label><select class="form-select"><option value="">Select size...</option><option value="1-50">1-50 employees</option><option value="51-200">51-200 employees</option><option value="201-500">201-500 employees</option><option value="500+">500+ employees</option></select></div><button type="submit" class="btn btn-primary" style="width:100%">Download Free Checklist â†’</button><p class="form-note">ðŸ”’ We respect your privacy. Unsubscribe anytime.</p></form></div></div></div></section>
-    <section class="section" id="agents"><div class="container"><div class="agents-header"><span class="section-label">AI Agent Ecosystem</span><h2 class="section-title">Seven Specialists. One Mission.</h2><p class="section-subtitle">Each agent is purpose-built for a specific security domain, working autonomously 24/7.</p></div><div class="agents-grid"><div class="agent-card"><div class="agent-header"><span class="agent-id">Agent 001</span><span class="agent-status">Active</span></div><h3 class="agent-name">Compliance Scanner</h3><p class="agent-desc">Continuous CMMC readiness assessment with automated evidence collection across all 110 Level 2 controls.</p><div class="agent-metrics"><div class="agent-metric"><div class="agent-metric-value">847</div><div class="agent-metric-label">Scans Today</div></div><div class="agent-metric"><div class="agent-metric-value">99.2%</div><div class="agent-metric-label">Uptime</div></div><div class="agent-metric"><div class="agent-metric-value">23</div><div class="agent-metric-label">Findings</div></div></div></div><div class="agent-card"><div class="agent-header"><span class="agent-id">Agent 002</span><span class="agent-status">Active</span></div><h3 class="agent-name">Code Auditor</h3><p class="agent-desc">AI-powered static and dynamic analysis that catches vulnerabilities before production.</p><div class="agent-metrics"><div class="agent-metric"><div class="agent-metric-value">1.2M</div><div class="agent-metric-label">Lines Scanned</div></div><div class="agent-metric"><div class="agent-metric-value">156</div><div class="agent-metric-label">PRs Reviewed</div></div><div class="agent-metric"><div class="agent-metric-value">12</div><div class="agent-metric-label">Critical</div></div></div></div><div class="agent-card"><div class="agent-header"><span class="agent-id">Agent 003</span><span class="agent-status">Active</span></div><h3 class="agent-name">Infrastructure Guardian</h3><p class="agent-desc">Multi-cloud security posture management with automated drift detection and remediation.</p><div class="agent-metrics"><div class="agent-metric"><div class="agent-metric-value">342</div><div class="agent-metric-label">Resources</div></div><div class="agent-metric"><div class="agent-metric-value">98.7%</div><div class="agent-metric-label">Compliant</div></div><div class="agent-metric"><div class="agent-metric-value">5</div><div class="agent-metric-label">Drifts</div></div></div></div><div class="agent-card"><div class="agent-header"><span class="agent-id">Agent 004</span><span class="agent-status">Active</span></div><h3 class="agent-name">Access Controller</h3><p class="agent-desc">Zero-trust identity governance with continuous verification and least-privilege enforcement.</p><div class="agent-metrics"><div class="agent-metric"><div class="agent-metric-value">2,847</div><div class="agent-metric-label">Users</div></div><div class="agent-metric"><div class="agent-metric-value">156</div><div class="agent-metric-label">Roles</div></div><div class="agent-metric"><div class="agent-metric-value">23</div><div class="agent-metric-label">Elevated</div></div></div></div><div class="agent-card"><div class="agent-header"><span class="agent-id">Agent 005</span><span class="agent-status">Active</span></div><h3 class="agent-name">Policy Engine</h3><p class="agent-desc">Policy-as-code generation aligned with CMMC requirements and automatic enforcement.</p><div class="agent-metrics"><div class="agent-metric"><div class="agent-metric-value">89</div><div class="agent-metric-label">Policies</div></div><div class="agent-metric"><div class="agent-metric-value">12</div><div class="agent-metric-label">Updated</div></div><div class="agent-metric"><div class="agent-metric-value">3</div><div class="agent-metric-label">Pending</div></div></div></div><div class="agent-card"><div class="agent-header"><span class="agent-id">Agent 006</span><span class="agent-status">Active</span></div><h3 class="agent-name">Pipeline Orchestrator</h3><p class="agent-desc">Secure CI/CD integration with automated security gates for GitHub, GitLab, Azure DevOps.</p><div class="agent-metrics"><div class="agent-metric"><div class="agent-metric-value">1,247</div><div class="agent-metric-label">Pipelines</div></div><div class="agent-metric"><div class="agent-metric-value">98.9%</div><div class="agent-metric-label">Pass Rate</div></div><div class="agent-metric"><div class="agent-metric-value">4.2s</div><div class="agent-metric-label">Avg Scan</div></div></div></div><div class="agent-card featured"><div class="agent-header"><span class="agent-id">Agent 007</span><span class="agent-status" style="color:var(--accent-purple)">NEW</span></div><h3 class="agent-name">ATO Streamliner</h3><p class="agent-desc">AI-powered RMF automation for AI system ATOs. Assesses 8 AI-specific risk categories across all 6 RMF phases. Generates ATO-ready packages in under 5 seconds.</p><div class="agent-metrics"><div class="agent-metric"><div class="agent-metric-value">8</div><div class="agent-metric-label">AI Risks</div></div><div class="agent-metric"><div class="agent-metric-value">6</div><div class="agent-metric-label">RMF Phases</div></div><div class="agent-metric"><div class="agent-metric-value">&lt;5s</div><div class="agent-metric-label">Assessment</div></div></div><button class="btn btn-primary" style="width:100%;margin-top:1.25rem" onclick="launchAgent007()">Launch Agent 007 →</button></div></div></div></section>
-    <section class="demo-section section" id="demo"><div class="container"><div class="demo-header"><span class="section-label">Interactive Demo</span><h2 class="section-title">See TrustNovaOps In Action</h2><p class="section-subtitle">Explore the real-time dashboards and tools that power continuous CMMC compliance.</p></div><div class="demo-container"><div class="demo-tabs"><button class="demo-tab active" data-tab="compliance">Compliance Dashboard</button><button class="demo-tab" data-tab="roi">ROI Calculator</button><button class="demo-tab" data-tab="findings">Live Findings</button></div><div class="demo-panel active" id="panel-compliance"><div class="compliance-overview"><div class="compliance-score-main"><div class="compliance-score-value">92%</div><div class="compliance-score-label">Overall Compliance</div></div><div class="compliance-stats"><div class="compliance-stat"><div class="compliance-stat-value success">101</div><div class="compliance-stat-label">Controls Passing</div></div><div class="compliance-stat"><div class="compliance-stat-value warning">7</div><div class="compliance-stat-label">Needs Review</div></div><div class="compliance-stat"><div class="compliance-stat-value danger">2</div><div class="compliance-stat-label">Critical Gaps</div></div></div></div><div class="compliance-grid" id="compliance-grid"></div></div><div class="demo-panel" id="panel-roi"><div class="roi-calculator"><div class="roi-inputs"><div class="roi-input-group"><label>Number of Employees</label><input type="range" class="roi-slider" id="roi-employees" min="10" max="500" value="100"><div class="roi-slider-labels"><span>10</span><span class="current" id="employees-val">100</span><span>500</span></div></div><div class="roi-input-group"><label>Annual Compliance Budget</label><input type="range" class="roi-slider" id="roi-budget" min="25000" max="500000" step="5000" value="150000"><div class="roi-slider-labels"><span>$25K</span><span class="current" id="budget-val">$150K</span><span>$500K</span></div></div></div><div class="roi-results"><div class="roi-result"><div class="roi-result-value" id="roi-savings">$90K</div><div class="roi-result-label">Annual Savings</div></div><div class="roi-result"><div class="roi-result-value" id="roi-hours">1,200</div><div class="roi-result-label">Hours Saved</div></div><div class="roi-result"><div class="roi-result-value" id="roi-percent">340%</div><div class="roi-result-label">First Year ROI</div></div></div></div></div><div class="demo-panel" id="panel-findings"><div class="findings-feed" id="findings-feed"></div></div></div></div></section>
-    <section class="testimonials-section section" id="testimonials"><div class="container"><div class="testimonials-header"><span class="section-label">Customer Stories</span><h2 class="section-title">Trusted by Defense Contractors</h2><p class="section-subtitle">See how leading organizations achieved CMMC certification faster with TrustNovaOps.</p></div><div class="testimonials-grid"><div class="testimonial-card"><div class="testimonial-rating">â˜…â˜…â˜…â˜…â˜…</div><p class="testimonial-quote">"We went from 45% compliance to CMMC Level 2 certified in just 8 weeks. The automated evidence collection saved us hundreds of hours."</p><div class="testimonial-author"><div class="testimonial-avatar">JM</div><div class="testimonial-info"><h4>James Mitchell</h4><p>CISO, Apex Defense Solutions</p></div></div><a href="#" onclick="showComingSoon('Case Study');return false" class="case-study-link">Read case study â†’</a></div><div class="testimonial-card"><div class="testimonial-rating">â˜…â˜…â˜…â˜…â˜…</div><p class="testimonial-quote">"The AI agents caught 3 critical vulnerabilities our manual audits missed. TrustNovaOps paid for itself in the first month."</p><div class="testimonial-author"><div class="testimonial-avatar">SR</div><div class="testimonial-info"><h4>Sarah Reynolds</h4><p>VP Engineering, SecureLogix</p></div></div><a href="#" onclick="showComingSoon('Case Study');return false" class="case-study-link">Read case study â†’</a></div><div class="testimonial-card"><div class="testimonial-rating">â˜…â˜…â˜…â˜…â˜…</div><p class="testimonial-quote">"We reduced our compliance team from 5 FTEs to 2. The continuous monitoring gives us confidence we're always audit-ready."</p><div class="testimonial-author"><div class="testimonial-avatar">DK</div><div class="testimonial-info"><h4>David Kim</h4><p>CEO, Meridian Aerospace</p></div></div><a href="#" onclick="showComingSoon('Case Study');return false" class="case-study-link">Read case study â†’</a></div></div></div></section>
-    <section class="pricing-section section" id="pricing"><div class="container"><div class="pricing-header"><span class="section-label">Simple Pricing</span><h2 class="section-title">Plans That Scale With You</h2><p class="section-subtitle">No hidden fees. No long-term contracts. Start free, upgrade when ready.</p></div><div class="pricing-grid"><div class="pricing-card"><div class="pricing-name">Starter</div><div class="pricing-price"><span class="amount">$499</span><span class="period">/month</span></div><p class="pricing-desc">For small contractors starting their CMMC journey.</p><ul class="pricing-features"><li>Up to 50 employees</li><li>3 AI agents included</li><li>Weekly compliance scans</li><li>Basic evidence collection</li><li>Email support</li></ul><button class="btn btn-secondary" onclick="openModal('trial')">Start Free Trial</button></div><div class="pricing-card featured"><div class="pricing-name">Professional</div><div class="pricing-price"><span class="amount">$1,299</span><span class="period">/month</span></div><p class="pricing-desc">For growing teams with complex compliance needs.</p><ul class="pricing-features"><li>Up to 250 employees</li><li>All 7 AI agents</li><li>Continuous real-time monitoring</li><li>Advanced evidence automation</li><li>CI/CD pipeline integration</li><li>Priority support + Slack</li></ul><button class="btn btn-primary" onclick="openModal('trial')">Start Free Trial</button></div><div class="pricing-card"><div class="pricing-name">Enterprise</div><div class="pricing-price"><span class="amount">Custom</span></div><p class="pricing-desc">For large organizations with custom requirements.</p><ul class="pricing-features"><li>Unlimited employees</li><li>Custom agent configurations</li><li>Dedicated compliance advisor</li><li>On-premise deployment option</li><li>Custom integrations</li><li>24/7 phone support + SLA</li></ul><button class="btn btn-secondary" onclick="openModal('demo')">Contact Sales</button></div></div></div></section>
-    <section class="section" id="trial"><div class="container" style="max-width:760px;text-align:center"><span class="section-label" style="justify-content:center">Get Started</span><h2 class="section-title">Start Your Free Trial Today</h2><p class="section-subtitle" style="margin:0 auto 1rem">Full platform access for 14 days. No credit card required.</p>
+<body class="bg-zinc-950 text-zinc-200">
 
-<div class="cta-group" style="margin: 2rem 0;">
-  <a href="#trial"
-     style="background:#0066ff; color:white; padding:18px 36px; font-size:1.2em; font-weight:bold; border-radius:8px; text-decoration:none; display:inline-block; margin-right:12px;">
-    Start 14-Day Free Trial &ndash; No Card Needed
-  </a>
+  <!-- HERO -->
+  <section class="hero-bg py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex justify-between items-center mb-12">
+        <div class="text-3xl font-bold">TrustNovaOps</div>
+        <a href="#contact" class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-xl font-medium flex items-center gap-2">
+          Request Demo <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
 
-  <a href="#demo"
-     style="background:transparent; color:#0066ff; border:2px solid #0066ff; padding:18px 36px; font-size:1.1em; font-weight:600; border-radius:8px; text-decoration:none; display:inline-block;">
-    Book 15-min Demo
-  </a>
-</div>
-
-
-<!-- NETLIFY FREE TRIAL FORM -->
-<form name="free-trial" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="max-width:420px; margin:2rem auto;">
-  <input type="hidden" name="form-name" value="free-trial">
-  <p style="display:none"><label>Don&rsquo;t fill this out: <input name="bot-field"></label></p>
-
-  <p><strong>Start Your Free Trial</strong></p>
-
-  <input type="text" name="name" placeholder="Full Name" required style="width:100%; padding:12px; margin:8px 0;">
-  <input type="email" name="email" placeholder="Work Email" required style="width:100%; padding:12px; margin:8px 0;">
-  <input type="text" name="company" placeholder="Company Name" required style="width:100%; padding:12px; margin:8px 0;">
-
-  <button type="submit"
-          style="background:#0066ff; color:white; padding:16px 32px; font-size:1.1em; font-weight:bold; width:100%; border:none; border-radius:8px; cursor:pointer;">
-    Get Instant Access &ndash; 14 Days Free
-  </button>
-
-  <p style="font-size:0.85em; color:#666; margin-top:12px;">No card required. We&rsquo;ll send login details instantly.</p>
-</form>
-</div></section>
-    <section class="cta-section section"><div class="container"><div class="cta-inner"><h2 class="cta-title">Ready to Automate Your Compliance?</h2><p class="cta-subtitle">Join 200+ defense contractors who've reduced their compliance burden by 80%.</p><form class="cta-form" onsubmit="handleCTA(event)"><input type="email" class="form-input" placeholder="Enter your work email" required><button type="submit" class="btn btn-primary btn-lg">Start Free Trial</button></form><p class="cta-note">14-day free trial â€¢ Full feature access â€¢ No credit card required</p></div></div></section>
-    <footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="#" class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'});return false"><div class="logo-mark">TN</div><span class="logo-text">Trust<span>Nova</span>Ops</span></a><p>Cost-effective CMMC readiness assessment and DevSecOps automation for the defense industrial base.</p><div class="footer-social"><a href="https://www.linkedin.com/in/thomasmmitchell/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">in</a><a href="https://twitter.com/trustnovaops" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">𝕏</a><a href="https://github.com/trustnovaops" target="_blank" rel="noopener noreferrer" aria-label="GitHub">⌘</a></div></div><div class="footer-column"><h4>Platform</h4><ul class="footer-links"><li><a href="#agents">AI Agents</a></li><li><a href="#demo">Live Demo</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#" onclick="launchAgent007();return false">Agent 007: ATO</a></li></ul></div><div class="footer-column"><h4>Resources</h4><ul class="footer-links"><li><a href="#leadmagnet">CMMC Checklist</a></li><li><a href="#" onclick="showComingSoon('Documentation');return false">Documentation</a></li><li><a href="#" onclick="showComingSoon('API Reference');return false">API Reference</a></li><li><a href="#" onclick="showComingSoon('Blog');return false">Blog</a></li></ul></div><div class="footer-column"><h4>Company</h4><ul class="footer-links"><li><a href="https://www.linkedin.com/in/thomasmmitchell/" target="_blank" rel="noopener noreferrer">About Us</a></li><li><a href="#" onclick="showComingSoon('Careers');return false">Careers</a></li><li><a href="#" onclick="openModal('demo');return false">Contact</a></li><li><a href="#" onclick="showComingSoon('Security');return false">Security</a></li></ul></div><div class="footer-column"><h4>Legal</h4><ul class="footer-links"><li><a href="#" onclick="showComingSoon('Privacy Policy');return false">Privacy Policy</a></li><li><a href="#" onclick="showComingSoon('Terms of Service');return false">Terms of Service</a></li><li><a href="#" onclick="showComingSoon('Security');return false">Security</a></li><li><a href="#" onclick="showComingSoon('Compliance');return false">Compliance</a></li></ul></div></div><div class="footer-bottom"><p class="footer-copyright">© 2026 TrustNovaOps. All rights reserved.</p><div class="footer-legal"><a href="#" onclick="showComingSoon('Privacy Policy');return false">Privacy</a><a href="#" onclick="showComingSoon('Terms of Service');return false">Terms</a><a href="#" onclick="showComingSoon('Security');return false">Security</a></div></div></div></footer>
-    <div class="modal-overlay" id="modal-demo"><div class="modal"><div class="modal-header"><h3 class="modal-title">Request a Demo</h3><button class="modal-close" onclick="closeModal('demo')">&times;</button></div><div class="modal-body"><p>See TrustNovaOps in action. Our team will walk you through the platform.</p><form id="demo-form" onsubmit="handleDemoForm(event)"><div class="form-row"><div class="form-group"><label class="form-label">First Name *</label><input type="text" class="form-input" placeholder="John" required></div><div class="form-group"><label class="form-label">Last Name *</label><input type="text" class="form-input" placeholder="Smith" required></div></div><div class="form-group"><label class="form-label">Work Email *</label><input type="email" class="form-input" placeholder="john@company.com" required></div><div class="form-group"><label class="form-label">Company *</label><input type="text" class="form-input" placeholder="Your company" required></div><div class="form-row"><div class="form-group"><label class="form-label">Company Size</label><select class="form-select"><option value="">Select...</option><option value="1-50">1-50</option><option value="51-200">51-200</option><option value="201-500">201-500</option><option value="500+">500+</option></select></div><div class="form-group"><label class="form-label">Phone</label><input type="tel" class="form-input" placeholder="(555) 123-4567"></div></div><div class="form-checkbox"><input type="checkbox" id="demo-consent" required><label for="demo-consent">I agree to receive communications from TrustNovaOps.</label></div><button type="submit" class="btn btn-primary" style="width:100%;margin-top:1rem">Schedule Demo</button></form></div></div></div>
-    <div class="modal-overlay" id="modal-trial"><div class="modal"><div class="modal-header"><h3 class="modal-title">Start Your Free Trial</h3><button class="modal-close" onclick="closeModal('trial')">&times;</button></div><div class="modal-body"><p>Get full access to TrustNovaOps for 14 days. No credit card required.</p><form id="trial-form" onsubmit="handleTrialForm(event)"><div class="form-row"><div class="form-group"><label class="form-label">First Name *</label><input type="text" class="form-input" placeholder="John" required></div><div class="form-group"><label class="form-label">Last Name *</label><input type="text" class="form-input" placeholder="Smith" required></div></div><div class="form-group"><label class="form-label">Work Email *</label><input type="email" class="form-input" placeholder="john@company.com" required></div><div class="form-group"><label class="form-label">Company *</label><input type="text" class="form-input" placeholder="Your company" required></div><div class="form-group"><label class="form-label">Create Password *</label><input type="password" class="form-input" placeholder="Min 8 characters" minlength="8" required></div><div class="form-checkbox"><input type="checkbox" id="trial-terms" required><label for="trial-terms">I agree to the <a href="#" onclick="showComingSoon('Terms of Service');return false">Terms of Service</a> and <a href="#" onclick="showComingSoon('Privacy Policy');return false">Privacy Policy</a>.</label></div><button type="submit" class="btn btn-primary" style="width:100%;margin-top:1rem">Create Free Account</button></form></div></div></div>
-    <div class="toast" id="toast"><span class="toast-icon">🚧</span><div class="toast-body"><span class="toast-title" id="toast-title">Coming Soon</span><span class="toast-message" id="toast-message">This page is under construction.</span></div><button class="toast-close" onclick="hideToast()">&times;</button></div>
-    <!-- Agent 007 Demo -->
-    <div class="a7-overlay" id="a7-overlay">
-    <div class="a7-wrap">
-        <div class="a7-header">
-            <div class="a7-logo"><div class="a7-logo-icon">007</div><div class="a7-logo-text">ATO <span>Streamliner</span></div></div>
-            <button class="a7-close" onclick="closeAgent007()">&times;</button>
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
+            7 AI Agents for<br>CMMC 2.0 Compliance<br>&amp; DevSecOps Automation
+          </h1>
+          <p class="text-2xl text-zinc-300 mb-8">
+            Achieve CMMC Level 2 certification <span class="text-emerald-400 font-semibold">80% faster</span>.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="#checklist" class="bg-white text-zinc-900 hover:bg-zinc-100 px-8 py-4 rounded-2xl font-semibold text-lg">
+              Download Free Checklist
+            </a>
+            <a href="#agents" class="border border-zinc-400 hover:border-white px-8 py-4 rounded-2xl font-semibold text-lg">
+              See All 7 Agents
+            </a>
+          </div>
         </div>
 
-        <!-- STAGE 1: INTAKE -->
-        <div class="a7-stage active" id="a7-stage-1">
-            <div class="a7-badge"><span class="dot"></span>AGENT 007 INTERACTIVE DEMO</div>
-            <h2 class="a7-title">AI System ATO Assessment</h2>
-            <p class="a7-subtitle">Describe your AI system and Agent 007 will assess it against 8 AI risk categories across all 6 RMF phases in seconds.</p>
-            <div class="a7-form">
-                <div class="a7-form-row">
-                    <div class="a7-field"><label>System Name</label><input type="text" id="a7-sys-name" value="Predictive Maintenance AI" placeholder="e.g. Threat Detection ML"></div>
-                    <div class="a7-field"><label>Organization</label><input type="text" id="a7-sys-org" value="Meridian Aerospace" placeholder="e.g. Apex Defense"></div>
-                </div>
-                <div class="a7-form-row">
-                    <div class="a7-field"><label>AI Model Type</label>
-                        <select id="a7-model-type">
-                            <option value="ml">Machine Learning (Classification/Regression)</option>
-                            <option value="dl">Deep Learning (Neural Network)</option>
-                            <option value="nlp">NLP / Large Language Model</option>
-                            <option value="cv">Computer Vision</option>
-                            <option value="rl">Reinforcement Learning</option>
-                        </select>
-                    </div>
-                    <div class="a7-field"><label>Classification Level</label>
-                        <select id="a7-class-level">
-                            <option value="cui">CUI (Controlled Unclassified)</option>
-                            <option value="secret">Secret</option>
-                            <option value="ts">Top Secret</option>
-                            <option value="unclass">Unclassified</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="a7-form-row">
-                    <div class="a7-field"><label>Deployment Environment</label>
-                        <select id="a7-env">
-                            <option value="cloud-gov">Cloud (GovCloud / IL4-5)</option>
-                            <option value="cloud-comm">Cloud (Commercial)</option>
-                            <option value="on-prem">On-Premise / Air-Gapped</option>
-                            <option value="hybrid">Hybrid</option>
-                            <option value="edge">Edge / Tactical</option>
-                        </select>
-                    </div>
-                    <div class="a7-field"><label>Data Sources</label>
-                        <select id="a7-data">
-                            <option value="sensor">Sensor / IoT Telemetry</option>
-                            <option value="intel">Intelligence Feeds</option>
-                            <option value="logs">System Logs / SIEM</option>
-                            <option value="docs">Documents / Reports</option>
-                            <option value="imagery">Imagery / Video</option>
-                        </select>
-                    </div>
-                </div>
-                <div style="margin-top:0.5rem"><button class="a7-btn a7-btn-primary a7-btn-lg" onclick="startRiskScan()" style="width:100%">Run AI Risk Assessment →</button></div>
-            </div>
+        <div class="bg-zinc-900/70 border border-zinc-700 rounded-3xl p-8 text-center">
+          <div class="text-emerald-400 text-sm font-medium mb-4">LIVE DASHBOARD</div>
+          <div class="text-7xl font-mono font-bold text-white mb-1">92%</div>
+          <p class="text-xl text-zinc-400">Overall Compliance • 101/110 Controls</p>
         </div>
-
-        <!-- STAGE 2: RISK SCAN -->
-        <div class="a7-stage" id="a7-stage-2">
-            <div class="a7-badge"><span class="dot"></span>SCANNING AI RISKS</div>
-            <h2 class="a7-title">Assessing <span id="a7-scan-name">Predictive Maintenance AI</span></h2>
-            <p class="a7-subtitle">Agent 007 is evaluating your AI system against 8 risk categories derived from NIST AI RMF 1.0 and DoD AI Cybersecurity guidance.</p>
-            <div class="a7-risk-grid" id="a7-risk-grid"></div>
-            <div class="a7-progress-wrap">
-                <div class="a7-progress-top"><span class="a7-progress-label">Assessment Progress</span><span class="a7-progress-pct" id="a7-pct">0%</span></div>
-                <div class="a7-progress-bar"><div class="a7-progress-fill" id="a7-fill"></div></div>
-            </div>
-            <div class="a7-score-row" id="a7-score-row" style="display:none">
-                <div class="a7-score-card"><div class="a7-score-val" style="color:#00ff9d" id="a7-pass-count">0</div><div class="a7-score-lbl">Passed</div></div>
-                <div class="a7-score-card"><div class="a7-score-val" style="color:#ff6b35" id="a7-warn-count">0</div><div class="a7-score-lbl">Warnings</div></div>
-                <div class="a7-score-card"><div class="a7-score-val" style="color:#ff3b5c" id="a7-crit-count">0</div><div class="a7-score-lbl">Critical</div></div>
-                <div class="a7-score-card"><div class="a7-score-val" style="color:#8b5cf6" id="a7-overall">—</div><div class="a7-score-lbl">Overall Score</div></div>
-            </div>
-            <div id="a7-scan-next" style="display:none;margin-top:1.5rem;text-align:center">
-                <button class="a7-btn a7-btn-primary a7-btn-lg" onclick="startRMFPhases()">Proceed to RMF Assessment →</button>
-            </div>
-        </div>
-
-        <!-- STAGE 3: RMF PHASES -->
-        <div class="a7-stage" id="a7-stage-3">
-            <div class="a7-badge"><span class="dot"></span>RMF PHASE ASSESSMENT</div>
-            <h2 class="a7-title">6 RMF Phases — <span id="a7-rmf-name">Predictive Maintenance AI</span></h2>
-            <p class="a7-subtitle">Agent 007 is processing your system through each NIST SP 800-37 RMF phase.</p>
-            <div class="a7-phases" id="a7-phases"></div>
-            <div class="a7-phase-detail" id="a7-phase-detail"><p style="color:var(--text-muted);text-align:center;padding:2rem">Processing will begin automatically...</p></div>
-            <div id="a7-rmf-next" style="display:none;text-align:center">
-                <button class="a7-btn a7-btn-primary a7-btn-lg" onclick="showResults()">Generate ATO Package →</button>
-            </div>
-        </div>
-
-        <!-- STAGE 4: RESULTS -->
-        <div class="a7-stage" id="a7-stage-4">
-            <div class="a7-badge"><span class="dot"></span>ASSESSMENT COMPLETE</div>
-            <div class="a7-result-hero">
-                <div class="a7-result-score" id="a7-final-score">87%</div>
-                <div class="a7-result-label">AI System ATO Readiness Score</div>
-                <div class="a7-result-badge">✓ Recommend: ATO with Conditions</div>
-            </div>
-            <div class="a7-result-grid">
-                <div class="a7-result-stat"><div class="a7-result-stat-val" id="a7-r-risks">6/8</div><div class="a7-result-stat-lbl">Risks Passed</div></div>
-                <div class="a7-result-stat"><div class="a7-result-stat-val" id="a7-r-controls">247</div><div class="a7-result-stat-lbl">Controls Mapped</div></div>
-                <div class="a7-result-stat"><div class="a7-result-stat-val" id="a7-r-evidence">89</div><div class="a7-result-stat-lbl">Evidence Items</div></div>
-                <div class="a7-result-stat"><div class="a7-result-stat-val" id="a7-r-time">4.7s</div><div class="a7-result-stat-lbl">Assessment Time</div></div>
-            </div>
-            <div class="a7-package">
-                <h3>📦 ATO Authorization Package Generated</h3>
-                <div class="a7-package-items">
-                    <div class="a7-package-item"><span>📄</span>System Security Plan (SSP)</div>
-                    <div class="a7-package-item"><span>🔍</span>Security Assessment Report (SAR)</div>
-                    <div class="a7-package-item"><span>📋</span>Plan of Action & Milestones (POA&M)</div>
-                    <div class="a7-package-item"><span>⚠️</span>AI Risk Assessment Report</div>
-                    <div class="a7-package-item"><span>📊</span>Executive Risk Summary</div>
-                    <div class="a7-package-item"><span>🛡️</span>AO Decision Brief</div>
-                </div>
-            </div>
-            <div class="a7-cta-row">
-                <button class="a7-btn a7-btn-primary a7-btn-lg" onclick="closeAgent007();openModal('trial')">Start Free Trial →</button>
-                <button class="a7-btn a7-btn-secondary a7-btn-lg" onclick="resetAgent007()">Run Another Assessment</button>
-            </div>
-        </div>
+      </div>
     </div>
+  </section>
+
+  <!-- AGENTS -->
+  <section id="agents" class="py-20 bg-zinc-900">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-4">Seven Specialists. One Mission.</h2>
+      <p class="text-center text-zinc-400 mb-12">Autonomous AI agents working 24/7</p>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="agent-card bg-zinc-800/70 border border-zinc-700 rounded-3xl p-8">
+          <div class="text-blue-400 text-3xl font-mono mb-4">001</div>
+          <h3 class="text-2xl font-semibold mb-3">Compliance Scanner</h3>
+          <p class="text-zinc-400">Continuous assessment + automated evidence for all 110 controls.</p>
+        </div>
+
+        <div class="agent-card bg-zinc-800/70 border border-zinc-700 rounded-3xl p-8">
+          <div class="text-blue-400 text-3xl font-mono mb-4">002</div>
+          <h3 class="text-2xl font-semibold mb-3">Code Auditor</h3>
+          <p class="text-zinc-400">AI-powered static &amp; dynamic analysis that catches vulnerabilities before they reach production.</p>
+        </div>
+
+        <div class="agent-card bg-zinc-800/70 border border-zinc-700 rounded-3xl p-8">
+          <div class="text-blue-400 text-3xl font-mono mb-4">003</div>
+          <h3 class="text-2xl font-semibold mb-3">Infrastructure Guardian</h3>
+          <p class="text-zinc-400">Multi-cloud security posture management with automated drift detection and remediation.</p>
+        </div>
+
+        <div class="agent-card bg-zinc-800/70 border border-zinc-700 rounded-3xl p-8">
+          <div class="text-blue-400 text-3xl font-mono mb-4">004</div>
+          <h3 class="text-2xl font-semibold mb-3">Access Controller</h3>
+          <p class="text-zinc-400">Zero-trust identity governance with continuous verification and least-privilege enforcement.</p>
+        </div>
+
+        <div class="agent-card bg-zinc-800/70 border border-zinc-700 rounded-3xl p-8">
+          <div class="text-blue-400 text-3xl font-mono mb-4">005</div>
+          <h3 class="text-2xl font-semibold mb-3">Policy Engine</h3>
+          <p class="text-zinc-400">Policy-as-code generation aligned with CMMC requirements and automatic enforcement.</p>
+        </div>
+
+        <div class="agent-card bg-zinc-800/70 border border-zinc-700 rounded-3xl p-8">
+          <div class="text-blue-400 text-3xl font-mono mb-4">006</div>
+          <h3 class="text-2xl font-semibold mb-3">Pipeline Orchestrator</h3>
+          <p class="text-zinc-400">Secure CI/CD integration with automated security gates for GitHub, GitLab, and Azure DevOps.</p>
+        </div>
+
+        <div class="agent-card bg-zinc-800/70 border border-zinc-700 rounded-3xl p-8">
+          <div class="text-blue-400 text-3xl font-mono mb-4">007 <span class="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded">NEW</span></div>
+          <h3 class="text-2xl font-semibold mb-3">ATO Streamliner</h3>
+          <p class="text-zinc-400">AI-powered RMF automation for AI systems. Assesses 8 AI risk categories across all 6 RMF phases. Generates ATO-ready packages in &lt;5 seconds.</p>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <script>
-        let toastTimer=null;function showComingSoon(pageName){const t=document.getElementById('toast');const title=document.getElementById('toast-title');const msg=document.getElementById('toast-message');title.textContent=pageName+' — Coming Soon';msg.textContent='This page is currently under development. Check back soon!';t.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>{t.classList.remove('visible')},4000)}function hideToast(){const t=document.getElementById('toast');t.classList.remove('visible');clearTimeout(toastTimer)}
+  <!-- RESULTS -->
+  <section class="py-20 bg-zinc-950">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h3 class="text-3xl font-bold mb-12">Proven Results</h3>
+      <div class="grid grid-cols-3 gap-8 max-w-3xl mx-auto">
+        <div><div class="text-5xl font-mono text-emerald-400">$144K</div><div class="text-sm text-zinc-500">Annual Savings</div></div>
+        <div><div class="text-5xl font-mono text-emerald-400">1,200</div><div class="text-sm text-zinc-500">Hours Saved</div></div>
+        <div><div class="text-5xl font-mono text-emerald-400">2400%</div><div class="text-sm text-zinc-500">First-Year ROI</div></div>
+      </div>
+    </div>
+  </section>
 
-        const terminalEl=document.getElementById('terminal');const termLines=[{type:'cmd',text:'trustnova init --compliance cmmc-l2'},{type:'out',text:'Initializing compliance framework...'},{type:'success',text:'âœ“ Connected to cloud infrastructure'},{type:'success',text:'âœ“ 7 AI agents deployed'},{type:'cmd',text:'trustnova scan --full'},{type:'out',text:'Starting CMMC Level 2 assessment...'},{type:'agent',name:'Compliance Scanner',text:'Scanning 110 controls...'},{type:'agent',name:'Code Auditor',text:'Analyzing repositories...'},{type:'agent',name:'Infrastructure Guardian',text:'Checking cloud posture...'},{type:'progress',percent:100},{type:'success',text:'âœ“ Scan complete in 4m 32s'},{type:'result',label:'Compliance Score',value:'92%',cls:'success'},{type:'result',label:'Controls Passing',value:'101/110',cls:'success'},{type:'result',label:'Critical Findings',value:'2',cls:'warn'},{type:'cmd',text:'trustnova report --export pdf'},{type:'success',text:'âœ“ Report: cmmc-assessment-2025.pdf'}];
-        function renderTerminal(){terminalEl.innerHTML='';termLines.forEach((line,i)=>{setTimeout(()=>{const el=document.createElement('div');el.className='term-line';el.style.animationDelay=i*50+'ms';if(line.type==='cmd')el.innerHTML='<span class="term-prompt">â¯</span> <span class="term-cmd">'+line.text+'</span>';else if(line.type==='out')el.innerHTML='<span class="term-output">'+line.text+'</span>';else if(line.type==='success')el.innerHTML='<span class="term-success">'+line.text+'</span>';else if(line.type==='agent')el.innerHTML='<div class="term-agent"><span class="term-agent-dot"></span><span class="term-info">'+line.name+':</span> <span class="term-output">'+line.text+'</span></div>';else if(line.type==='progress')el.innerHTML='<div class="term-progress"><div class="term-progress-bar" style="width:'+line.percent+'%"></div></div>';else if(line.type==='result')el.innerHTML='<span class="term-output">'+line.label+': </span><span class="term-'+line.cls+'">'+line.value+'</span>';terminalEl.appendChild(el);terminalEl.scrollTop=terminalEl.scrollHeight},i*180)})}renderTerminal();setInterval(renderTerminal,12000);
-        const complianceData=[{code:'AC',score:96},{code:'AU',score:92},{code:'CM',score:88},{code:'IA',score:94},{code:'IR',score:78},{code:'MA',score:98},{code:'MP',score:100},{code:'PE',score:95},{code:'PS',score:91},{code:'RA',score:100},{code:'SC',score:82},{code:'SI',score:85}];const complianceGrid=document.getElementById('compliance-grid');complianceData.forEach(d=>{const cls=d.score>=90?'high':d.score>=75?'medium':'low';complianceGrid.innerHTML+='<div class="compliance-domain"><div class="compliance-domain-code">'+d.code+'</div><div class="compliance-domain-score '+cls+'">'+d.score+'%</div><div class="compliance-domain-bar"><div class="compliance-domain-fill '+cls+'" style="width:'+d.score+'%"></div></div></div>'});
-        document.querySelectorAll('.demo-tab').forEach(tab=>{tab.addEventListener('click',()=>{document.querySelectorAll('.demo-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.demo-panel').forEach(p=>p.classList.remove('active'));tab.classList.add('active');document.getElementById('panel-'+tab.dataset.tab).classList.add('active')})});
-        const empSlider=document.getElementById('roi-employees');const budgetSlider=document.getElementById('roi-budget');function updateROI(){const emp=parseInt(empSlider.value);const budget=parseInt(budgetSlider.value);document.getElementById('employees-val').textContent=emp;document.getElementById('budget-val').textContent='$'+(budget/1000)+'K';const trustnovaCost=Math.max(6000,emp*60);const savings=Math.max(0,budget-trustnovaCost);const hours=emp*12;const roi=Math.round((savings/trustnovaCost)*100);document.getElementById('roi-savings').textContent='$'+Math.round(savings/1000)+'K';document.getElementById('roi-hours').textContent=hours.toLocaleString();document.getElementById('roi-percent').textContent=roi+'%'}empSlider.addEventListener('input',updateROI);budgetSlider.addEventListener('input',updateROI);updateROI();
-        const findingsData=[{sev:'critical',msg:'Unencrypted S3 bucket: logs-backup-prod',time:'Just now'},{sev:'warning',msg:'IAM user without MFA: service-account-legacy',time:'2m ago'},{sev:'info',msg:'PR requires security review: feat/auth-refactor',time:'5m ago'},{sev:'success',msg:'Auto-remediated: Security group 0.0.0.0/0 removed',time:'8m ago'},{sev:'warning',msg:'Certificate expiring in 14 days: api.trustnovaops.com',time:'12m ago'},{sev:'success',msg:'Evidence collected for AC-2 control',time:'15m ago'},{sev:'info',msg:'Infrastructure drift detected: 3 resources modified',time:'18m ago'}];const findingsFeed=document.getElementById('findings-feed');findingsData.forEach((f,i)=>{setTimeout(()=>{findingsFeed.innerHTML+='<div class="finding '+f.sev+'"><span class="finding-badge '+f.sev+'">'+f.sev+'</span><div class="finding-content"><div class="finding-message">'+f.msg+'</div></div><span class="finding-time">'+f.time+'</span></div>'},i*200)});
-        function openModal(type){document.getElementById('modal-'+type).classList.add('active');document.body.style.overflow='hidden'}function closeModal(type){document.getElementById('modal-'+type).classList.remove('active');document.body.style.overflow=''}document.querySelectorAll('.modal-overlay').forEach(overlay=>{overlay.addEventListener('click',e=>{if(e.target===overlay){overlay.classList.remove('active');document.body.style.overflow=''}})});
-        function handleDemoForm(e){e.preventDefault();e.target.innerHTML='<div class="form-success"><div class="form-success-icon">âœ“</div><h3>Demo Scheduled!</h3><p>We\'ll reach out within 24 hours to confirm your demo time.</p></div>'}function handleTrialForm(e){e.preventDefault();e.target.innerHTML='<div class="form-success"><div class="form-success-icon">ðŸš€</div><h3>Welcome to TrustNovaOps!</h3><p>Check your email for login instructions.</p></div>'}function handleLeadMagnet(e){e.preventDefault();e.target.innerHTML='<div class="form-success"><div class="form-success-icon">ðŸ“„</div><h3>Checklist Sent!</h3><p>Check your inbox for the CMMC Readiness Checklist.</p></div>'}function handleCTA(e){e.preventDefault();openModal('trial');e.target.reset()}
-        document.querySelectorAll('a[href^="#"]').forEach(anchor=>{anchor.addEventListener('click',function(e){const target=document.querySelector(this.getAttribute('href'));if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'})}})});window.addEventListener('scroll',()=>{document.querySelector('.nav').style.padding=window.scrollY>50?'0.75rem 0':'1rem 0'});
+  <!-- PRICING + FINAL CTA -->
+  <section id="contact" class="py-20 bg-zinc-900">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold mb-6">Ready to Move Faster?</h2>
+      <a href="mailto:your@email.com?subject=Request%20Demo%20%2B%20Free%20Gap%20Scan" 
+         class="inline-flex items-center gap-3 bg-emerald-500 hover:bg-emerald-600 text-black px-10 py-5 rounded-3xl text-xl font-semibold">
+        Request Demo + Free Gap Scan <i class="fas fa-arrow-right"></i>
+      </a>
+      <p class="text-zinc-400 mt-6">15-minute call. Real gap scan included.</p>
+    </div>
+  </section>
 
-        /* ===== AGENT 007 DEMO ENGINE ===== */
-        const aiRisks=[
-            {id:1,name:'Model Bias & Fairness',desc:'Discriminatory or inequitable outputs',nist:'MAP 2.3, MEASURE 2.11',result:'pass',score:94},
-            {id:2,name:'Data Poisoning & Integrity',desc:'Training data corruption & backdoors',nist:'MAP 5.1, MANAGE 2.2',result:'pass',score:91},
-            {id:3,name:'Adversarial Attack Resilience',desc:'Evasion, extraction & inference attacks',nist:'MEASURE 2.6, 2.7',result:'warn',score:72},
-            {id:4,name:'Hallucination & Reliability',desc:'Confident but incorrect outputs',nist:'MEASURE 2.5',result:'pass',score:89},
-            {id:5,name:'Data Leakage & Privacy',desc:'Model memorization & data exposure',nist:'MANAGE 3.1',result:'pass',score:96},
-            {id:6,name:'Explainability & Transparency',desc:'Black-box decision interpretability',nist:'MEASURE 2.8',result:'warn',score:68},
-            {id:7,name:'Supply Chain & Third-Party Risk',desc:'External models, weights & APIs',nist:'MAP 5.2',result:'pass',score:88},
-            {id:8,name:'Mission Assurance & Safety',desc:'Fail-safes, degradation & human override',nist:'MANAGE 1.3, 2.4',result:'pass',score:93}
-        ];
-        const rmfPhases=[
-            {num:1,name:'Categorize',icon:'🏷️',desc:'Classifying system impact levels',nist:'FIPS 199, NIST SP 800-60',
-             detail:'FIPS 199 impact analysis complete. System categorized as MODERATE for Confidentiality, Integrity, and Availability based on CUI data handling and mission-support function.',
-             controls:['FIPS 199','SP 800-60','CNSSI 1253'],artifacts:['System Categorization Report','Data Flow Diagram','System Boundary Definition','Information Type Mapping']},
-            {num:2,name:'Select',icon:'🎯',desc:'Choosing security controls',nist:'NIST SP 800-53 Rev 5',
-             detail:'247 controls selected from NIST SP 800-53 Rev 5 MODERATE baseline. AI-specific overlay applied: 23 additional controls for model governance, data integrity, and adversarial resilience.',
-             controls:['SP 800-53 Rev 5','AI Overlay','CNSSI 1253'],artifacts:['Control Selection Worksheet','AI Control Overlay Map','Tailoring Justification','Inheritance Matrix']},
-            {num:3,name:'Implement',icon:'🔧',desc:'Deploying security controls',nist:'SP 800-53A, DevSecOps',
-             detail:'214 of 247 controls verified as implemented. 18 controls inherited from GovCloud infrastructure (Agent 003 validated). 15 controls require POA&M items for remediation.',
-             controls:['AC-2','AU-6','CM-7','IA-5','SC-13'],artifacts:['Implementation Tracker','Evidence Mapping Report','CI/CD Gate Config','Gap Remediation Plan']},
-            {num:4,name:'Assess',icon:'🔍',desc:'Testing control effectiveness',nist:'SP 800-53A, DISA STIG',
-             detail:'Automated SCA executed across all control families. ACAS vulnerability scan: 3 medium findings. STIG compliance: 96.2%. AI-specific tests: 6/8 risk categories passed, 2 warnings with mitigations documented.',
-             controls:['SCA Results','ACAS/Nessus','STIG Check','AI Risk Tests'],artifacts:['Security Assessment Report (SAR)','Vulnerability Scan Results','STIG Compliance Report','AI Risk Assessment Report']},
-            {num:5,name:'Authorize',icon:'✅',desc:'AO risk decision package',nist:'SP 800-37, DoDI 8510.01',
-             detail:'ATO package assembled with complete body of evidence. Residual risk: 2 medium findings with accepted mitigations. Recommendation: ATO with Conditions — 90-day POA&M for adversarial hardening and explainability improvements.',
-             controls:['SSP','SAR','POA&M','Risk Summary'],artifacts:['System Security Plan (SSP)','Authorization Decision Brief','Executive Risk Summary','POA&M with Milestones']},
-            {num:6,name:'Monitor',icon:'📡',desc:'Continuous post-ATO monitoring',nist:'SP 800-137',
-             detail:'Continuous monitoring activated. Model drift detection: enabled. Data distribution shift alerts: configured. Integration with Agent 001 (Compliance Scanner) for unified CMMC + ATO compliance visibility. Re-authorization trigger: 365 days or significant change.',
-             controls:['ConMon','Drift Detection','Alert Config','Agent 001 Link'],artifacts:['Monitoring Strategy','Drift Detection Dashboard','Alert Configuration','Reauthorization Trigger Plan']}
-        ];
-        let a7Timer=null;
-        function launchAgent007(){document.getElementById('a7-overlay').classList.add('active');document.body.style.overflow='hidden';resetAgent007Internal()}
-        function closeAgent007(){document.getElementById('a7-overlay').classList.remove('active');document.body.style.overflow='';if(a7Timer)clearTimeout(a7Timer)}
-        function resetAgent007(){resetAgent007Internal();showStage(1)}
-        function resetAgent007Internal(){document.querySelectorAll('.a7-stage').forEach(s=>s.classList.remove('active'));document.getElementById('a7-stage-1').classList.add('active')}
-        function showStage(n){document.querySelectorAll('.a7-stage').forEach(s=>s.classList.remove('active'));document.getElementById('a7-stage-'+n).classList.add('active');document.querySelector('.a7-wrap').scrollTop=0;window.scrollTo&&document.getElementById('a7-overlay').scrollTop===undefined||document.getElementById('a7-overlay').scrollTo(0,0)}
-
-        function startRiskScan(){
-            const sysName=document.getElementById('a7-sys-name').value||'AI System';
-            document.getElementById('a7-scan-name').textContent=sysName;
-            document.getElementById('a7-rmf-name').textContent=sysName;
-            showStage(2);
-            const grid=document.getElementById('a7-risk-grid');
-            grid.innerHTML='';
-            aiRisks.forEach(r=>{
-                grid.innerHTML+='<div class="a7-risk" id="a7-r-'+r.id+'"><div class="a7-risk-num">R'+r.id+'</div><div class="a7-risk-info"><h4>'+r.name+'</h4><p>'+r.desc+'</p></div><div class="a7-risk-status pending">Pending</div></div>';
-            });
-            document.getElementById('a7-pct').textContent='0%';
-            document.getElementById('a7-fill').style.width='0%';
-            document.getElementById('a7-score-row').style.display='none';
-            document.getElementById('a7-scan-next').style.display='none';
-            scanRisk(0);
-        }
-        function scanRisk(idx){
-            if(idx>=aiRisks.length){finishScan();return}
-            const r=aiRisks[idx];const el=document.getElementById('a7-r-'+r.id);
-            el.classList.add('scanning');el.querySelector('.a7-risk-status').className='a7-risk-status scanning-s';el.querySelector('.a7-risk-status').textContent='Scanning...';
-            const pct=Math.round(((idx+0.5)/aiRisks.length)*100);
-            document.getElementById('a7-pct').textContent=pct+'%';document.getElementById('a7-fill').style.width=pct+'%';
-            a7Timer=setTimeout(()=>{
-                el.classList.remove('scanning');
-                const statusCls=r.result==='pass'?'pass':r.result==='warn'?'warning-s':'critical-s';
-                const cardCls=r.result==='pass'?'done':r.result==='warn'?'warn':'crit';
-                const statusText=r.result==='pass'?'Pass '+r.score+'%':r.result==='warn'?'Warning '+r.score+'%':'Critical '+r.score+'%';
-                el.classList.add(cardCls);el.querySelector('.a7-risk-status').className='a7-risk-status '+statusCls;el.querySelector('.a7-risk-status').textContent=statusText;
-                const donePct=Math.round(((idx+1)/aiRisks.length)*100);
-                document.getElementById('a7-pct').textContent=donePct+'%';document.getElementById('a7-fill').style.width=donePct+'%';
-                scanRisk(idx+1);
-            },600+Math.random()*400);
-        }
-        function finishScan(){
-            const pass=aiRisks.filter(r=>r.result==='pass').length;
-            const warn=aiRisks.filter(r=>r.result==='warn').length;
-            const crit=aiRisks.filter(r=>r.result==='crit').length;
-            const avg=Math.round(aiRisks.reduce((s,r)=>s+r.score,0)/aiRisks.length);
-            document.getElementById('a7-pass-count').textContent=pass;
-            document.getElementById('a7-warn-count').textContent=warn;
-            document.getElementById('a7-crit-count').textContent=crit;
-            document.getElementById('a7-overall').textContent=avg+'%';
-            document.getElementById('a7-score-row').style.display='flex';
-            document.getElementById('a7-scan-next').style.display='block';
-        }
-
-        function startRMFPhases(){
-            showStage(3);
-            const cont=document.getElementById('a7-phases');
-            cont.innerHTML='';
-            rmfPhases.forEach(p=>{
-                cont.innerHTML+='<div class="a7-phase" id="a7-p-'+p.num+'" onclick="showPhaseDetail('+p.num+')"><div class="a7-phase-icon">'+p.icon+'</div><div class="a7-phase-num">PHASE '+p.num+'</div><div class="a7-phase-name">'+p.name+'</div><div class="a7-phase-status pending-p">Pending</div></div>';
-            });
-            document.getElementById('a7-rmf-next').style.display='none';
-            processPhase(0);
-        }
-        function processPhase(idx){
-            if(idx>=rmfPhases.length){document.getElementById('a7-rmf-next').style.display='block';return}
-            const p=rmfPhases[idx];const el=document.getElementById('a7-p-'+p.num);
-            el.classList.add('processing');el.querySelector('.a7-phase-status').className='a7-phase-status running-p';el.querySelector('.a7-phase-status').textContent='Running';
-            showPhaseDetail(p.num);
-            a7Timer=setTimeout(()=>{
-                el.classList.remove('processing');el.classList.add('complete');
-                el.querySelector('.a7-phase-status').className='a7-phase-status done-p';el.querySelector('.a7-phase-status').textContent='Done';
-                processPhase(idx+1);
-            },1200+Math.random()*600);
-        }
-        function showPhaseDetail(num){
-            const p=rmfPhases.find(x=>x.num===num);if(!p)return;
-            const det=document.getElementById('a7-phase-detail');
-            let html='<h3>'+p.icon+' Phase '+p.num+': '+p.name+'</h3>';
-            html+='<p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:0.5rem">'+p.detail+'</p>';
-            html+='<p style="font-size:0.75rem;color:var(--text-muted)">Reference: '+p.nist+'</p>';
-            html+='<div class="a7-controls-row">';p.controls.forEach(c=>{html+='<span class="a7-ctrl">'+c+'</span>'});html+='</div>';
-            html+='<div class="a7-artifacts">';p.artifacts.forEach(a=>{html+='<div class="a7-artifact generated"><span class="a7-artifact-icon">✓</span><span class="a7-artifact-name">'+a+'</span></div>'});html+='</div>';
-            det.innerHTML=html;
-            document.querySelectorAll('.a7-phase').forEach(el=>el.classList.remove('active-phase'));
-            const phaseEl=document.getElementById('a7-p-'+num);if(phaseEl)phaseEl.classList.add('active-phase');
-        }
-
-        function showResults(){
-            showStage(4);
-            const avg=Math.round(aiRisks.reduce((s,r)=>s+r.score,0)/aiRisks.length);
-            const pass=aiRisks.filter(r=>r.result==='pass').length;
-            document.getElementById('a7-final-score').textContent=avg+'%';
-            document.getElementById('a7-r-risks').textContent=pass+'/8';
-            const t=(3.2+Math.random()*2.5).toFixed(1);
-            document.getElementById('a7-r-time').textContent=t+'s';
-        }
-    </script>
 </body>
 </html>
