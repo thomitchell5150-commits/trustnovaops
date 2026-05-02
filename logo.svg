@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="tno-grad" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#60a5fa"/>
+      <stop offset="1" stop-color="#1e40af"/>
+    </linearGradient>
+  </defs>
+  <path d="M24 3 L42 9 V23 C42 33.5 34.5 41.5 24 45 C13.5 41.5 6 33.5 6 23 V9 Z"
+        fill="url(#tno-grad)" stroke="#93c5fd" stroke-width="1.2"/>
+  <path d="M15 20 H33 M24 20 V34" stroke="#0f172a" stroke-width="3.2" stroke-linecap="round"/>
+  <circle cx="24" cy="20" r="2.6" fill="#34d399"/>
+</svg>
