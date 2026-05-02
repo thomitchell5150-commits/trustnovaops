@@ -18,112 +18,111 @@
     body { font-family: 'Inter', system-ui, sans-serif; }
     .hero { background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%); }
     .card { transition: all 0.3s ease; }
-    .card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4); }
+    .card:hover { transform: translateY(-8px); }
   </style>
 </head>
 <body class="bg-zinc-950 text-zinc-200">
 
   <!-- NAV -->
-  <nav class="sticky top-0 z-50 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800">
+  <nav class="sticky top-0 z-50 bg-zinc-950 border-b border-zinc-800">
     <div class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
       <a href="/" class="flex items-center gap-3">
-        <img src="logo.svg" alt="TrustNovaOps" class="h-9 w-auto">
+        <img src="logo.svg" alt="TrustNovaOps" class="h-10 w-auto">
         <span class="text-2xl font-bold tracking-tight">TrustNovaOps</span>
       </a>
       <div class="flex items-center gap-8 text-sm">
         <a href="#agents" class="hover:text-blue-400">Agents</a>
         <a href="#results" class="hover:text-blue-400">Results</a>
         <a href="#pricing" class="hover:text-blue-400">Pricing</a>
-        <a href="#contact" class="bg-blue-600 hover:bg-blue-700 px-6 py-2.5 rounded-xl font-medium">Get Started</a>
+        <a href="#contact" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-xl font-medium">Request Demo</a>
       </div>
     </div>
   </nav>
 
   <!-- HERO -->
-  <section class="hero py-32">
+  <section class="hero py-28">
     <div class="max-w-6xl mx-auto px-6 text-center">
-      <h1 class="text-6xl md:text-7xl font-bold leading-none mb-8">
-        CMMC 2.0 Without the Chaos
+      <h1 class="text-6xl md:text-7xl font-bold leading-none mb-6">
+        7 AI Agents for<br>CMMC 2.0 Compliance & DevSecOps
       </h1>
-      <p class="max-w-2xl mx-auto text-2xl text-zinc-300 mb-12">
-        7 autonomous AI agents that monitor, collect evidence, remediate, and keep you audit-ready 24/7.
+      <p class="text-2xl text-zinc-300 max-w-3xl mx-auto mb-10">
+        Achieve certification 80% faster with autonomous agents built for defense contractors.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#contact" class="bg-emerald-500 hover:bg-emerald-600 text-black px-10 py-5 rounded-2xl text-lg font-semibold inline-flex items-center justify-center gap-3">
-          Request Demo + Free Gap Scan <i class="fas fa-arrow-right"></i>
+        <a href="#contact" class="bg-emerald-500 hover:bg-emerald-600 text-black px-10 py-5 rounded-2xl text-lg font-semibold">
+          Request Demo + Free Gap Scan
         </a>
         <a href="#contact"
            class="border border-zinc-400 hover:border-white px-10 py-5 rounded-2xl text-lg font-medium">
-          Download Free CMMC Checklist
+          Download Free Checklist
         </a>
       </div>
-      <p class="text-sm text-zinc-500 mt-10">Built by Palantir Foundry engineers for DoD contractors</p>
     </div>
   </section>
 
   <!-- AGENTS -->
-  <section id="agents" class="py-24 bg-zinc-900">
+  <section id="agents" class="py-20 bg-zinc-900">
     <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-4">Seven Autonomous Agents</h2>
-      <p class="text-center text-zinc-400 mb-16">One mission: Continuous CMMC 2.0 compliance</p>
+      <h2 class="text-4xl font-bold text-center mb-4">Seven Specialists. One Mission.</h2>
+      <p class="text-center text-zinc-400 mb-12">Autonomous AI agents for continuous CMMC 2.0 readiness</p>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div class="card bg-zinc-800 border border-zinc-700 rounded-3xl p-8">
-          <div class="text-blue-400 text-4xl font-mono mb-4">001</div>
+          <div class="text-blue-400 text-3xl font-mono mb-4">001</div>
           <h3 class="text-2xl font-semibold mb-3">Compliance Scanner</h3>
-          <p class="text-zinc-400">Continuous assessment of all 110 Level 2 controls with automated evidence collection.</p>
+          <p class="text-zinc-400">Continuous assessment + automated evidence for all 110 controls.</p>
         </div>
         <div class="card bg-zinc-800 border border-zinc-700 rounded-3xl p-8">
-          <div class="text-blue-400 text-4xl font-mono mb-4">002</div>
+          <div class="text-blue-400 text-3xl font-mono mb-4">002</div>
           <h3 class="text-2xl font-semibold mb-3">Code Auditor</h3>
-          <p class="text-zinc-400">AI-powered static & dynamic code analysis.</p>
+          <p class="text-zinc-400">AI-powered static & dynamic analysis.</p>
         </div>
         <div class="card bg-zinc-800 border border-zinc-700 rounded-3xl p-8">
-          <div class="text-blue-400 text-4xl font-mono mb-4">003</div>
+          <div class="text-blue-400 text-3xl font-mono mb-4">003</div>
           <h3 class="text-2xl font-semibold mb-3">Infrastructure Guardian</h3>
-          <p class="text-zinc-400">Multi-cloud posture management and drift remediation.</p>
+          <p class="text-zinc-400">Multi-cloud posture + drift remediation.</p>
         </div>
         <div class="card bg-zinc-800 border border-zinc-700 rounded-3xl p-8">
-          <div class="text-blue-400 text-4xl font-mono mb-4">004</div>
+          <div class="text-blue-400 text-3xl font-mono mb-4">004</div>
           <h3 class="text-2xl font-semibold mb-3">Access Controller</h3>
-          <p class="text-zinc-400">Zero-trust identity governance and least-privilege enforcement.</p>
+          <p class="text-zinc-400">Zero-trust identity governance.</p>
         </div>
         <div class="card bg-zinc-800 border border-zinc-700 rounded-3xl p-8">
-          <div class="text-blue-400 text-4xl font-mono mb-4">005</div>
+          <div class="text-blue-400 text-3xl font-mono mb-4">005</div>
           <h3 class="text-2xl font-semibold mb-3">Policy Engine</h3>
-          <p class="text-zinc-400">Policy-as-code generation and automatic enforcement.</p>
+          <p class="text-zinc-400">Policy-as-code generation and enforcement.</p>
         </div>
         <div class="card bg-zinc-800 border border-zinc-700 rounded-3xl p-8">
-          <div class="text-blue-400 text-4xl font-mono mb-4">006</div>
+          <div class="text-blue-400 text-3xl font-mono mb-4">006</div>
           <h3 class="text-2xl font-semibold mb-3">Pipeline Orchestrator</h3>
-          <p class="text-zinc-400">Secure CI/CD security gates across major platforms.</p>
+          <p class="text-zinc-400">Secure CI/CD security gates.</p>
         </div>
-        <div class="card bg-zinc-800 border border-zinc-700 rounded-3xl p-8 lg:col-span-3 max-w-md mx-auto">
-          <div class="text-blue-400 text-4xl font-mono mb-4">007 <span class="text-xs bg-blue-500 px-3 py-1 rounded-full align-middle">NEW</span></div>
+        <div class="card bg-zinc-800 border border-zinc-700 rounded-3xl p-8">
+          <div class="text-blue-400 text-3xl font-mono mb-4">007 <span class="text-xs bg-blue-500 px-3 py-1 rounded align-middle">NEW</span></div>
           <h3 class="text-2xl font-semibold mb-3">ATO Streamliner</h3>
-          <p class="text-zinc-400">RMF + AI risk automation. ATO packages in under 5 seconds.</p>
+          <p class="text-zinc-400">RMF + AI risk automation. ATO packages in &lt;5s.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- RESULTS -->
-  <section id="results" class="py-24">
+  <section id="results" class="py-20">
     <div class="max-w-6xl mx-auto px-6 text-center">
-      <h2 class="text-4xl font-bold mb-16">Proven Impact</h2>
-      <div class="grid grid-cols-3 gap-12 max-w-4xl mx-auto">
-        <div><div class="text-6xl font-mono text-emerald-400">$144K</div><div class="text-zinc-400 mt-3">Average annual savings</div></div>
-        <div><div class="text-6xl font-mono text-emerald-400">1,200</div><div class="text-zinc-400 mt-3">Hours saved per year</div></div>
-        <div><div class="text-6xl font-mono text-emerald-400">80%</div><div class="text-zinc-400 mt-3">Faster to certification</div></div>
+      <h3 class="text-3xl font-bold mb-12">Proven Results</h3>
+      <div class="grid grid-cols-3 gap-8 max-w-3xl mx-auto">
+        <div><div class="text-5xl font-mono text-emerald-400">$144K</div><div class="text-sm text-zinc-500">Annual Savings</div></div>
+        <div><div class="text-5xl font-mono text-emerald-400">1,200</div><div class="text-sm text-zinc-500">Hours Saved</div></div>
+        <div><div class="text-5xl font-mono text-emerald-400">2400%</div><div class="text-sm text-zinc-500">First-Year ROI</div></div>
       </div>
     </div>
   </section>
 
   <!-- PRICING -->
-  <section id="pricing" class="py-24 bg-zinc-900">
+  <section id="pricing" class="py-20 bg-zinc-900">
     <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-4">Pricing That Scales With You</h2>
-      <div class="grid md:grid-cols-3 gap-8 mt-16">
+      <h2 class="text-4xl font-bold text-center mb-4">Plans That Scale With Your Contracts</h2>
+      <div class="grid md:grid-cols-3 gap-8 mt-12">
         <div class="bg-zinc-800 rounded-3xl p-10">
           <h4 class="font-semibold">Starter</h4>
           <div class="text-5xl font-bold my-6">$2,999/yr</div>
