@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Request a Demo — TrustNovaOps</title>
+<meta name="description" content="See the Nova agent fleet in action against your actual threat profile. Live session, no slides, no BS.">
+<meta property="og:title" content="Request a Demo — TrustNovaOps">
+<meta property="og:description" content="See the Nova agent fleet in action against your actual threat profile. Live session, no slides, no BS.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://trustnovaops.com/demo">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'><defs><linearGradient id='ga' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%2300e5ff'/><stop offset='100%25' stop-color='%2300ff9d'/></linearGradient><linearGradient id='gb' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%2300e5ff' stop-opacity='.22'/><stop offset='100%25' stop-color='%2300ff9d' stop-opacity='.08'/></linearGradient></defs><rect width='80' height='80' fill='%23050810'/><path d='M40 6 L69 22 L69 52 Q69 68 40 78 Q11 68 11 52 L11 22 Z' fill='url(%23gb)' stroke='url(%23ga)' stroke-width='1.5'/><line x1='40' y1='42' x2='40' y2='26' stroke='%2300e5ff' stroke-width='1' stroke-opacity='.5'/><line x1='40' y1='42' x2='53.1' y2='32.1' stroke='%2300e5ff' stroke-width='1' stroke-opacity='.5'/><line x1='40' y1='42' x2='55.5' y2='46.8' stroke='%2300e5ff' stroke-width='1' stroke-opacity='.5'/><line x1='40' y1='42' x2='46.8' y2='57.6' stroke='%2300e5ff' stroke-width='1' stroke-opacity='.5'/><line x1='40' y1='42' x2='33.2' y2='57.6' stroke='%2300e5ff' stroke-width='1' stroke-opacity='.5'/><line x1='40' y1='42' x2='24.5' y2='46.8' stroke='%2300e5ff' stroke-width='1' stroke-opacity='.5'/><line x1='40' y1='42' x2='26.9' y2='32.1' stroke='%2300e5ff' stroke-width='1' stroke-opacity='.5'/><circle cx='40' cy='26' r='3.5' fill='%2300ff9d'/><circle cx='53.1' cy='32.1' r='3.5' fill='%2300e5ff'/><circle cx='55.5' cy='46.8' r='3.5' fill='%2300e5ff'/><circle cx='46.8' cy='57.6' r='3.5' fill='%2300e5ff'/><circle cx='33.2' cy='57.6' r='3.5' fill='%2300e5ff'/><circle cx='24.5' cy='46.8' r='3.5' fill='%2300e5ff'/><circle cx='26.9' cy='32.1' r='3.5' fill='%2300e5ff'/><circle cx='40' cy='42' r='5' fill='url(%23ga)'/><circle cx='40' cy='42' r='2.2' fill='%23050810'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-deep:#03040a;
+  --bg-primary:#070810;
+  --bg-secondary:#0b0c18;
+  --bg-tertiary:#10111f;
+  --bg-card:rgba(11,12,24,0.92);
+  --bg-glass:rgba(255,255,255,0.03);
+  --cyan:#00e5ff;
+  --cyan-dim:rgba(0,229,255,0.12);
+  --cyan-glow:rgba(0,229,255,0.25);
+  --green:#00ff9d;
+  --green-dim:rgba(0,255,157,0.12);
+  --purple:#7c3aed;
+  --purple-dim:rgba(124,58,237,0.15);
+  --amber:#f59e0b;
+  --red:#ff3b5c;
+  --text-primary:#f0f2ff;
+  --text-secondary:#8892a4;
+  --text-muted:#4a5568;
+  --border-subtle:rgba(255,255,255,0.05);
+  --border-light:rgba(255,255,255,0.09);
+  --border-cyan:rgba(0,229,255,0.2);
+  --font-display:'Syne',sans-serif;
+  --font-body:'DM Sans',sans-serif;
+  --font-mono:'Space Mono',monospace;
+  --radius-sm:6px;
+  --radius-md:12px;
+  --radius-lg:18px;
+  --radius-xl:26px;
+  --max-w:1240px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-body);background:var(--bg-deep);color:var(--text-primary);line-height:1.65;overflow-x:hidden}
+
+#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5}
+
+.container{max-width:var(--max-w);margin:0 auto;padding:0 2rem}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.875rem 1.75rem;font-family:var(--font-body);font-size:.9rem;font-weight:600;letter-spacing:.01em;text-decoration:none;border-radius:var(--radius-md);border:none;cursor:pointer;transition:all .22s ease;white-space:nowrap}
+.btn-primary{background:linear-gradient(135deg,var(--cyan),var(--green));color:#03040a;box-shadow:0 0 28px rgba(0,229,255,.25)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(0,229,255,.38)}
+.btn-secondary{background:transparent;color:var(--text-primary);border:1px solid var(--border-light)}
+.btn-secondary:hover{border-color:var(--cyan);background:var(--cyan-dim)}
+.btn-sm{padding:.6rem 1.2rem;font-size:.8rem}
+.btn-lg{padding:1.1rem 2.25rem;font-size:1rem}
+.gradient-text{background:linear-gradient(130deg,var(--cyan) 0%,var(--green) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:998;background:rgba(3,4,10,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border-subtle)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:.9rem 2rem;max-width:var(--max-w);margin:0 auto}
+.logo{display:flex;align-items:center;gap:.7rem;text-decoration:none;flex-shrink:0}
+.logo-text{font-family:var(--font-display);font-weight:700;font-size:1.2rem;color:var(--text-primary)}
+.logo-text span{color:var(--cyan)}
+.nav-back{display:flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s}
+.nav-back:hover{color:var(--cyan)}
+.nav-back svg{width:16px;height:16px}
+.nav-actions{display:flex;align-items:center;gap:.6rem;flex-shrink:0}
+.mobile-menu-btn{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.5rem}
+.mobile-menu-btn span{display:block;width:22px;height:2px;background:var(--text-primary);transition:all .3s;border-radius:1px}
+
+/* ── PAGE LAYOUT ── */
+.demo-page{position:relative;z-index:1;padding:7rem 0 5rem}
+.demo-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:5rem;align-items:start}
+
+/* ── LEFT COLUMN ── */
+.label{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);margin-bottom:1rem}
+.label::before{content:'';display:block;width:18px;height:1px;background:var(--cyan)}
+.demo-title{font-family:var(--font-display);font-size:clamp(2.4rem,4.5vw,3.6rem);font-weight:800;line-height:1.08;letter-spacing:-.03em;margin-bottom:1.25rem}
+.demo-desc{font-size:1.05rem;color:var(--text-secondary);line-height:1.75;margin-bottom:2.5rem;max-width:460px}
+.demo-desc strong{color:var(--text-primary);font-weight:600}
+
+/* ── TRUST LIST ── */
+.trust-list{display:flex;flex-direction:column;gap:0;border:1px solid var(--border-light);border-radius:var(--radius-lg);overflow:hidden}
+.trust-item{padding:1rem 1.25rem;border-bottom:1px solid var(--border-subtle);display:flex;align-items:flex-start;gap:.875rem;transition:background .2s}
+.trust-item:last-child{border-bottom:none}
+.trust-item:hover{background:var(--bg-glass)}
+.trust-check{color:var(--green);font-size:.85rem;flex-shrink:0;margin-top:.15rem}
+.trust-text{font-size:.875rem;color:var(--text-secondary);line-height:1.65}
+.trust-text strong{color:var(--text-primary);font-weight:600}
+
+/* ── AGENT BADGES ── */
+.agent-badges{margin-top:2rem;display:flex;flex-wrap:wrap;gap:.5rem}
+.agent-badge{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);background:var(--bg-secondary);border:1px solid var(--border-subtle);padding:.3rem .7rem;border-radius:20px;transition:all .2s}
+.agent-badge:hover{border-color:var(--border-cyan);color:var(--text-primary)}
+.agent-badge .id{color:var(--cyan)}
+
+/* ── STATS ── */
+.demo-stats{margin-top:2.25rem;padding-top:2rem;border-top:1px solid var(--border-subtle);display:flex;gap:2rem}
+.d-stat-val{font-family:var(--font-mono);font-size:1.6rem;font-weight:700;color:var(--cyan);line-height:1}
+.d-stat-label{font-size:.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem}
+
+/* ── FORM CARD ── */
+.form-card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-xl);padding:2.5rem;position:relative;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--green))}
+.form-card-title{font-family:var(--font-display);font-size:1.5rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.35rem}
+.form-card-sub{font-family:var(--font-mono);font-size:.72rem;color:var(--text-muted);letter-spacing:.05em;margin-bottom:2rem;display:flex;align-items:center;gap:.5rem}
+.dot-live{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s ease infinite;display:inline-block;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.3)}}
+
+/* ── FORM ELEMENTS ── */
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:.875rem;margin-bottom:1rem}
+.f-group{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.f-group:last-of-type{margin-bottom:0}
+.f-label{display:block;font-size:.82rem;font-weight:500;color:var(--text-secondary);margin-bottom:.15rem}
+.f-label .req{color:var(--cyan)}
+.f-input,.f-select,.f-textarea{width:100%;padding:.8rem 1rem;background:var(--bg-primary);border:1px solid var(--border-light);border-radius:var(--radius-md);color:var(--text-primary);font-family:var(--font-body);font-size:.9rem;transition:border-color .2s;outline:none}
+.f-input::placeholder,.f-textarea::placeholder{color:var(--text-muted)}
+.f-input:focus,.f-select:focus,.f-textarea:focus{border-color:var(--cyan)}
+.f-input.err,.f-select.err{border-color:var(--red)}
+.f-select{
+  background-image:url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%234a5568' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+  -webkit-appearance:none;appearance:none;
+  padding-right:36px;cursor:pointer;
+}
+.f-select option{background:var(--bg-secondary);color:var(--text-primary)}
+.f-textarea{resize:vertical;min-height:80px;line-height:1.6}
+.f-divider{height:1px;background:var(--border-subtle);margin:1.25rem 0}
+
+/* ── AGENT CHECKBOXES ── */
+.f-check-label{font-size:.82rem;font-weight:500;color:var(--text-secondary);margin-bottom:.6rem;display:block}
+.f-check-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:1.25rem}
+.f-check{
+  display:flex;align-items:center;gap:.5rem;
+  font-family:var(--font-mono);font-size:.72rem;letter-spacing:.05em;color:var(--text-muted);
+  background:var(--bg-secondary);border:1px solid var(--border-subtle);
+  padding:.55rem .65rem;border-radius:var(--radius-sm);cursor:pointer;
+  transition:border-color .15s,color .15s,background .15s;
+  user-select:none;
+}
+.f-check:hover{border-color:var(--border-cyan);color:var(--text-primary)}
+.f-check input[type=checkbox]{accent-color:var(--cyan);width:14px;height:14px;flex-shrink:0;cursor:pointer}
+.f-check input[type=checkbox]:checked ~ span{color:var(--text-primary)}
+.f-check:has(input:checked){border-color:var(--border-cyan);background:var(--cyan-dim)}
+
+/* ── HONEYPOT ── */
+.f-honeypot{display:none}
+
+/* ── SUBMIT ── */
+.f-submit-wrap{margin-top:1.5rem;display:flex;flex-direction:column;gap:.75rem}
+.f-submit{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  width:100%;padding:1rem 2rem;
+  font-family:var(--font-body);font-size:.95rem;font-weight:600;letter-spacing:.01em;
+  background:linear-gradient(135deg,var(--cyan),var(--green));color:#03040a;
+  border:none;border-radius:var(--radius-md);cursor:pointer;
+  box-shadow:0 0 28px rgba(0,229,255,.25);
+  transition:all .22s ease;
+}
+.f-submit:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(0,229,255,.38)}
+.f-submit:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.f-legal{font-size:.72rem;color:var(--text-muted);text-align:center;line-height:1.65}
+.f-legal a{color:var(--text-muted);text-decoration:underline;transition:color .2s}
+.f-legal a:hover{color:var(--cyan)}
+
+/* ── ERROR MESSAGE ── */
+.f-err-msg{font-size:.75rem;color:var(--red);display:none;margin-top:-.1rem}
+.f-err-msg.show{display:block}
+
+/* ── SUCCESS STATE ── */
+.form-success{
+  display:none;flex-direction:column;align-items:center;
+  text-align:center;padding:3.5rem 1.5rem;gap:1rem;
+}
+.form-success.visible{display:flex}
+.success-icon{width:60px;height:60px;background:var(--green-dim);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:var(--green)}
+.success-h{font-family:var(--font-display);font-size:1.75rem;font-weight:800;letter-spacing:-.02em}
+.success-sub{font-size:.95rem;color:var(--text-secondary);max-width:300px;line-height:1.7}
+.success-detail{font-family:var(--font-mono);font-size:.72rem;color:var(--text-muted);letter-spacing:.05em;margin-top:.25rem}
+
+/* ── FOOTER ── */
+.footer{position:relative;z-index:1;padding:5rem 0 2.5rem;border-top:1px solid var(--border-subtle)}
+.footer-grid{display:grid;grid-template-columns:2.25fr repeat(4,1fr);gap:3rem;margin-bottom:4rem}
+.footer-brand-desc{font-size:.875rem;color:var(--text-secondary);line-height:1.7;margin-top:1rem;max-width:270px}
+.footer-social{display:flex;gap:.6rem;margin-top:1.5rem}
+.footer-social a{width:34px;height:34px;background:var(--bg-tertiary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:var(--text-muted);text-decoration:none;font-size:.85rem;transition:all .2s}
+.footer-social a:hover{background:var(--cyan-dim);border-color:var(--border-cyan);color:var(--cyan)}
+.footer-col h4{font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--text-primary);margin-bottom:1.25rem;font-family:var(--font-mono)}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:.65rem}
+.footer-links a{color:var(--text-secondary);text-decoration:none;font-size:.875rem;transition:color .2s}
+.footer-links a:hover{color:var(--cyan)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:2rem;border-top:1px solid var(--border-subtle);gap:1.5rem;flex-wrap:wrap}
+.footer-copyright{font-size:.8rem;color:var(--text-muted)}
+.footer-legal{display:flex;gap:1.75rem}
+.footer-legal a{color:var(--text-muted);font-size:.8rem;text-decoration:none;transition:color .2s}
+.footer-legal a:hover{color:var(--text-primary)}
+.footer-certs{display:flex;align-items:center;gap:1.25rem}
+.footer-cert{font-family:var(--font-mono);font-size:.65rem;color:var(--text-muted);padding:.2rem .6rem;border:1px solid var(--border-subtle);border-radius:4px}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .demo-grid{grid-template-columns:1fr;gap:3rem}
+  .footer-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:768px){
+  .mobile-menu-btn{display:flex}
+  .nav-actions .btn-secondary{display:none}
+  .f-row{grid-template-columns:1fr}
+  .f-check-grid{grid-template-columns:repeat(2,1fr)}
+  .demo-stats{flex-wrap:wrap;gap:1.25rem}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .footer-legal{justify-content:center}
+}
+@media(max-width:480px){
+  .f-check-grid{grid-template-columns:1fr 1fr}
+  .agent-badges{display:none}
+  .footer-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<!-- MOBILE NAV OVERLAY -->
+<div id="mobile-overlay" style="display:none;position:fixed;inset:0;background:rgba(3,4,10,.97);z-index:997;padding:2rem;flex-direction:column;gap:1.5rem">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+    <a href="/" class="logo"><svg width="34" height="34" viewBox="0 0 80 80" fill="none" style="flex-shrink:0"><defs><linearGradient id="lm1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00e5ff"/><stop offset="100%" stop-color="#00ff9d"/></linearGradient><linearGradient id="lm2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00e5ff" stop-opacity=".2"/><stop offset="100%" stop-color="#00ff9d" stop-opacity=".07"/></linearGradient></defs><path d="M40 6 L69 22 L69 52 Q69 68 40 78 Q11 68 11 52 L11 22 Z" fill="url(#lm2)" stroke="url(#lm1)" stroke-width="1.5"/><line x1="40" y1="42" x2="40" y2="26" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="53.1" y2="32.1" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="55.5" y2="46.8" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="46.8" y2="57.6" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="33.2" y2="57.6" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="24.5" y2="46.8" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="26.9" y2="32.1" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><circle cx="40" cy="26" r="3" fill="#00ff9d"/><circle cx="53.1" cy="32.1" r="3" fill="#00e5ff"/><circle cx="55.5" cy="46.8" r="3" fill="#00e5ff"/><circle cx="46.8" cy="57.6" r="3" fill="#00e5ff"/><circle cx="33.2" cy="57.6" r="3" fill="#00e5ff"/><circle cx="24.5" cy="46.8" r="3" fill="#00e5ff"/><circle cx="26.9" cy="32.1" r="3" fill="#00e5ff"/><circle cx="40" cy="42" r="4.5" fill="url(#lm1)"/><circle cx="40" cy="42" r="2" fill="#03040a"/></svg><span class="logo-text">Trust<span>Nova</span>Ops</span></a>
+    <button onclick="closeMobile()" style="background:none;border:none;color:var(--text-primary);font-size:1.6rem;cursor:pointer">&times;</button>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:.5rem">
+    <a href="/#agents" onclick="closeMobile()" style="padding:.875rem 1rem;color:var(--text-secondary);text-decoration:none;font-size:1rem;border-bottom:1px solid var(--border-subtle)">AI Agents</a>
+    <a href="/#agent007" onclick="closeMobile()" style="padding:.875rem 1rem;color:var(--text-secondary);text-decoration:none;font-size:1rem;border-bottom:1px solid var(--border-subtle)">Agent 007: ATO</a>
+    <a href="/#demo" onclick="closeMobile()" style="padding:.875rem 1rem;color:var(--text-secondary);text-decoration:none;font-size:1rem;border-bottom:1px solid var(--border-subtle)">Live Demo</a>
+    <a href="/#integrations" onclick="closeMobile()" style="padding:.875rem 1rem;color:var(--text-secondary);text-decoration:none;font-size:1rem;border-bottom:1px solid var(--border-subtle)">Integrations</a>
+    <a href="/#pricing" onclick="closeMobile()" style="padding:.875rem 1rem;color:var(--text-secondary);text-decoration:none;font-size:1rem;border-bottom:1px solid var(--border-subtle)">Pricing</a>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:.75rem;margin-top:auto">
+    <a href="/" class="btn btn-secondary btn-lg">Back to Home</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="/" class="logo"><svg width="34" height="34" viewBox="0 0 80 80" fill="none" style="flex-shrink:0"><defs><linearGradient id="ln1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00e5ff"/><stop offset="100%" stop-color="#00ff9d"/></linearGradient><linearGradient id="ln2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00e5ff" stop-opacity=".2"/><stop offset="100%" stop-color="#00ff9d" stop-opacity=".07"/></linearGradient></defs><path d="M40 6 L69 22 L69 52 Q69 68 40 78 Q11 68 11 52 L11 22 Z" fill="url(#ln2)" stroke="url(#ln1)" stroke-width="1.5"/><line x1="40" y1="42" x2="40" y2="26" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="53.1" y2="32.1" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="55.5" y2="46.8" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="46.8" y2="57.6" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="33.2" y2="57.6" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="24.5" y2="46.8" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="26.9" y2="32.1" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><circle cx="40" cy="26" r="3" fill="#00ff9d"/><circle cx="53.1" cy="32.1" r="3" fill="#00e5ff"/><circle cx="55.5" cy="46.8" r="3" fill="#00e5ff"/><circle cx="46.8" cy="57.6" r="3" fill="#00e5ff"/><circle cx="33.2" cy="57.6" r="3" fill="#00e5ff"/><circle cx="24.5" cy="46.8" r="3" fill="#00e5ff"/><circle cx="26.9" cy="32.1" r="3" fill="#00e5ff"/><circle cx="40" cy="42" r="4.5" fill="url(#ln1)"/><circle cx="40" cy="42" r="2" fill="#03040a"/></svg><span class="logo-text">Trust<span>Nova</span>Ops</span></a>
+    <a href="/" class="nav-back">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 4l-6 6 6 6"/></svg>
+      Back to site
+    </a>
+    <div class="nav-actions">
+      <a href="/" class="btn btn-secondary btn-sm">Home</a>
+    </div>
+    <button class="mobile-menu-btn" onclick="openMobile()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE -->
+<main class="demo-page">
+  <div class="container">
+    <div class="demo-grid">
+
+      <!-- LEFT: PITCH -->
+      <div class="reveal">
+        <div class="label">Request a Demo</div>
+        <h1 class="demo-title">See the Agents <span class="gradient-text">Live.</span></h1>
+        <p class="demo-desc">
+          A TrustNovaOps engineer walks you through a <strong>live deployment against your actual threat profile.</strong> No recorded walkthrough. No generic slide deck.
+        </p>
+
+        <div class="trust-list">
+          <div class="trust-item">
+            <div class="trust-check">&#10003;</div>
+            <div class="trust-text"><strong>Live session in your environment</strong> — we connect to your stack and show real telemetry, not sandbox data</div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-check">&#10003;</div>
+            <div class="trust-text"><strong>Tailored to your compliance requirements</strong> — HIPAA, GDPR, CCPA, or PCI. We map to what matters to you</div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-check">&#10003;</div>
+            <div class="trust-text"><strong>Response in under 1 business day</strong> — an engineer, not a BDR, contacts you to schedule</div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-check">&#10003;</div>
+            <div class="trust-text"><strong>30-day full trial activated immediately after</strong> — all 7 agents, no credit card</div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-check">&#10003;</div>
+            <div class="trust-text">No runbook sales pitch. If it's not the right fit, we'll tell you straight</div>
+          </div>
+        </div>
+
+        <div class="agent-badges">
+          <div class="agent-badge"><span class="id">AGT-01</span> SENTINEL</div>
+          <div class="agent-badge"><span class="id">AGT-02</span> VAULT</div>
+          <div class="agent-badge"><span class="id">AGT-03</span> STRIKER</div>
+          <div class="agent-badge"><span class="id">AGT-04</span> NIMBUS</div>
+          <div class="agent-badge"><span class="id">AGT-05</span> LEDGER</div>
+          <div class="agent-badge"><span class="id">AGT-06</span> ACCORD</div>
+        </div>
+
+        <div class="demo-stats">
+          <div>
+            <div class="d-stat-val">&lt;90ms</div>
+            <div class="d-stat-label">Mean time to contain</div>
+          </div>
+          <div>
+            <div class="d-stat-val">83%</div>
+            <div class="d-stat-label">Auto-resolved, no human</div>
+          </div>
+          <div>
+            <div class="d-stat-val">99.7%</div>
+            <div class="d-stat-label">Detection accuracy</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: FORM -->
+      <div class="reveal reveal-delay-1">
+        <div class="form-card">
+          <div id="formWrap">
+            <div class="form-card-title">Book Your Session</div>
+            <div class="form-card-sub">
+              <span class="dot-live"></span>
+              Engineers available — typical response &lt;4 hours
+            </div>
+
+            <form
+              name="demo-request"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              id="demoForm"
+              novalidate
+            >
+              <input type="hidden" name="form-name" value="demo-request">
+              <p class="f-honeypot"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+              <div class="f-row">
+                <div class="f-group">
+                  <label class="f-label" for="fname">First Name <span class="req">*</span></label>
+                  <input class="f-input" type="text" id="fname" name="first_name" autocomplete="given-name" placeholder="Jane">
+                  <span class="f-err-msg" id="err-fname">Required</span>
+                </div>
+                <div class="f-group">
+                  <label class="f-label" for="lname">Last Name <span class="req">*</span></label>
+                  <input class="f-input" type="text" id="lname" name="last_name" autocomplete="family-name" placeholder="Smith">
+                  <span class="f-err-msg" id="err-lname">Required</span>
+                </div>
+              </div>
+
+              <div class="f-group">
+                <label class="f-label" for="email">Work Email <span class="req">*</span></label>
+                <input class="f-input" type="email" id="email" name="email" autocomplete="email" placeholder="jane@company.com">
+                <span class="f-err-msg" id="err-email">Enter a valid work email</span>
+              </div>
+
+              <div class="f-row">
+                <div class="f-group">
+                  <label class="f-label" for="company">Company <span class="req">*</span></label>
+                  <input class="f-input" type="text" id="company" name="company" autocomplete="organization" placeholder="Acme Corp">
+                  <span class="f-err-msg" id="err-company">Required</span>
+                </div>
+                <div class="f-group">
+                  <label class="f-label" for="title">Job Title</label>
+                  <input class="f-input" type="text" id="title" name="job_title" autocomplete="organization-title" placeholder="CISO / IT Director">
+                </div>
+              </div>
+
+              <div class="f-row">
+                <div class="f-group">
+                  <label class="f-label" for="seats">Workstation Count <span class="req">*</span></label>
+                  <select class="f-select" id="seats" name="workstation_count">
+                    <option value="" disabled selected>Select range</option>
+                    <option value="1-50">1 – 50</option>
+                    <option value="51-200">51 – 200</option>
+                    <option value="201-500">201 – 500</option>
+                    <option value="501-2000">501 – 2,000</option>
+                    <option value="2000+">2,000+</option>
+                  </select>
+                  <span class="f-err-msg" id="err-seats">Please select a range</span>
+                </div>
+                <div class="f-group">
+                  <label class="f-label" for="concern">Primary Concern</label>
+                  <select class="f-select" id="concern" name="primary_concern">
+                    <option value="" disabled selected>Select one</option>
+                    <option>Data exfiltration / DLP</option>
+                    <option>Ransomware response</option>
+                    <option>Compliance (HIPAA / GDPR)</option>
+                    <option>Insider threat</option>
+                    <option>Cloud / shadow IT</option>
+                    <option>All of the above</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="f-divider"></div>
+
+              <label class="f-check-label">Agents you want to see in the demo</label>
+              <div class="f-check-grid">
+                <label class="f-check"><input type="checkbox" name="agents" value="SENTINEL"><span>SENTINEL</span></label>
+                <label class="f-check"><input type="checkbox" name="agents" value="VAULT"><span>VAULT</span></label>
+                <label class="f-check"><input type="checkbox" name="agents" value="STRIKER"><span>STRIKER</span></label>
+                <label class="f-check"><input type="checkbox" name="agents" value="NIMBUS"><span>NIMBUS</span></label>
+                <label class="f-check"><input type="checkbox" name="agents" value="LEDGER"><span>LEDGER</span></label>
+                <label class="f-check"><input type="checkbox" name="agents" value="ACCORD"><span>ACCORD</span></label>
+              </div>
+
+              <div class="f-group">
+                <label class="f-label" for="notes">Anything else?</label>
+                <textarea class="f-textarea" id="notes" name="notes" placeholder="Current tooling, specific compliance deadlines, or questions for the engineer..."></textarea>
+              </div>
+
+              <div class="f-submit-wrap">
+                <button type="submit" class="f-submit" id="submitBtn">Request Demo &rarr;</button>
+                <div class="f-legal">
+                  By submitting you agree to our <a href="#">Privacy Policy</a>.
+                  We will never sell your data or add you to bulk marketing lists.
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="form-success" id="formSuccess">
+            <div class="success-icon">&#10003;</div>
+            <div class="success-h">You're In.</div>
+            <div class="success-sub">A TrustNovaOps engineer will reach out within 1 business day to schedule your live session.</div>
+            <div class="success-detail">Check your inbox — including spam, just in case.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="/" class="logo"><svg width="34" height="34" viewBox="0 0 80 80" fill="none" style="flex-shrink:0"><defs><linearGradient id="lf1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00e5ff"/><stop offset="100%" stop-color="#00ff9d"/></linearGradient><linearGradient id="lf2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00e5ff" stop-opacity=".2"/><stop offset="100%" stop-color="#00ff9d" stop-opacity=".07"/></linearGradient></defs><path d="M40 6 L69 22 L69 52 Q69 68 40 78 Q11 68 11 52 L11 22 Z" fill="url(#lf2)" stroke="url(#lf1)" stroke-width="1.5"/><line x1="40" y1="42" x2="40" y2="26" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="53.1" y2="32.1" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="55.5" y2="46.8" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="46.8" y2="57.6" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="33.2" y2="57.6" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="24.5" y2="46.8" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="26.9" y2="32.1" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><circle cx="40" cy="26" r="3" fill="#00ff9d"/><circle cx="53.1" cy="32.1" r="3" fill="#00e5ff"/><circle cx="55.5" cy="46.8" r="3" fill="#00e5ff"/><circle cx="46.8" cy="57.6" r="3" fill="#00e5ff"/><circle cx="33.2" cy="57.6" r="3" fill="#00e5ff"/><circle cx="24.5" cy="46.8" r="3" fill="#00e5ff"/><circle cx="26.9" cy="32.1" r="3" fill="#00e5ff"/><circle cx="40" cy="42" r="4.5" fill="url(#lf1)"/><circle cx="40" cy="42" r="2" fill="#03040a"/></svg><span class="logo-text">Trust<span>Nova</span>Ops</span></a>
+        <p class="footer-brand-desc">The AI-native compliance platform for the defense industrial base. 7 autonomous agents. Continuous monitoring. Audit-ready, always.</p>
+        <div class="footer-social">
+          <a href="https://linkedin.com/company/trustnovaops" target="_blank" rel="noopener" title="LinkedIn">in</a>
+          <a href="https://twitter.com/trustnovaops" target="_blank" rel="noopener" title="X / Twitter">&#120143;</a>
+          <a href="https://github.com/trustnovaops" target="_blank" rel="noopener" title="GitHub">&#8984;</a>
+        </div>
+        <div class="footer-certs" style="margin-top:1.25rem">
+          <div class="footer-cert">SOC 2 Type II</div>
+          <div class="footer-cert">CMMC L2</div>
+          <div class="footer-cert">FedRAMP &#8505;</div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <ul class="footer-links">
+          <li><a href="/#agents">AI Agents</a></li>
+          <li><a href="/#agent007">Agent 007: ATO</a></li>
+          <li><a href="/#integrations">Integrations</a></li>
+          <li><a href="/#demo">Live Demo</a></li>
+          <li><a href="/#pricing">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <ul class="footer-links">
+          <li><a href="/#agents">For CISOs</a></li>
+          <li><a href="/#agents">For Compliance Teams</a></li>
+          <li><a href="/#agents">For DevSecOps</a></li>
+          <li><a href="/#agents">For Executives</a></li>
+          <li><a href="/#agents">CMMC Level 2</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="/#leadmagnet">CMMC Checklist</a></li>
+          <li><a href="/#faq">CMMC FAQ</a></li>
+          <li><a href="/#demo">ROI Calculator</a></li>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="https://linkedin.com/in/thomasmmitchell" target="_blank" rel="noopener">About Us</a></li>
+          <li><a href="/demo">Contact</a></li>
+          <li><a href="#">Security</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Partners</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">&copy; 2026 TrustNovaOps. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Security</a>
+        <a href="#">Compliance</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── CANVAS BACKGROUND ── */
+(function(){
+  var c=document.getElementById('bg-canvas');
+  var ctx=c.getContext('2d');
+  var W,H,nodes=[],RAF;
+  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight}
+  function init(){
+    nodes=[];
+    var count=Math.floor((W*H)/22000);
+    for(var i=0;i<count;i++){
+      nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,r:Math.random()*1.2+.3})
+    }
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    nodes.forEach(function(n){
+      n.x+=n.vx;n.y+=n.vy;
+      if(n.x<0||n.x>W)n.vx*=-1;
+      if(n.y<0||n.y>H)n.vy*=-1;
+      ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(0,229,255,.5)';ctx.fill();
+    });
+    for(var i=0;i<nodes.length;i++){
+      for(var j=i+1;j<nodes.length;j++){
+        var dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<120){
+          ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);
+          ctx.strokeStyle='rgba(0,229,255,'+(0.12*(1-dist/120))+')';ctx.lineWidth=.6;ctx.stroke();
+        }
+      }
+    }
+    RAF=requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',function(){resize();init()});
+  resize();init();draw();
+})();
+
+/* ── SCROLL REVEAL ── */
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})
+  },{threshold:0.15});
+  els.forEach(function(el){obs.observe(el)});
+})();
+
+/* ── MOBILE MENU ── */
+function openMobile(){document.getElementById('mobile-overlay').style.display='flex';document.body.style.overflow='hidden'}
+function closeMobile(){document.getElementById('mobile-overlay').style.display='none';document.body.style.overflow=''}
+
+/* ── FORM VALIDATION ── */
+function required(id,errId){
+  var el=document.getElementById(id);
+  var err=document.getElementById(errId);
+  var ok=el.value.trim()!=='';
+  el.classList.toggle('err',!ok);
+  if(err)err.classList.toggle('show',!ok);
+  return ok;
+}
+function validEmail(id,errId){
+  var el=document.getElementById(id);
+  var err=document.getElementById(errId);
+  var ok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
+  el.classList.toggle('err',!ok);
+  if(err)err.classList.toggle('show',!ok);
+  return ok;
+}
+function requiredSelect(id,errId){
+  var el=document.getElementById(id);
+  var err=document.getElementById(errId);
+  var ok=el.value!=='';
+  el.classList.toggle('err',!ok);
+  if(err)err.classList.toggle('show',!ok);
+  return ok;
+}
+
+['fname','lname','email','company','seats'].forEach(function(id){
+  var el=document.getElementById(id);
+  if(!el)return;
+  el.addEventListener('input',function(){
+    el.classList.remove('err');
+    var err=document.getElementById('err-'+id);
+    if(err)err.classList.remove('show');
+  });
+});
+
+document.getElementById('demoForm').addEventListener('submit',async function(e){
+  e.preventDefault();
+  var v1=required('fname','err-fname');
+  var v2=required('lname','err-lname');
+  var v3=validEmail('email','err-email');
+  var v4=required('company','err-company');
+  var v5=requiredSelect('seats','err-seats');
+  if(!v1||!v2||!v3||!v4||!v5){
+    var firstErr=document.querySelector('.f-input.err, .f-select.err');
+    if(firstErr)firstErr.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  var btn=document.getElementById('submitBtn');
+  btn.disabled=true;
+  btn.textContent='Sending...';
+  try{
+    var formData=new FormData(this);
+    await fetch('/',{
+      method:'POST',
+      headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body:new URLSearchParams(formData).toString()
+    });
+  }catch(ex){}
+  document.getElementById('formWrap').style.display='none';
+  var success=document.getElementById('formSuccess');
+  success.classList.add('visible');
+  success.scrollIntoView({behavior:'smooth',block:'center'});
+});
+</script>
+</body>
+</html>

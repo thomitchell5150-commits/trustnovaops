@@ -25,5 +25,8 @@
 /api                    /  200
 /blog                   /  200
 
+# Demo request page
+/demo                   /demo.html  200
+
 # Catch-all: serve index.html for any unmatched route (SPA fallback)
 /*                      /index.html  200
