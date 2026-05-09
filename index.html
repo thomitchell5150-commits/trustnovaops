@@ -197,6 +197,11 @@ body{font-family:var(--font-body);background:var(--bg-deep);color:var(--text-pri
 /* ── AGENTS ── */
 .agents-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.25rem;margin-top:3.5rem}
 .agent-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:1.75rem;position:relative;overflow:hidden;transition:all .28s ease;cursor:default}
+a.agent-card-link{display:block;text-decoration:none;color:inherit;border-radius:var(--radius-lg)}
+a.agent-card-link .agent-card{cursor:pointer;border-color:var(--border-cyan)}
+a.agent-card-link .agent-card .agent-link-hint{display:flex;align-items:center;gap:.35rem;margin-top:1rem;font-size:.75rem;font-family:var(--font-mono);color:var(--cyan);opacity:.7;transition:opacity .18s}
+a.agent-card-link:hover .agent-card .agent-link-hint{opacity:1}
+a.agent-card-link:hover .agent-card{border-color:var(--cyan);transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,229,255,.12)}
 .agent-card::after{content:'';position:absolute;inset:0;border-radius:var(--radius-lg);background:linear-gradient(135deg,var(--cyan),var(--green));opacity:0;transition:opacity .28s}
 .agent-card:hover{border-color:var(--border-cyan);transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,229,255,.07)}
 .agent-card:hover::after{opacity:.03}
@@ -464,6 +469,7 @@ body{font-family:var(--font-body);background:var(--bg-deep);color:var(--text-pri
   </div>
   <div style="display:flex;flex-direction:column;gap:.5rem">
     <a href="#agents" onclick="closeMobile()" style="padding:.875rem 1rem;color:var(--text-secondary);text-decoration:none;font-size:1rem;border-bottom:1px solid var(--border-subtle)">AI Agents</a>
+    <a href="/warden.html" onclick="closeMobile()" style="padding:.875rem 1rem;color:var(--text-secondary);text-decoration:none;font-size:1rem;border-bottom:1px solid var(--border-subtle)">WARDEN Agent</a>
     <a href="#agent007" onclick="closeMobile()" style="padding:.875rem 1rem;color:var(--text-secondary);text-decoration:none;font-size:1rem;border-bottom:1px solid var(--border-subtle)">Agent 007: ATO</a>
     <a href="#demo" onclick="closeMobile()" style="padding:.875rem 1rem;color:var(--text-secondary);text-decoration:none;font-size:1rem;border-bottom:1px solid var(--border-subtle)">Live Demo</a>
     <a href="#integrations" onclick="closeMobile()" style="padding:.875rem 1rem;color:var(--text-secondary);text-decoration:none;font-size:1rem;border-bottom:1px solid var(--border-subtle)">Integrations</a>
@@ -494,6 +500,7 @@ body{font-family:var(--font-body);background:var(--bg-deep);color:var(--text-pri
         </button>
         <div class="dropdown">
           <a href="#agents">AI Agent Ecosystem <span>7 purpose-built agents</span></a>
+          <a href="/warden.html">WARDEN Agent <span>Agentic DLP &amp; data protection</span></a>
           <a href="#agent007">Agent 007: ATO Streamliner <span>AI system ATO automation</span></a>
           <div class="dropdown-divider"></div>
           <a href="#integrations">Integrations <span>GitHub, AWS, Azure, Okta + more</span></a>
@@ -689,9 +696,10 @@ body{font-family:var(--font-body);background:var(--bg-deep);color:var(--text-pri
           </div>
         </div>
       </div>
+      <a href="/warden.html" class="agent-card-link">
       <div class="agent-card reveal reveal-delay-3">
         <div class="agent-card-inner">
-          <div class="agent-top"><span class="agent-id-badge">Agent 003</span><span class="agent-status-dot">Active</span></div>
+          <div class="agent-top"><span class="agent-id-badge">Agent 003 · WARDEN</span><span class="agent-status-dot">Active</span></div>
           <div class="agent-name">Infrastructure Guardian</div>
           <div class="agent-desc">Multi-cloud security posture management with automated drift detection, configuration enforcement, and instant remediation.</div>
           <div class="agent-metrics">
@@ -699,8 +707,10 @@ body{font-family:var(--font-body);background:var(--bg-deep);color:var(--text-pri
             <div><div class="agent-metric-val">98.7%</div><div class="agent-metric-label">Compliant</div></div>
             <div><div class="agent-metric-val">5</div><div class="agent-metric-label">Drifts</div></div>
           </div>
+          <div class="agent-link-hint"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 3h10v10M17 3 7 13"/></svg>View WARDEN Agent Page</div>
         </div>
       </div>
+      </a>
       <div class="agent-card reveal reveal-delay-1">
         <div class="agent-card-inner">
           <div class="agent-top"><span class="agent-id-badge">Agent 004</span><span class="agent-status-dot">Active</span></div>
@@ -1101,6 +1111,7 @@ body{font-family:var(--font-body);background:var(--bg-deep);color:var(--text-pri
         <h4>Platform</h4>
         <ul class="footer-links">
           <li><a href="#agents">AI Agents</a></li>
+          <li><a href="/warden.html">WARDEN Agent</a></li>
           <li><a href="#agent007">Agent 007: ATO</a></li>
           <li><a href="#integrations">Integrations</a></li>
           <li><a href="#demo">Live Demo</a></li>
