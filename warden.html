@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WARDEN — Agentic DLP Agent | TrustNovaOps</title>
+<meta name="description" content="WARDEN is TrustNovaOps' AI-powered agentic data protection, DLP, and compliance evidence automation agent. Built for federal contractors, DevSecOps, and Zero Trust environments.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0b0d;
+  --surface:#111318;
+  --surface2:#181c22;
+  --surface3:#1f242e;
+  --border:#1e242e;
+  --border2:#252b37;
+  --amber:#e8a020;
+  --amber-dim:#7a5010;
+  --amber-glow:rgba(232,160,32,0.08);
+  --red:#c0392b;
+  --red-dim:rgba(192,57,43,0.15);
+  --green:#1a7a4a;
+  --green-dim:rgba(26,122,74,0.15);
+  --blue:#1a5c8a;
+  --blue-bright:#3b9de8;
+  --text:#e8e6e0;
+  --text-dim:#a8a49e;
+  --muted:#6b7280;
+  --mono:'IBM Plex Mono',monospace;
+  --sans:'IBM Plex Sans',sans-serif;
+  --display:'Bebas Neue',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden}
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:60px 60px;opacity:0.28;pointer-events:none;z-index:0;
+}
+
+/* UTILS */
+a{color:var(--amber);text-decoration:none}
+strong{font-weight:500}
+.z1{position:relative;z-index:1}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(10,11,13,0.95);border-bottom:1px solid var(--border);
+  backdrop-filter:blur(10px);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 52px;height:56px;
+}
+.nav-logo{font-family:var(--display);font-size:20px;letter-spacing:2px;color:var(--amber);text-decoration:none}
+.nav-logo span{color:var(--text);opacity:0.35}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-link{
+  font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--muted);padding:6px 12px;text-decoration:none;transition:color .2s;
+}
+.nav-link:hover{color:var(--amber)}
+.nav-pill{
+  font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
+  background:var(--amber);color:#000;padding:7px 18px;font-weight:500;text-decoration:none;
+  clip-path:polygon(0 0,calc(100% - 7px) 0,100% 7px,100% 100%,7px 100%,0 calc(100% - 7px));
+  transition:opacity .2s;
+}
+.nav-pill:hover{opacity:0.85;color:#000}
+
+/* AGENT BANNER */
+.agent-banner{
+  position:relative;z-index:1;
+  background:var(--surface);border-bottom:1px solid var(--border);
+  padding:10px 52px;
+  display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+}
+.banner-tag{
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--amber-dim);border:1px solid var(--amber-dim);padding:3px 10px;
+}
+.banner-status{
+  font-family:var(--mono);font-size:10px;letter-spacing:1px;
+  color:var(--muted);display:flex;align-items:center;gap:8px;
+}
+.blink{width:6px;height:6px;border-radius:50%;background:var(--amber);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+
+/* HERO */
+.hero{
+  position:relative;z-index:1;
+  padding:96px 52px 80px;
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 380px;gap:60px;align-items:start;
+}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--amber);margin-bottom:20px;
+  display:flex;align-items:center;gap:12px;
+}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--amber)}
+.hero-h1{
+  font-family:var(--display);font-size:clamp(72px,9vw,110px);
+  line-height:0.9;letter-spacing:2px;color:var(--text);margin-bottom:12px;
+}
+.hero-h1 .accent{color:var(--amber)}
+.hero-tagline{
+  font-family:var(--display);font-size:clamp(22px,3vw,32px);
+  color:var(--text-dim);letter-spacing:2px;margin-bottom:28px;line-height:1.1;
+}
+.hero-desc{
+  font-size:15px;font-weight:300;color:var(--muted);max-width:540px;line-height:1.8;
+  margin-bottom:36px;
+}
+.hero-desc strong{color:var(--text)}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-amber{
+  font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  background:var(--amber);color:#000;padding:13px 28px;font-weight:500;
+  clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,9px 100%,0 calc(100% - 9px));
+  border:none;cursor:pointer;transition:opacity .2s;text-decoration:none;display:inline-block;
+}
+.btn-amber:hover{opacity:0.85;color:#000}
+.btn-ghost{
+  font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  background:transparent;color:var(--text-dim);padding:13px 28px;
+  border:1px solid var(--border2);transition:border-color .2s,color .2s;
+  text-decoration:none;display:inline-block;
+}
+.btn-ghost:hover{border-color:var(--amber);color:var(--amber)}
+
+/* HERO CARD */
+.hero-card{
+  background:var(--surface);border:1px solid var(--border);
+  padding:28px 24px;position:relative;
+}
+.hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--amber)}
+.hc-label{
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;
+}
+.hc-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.name-rec{
+  font-family:var(--display);font-size:52px;letter-spacing:2px;color:var(--amber);
+  line-height:1;margin-bottom:6px;
+}
+.name-sub{
+  font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.5px;
+  margin-bottom:22px;
+}
+.name-alts{display:flex;flex-direction:column;gap:8px}
+.name-alt{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 12px;background:var(--surface2);
+  border-left:2px solid var(--border2);
+}
+.name-alt-name{font-family:var(--display);font-size:20px;letter-spacing:1px;color:var(--text-dim)}
+.name-alt-note{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:0.5px}
+
+/* SECTION WRAPPER */
+.section-wrap{position:relative;z-index:1;padding:72px 52px;max-width:1280px;margin:0 auto}
+.section-divider{position:relative;z-index:1;height:1px;background:var(--border);margin:0 52px}
+.section-eyebrow{
+  font-family:var(--mono);font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--amber);margin-bottom:14px;
+  display:flex;align-items:center;gap:12px;
+}
+.section-eyebrow::before{content:'';width:20px;height:1px;background:var(--amber)}
+.section-h2{
+  font-family:var(--display);font-size:clamp(36px,5vw,56px);
+  line-height:0.95;letter-spacing:1px;margin-bottom:16px;
+}
+.section-desc{font-size:15px;font-weight:300;color:var(--muted);max-width:600px;line-height:1.8}
+
+/* DARK SECTION BG */
+.dark-section{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+
+/* CAPABILITY GRID */
+.cap-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--border);border:1px solid var(--border);margin-top:48px;
+}
+.cap-cell{
+  background:var(--surface);padding:30px 26px;
+  transition:background .2s;position:relative;overflow:hidden;
+}
+.cap-cell:hover{background:var(--surface2)}
+.cap-cell::before{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,var(--amber),transparent);
+  transform:scaleX(0);transform-origin:left;transition:transform .3s;
+}
+.cap-cell:hover::before{transform:scaleX(1)}
+.cap-num{
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;
+  color:var(--amber-dim);margin-bottom:14px;
+}
+.cap-icon{font-size:22px;margin-bottom:14px}
+.cap-name{font-family:var(--display);font-size:22px;letter-spacing:1px;margin-bottom:8px}
+.cap-text{font-size:12px;font-weight:300;color:var(--muted);line-height:1.7}
+
+/* WORKFLOW */
+.workflow-grid{
+  display:grid;grid-template-columns:repeat(9,1fr);
+  gap:0;margin-top:48px;
+  border:1px solid var(--border);
+}
+.workflow-step{
+  padding:28px 16px 24px;border-right:1px solid var(--border);
+  display:flex;flex-direction:column;gap:8px;
+  position:relative;
+}
+.workflow-step:last-child{border-right:none}
+.ws-num{
+  font-family:var(--mono);font-size:9px;letter-spacing:2px;
+  color:var(--amber-dim);text-transform:uppercase;
+}
+.ws-name{
+  font-family:var(--display);font-size:18px;letter-spacing:0.5px;color:var(--amber);
+  line-height:1;margin-bottom:4px;
+}
+.ws-text{font-size:11px;color:var(--muted);line-height:1.6;font-weight:300}
+.ws-arrow{
+  position:absolute;right:-10px;top:50%;transform:translateY(-50%);
+  font-family:var(--mono);font-size:14px;color:var(--border2);z-index:2;
+  background:var(--bg);padding:2px 0;
+}
+
+/* USE CASES */
+.uc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:48px}
+.uc-cell{background:var(--surface);padding:32px 28px}
+.uc-tag{
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--amber);margin-bottom:14px;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.uc-tag::before{content:'';width:16px;height:1px;background:var(--amber)}
+.uc-title{font-family:var(--display);font-size:24px;letter-spacing:1px;margin-bottom:10px}
+.uc-text{font-size:13px;font-weight:300;color:var(--muted);line-height:1.75}
+.uc-bullets{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:5px}
+.uc-bullets li{
+  font-family:var(--mono);font-size:11px;color:var(--muted);
+  display:flex;gap:8px;
+}
+.uc-bullets li::before{content:'→';color:var(--amber);flex-shrink:0}
+
+/* ARCH */
+.arch-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:48px}
+.arch-node{
+  background:var(--surface);border:1px solid var(--border);
+  padding:22px 18px;position:relative;
+}
+.arch-node.central{
+  grid-column:span 4;
+  background:var(--surface2);border-color:var(--amber-dim);
+  display:flex;align-items:center;gap:32px;padding:24px 28px;
+}
+.arch-badge{
+  font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--amber);border:1px solid var(--amber-dim);
+  padding:2px 8px;margin-bottom:10px;display:inline-block;
+}
+.arch-name{font-family:var(--display);font-size:22px;letter-spacing:1px;margin-bottom:6px}
+.arch-text{font-size:11px;color:var(--muted);line-height:1.65;font-weight:300}
+.arch-node.central .arch-text{max-width:380px}
+.arch-integrations{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.arch-int-chip{
+  font-family:var(--mono);font-size:10px;color:var(--muted);
+  border:1px solid var(--border2);padding:3px 8px;
+}
+
+/* DIFF TABLE */
+.diff-table{width:100%;border-collapse:collapse;margin-top:48px;border:1px solid var(--border)}
+.diff-table th{
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);padding:14px 20px;text-align:left;
+  background:var(--surface2);border-bottom:1px solid var(--border);
+}
+.diff-table th.warden-col{color:var(--amber)}
+.diff-table td{
+  padding:14px 20px;font-size:13px;color:var(--muted);
+  border-bottom:1px solid var(--border);font-weight:300;
+  vertical-align:top;line-height:1.6;
+}
+.diff-table tr:last-child td{border-bottom:none}
+.diff-table td:first-child{
+  font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:0.5px;
+  font-weight:500;
+}
+.diff-table td.warden-col{color:var(--text)}
+.yes{color:var(--green)!important}
+.no{color:var(--red)!important;opacity:0.6}
+.partial{color:var(--amber)!important;opacity:0.75}
+.diff-table tbody tr:hover td{background:var(--surface)}
+
+/* COMPLIANCE STRIP */
+.compliance-strip{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:1px;
+  background:var(--border);border:1px solid var(--border);margin-top:36px;
+}
+.comp-cell{
+  background:var(--surface2);padding:20px 16px;
+  display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;
+}
+.comp-name{
+  font-family:var(--display);font-size:18px;letter-spacing:1px;color:var(--amber);
+}
+.comp-desc{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1px;text-align:center}
+
+/* WEBSITE COPY SECTION */
+.copy-section{margin-top:48px;display:flex;flex-direction:column;gap:32px}
+.copy-block{background:var(--surface);border:1px solid var(--border);padding:32px 28px}
+.copy-block-label{
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--amber-dim);margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--border);
+}
+.copy-block-label::before{content:'//'}
+.copy-hero-text{
+  font-family:var(--display);font-size:clamp(40px,5vw,64px);
+  letter-spacing:2px;line-height:0.95;color:var(--text);margin-bottom:14px;
+}
+.copy-hero-text em{color:var(--amber);font-style:normal}
+.copy-sub{font-size:16px;font-weight:300;color:var(--muted);max-width:560px;line-height:1.8}
+.copy-body{font-size:14px;color:var(--text-dim);line-height:1.85;font-weight:300;max-width:680px}
+.copy-bullets{list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:8px}
+.copy-bullets li{
+  font-size:13px;color:var(--muted);font-weight:300;
+  display:flex;align-items:flex-start;gap:10px;line-height:1.6;
+}
+.copy-bullets li::before{content:'✓';color:var(--amber);font-family:var(--mono);flex-shrink:0;margin-top:2px}
+.copy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.copy-feature{background:var(--surface2);padding:18px;border-left:2px solid var(--amber-dim)}
+.copy-feature-name{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:1px;margin-bottom:6px}
+.copy-feature-text{font-size:12px;color:var(--muted);line-height:1.6;font-weight:300}
+
+/* HOW IT WORKS */
+.hiw-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:16px}
+.hiw-step{background:var(--surface);padding:24px 20px}
+.hiw-num{font-family:var(--display);font-size:40px;color:var(--border2);line-height:1;margin-bottom:8px}
+.hiw-name{font-family:var(--display);font-size:20px;letter-spacing:1px;color:var(--text);margin-bottom:8px}
+.hiw-text{font-size:12px;color:var(--muted);line-height:1.7;font-weight:300}
+
+/* RECOMMENDATION */
+.rec-block{
+  background:var(--surface);border:1px solid var(--amber-dim);
+  padding:40px 36px;margin-top:48px;
+  display:grid;grid-template-columns:1fr 280px;gap:40px;align-items:center;
+}
+.rec-text .rec-tag{
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--amber);margin-bottom:16px;
+}
+.rec-text h3{font-family:var(--display);font-size:36px;letter-spacing:1px;margin-bottom:12px}
+.rec-text p{font-size:14px;color:var(--muted);line-height:1.8;font-weight:300}
+.rec-verdict{background:var(--surface2);border:1px solid var(--border);padding:24px;text-align:center}
+.verdict-label{font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.verdict-answer{font-family:var(--display);font-size:28px;letter-spacing:2px;color:var(--amber);margin-bottom:8px}
+.verdict-note{font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.6}
+
+/* CTA BANNER */
+.cta-band{
+  position:relative;z-index:1;
+  background:var(--amber);padding:64px 52px;
+  display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;
+}
+.cta-band::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(0,0,0,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.06) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+.cta-left{position:relative}
+.cta-h{font-family:var(--display);font-size:clamp(36px,5vw,56px);letter-spacing:2px;color:#000;line-height:0.95;margin-bottom:10px}
+.cta-sub{font-size:15px;color:rgba(0,0,0,0.55);font-weight:300}
+.cta-btns{position:relative;display:flex;gap:14px;flex-wrap:wrap}
+.btn-dark{
+  font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  background:#000;color:var(--amber);padding:13px 28px;font-weight:500;
+  clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,9px 100%,0 calc(100% - 9px));
+  border:none;cursor:pointer;transition:opacity .2s;text-decoration:none;display:inline-block;
+}
+.btn-dark:hover{opacity:0.85;color:var(--amber)}
+.btn-outline-dark{
+  font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  background:transparent;color:#000;padding:13px 28px;
+  border:1px solid rgba(0,0,0,0.25);transition:border-color .2s;
+  text-decoration:none;display:inline-block;
+}
+.btn-outline-dark:hover{border-color:#000}
+
+/* FOOTER */
+footer{
+  position:relative;z-index:1;background:var(--surface);
+  border-top:1px solid var(--border);padding:36px 52px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;
+}
+.footer-logo{font-family:var(--display);font-size:18px;letter-spacing:2px;color:var(--amber);text-decoration:none}
+.footer-logo span{color:var(--text);opacity:0.3}
+.footer-links{display:flex;gap:24px;flex-wrap:wrap}
+.footer-link{font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+.footer-link:hover{color:var(--amber)}
+.footer-copy{font-family:var(--mono);font-size:10px;color:var(--muted);opacity:0.4}
+
+/* PAGE TOC */
+.toc{
+  position:fixed;right:20px;top:50%;transform:translateY(-50%);
+  z-index:150;display:flex;flex-direction:column;gap:8px;
+}
+.toc-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--border2);
+  cursor:pointer;transition:background .2s,transform .2s;
+  title:attr(data-label);
+}
+.toc-dot:hover,.toc-dot.active{background:var(--amber);transform:scale(1.5)}
+
+@media(max-width:1100px){.toc{display:none}}
+@media(max-width:960px){
+  nav{padding:0 24px}
+  .agent-banner{padding:10px 24px}
+  .hero{grid-template-columns:1fr;padding:56px 24px 48px;gap:40px}
+  .hero-card{display:none}
+  .section-wrap{padding:56px 24px}
+  .section-divider{margin:0 24px}
+  .cap-grid{grid-template-columns:repeat(2,1fr)}
+  .workflow-grid{grid-template-columns:repeat(3,1fr)}
+  .ws-arrow{display:none}
+  .uc-grid{grid-template-columns:1fr}
+  .arch-grid{grid-template-columns:repeat(2,1fr)}
+  .arch-node.central{grid-column:span 2}
+  .compliance-strip{grid-template-columns:repeat(3,1fr)}
+  .copy-grid{grid-template-columns:1fr}
+  .hiw-steps{grid-template-columns:1fr}
+  .rec-block{grid-template-columns:1fr}
+  .cta-band{padding:48px 24px}
+  footer{padding:28px 24px}
+  .diff-table{font-size:12px}
+}
+@media(max-width:600px){
+  .cap-grid{grid-template-columns:1fr}
+  .workflow-grid{grid-template-columns:repeat(2,1fr)}
+  .arch-node.central{grid-column:span 2}
+  .compliance-strip{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- TOC DOTS -->
+<nav class="toc" aria-hidden="true">
+  <div class="toc-dot active" onclick="scrollTo(0,'agent-name')" data-section="agent-name" title="Agent Name"></div>
+  <div class="toc-dot" data-section="mission" title="Core Mission"></div>
+  <div class="toc-dot" data-section="capabilities" title="Capabilities"></div>
+  <div class="toc-dot" data-section="workflow" title="Workflow"></div>
+  <div class="toc-dot" data-section="usecases" title="Use Cases"></div>
+  <div class="toc-dot" data-section="why" title="Why This Matters"></div>
+  <div class="toc-dot" data-section="webcopy" title="Website Copy"></div>
+  <div class="toc-dot" data-section="architecture" title="Architecture"></div>
+  <div class="toc-dot" data-section="differentiation" title="Differentiation"></div>
+  <div class="toc-dot" data-section="recommendation" title="Recommendation"></div>
+</nav>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">TrustNova<span>Ops</span></a>
+  <div class="nav-links">
+    <a href="#mission" class="nav-link">Mission</a>
+    <a href="#capabilities" class="nav-link">Capabilities</a>
+    <a href="#workflow" class="nav-link">Workflow</a>
+    <a href="#usecases" class="nav-link">Use Cases</a>
+    <a href="#architecture" class="nav-link">Architecture</a>
+    <a href="#demo" class="nav-pill">Request Demo</a>
+  </div>
+</nav>
+
+<!-- AGENT BANNER -->
+<div class="agent-banner">
+  <span class="banner-tag">AGT-07 // NEW AGENT</span>
+  <span class="banner-status"><span class="blink"></span>Product Concept — Agentic Data Protection + DLP + Compliance Evidence Automation</span>
+</div>
+
+<!-- ═══════════════════ SECTION 1: AGENT NAME ═══════════════════ -->
+<div id="agent-name" class="z1">
+<div class="hero">
+  <div>
+    <div class="hero-eyebrow">Section 01 — Agent Name</div>
+    <h1 class="hero-h1">WARDEN<span class="accent">.</span></h1>
+    <div class="hero-tagline">Agentic Data Protection,<br>DLP + Compliance Evidence</div>
+    <p class="hero-desc">
+      <strong>WARDEN</strong> is TrustNovaOps' seventh Nova agent — an AI-powered, agentic security control layer that monitors, classifies, reasons, and acts across your entire data surface. Not a scanner. Not a checkbox. A persistent, autonomous guardian wired into every layer of your infrastructure.
+    </p>
+    <div class="hero-btns">
+      <a href="#mission" class="btn-amber">Explore the Concept</a>
+      <a href="#webcopy" class="btn-ghost">Jump to Website Copy</a>
+    </div>
+  </div>
+  <div class="hero-card">
+    <div class="hc-label">Recommended Name</div>
+    <div class="name-rec">WARDEN</div>
+    <div class="name-sub">AGT-07 // Data Guardian Agent</div>
+    <div class="hc-label">Alternative Names</div>
+    <div class="name-alts">
+      <div class="name-alt">
+        <div class="name-alt-name">CIPHER</div>
+        <div class="name-alt-note">Classification focus</div>
+      </div>
+      <div class="name-alt">
+        <div class="name-alt-name">VIGIL</div>
+        <div class="name-alt-note">Surveillance / always-on</div>
+      </div>
+      <div class="name-alt">
+        <div class="name-alt-name">PROVENANCE</div>
+        <div class="name-alt-note">Data lineage / governance</div>
+      </div>
+      <div class="name-alt">
+        <div class="name-alt-name">APEX</div>
+        <div class="name-alt-note">Agentic Protection &amp; Evidence eXchange</div>
+      </div>
+      <div class="name-alt">
+        <div class="name-alt-name">MERIDIAN</div>
+        <div class="name-alt-note">Boundary enforcement</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════ SECTION 2: CORE MISSION ═══════════════════ -->
+<div id="mission" class="dark-section">
+<div class="section-wrap">
+  <div class="section-eyebrow">Section 02 — Core Mission</div>
+  <h2 class="section-h2">WHAT WARDEN<br>ACTUALLY DOES</h2>
+  <p class="section-desc">WARDEN fills the gap traditional DLP tools cannot — reasoning about data risk, not just detecting it.</p>
+
+  <div style="margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:40px">
+    <div>
+      <div style="font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:14px">The Mission</div>
+      <p style="font-size:15px;font-weight:300;color:var(--text-dim);line-height:1.85;margin-bottom:18px">
+        WARDEN is a continuously-running AI agent embedded into TrustNovaOps' Nova orchestrator. Its mission: <strong style="color:var(--text)">discover, classify, monitor, and protect every sensitive data asset across your entire infrastructure</strong> — and generate the compliance evidence to prove it.
+      </p>
+      <p style="font-size:14px;font-weight:300;color:var(--muted);line-height:1.85;margin-bottom:18px">
+        Unlike traditional DLP tools that scan on a schedule and alert on rule matches, WARDEN reasons continuously. It understands context — who touched a file, where it moved, how that compares to their baseline behavior, and what that means for your CMMC 2.0 or FedRAMP posture — then takes calibrated action.
+      </p>
+      <p style="font-size:14px;font-weight:300;color:var(--muted);line-height:1.85">
+        WARDEN operates as part of the broader Nova agent ecosystem. It shares telemetry with SENTINEL (endpoint), STRIKER (threat response), LEDGER (audit), and ACCORD (compliance) — closing the loop between data visibility, active protection, and regulatory evidence in a single, coordinated control plane.
+      </p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="background:var(--surface2);border:1px solid var(--border);padding:22px 20px;border-left:3px solid var(--amber)">
+        <div style="font-family:var(--display);font-size:20px;letter-spacing:1px;margin-bottom:6px">Not a Scanner</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.7;font-weight:300">Traditional DLP runs scheduled scans, matches patterns, fires alerts. WARDEN reasons about risk continuously — context, behavior, and policy in real time.</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);padding:22px 20px;border-left:3px solid var(--amber)">
+        <div style="font-family:var(--display);font-size:20px;letter-spacing:1px;margin-bottom:6px">Not a Silo</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.7;font-weight:300">WARDEN shares context with every other Nova agent. A USB event from SENTINEL, a ransomware signal from STRIKER, a print anomaly from LEDGER — WARDEN correlates all of it into a unified data risk picture.</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);padding:22px 20px;border-left:3px solid var(--amber)">
+        <div style="font-family:var(--display);font-size:20px;letter-spacing:1px;margin-bottom:6px">Not Reactive</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.7;font-weight:300">WARDEN generates audit-ready compliance evidence as a byproduct of normal operation. When the auditor arrives, the evidence package already exists — timestamped, scoped, and mapped to your control framework.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════ SECTION 3: CAPABILITIES ═══════════════════ -->
+<div id="capabilities">
+<div class="section-wrap">
+  <div class="section-eyebrow">Section 03 — Key Capabilities</div>
+  <h2 class="section-h2">WHAT WARDEN<br>CAN DO</h2>
+  <p class="section-desc">Twelve core capabilities that together cover your entire sensitive data surface — from cloud buckets to git commits.</p>
+
+  <div class="cap-grid">
+    <div class="cap-cell">
+      <div class="cap-num">CAP-01</div>
+      <div class="cap-icon">🔍</div>
+      <div class="cap-name">Sensitive Data Discovery</div>
+      <div class="cap-text">Continuously crawls cloud storage, file servers, endpoints, databases, and repositories to locate sensitive data — including data you didn't know existed. No scheduled scans. Persistent, streaming discovery.</div>
+    </div>
+    <div class="cap-cell">
+      <div class="cap-num">CAP-02</div>
+      <div class="cap-icon">🏷️</div>
+      <div class="cap-name">CUI / PII / PHI / PCI Detection</div>
+      <div class="cap-text">AI-powered pattern recognition for CUI, PII, ePHI, PCI-DSS card data, SSNs, EINs, passport numbers, and custom organizational data types — with context scoring, not just regex hits.</div>
+    </div>
+    <div class="cap-cell">
+      <div class="cap-num">CAP-03</div>
+      <div class="cap-icon">🔑</div>
+      <div class="cap-name">Secrets &amp; Credential Detection</div>
+      <div class="cap-text">Detects exposed API keys, tokens, certificates, private keys, hardcoded passwords, cloud credentials, and OAuth secrets across code, configs, logs, and documents — including historical commits.</div>
+    </div>
+    <div class="cap-cell">
+      <div class="cap-num">CAP-04</div>
+      <div class="cap-icon">💻</div>
+      <div class="cap-name">Source Code &amp; Repo Scanning</div>
+      <div class="cap-text">Integrates with GitHub, GitLab, Bitbucket, and Azure DevOps. Scans pull requests, commits, branches, and issues for sensitive data, CUI indicators, and policy violations before merge.</div>
+    </div>
+    <div class="cap-cell">
+      <div class="cap-num">CAP-05</div>
+      <div class="cap-icon">⚙️</div>
+      <div class="cap-name">CI/CD Pipeline Inspection</div>
+      <div class="cap-text">Inspects pipeline artifacts, build logs, environment variables, container images, and IaC templates (Terraform, CloudFormation, Bicep) for sensitive data exposure and policy drift.</div>
+    </div>
+    <div class="cap-cell">
+      <div class="cap-num">CAP-06</div>
+      <div class="cap-icon">☁️</div>
+      <div class="cap-name">Cloud Storage Monitoring</div>
+      <div class="cap-text">Audits S3, Azure Blob, GCS, SharePoint, OneDrive, and Dropbox for misconfigured permissions, publicly exposed sensitive files, and unauthorized cross-account data movement in real time.</div>
+    </div>
+    <div class="cap-cell">
+      <div class="cap-num">CAP-07</div>
+      <div class="cap-icon">📊</div>
+      <div class="cap-name">Log &amp; Telemetry Inspection</div>
+      <div class="cap-text">Analyzes log streams from SIEM, CloudTrail, Azure Monitor, and application logs for accidental PII logging, credential leakage in traces, and data-in-motion anomalies.</div>
+    </div>
+    <div class="cap-cell">
+      <div class="cap-num">CAP-08</div>
+      <div class="cap-icon">🔀</div>
+      <div class="cap-name">Data Movement Tracking</div>
+      <div class="cap-text">Follows sensitive data as it moves — endpoint to USB, email attachment, cloud sync, API transfer, or print job. Builds a chain-of-custody view that spans every vector simultaneously.</div>
+    </div>
+    <div class="cap-cell">
+      <div class="cap-num">CAP-09</div>
+      <div class="cap-icon">👤</div>
+      <div class="cap-name">Insider Risk Indicators</div>
+      <div class="cap-text">Correlates behavioral signals — anomalous access volume, after-hours downloads, bulk exports before resignation dates, sensitive data staging — into user risk scores, not just individual alerts.</div>
+    </div>
+    <div class="cap-cell">
+      <div class="cap-num">CAP-10</div>
+      <div class="cap-icon">📋</div>
+      <div class="cap-name">Compliance Evidence Generation</div>
+      <div class="cap-text">Auto-generates timestamped, auditor-ready evidence packages mapped to CMMC 2.0 practices, NIST 800-53 controls, FedRAMP requirements, and RMF/ATO documentation — continuously, not at audit time.</div>
+    </div>
+    <div class="cap-cell">
+      <div class="cap-num">CAP-11</div>
+      <div class="cap-icon">📜</div>
+      <div class="cap-name">Policy-as-Code Enforcement</div>
+      <div class="cap-text">Define data handling policies in code (YAML/JSON/Rego). WARDEN enforces them consistently across all data surfaces — no gap between written policy and what's actually enforced in production.</div>
+    </div>
+    <div class="cap-cell">
+      <div class="cap-num">CAP-12</div>
+      <div class="cap-icon">🤝</div>
+      <div class="cap-name">Human-in-the-Loop Recommendations</div>
+      <div class="cap-text">For ambiguous or high-impact scenarios, WARDEN pauses before acting. It assembles full context — risk score, data lineage, user history, policy match — and routes to an analyst with a ranked recommendation set.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════ SECTION 4: WORKFLOW ═══════════════════ -->
+<div id="workflow" class="dark-section">
+<div class="section-wrap">
+  <div class="section-eyebrow">Section 04 — Agentic Workflow</div>
+  <h2 class="section-h2">NINE STEPS.<br>ZERO GAPS.</h2>
+  <p class="section-desc">WARDEN runs a continuous, closed-loop agentic cycle — from raw observation to documented remediation.</p>
+
+  <div class="workflow-grid">
+    <div class="workflow-step">
+      <div class="ws-num">Step 01</div>
+      <div class="ws-name">OBSERVE</div>
+      <div class="ws-text">Streams telemetry from endpoints, cloud, repos, CI/CD, logs, and network in real time via pre-built connectors.</div>
+      <div class="ws-arrow">›</div>
+    </div>
+    <div class="workflow-step">
+      <div class="ws-num">Step 02</div>
+      <div class="ws-name">CLASSIFY</div>
+      <div class="ws-text">AI classifies data type, sensitivity tier (CUI, PII, PHI, secrets), and owner. Tags are propagated across the data graph.</div>
+      <div class="ws-arrow">›</div>
+    </div>
+    <div class="workflow-step">
+      <div class="ws-num">Step 03</div>
+      <div class="ws-name">CORRELATE</div>
+      <div class="ws-text">Links classification to user behavior, access patterns, policy context, and signals from other Nova agents to build a full picture.</div>
+      <div class="ws-arrow">›</div>
+    </div>
+    <div class="workflow-step">
+      <div class="ws-num">Step 04</div>
+      <div class="ws-name">RISK-SCORE</div>
+      <div class="ws-text">Assigns a dynamic risk score to each event and data asset — weighted by data type, user trust level, destination, and policy impact.</div>
+      <div class="ws-arrow">›</div>
+    </div>
+    <div class="workflow-step">
+      <div class="ws-num">Step 05</div>
+      <div class="ws-name">ALERT</div>
+      <div class="ws-text">Fires targeted, context-rich alerts to SIEM, Slack, PagerDuty, or ServiceNow. No alert fatigue — only what matters, with full context attached.</div>
+      <div class="ws-arrow">›</div>
+    </div>
+    <div class="workflow-step">
+      <div class="ws-num">Step 06</div>
+      <div class="ws-name">RECOMMEND</div>
+      <div class="ws-text">Generates ranked remediation options — quarantine, revoke access, rotate secret, notify user, block transfer — with estimated impact and risk delta.</div>
+      <div class="ws-arrow">›</div>
+    </div>
+    <div class="workflow-step">
+      <div class="ws-num">Step 07</div>
+      <div class="ws-name">GENERATE EVIDENCE</div>
+      <div class="ws-text">Assembles an audit trail entry: event timeline, data lineage, policy mapping, and control reference (CMMC, NIST 800-53, FedRAMP).</div>
+      <div class="ws-arrow">›</div>
+    </div>
+    <div class="workflow-step">
+      <div class="ws-num">Step 08</div>
+      <div class="ws-name">ESCALATE</div>
+      <div class="ws-text">Routes high-risk or ambiguous cases to a human analyst with full context pre-assembled. One-click approve, modify, or override.</div>
+      <div class="ws-arrow">›</div>
+    </div>
+    <div class="workflow-step">
+      <div class="ws-num">Step 09</div>
+      <div class="ws-name">REMEDIATE</div>
+      <div class="ws-text">Executes approved actions autonomously — or triggers pre-approved playbooks for known threat patterns without requiring human confirmation.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════ SECTION 5: USE CASES ═══════════════════ -->
+<div id="usecases">
+<div class="section-wrap">
+  <div class="section-eyebrow">Section 05 — Use Cases</div>
+  <h2 class="section-h2">BUILT FOR THE<br>HARDEST ENVIRONMENTS</h2>
+  <p class="section-desc">From federal primes to DevSecOps pipelines — WARDEN was designed for organizations where data protection is a mission-critical requirement, not a checkbox.</p>
+
+  <div class="uc-grid">
+    <div class="uc-cell">
+      <div class="uc-tag">Federal Contractors</div>
+      <div class="uc-title">CUI Protection at Scale</div>
+      <div class="uc-text">Defense contractors and federal agencies handling Controlled Unclassified Information face mounting pressure to demonstrate CUI protection across distributed teams, contractor networks, and classified enclaves.</div>
+      <ul class="uc-bullets">
+        <li>Continuous CUI discovery across SharePoint, email, and shared drives</li>
+        <li>Automated spillage detection and containment</li>
+        <li>Chain-of-custody audit trail for CUI movement</li>
+        <li>Pre-built DFARS 252.204-7012 evidence packages</li>
+      </ul>
+    </div>
+    <div class="uc-cell">
+      <div class="uc-tag">CMMC 2.0</div>
+      <div class="uc-title">Continuous Compliance Posture</div>
+      <div class="uc-text">CMMC 2.0 Level 2 requires 110 NIST SP 800-171 practices. Manual evidence collection for assessments takes months and is instantly stale. WARDEN makes compliance a living, automated state.</div>
+      <ul class="uc-bullets">
+        <li>Automated evidence mapped to all 110 NIST 800-171 practices</li>
+        <li>Gap identification and remediation recommendations</li>
+        <li>Assessment-ready packages exportable for C3PAO review</li>
+        <li>Continuous SPRS score tracking</li>
+      </ul>
+    </div>
+    <div class="uc-cell">
+      <div class="uc-tag">NIST 800-53 / FedRAMP</div>
+      <div class="uc-title">Control Evidence Automation</div>
+      <div class="uc-text">FedRAMP High and Moderate authorizations require continuous monitoring evidence for hundreds of controls. WARDEN generates this as a byproduct — not a manual effort performed quarterly.</div>
+      <ul class="uc-bullets">
+        <li>Continuous control evidence for AC, AU, SC, SI, and MP families</li>
+        <li>Automated POA&amp;M entries for identified gaps</li>
+        <li>Boundary-aware data flow mapping for SSP documentation</li>
+        <li>ConMon report generation from live telemetry</li>
+      </ul>
+    </div>
+    <div class="uc-cell">
+      <div class="uc-tag">RMF / ATO Packages</div>
+      <div class="uc-title">Living Authorization Support</div>
+      <div class="uc-text">Achieving and maintaining an ATO requires continuous evidence that security controls are operating as documented. WARDEN transforms the ATO from a point-in-time snapshot into a living, verifiable state.</div>
+      <ul class="uc-bullets">
+        <li>Real-time evidence mapped to ATO control baseline</li>
+        <li>Automated SCTM population from observed telemetry</li>
+        <li>Security Assessment Report data feeds</li>
+        <li>Significant change flagging for ISSO review</li>
+      </ul>
+    </div>
+    <div class="uc-cell">
+      <div class="uc-tag">DevSecOps Pipelines</div>
+      <div class="uc-title">Shift-Left Data Security</div>
+      <div class="uc-text">Sensitive data found in production is expensive. WARDEN embeds DLP into the pipeline — scanning PRs, build artifacts, container images, and IaC configs before they ever reach a production environment.</div>
+      <ul class="uc-bullets">
+        <li>Pre-commit and pre-merge secret scanning</li>
+        <li>CI/CD build artifact inspection (Docker, Lambda, Helm)</li>
+        <li>IaC misconfiguration detection (open S3, exposed ports)</li>
+        <li>Pipeline fail gates on critical policy violations</li>
+      </ul>
+    </div>
+    <div class="uc-cell">
+      <div class="uc-tag">SOC / CSOC Environments</div>
+      <div class="uc-title">Data-Enriched Threat Hunting</div>
+      <div class="uc-text">Security analysts spend too much time reconstructing data context after an incident. WARDEN pre-builds that context — so when an alert fires, the analyst already knows what data was involved, who touched it, and where it went.</div>
+      <ul class="uc-bullets">
+        <li>Pre-built data context for every security event</li>
+        <li>Insider risk scores fed into SIEM as structured data</li>
+        <li>Data lineage graphs for forensic investigation</li>
+        <li>Integration with Splunk ES and Microsoft Sentinel</li>
+      </ul>
+    </div>
+    <div class="uc-cell">
+      <div class="uc-tag">Cloud Migration</div>
+      <div class="uc-title">Data Sovereignty in Transit</div>
+      <div class="uc-text">Cloud migrations routinely expose sensitive data — misconfigured storage, overly permissive IAM, accidental public exposure. WARDEN monitors the migration in progress, not just the destination.</div>
+      <ul class="uc-bullets">
+        <li>Real-time monitoring of data movement to cloud targets</li>
+        <li>Permission audit across migrated storage resources</li>
+        <li>Residual on-prem sensitive data discovery post-migration</li>
+        <li>Data residency policy enforcement by region and classification</li>
+      </ul>
+    </div>
+    <div class="uc-cell">
+      <div class="uc-tag">Palantir Foundry</div>
+      <div class="uc-title">Ontology-Aware Data Governance</div>
+      <div class="uc-text">Palantir Foundry's ontology model creates rich data relationships — but also rich risk. WARDEN integrates with Foundry's data lineage graph to classify objects, enforce access policies, and generate governance evidence at the ontology level.</div>
+      <ul class="uc-bullets">
+        <li>Foundry dataset classification and sensitivity tagging</li>
+        <li>Ontology-level access anomaly detection</li>
+        <li>Pipeline output classification before exposure</li>
+        <li>Evidence generation for Foundry-hosted CUI workloads</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════ SECTION 6: WHY THIS MATTERS ═══════════════════ -->
+<div id="why" class="dark-section">
+<div class="section-wrap">
+  <div class="section-eyebrow">Section 06 — Why This Matters</div>
+  <h2 class="section-h2">THE MISSING<br>LINK.</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:40px">
+    <div>
+      <p style="font-size:15px;font-weight:300;color:var(--text-dim);line-height:1.85;margin-bottom:20px">
+        TrustNovaOps already delivers exceptional infrastructure visibility, endpoint control, and compliance reporting through the existing Nova agent fleet. But the platform has a structural gap: <strong style="color:var(--text)">it monitors what happens to systems, not what happens to the data those systems process.</strong>
+      </p>
+      <p style="font-size:14px;font-weight:300;color:var(--muted);line-height:1.85;margin-bottom:20px">
+        SENTINEL locks down ports. STRIKER isolates endpoints. LEDGER builds an audit trail. But none of them can tell you: <em style="color:var(--text-dim)">what sensitive data was involved, where it originated, what compliance control was implicated, and whether evidence exists to prove the response was adequate.</em>
+      </p>
+      <p style="font-size:14px;font-weight:300;color:var(--muted);line-height:1.85">
+        WARDEN closes that loop. It transforms TrustNovaOps from a security operations platform into a <strong style="color:var(--text)">holistic data governance and protection platform</strong> — one where every security event is automatically contextualized with data classification, compliance mapping, and remediation evidence.
+      </p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="background:var(--surface2);border:1px solid var(--border);padding:20px;border-left:3px solid var(--amber)">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:8px">Zero Trust</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.7;font-weight:300">Zero Trust requires that access to data is continuously verified — not just identity. WARDEN provides the data classification layer that makes Zero Trust enforceable at the data level, not just the network perimeter.</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);padding:20px;border-left:3px solid var(--amber)">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:8px">Data Governance</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.7;font-weight:300">Governance frameworks require knowing what data you have, where it is, who owns it, and how it's protected. WARDEN is the automated answer to all four questions — continuously updated, not point-in-time.</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);padding:20px;border-left:3px solid var(--amber)">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:8px">Operational Resilience</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.7;font-weight:300">Data breaches aren't just a security event — they're an operational disruption. WARDEN's proactive containment and pre-built evidence packages cut incident response time from weeks to hours.</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);padding:20px;border-left:3px solid var(--amber)">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:8px">Compliance Readiness</div>
+        <div style="font-size:13px;color:var(--muted);line-height:1.7;font-weight:300">CMMC 2.0, FedRAMP, and HIPAA audits are expensive because evidence is assembled manually and is instantly stale. WARDEN makes compliance a continuous, automated state rather than a periodic scramble.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════ SECTION 7: WEBSITE COPY ═══════════════════ -->
+<div id="webcopy">
+<div class="section-wrap">
+  <div class="section-eyebrow">Section 07 — Website Copy</div>
+  <h2 class="section-h2">POLISHED COPY<br>FOR TRUSTNOVAOPS.COM</h2>
+  <p class="section-desc">Production-ready copy for each page section. Lift directly into the site.</p>
+
+  <div class="copy-section">
+
+    <!-- HERO -->
+    <div class="copy-block">
+      <div class="copy-block-label">Hero Section</div>
+      <div class="copy-hero-text">YOUR DATA<br>HAS A <em>GUARDIAN.</em><br>NOW IT HAS<br><em>PROOF.</em></div>
+      <p class="copy-sub" style="margin-top:18px">
+        WARDEN is TrustNovaOps' AI-powered data protection agent. It discovers sensitive data, monitors how it moves, enforces your policies, and auto-generates the compliance evidence that proves it — across every cloud, endpoint, pipeline, and repository in your environment. Continuously. Autonomously. Without waiting for an audit.
+      </p>
+      <div style="margin-top:24px;display:flex;gap:14px;flex-wrap:wrap">
+        <a href="#" class="btn-amber" style="font-size:11px">Deploy WARDEN Free</a>
+        <a href="#" class="btn-ghost" style="font-size:11px">See It in Action</a>
+      </div>
+    </div>
+
+    <!-- SHORT PRODUCT DESCRIPTION -->
+    <div class="copy-block">
+      <div class="copy-block-label">Short Product Description</div>
+      <p class="copy-body">
+        WARDEN is the seventh Nova agent in the TrustNovaOps platform — a purpose-built AI agent for data loss prevention, sensitive data governance, and compliance evidence automation. While traditional DLP tools scan and alert, WARDEN reasons. It classifies your data, tracks how it moves, scores the risk, and acts — autonomously for known threats, and with human-in-the-loop precision for everything else. Every action is automatically mapped to your compliance framework and preserved as audit-ready evidence, so your CMMC, FedRAMP, or HIPAA posture is always provable — not just assumed.
+      </p>
+    </div>
+
+    <!-- FEATURE BULLETS -->
+    <div class="copy-block">
+      <div class="copy-block-label">Feature Bullets</div>
+      <ul class="copy-bullets">
+        <li>Discovers CUI, PII, ePHI, PCI data, secrets, and API keys across cloud, endpoints, repos, and pipelines — continuously, not on a schedule</li>
+        <li>Monitors data movement in real time across USB, email, cloud sync, print, API transfer, and browser upload simultaneously</li>
+        <li>Scans source code, pull requests, and CI/CD artifacts for credentials, sensitive data, and policy violations before they reach production</li>
+        <li>Scores insider risk by correlating behavioral signals across users — anomalous access, bulk exports, after-hours activity, staging behavior</li>
+        <li>Auto-generates timestamped, auditor-ready evidence packages mapped to CMMC 2.0, NIST 800-53, FedRAMP, and HIPAA</li>
+        <li>Enforces data handling policies defined as code (YAML / Rego) — consistently, across every data surface, without manual intervention</li>
+        <li>Coordinates with SENTINEL, STRIKER, LEDGER, and ACCORD to provide full-context responses — not isolated alerts</li>
+        <li>Routes ambiguous and high-impact events to human analysts with ranked recommendations, full data lineage, and one-click action</li>
+      </ul>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="copy-block">
+      <div class="copy-block-label">How It Works — Section</div>
+      <div style="margin-bottom:16px">
+        <div class="copy-hero-text" style="font-size:clamp(28px,4vw,44px)">WARDEN WORKS IN<br>NINE STEPS.</div>
+        <p class="copy-sub" style="font-size:14px;margin-top:10px">From raw telemetry to documented remediation — WARDEN runs the full cycle without a human in the loop for known threats. For everything else, it brings the analyst in at exactly the right moment, with everything they need already assembled.</p>
+      </div>
+      <div class="hiw-steps">
+        <div class="hiw-step"><div class="hiw-num">01</div><div class="hiw-name">Observe</div><div class="hiw-text">Streams telemetry from every connected data surface — cloud, endpoint, repo, pipeline, log — continuously.</div></div>
+        <div class="hiw-step"><div class="hiw-num">02</div><div class="hiw-name">Classify</div><div class="hiw-text">AI tags every data asset with type, sensitivity, owner, and applicable compliance framework — in context, not just by pattern.</div></div>
+        <div class="hiw-step"><div class="hiw-num">03</div><div class="hiw-name">Correlate</div><div class="hiw-text">Links data events to user behavior, device history, policy context, and signals from other Nova agents to build a complete picture.</div></div>
+        <div class="hiw-step"><div class="hiw-num">04</div><div class="hiw-name">Risk-Score</div><div class="hiw-text">Assigns a dynamic risk score to each event — weighted by data sensitivity, user trust level, destination, and compliance impact.</div></div>
+        <div class="hiw-step"><div class="hiw-num">05</div><div class="hiw-name">Alert</div><div class="hiw-text">Fires targeted, context-rich alerts to your SIEM, Slack, PagerDuty, or ServiceNow — with zero alert fatigue.</div></div>
+        <div class="hiw-step"><div class="hiw-num">06</div><div class="hiw-name">Recommend</div><div class="hiw-text">Generates ranked remediation options with estimated risk delta — quarantine, revoke, rotate, block, or notify.</div></div>
+      </div>
+    </div>
+
+    <!-- FEDERAL COMPLIANCE -->
+    <div class="copy-block">
+      <div class="copy-block-label">Federal Compliance Alignment Section</div>
+      <div class="copy-hero-text" style="font-size:clamp(28px,4vw,44px)">BUILT FOR<br>FEDERAL REQUIREMENTS.</div>
+      <p class="copy-sub" style="font-size:14px;margin-top:10px;margin-bottom:24px">WARDEN was designed from the ground up for organizations where compliance isn't optional. It speaks the language of federal frameworks natively — and generates the evidence to prove it.</p>
+      <div class="compliance-strip">
+        <div class="comp-cell"><div class="comp-name">CMMC 2.0</div><div class="comp-desc">Level 1–3 Evidence</div></div>
+        <div class="comp-cell"><div class="comp-name">NIST 800-53</div><div class="comp-desc">Rev 5 Control Mapping</div></div>
+        <div class="comp-cell"><div class="comp-name">FedRAMP</div><div class="comp-desc">High / Moderate</div></div>
+        <div class="comp-cell"><div class="comp-name">HIPAA</div><div class="comp-desc">ePHI Protection</div></div>
+        <div class="comp-cell"><div class="comp-name">DFARS</div><div class="comp-desc">252.204-7012</div></div>
+        <div class="comp-cell"><div class="comp-name">RMF/ATO</div><div class="comp-desc">Living Evidence</div></div>
+      </div>
+    </div>
+
+    <!-- CTA COPY -->
+    <div class="copy-block">
+      <div class="copy-block-label">Call-to-Action</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap">
+        <div>
+          <div class="copy-hero-text" style="font-size:clamp(28px,4vw,44px)">DEPLOY WARDEN.<br>STOP GUESSING<br>ABOUT YOUR DATA.</div>
+          <p class="copy-sub" style="font-size:14px;margin-top:10px">30-day full trial. No credit card. A TrustNovaOps engineer walks you through a live deployment against your actual data environment.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;flex-shrink:0">
+          <a href="/demo" class="btn-amber">Deploy Free Trial</a>
+          <a href="/demo" class="btn-ghost">Request Live Demo</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════ SECTION 8: ARCHITECTURE ═══════════════════ -->
+<div id="architecture" class="dark-section">
+<div class="section-wrap">
+  <div class="section-eyebrow">Section 08 — Architecture Concept</div>
+  <h2 class="section-h2">HOW WARDEN<br>IS BUILT</h2>
+  <p class="section-desc">Eight interconnected components — all coordinated by the Nova orchestrator, all sharing a unified data and telemetry plane.</p>
+
+  <div class="arch-grid">
+
+    <div class="arch-node central">
+      <div>
+        <div class="arch-badge">Core</div>
+        <div class="arch-name">Nova Agent Orchestrator</div>
+        <div class="arch-text">The central coordination layer shared by all Nova agents. Routes telemetry, manages agent state, coordinates cross-agent signals, and enforces execution order across the WARDEN workflow cycle.</div>
+      </div>
+      <div style="flex:1">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px">WARDEN Connects To</div>
+        <div class="arch-integrations">
+          <span class="arch-int-chip">GitHub / GitLab</span>
+          <span class="arch-int-chip">AWS / Azure / GCP</span>
+          <span class="arch-int-chip">Microsoft 365</span>
+          <span class="arch-int-chip">Splunk</span>
+          <span class="arch-int-chip">ServiceNow</span>
+          <span class="arch-int-chip">Palantir Foundry</span>
+          <span class="arch-int-chip">Slack / Teams</span>
+          <span class="arch-int-chip">Jira</span>
+          <span class="arch-int-chip">SIEM / SOC</span>
+          <span class="arch-int-chip">Azure DevOps</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="arch-node">
+      <div class="arch-badge">Layer 1</div>
+      <div class="arch-name">Data Connectors</div>
+      <div class="arch-text">Pre-built integrations for cloud storage (S3, Azure Blob, GCS), SaaS (M365, SharePoint, Dropbox), code repos (GitHub, GitLab), CI/CD systems, SIEM, and endpoint agents. New connectors deployable via plugin API.</div>
+    </div>
+
+    <div class="arch-node">
+      <div class="arch-badge">Layer 2</div>
+      <div class="arch-name">Classification Engine</div>
+      <div class="arch-text">AI-powered classifier trained on CUI, PII, PHI, PCI, and secrets patterns. Context-aware — understands file type, metadata, surrounding content, and user behavior to reduce false positives.</div>
+    </div>
+
+    <div class="arch-node">
+      <div class="arch-badge">Layer 3</div>
+      <div class="arch-name">Policy Engine</div>
+      <div class="arch-text">Accepts policy definitions as code (YAML/Rego). Evaluates every classified event against the active policy set in real time. Policy updates propagate across all connected surfaces within minutes.</div>
+    </div>
+
+    <div class="arch-node">
+      <div class="arch-badge">Layer 4</div>
+      <div class="arch-name">Risk Scoring Engine</div>
+      <div class="arch-text">Dynamic risk scoring model that combines data sensitivity, user trust score, event type, destination, time context, and cross-agent signals into a single, actionable risk number per event.</div>
+    </div>
+
+    <div class="arch-node">
+      <div class="arch-badge">Layer 5</div>
+      <div class="arch-name">Evidence Generator</div>
+      <div class="arch-text">Continuously assembles audit-ready evidence packages mapped to CMMC 2.0, NIST 800-53, FedRAMP, HIPAA, and DFARS controls. Packages are timestamped, versioned, and exportable on demand.</div>
+    </div>
+
+    <div class="arch-node">
+      <div class="arch-badge">Layer 6</div>
+      <div class="arch-name">Human Approval Workflow</div>
+      <div class="arch-text">Routes high-risk or ambiguous events to analysts with full context pre-assembled. One-click approve, modify, or override. All decisions logged as evidence. Integrates with ServiceNow and Jira for ticketing.</div>
+    </div>
+
+    <div class="arch-node">
+      <div class="arch-badge">Layer 7</div>
+      <div class="arch-name">Command Center Dashboard</div>
+      <div class="arch-text">Real-time visibility into data risk posture — sensitive data inventory, risk score distribution, policy violation trends, compliance evidence status, insider risk heat maps, and cross-agent correlation view.</div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════ SECTION 9: DIFFERENTIATION ═══════════════════ -->
+<div id="differentiation">
+<div class="section-wrap">
+  <div class="section-eyebrow">Section 09 — Differentiation</div>
+  <h2 class="section-h2">WARDEN VS.<br>TRADITIONAL DLP</h2>
+  <p class="section-desc">Traditional DLP tools were built to block file transfers. WARDEN was built to protect data — and prove it.</p>
+
+  <table class="diff-table">
+    <thead>
+      <tr>
+        <th>Capability</th>
+        <th>Traditional DLP<br>(Symantec, Forcepoint, etc.)</th>
+        <th class="warden-col">WARDEN / TrustNovaOps</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Detection Method</td>
+        <td>Scheduled scans + regex pattern matching</td>
+        <td class="warden-col">Continuous AI reasoning with behavioral and contextual scoring</td>
+      </tr>
+      <tr>
+        <td>Coverage</td>
+        <td>Endpoint, email, web — siloed per product</td>
+        <td class="warden-col">Endpoint, cloud, CI/CD, repo, log, telemetry — unified agent</td>
+      </tr>
+      <tr>
+        <td>Source Code / Repo Scanning</td>
+        <td class="no">Not included — separate tool required</td>
+        <td class="warden-col yes">Native — pre-commit, PR, and historical commit scanning</td>
+      </tr>
+      <tr>
+        <td>CI/CD Pipeline Inspection</td>
+        <td class="no">Not included</td>
+        <td class="warden-col yes">Native — artifact, env var, and IaC scanning</td>
+      </tr>
+      <tr>
+        <td>Compliance Evidence Generation</td>
+        <td class="partial">Manual — screenshots and spreadsheets at audit time</td>
+        <td class="warden-col yes">Automated — continuous, framework-mapped, timestamped packages</td>
+      </tr>
+      <tr>
+        <td>Insider Risk Correlation</td>
+        <td class="partial">Basic — per-event rules, no behavioral baseline</td>
+        <td class="warden-col yes">Advanced — user risk scores built from behavioral patterns over time</td>
+      </tr>
+      <tr>
+        <td>Palantir Foundry Integration</td>
+        <td class="no">Not available</td>
+        <td class="warden-col yes">Native ontology-level classification and governance</td>
+      </tr>
+      <tr>
+        <td>Policy-as-Code</td>
+        <td class="no">GUI-only policy editor, no version control</td>
+        <td class="warden-col yes">YAML/Rego policies, git-versioned, instant propagation</td>
+      </tr>
+      <tr>
+        <td>Cross-Agent Correlation</td>
+        <td class="no">Isolated — no context from other security tools without SIEM</td>
+        <td class="warden-col yes">Native — shares context with SENTINEL, STRIKER, LEDGER, ACCORD</td>
+      </tr>
+      <tr>
+        <td>Agentic Autonomous Response</td>
+        <td class="no">Alert only — requires human to execute remediation</td>
+        <td class="warden-col yes">Autonomous remediation for known threats; HITL for complex cases</td>
+      </tr>
+      <tr>
+        <td>Federal Framework Alignment</td>
+        <td class="partial">Some HIPAA/PCI support — weak CMMC/FedRAMP mapping</td>
+        <td class="warden-col yes">CMMC 2.0, NIST 800-53, FedRAMP, DFARS, RMF — native</td>
+      </tr>
+      <tr>
+        <td>Deployment Model</td>
+        <td>On-prem agent + separate cloud connector + separate email gateway</td>
+        <td class="warden-col">Single Nova agent, unified orchestrator, API-first connectors</td>
+      </tr>
+      <tr>
+        <td>Time to Value</td>
+        <td>Months — complex rule tuning, high false positive rate initially</td>
+        <td class="warden-col">Hours — AI baseline establishes automatically; policies deploy as code</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════ SECTION 10: RECOMMENDATION ═══════════════════ -->
+<div id="recommendation" class="dark-section">
+<div class="section-wrap">
+  <div class="section-eyebrow">Section 10 — Final Recommendation</div>
+  <h2 class="section-h2">WHERE WARDEN<br>BELONGS.</h2>
+  <p class="section-desc">Standalone product, module, or part of NovaShield? Here's the case for each — and the recommended path.</p>
+
+  <div style="margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+    <div style="background:var(--surface);border:1px solid var(--border);padding:28px 22px">
+      <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Option A</div>
+      <div style="font-family:var(--display);font-size:26px;letter-spacing:1px;margin-bottom:10px">Standalone Product</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:14px">Sell WARDEN independently to organizations with existing security infrastructure who need DLP + compliance evidence automation.</div>
+      <div style="font-family:var(--mono);font-size:11px;color:var(--green);margin-bottom:6px">Pros</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:12px">Larger addressable market. Can compete directly with Symantec, Forcepoint, Nightfall. SAM/CISA approved vendor path.</div>
+      <div style="font-family:var(--mono);font-size:11px;color:var(--red);margin-bottom:6px">Cons</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.7;font-weight:300">Loses the cross-agent correlation advantage. Must compete on feature parity alone, not platform differentiation.</div>
+    </div>
+    <div style="background:var(--surface2);border:2px solid var(--amber-dim);padding:28px 22px;position:relative">
+      <div style="position:absolute;top:-1px;left:20px;background:var(--amber);color:#000;font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 12px;font-weight:500">Recommended</div>
+      <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:12px;margin-top:8px">Option B</div>
+      <div style="font-family:var(--display);font-size:26px;letter-spacing:1px;margin-bottom:10px;color:var(--amber)">Nova Module</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:14px">Deploy WARDEN as AGT-07 within the TrustNovaOps platform — an add-on module that unlocks data protection capabilities within the existing Nova orchestrator.</div>
+      <div style="font-family:var(--mono);font-size:11px;color:var(--green);margin-bottom:6px">Pros</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:12px">Full cross-agent correlation. Platform stickiness. Differentiation from point solutions. Compliance evidence package is dramatically stronger with all 7 agents active. Faster deployment for existing TrustNovaOps customers.</div>
+      <div style="font-family:var(--mono);font-size:11px;color:var(--red);margin-bottom:6px">Cons</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.7;font-weight:300">Requires TrustNovaOps platform as prerequisite. Limits standalone market reach.</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);padding:28px 22px">
+      <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Option C</div>
+      <div style="font-family:var(--display);font-size:26px;letter-spacing:1px;margin-bottom:10px">NovaShield Suite</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:14px">Bundle WARDEN into a "NovaShield" enterprise suite alongside SENTINEL, STRIKER, ACCORD, and LEDGER — sold as a unified federal data protection and compliance platform.</div>
+      <div style="font-family:var(--mono);font-size:11px;color:var(--green);margin-bottom:6px">Pros</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:12px">Premium positioning. Strong SLED and federal government appeal. ATO-ready bundle narrative. Higher ACV per contract.</div>
+      <div style="font-family:var(--mono);font-size:11px;color:var(--red);margin-bottom:6px">Cons</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.7;font-weight:300">Longer sales cycle. Requires NovaShield brand to be established separately.</div>
+    </div>
+  </div>
+
+  <div class="rec-block">
+    <div class="rec-text">
+      <div class="rec-tag">Final Recommendation</div>
+      <h3>Launch as Nova Module. Package into NovaShield.</h3>
+      <p>Ship WARDEN as AGT-07 in the TrustNovaOps platform immediately — it's the fastest path to market and delivers the strongest product differentiation. Price it as an add-on tier (e.g., $8–$15/workstation/month above Operator). In parallel, develop the NovaShield suite brand as the premium federal/enterprise bundle that wraps WARDEN, SENTINEL, STRIKER, LEDGER, and ACCORD into a single, ATO-aligned offering. This two-track approach captures both the platform customer and the enterprise federal buyer.</p>
+    </div>
+    <div class="rec-verdict">
+      <div class="verdict-label">Recommended Path</div>
+      <div class="verdict-answer">NOVA<br>MODULE</div>
+      <div class="verdict-note">AGT-07 add-on tier, bundled<br>into NovaShield for federal<br>enterprise packaging</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- CTA -->
+<div class="cta-band" id="demo">
+  <div class="cta-left">
+    <div class="cta-h">WARDEN IS<br>READY TO DEPLOY.</div>
+    <div class="cta-sub">30-day trial. Full agent fleet. No credit card required.</div>
+  </div>
+  <div class="cta-btns">
+    <a href="/demo" class="btn-dark">Deploy Free Trial</a>
+    <a href="/demo" class="btn-outline-dark">Book a Live Demo</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="/" class="footer-logo">TrustNova<span>Ops</span></a>
+  <div class="footer-links">
+    <a href="/security" class="footer-link">Security</a>
+    <a href="/privacy" class="footer-link">Privacy</a>
+    <a href="/compliance" class="footer-link">Compliance</a>
+    <a href="/docs" class="footer-link">Docs</a>
+    <a href="/status" class="footer-link">Status</a>
+    <a href="/contact" class="footer-link">Contact</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 TrustNovaOps.com — WARDEN Product Concept</div>
+</footer>
+
+<script>
+// TOC active state
+const sections = ['agent-name','mission','capabilities','workflow','usecases','why','webcopy','architecture','differentiation','recommendation'];
+const dots = document.querySelectorAll('.toc-dot');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const idx = sections.indexOf(e.target.id);
+      if (idx >= 0) {
+        dots.forEach(d => d.classList.remove('active'));
+        dots[idx]?.classList.add('active');
+      }
+    }
+  });
+}, {threshold: 0.3});
+sections.forEach(id => {
+  const el = document.getElementById(id);
+  if (el) obs.observe(el);
+});
+</script>
+</body>
+</html>
