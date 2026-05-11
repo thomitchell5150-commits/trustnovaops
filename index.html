@@ -3,1401 +3,1303 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TrustNovaOps | AI-Powered CMMC 2.0 Compliance Automation for Defense Contractors</title>
-<meta name="description" content="TrustNovaOps cuts CMMC Level 2 certification time by 90% and assessment costs by 80% using 7 autonomous AI agents — built exclusively for the defense industrial base.">
-<meta name="keywords" content="CMMC 2.0 compliance software, NIST 800-171 automation, defense contractor cybersecurity, ATO automation, DevSecOps compliance, CMMC Level 2 certification tool">
-<meta property="og:title" content="TrustNovaOps | CMMC Compliance in Weeks, Not Months">
-<meta property="og:description" content="7 autonomous AI agents. 110 CMMC Level 2 controls. Automated ATO packages in under 5 seconds. Built for defense contractors.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://trustnovaops.com">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'><defs><linearGradient id='ga' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%2300e5ff'/><stop offset='100%25' stop-color='%2300ff9d'/></linearGradient><linearGradient id='gb' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%2300e5ff' stop-opacity='.22'/><stop offset='100%25' stop-color='%2300ff9d' stop-opacity='.08'/></linearGradient></defs><rect width='80' height='80' fill='%23050810'/><path d='M40 6 L69 22 L69 52 Q69 68 40 78 Q11 68 11 52 L11 22 Z' fill='url(%23gb)' stroke='url(%23ga)' stroke-width='1.5'/><line x1='40' y1='42' x2='40' y2='26' stroke='%2300e5ff' stroke-width='1' stroke-opacity='.5'/><line x1='40' y1='42' x2='53.1' y2='32.1' stroke='%2300e5ff' stroke-width='1' stroke-opacity='.5'/><line x1='40' y1='42' x2='55.5' y2='46.8' stroke='%2300e5ff' stroke-width='1' stroke-opacity='.5'/><line x1='40' y1='42' x2='46.8' y2='57.6' stroke='%2300e5ff' stroke-width='1' stroke-opacity='.5'/><line x1='40' y1='42' x2='33.2' y2='57.6' stroke='%2300e5ff' stroke-width='1' stroke-opacity='.5'/><line x1='40' y1='42' x2='24.5' y2='46.8' stroke='%2300e5ff' stroke-width='1' stroke-opacity='.5'/><line x1='40' y1='42' x2='26.9' y2='32.1' stroke='%2300e5ff' stroke-width='1' stroke-opacity='.5'/><circle cx='40' cy='26' r='3.5' fill='%2300ff9d'/><circle cx='53.1' cy='32.1' r='3.5' fill='%2300e5ff'/><circle cx='55.5' cy='46.8' r='3.5' fill='%2300e5ff'/><circle cx='46.8' cy='57.6' r='3.5' fill='%2300e5ff'/><circle cx='33.2' cy='57.6' r='3.5' fill='%2300e5ff'/><circle cx='24.5' cy='46.8' r='3.5' fill='%2300e5ff'/><circle cx='26.9' cy='32.1' r='3.5' fill='%2300e5ff'/><circle cx='40' cy='42' r='5' fill='url(%23ga)'/><circle cx='40' cy='42' r='2.2' fill='%23050810'/></svg>">
+<title>TrustNovaOps — Controlled Automation. Audit-Ready Evidence.</title>
+<meta name="description" content="TrustNovaOps is the agentic DevSecOps control tower for federal contractors, defense programs, and enterprise security teams. Continuous pipeline inspection, DLP, compliance evidence automation, and human-in-the-loop governance — all in one platform.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Crect width='52' height='52' fill='%2307090e'/%3E%3Cpolygon points='26,3 45,14 45,38 26,49 7,38 7,14' fill='none' stroke='%23e8a020' stroke-width='2.5' opacity='.55'/%3E%3Cline x1='26' y1='26' x2='37' y2='20' stroke='%23e8a020' stroke-width='1.2' opacity='.4'/%3E%3Cline x1='26' y1='26' x2='37' y2='32' stroke='%23e8a020' stroke-width='1.2' opacity='.4'/%3E%3Cline x1='26' y1='26' x2='26' y2='38' stroke='%23e8a020' stroke-width='1.2' opacity='.4'/%3E%3Cline x1='26' y1='26' x2='15' y2='32' stroke='%23e8a020' stroke-width='1.2' opacity='.4'/%3E%3Cline x1='26' y1='26' x2='15' y2='20' stroke='%23e8a020' stroke-width='1.2' opacity='.4'/%3E%3Cline x1='26' y1='26' x2='26' y2='14' stroke='%23e8a020' stroke-width='1.2' opacity='.4'/%3E%3Ccircle cx='37' cy='20' r='3' fill='%23e8a020' opacity='.8'/%3E%3Ccircle cx='37' cy='32' r='3' fill='%23e8a020' opacity='.8'/%3E%3Ccircle cx='26' cy='38' r='3' fill='%23e8a020' opacity='.8'/%3E%3Ccircle cx='15' cy='32' r='3' fill='%23e8a020' opacity='.8'/%3E%3Ccircle cx='15' cy='20' r='3' fill='%23e8a020' opacity='.8'/%3E%3Ccircle cx='26' cy='14' r='3' fill='%23e8a020' opacity='.8'/%3E%3Ccircle cx='26' cy='26' r='5.5' fill='%23e8a020'/%3E%3C/svg%3E">
 <style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg-deep:#03040a;
-  --bg-primary:#070810;
-  --bg-secondary:#0b0c18;
-  --bg-tertiary:#10111f;
-  --bg-card:rgba(11,12,24,0.92);
-  --bg-glass:rgba(255,255,255,0.03);
-  --cyan:#00e5ff;
-  --cyan-dim:rgba(0,229,255,0.12);
-  --cyan-glow:rgba(0,229,255,0.25);
-  --green:#00ff9d;
-  --green-dim:rgba(0,255,157,0.12);
-  --purple:#7c3aed;
-  --purple-dim:rgba(124,58,237,0.15);
-  --amber:#f59e0b;
-  --red:#ff3b5c;
-  --text-primary:#f0f2ff;
-  --text-secondary:#8892a4;
-  --text-muted:#4a5568;
-  --border-subtle:rgba(255,255,255,0.05);
-  --border-light:rgba(255,255,255,0.09);
-  --border-cyan:rgba(0,229,255,0.2);
-  --font-display:'Syne',sans-serif;
-  --font-body:'DM Sans',sans-serif;
-  --font-mono:'Space Mono',monospace;
-  --radius-sm:6px;
-  --radius-md:12px;
-  --radius-lg:18px;
-  --radius-xl:26px;
-  --max-w:1240px;
+  --bg:#08090f;
+  --surface:#0e1220;
+  --surface2:#141c2a;
+  --surface3:#1c2438;
+  --border:#1e2030;
+  --border2:#283040;
+  --amber:#e8a020;
+  --amber-dim:rgba(232,160,32,0.15);
+  --amber-glow:rgba(232,160,32,0.06);
+  --red:#d94040;
+  --green:#00b090;
+  --blue:#2878d0;
+  --blue-bright:#4ab8f0;
+  --text:#ccd4e8;
+  --text-dim:#8898b8;
+  --muted:#4a5870;
+  --mono:'IBM Plex Mono',monospace;
+  --sans:'IBM Plex Sans',sans-serif;
+  --display:'Bebas Neue',sans-serif;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-body{font-family:var(--font-body);background:var(--bg-deep);color:var(--text-primary);line-height:1.65;overflow-x:hidden}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden}
 
-/* ── CANVAS BACKGROUND ── */
-#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5}
-
-/* ── UTILITIES ── */
-.container{max-width:var(--max-w);margin:0 auto;padding:0 2rem}
-.section{position:relative;z-index:1;padding:7rem 0}
-.section-sm{padding:5rem 0}
-.gradient-text{background:linear-gradient(130deg,var(--cyan) 0%,var(--green) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.gradient-text-purple{background:linear-gradient(130deg,var(--purple) 0%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.label{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);margin-bottom:1rem}
-.label::before{content:'';display:block;width:18px;height:1px;background:var(--cyan)}
-.center{text-align:center}
-.center .label{justify-content:center}
-.center .label::before{display:none}
-
-/* ── BUTTONS ── */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.875rem 1.75rem;font-family:var(--font-body);font-size:.9rem;font-weight:600;letter-spacing:.01em;text-decoration:none;border-radius:var(--radius-md);border:none;cursor:pointer;transition:all .22s ease;white-space:nowrap}
-.btn-primary{background:linear-gradient(135deg,var(--cyan),var(--green));color:#03040a;box-shadow:0 0 28px rgba(0,229,255,.25)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(0,229,255,.38)}
-.btn-secondary{background:transparent;color:var(--text-primary);border:1px solid var(--border-light)}
-.btn-secondary:hover{border-color:var(--cyan);background:var(--cyan-dim)}
-.btn-ghost{background:transparent;color:var(--cyan);border:1px solid var(--border-cyan)}
-.btn-ghost:hover{background:var(--cyan-dim)}
-.btn-lg{padding:1.1rem 2.25rem;font-size:1rem}
-.btn-sm{padding:.6rem 1.2rem;font-size:.8rem}
-.btn-purple{background:linear-gradient(135deg,var(--purple),#a855f7);color:#fff;box-shadow:0 0 28px rgba(124,58,237,.3)}
-.btn-purple:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(124,58,237,.45)}
-
-/* ── ANNOUNCEMENT BANNER ── */
-#banner{position:relative;z-index:999;background:linear-gradient(90deg,rgba(0,229,255,.08),rgba(0,255,157,.06),rgba(0,229,255,.08));border-bottom:1px solid var(--border-cyan);padding:.7rem 2rem;text-align:center;font-size:.82rem;color:var(--text-secondary)}
-#banner strong{color:var(--cyan)}
-#banner a{color:var(--green);text-decoration:none;font-weight:600;margin-left:.4rem}
-#banner a:hover{text-decoration:underline}
-#banner-close{position:absolute;right:1.25rem;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:1.1rem;line-height:1;transition:color .2s}
-#banner-close:hover{color:var(--text-primary)}
-
-/* ── NAV ── */
-.nav{position:fixed;top:0;left:0;right:0;z-index:998;transition:all .3s ease}
-.nav.scrolled{background:rgba(3,4,10,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border-subtle);padding:0}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:.9rem 2rem;max-width:var(--max-w);margin:0 auto}
-.logo{display:flex;align-items:center;gap:.7rem;text-decoration:none;flex-shrink:0}
-.logo-mark{width:36px;height:36px;background:linear-gradient(135deg,var(--cyan),var(--green));border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-weight:700;font-size:.8rem;color:var(--bg-deep);flex-shrink:0}
-.logo-text{font-family:var(--font-display);font-weight:700;font-size:1.2rem;color:var(--text-primary)}
-.logo-text span{color:var(--cyan)}
-.nav-links{display:flex;align-items:center;gap:.25rem;list-style:none}
-.nav-links>li{position:relative}
-.nav-links a,.nav-links button{display:flex;align-items:center;gap:.3rem;padding:.5rem .85rem;color:var(--text-secondary);text-decoration:none;font-size:.875rem;font-weight:500;background:none;border:none;cursor:pointer;border-radius:var(--radius-sm);transition:all .18s;font-family:var(--font-body)}
-.nav-links a:hover,.nav-links button:hover,.nav-links li.active>a,.nav-links li.active>button{color:var(--text-primary);background:var(--bg-glass)}
-.nav-links .chevron{width:14px;height:14px;opacity:.5;transition:transform .2s}
-.nav-links li:hover .chevron{transform:rotate(180deg);opacity:.8}
-.dropdown{position:absolute;top:calc(100% + .5rem);left:50%;transform:translateX(-50%);background:var(--bg-secondary);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:.75rem;min-width:220px;opacity:0;visibility:hidden;transition:all .18s ease;box-shadow:0 20px 60px rgba(0,0,0,.5)}
-.nav-links li:hover .dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
-.dropdown a{display:flex;flex-direction:column;padding:.6rem .875rem;border-radius:var(--radius-sm);color:var(--text-secondary);text-decoration:none;font-size:.85rem;transition:all .15s;white-space:nowrap}
-.dropdown a:hover{color:var(--text-primary);background:var(--bg-tertiary)}
-.dropdown a span{font-size:.75rem;color:var(--text-muted);margin-top:.15rem}
-.dropdown-divider{height:1px;background:var(--border-subtle);margin:.4rem .875rem}
-.nav-actions{display:flex;align-items:center;gap:.6rem;flex-shrink:0}
-.mobile-menu-btn{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.5rem}
-.mobile-menu-btn span{display:block;width:22px;height:2px;background:var(--text-primary);transition:all .3s;border-radius:1px}
-
-/* ── HERO ── */
-.hero{position:relative;z-index:1;min-height:100vh;display:flex;align-items:flex-start;padding:5rem 0 5rem}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:center}
-.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(0,255,157,.08);border:1px solid rgba(0,255,157,.2);padding:.4rem 1rem;border-radius:50px;font-size:.75rem;color:var(--green);margin-bottom:1.5rem;font-family:var(--font-mono)}
-.hero-badge .dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2s ease infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.3)}}
-.hero h1{font-family:var(--font-display);font-size:clamp(2.6rem,4.5vw,3.8rem);font-weight:800;line-height:1.08;letter-spacing:-.03em;margin-bottom:1.5rem}
-.hero-sub{font-size:1.1rem;color:var(--text-secondary);line-height:1.75;margin-bottom:2rem;max-width:500px}
-.hero-cta{display:flex;gap:.875rem;flex-wrap:wrap;margin-bottom:2.75rem}
-.hero-stats{display:flex;gap:2rem}
-.stat-val{font-family:var(--font-mono);font-size:1.9rem;font-weight:700;color:var(--cyan);line-height:1}
-.stat-label{font-size:.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem}
-.stat-divider{width:1px;background:var(--border-subtle)}
-
-/* ── TERMINAL ── */
-.terminal-wrap{position:relative}
-.terminal-wrap::before{content:'';position:absolute;inset:-1px;border-radius:calc(var(--radius-xl) + 1px);background:linear-gradient(135deg,var(--cyan),var(--green),var(--purple));z-index:-1;opacity:.3}
-.terminal{background:var(--bg-secondary);border-radius:var(--radius-xl);overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.6)}
-.term-bar{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.2rem;background:var(--bg-tertiary);border-bottom:1px solid var(--border-subtle)}
-.term-dots{display:flex;gap:.4rem}
-.term-dots span{width:11px;height:11px;border-radius:50%}
-.term-dots span:nth-child(1){background:#ff5f57}
-.term-dots span:nth-child(2){background:#febc2e}
-.term-dots span:nth-child(3){background:#28c840}
-.term-title{font-family:var(--font-mono);font-size:.72rem;color:var(--text-muted)}
-.term-status{display:flex;align-items:center;gap:.4rem;font-family:var(--font-mono);font-size:.7rem;color:var(--green)}
-.term-status::before{content:'';width:5px;height:5px;background:var(--green);border-radius:50%;animation:pulse 1.5s infinite}
-.term-body{padding:1.2rem 1.25rem;font-family:var(--font-mono);font-size:.8rem;min-height:340px;overflow:hidden}
-.tl{display:flex;gap:.4rem;margin-bottom:.4rem;opacity:0;animation:tlfade .25s ease forwards}
-@keyframes tlfade{to{opacity:1}}
-.tp{color:var(--green)}
-.tc{color:var(--text-primary)}
-.to{color:var(--text-secondary);padding-left:.75rem}
-.ts{color:var(--green)}
-.tw{color:var(--amber)}
-.ti{color:var(--cyan)}
-.ta{display:flex;align-items:center;gap:.4rem}
-.ta-dot{width:5px;height:5px;background:var(--green);border-radius:50%;animation:pulse 1.5s infinite;flex-shrink:0}
-.tprog{height:5px;background:var(--bg-tertiary);border-radius:3px;margin:.35rem 0;overflow:hidden;width:100%}
-.tprog-bar{height:100%;background:linear-gradient(90deg,var(--cyan),var(--green));border-radius:3px;transition:width 1.5s ease}
-
-/* ── LOGO STRIP ── */
-.logos-section{position:relative;z-index:1;padding:2.5rem 0;border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);background:rgba(7,8,16,.7)}
-.logos-inner{display:flex;align-items:center;gap:3rem;flex-wrap:wrap;justify-content:center}
-.logos-label{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);white-space:nowrap}
-.logos-row{display:flex;align-items:center;gap:2.75rem;flex-wrap:wrap;justify-content:center}
-.company-logo{display:flex;flex-direction:column;align-items:center;gap:.25rem;opacity:.38;transition:opacity .25s}
-.company-logo:hover{opacity:.65}
-.company-logo-mark{height:28px;display:flex;align-items:center;justify-content:center}
-.company-logo-mark svg{height:28px;width:auto;fill:var(--text-secondary)}
-.company-logo-name{font-size:.65rem;font-family:var(--font-mono);color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase}
-
-/* ── TRUST BADGES ── */
-.trust-section{position:relative;z-index:1;padding:2.5rem 0;background:rgba(11,12,24,.5)}
-.trust-inner{display:flex;align-items:center;justify-content:center;gap:3rem;flex-wrap:wrap}
-.trust-label{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted)}
-.trust-badges{display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;justify-content:center}
-.trust-badge{display:flex;flex-direction:column;align-items:center;gap:.2rem;opacity:.55;transition:opacity .25s;cursor:default}
-.trust-badge:hover{opacity:1}
-.trust-badge-name{font-family:var(--font-mono);font-size:.95rem;font-weight:700;color:var(--text-primary)}
-.trust-badge-sub{font-size:.65rem;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase}
-
-/* ── PROBLEM/SOLUTION ── */
-.ps-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:900px;margin:3rem auto 0}
-.ps-col{border-radius:var(--radius-lg);padding:2rem}
-.ps-col.before{background:rgba(255,59,92,.05);border:1px solid rgba(255,59,92,.15)}
-.ps-col.after{background:rgba(0,255,157,.05);border:1px solid rgba(0,255,157,.15)}
-.ps-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem}
-.ps-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-.ps-col.before .ps-icon{background:rgba(255,59,92,.1)}
-.ps-col.after .ps-icon{background:rgba(0,255,157,.1)}
-.ps-col h3{font-size:1rem;font-weight:600}
-.ps-col.before h3{color:#ff5f7a}
-.ps-col.after h3{color:var(--green)}
-.ps-item{display:flex;align-items:flex-start;gap:.65rem;padding:.5rem 0;border-bottom:1px solid var(--border-subtle);font-size:.875rem;color:var(--text-secondary)}
-.ps-item:last-child{border-bottom:none}
-.ps-item-icon{flex-shrink:0;font-size:.85rem;margin-top:.1rem}
-
-/* ── SECTION HEADERS ── */
-.section-header{max-width:640px}
-.section-header.center{margin:0 auto;text-align:center}
-.section-title{font-family:var(--font-display);font-size:clamp(1.9rem,3.5vw,2.75rem);font-weight:800;line-height:1.15;letter-spacing:-.025em;margin-bottom:.875rem}
-.section-sub{font-size:1.05rem;color:var(--text-secondary);line-height:1.7}
-
-/* ── AGENTS ── */
-.agents-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.25rem;margin-top:3.5rem}
-.agent-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:1.75rem;position:relative;overflow:hidden;transition:all .28s ease;cursor:default}
-.agent-card::after{content:'';position:absolute;inset:0;border-radius:var(--radius-lg);background:linear-gradient(135deg,var(--cyan),var(--green));opacity:0;transition:opacity .28s}
-.agent-card:hover{border-color:var(--border-cyan);transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,229,255,.07)}
-.agent-card:hover::after{opacity:.03}
-.agent-card-inner{position:relative;z-index:1}
-.agent-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem}
-.agent-id-badge{font-family:var(--font-mono);font-size:.65rem;color:var(--cyan);background:var(--cyan-dim);padding:.2rem .65rem;border-radius:20px;border:1px solid var(--border-cyan)}
-.agent-status-dot{display:flex;align-items:center;gap:.35rem;font-size:.72rem;color:var(--green)}
-.agent-status-dot::before{content:'';width:5px;height:5px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
-.agent-name{font-size:1.15rem;font-weight:700;margin-bottom:.5rem}
-.agent-desc{font-size:.875rem;color:var(--text-secondary);line-height:1.6;margin-bottom:1.25rem}
-.agent-metrics{display:flex;gap:1.5rem}
-.agent-metric-val{font-family:var(--font-mono);font-size:1rem;font-weight:700;color:var(--cyan)}
-.agent-metric-label{font-size:.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-top:.15rem}
-
-/* ── AGENT 007 FEATURE ── */
-.agent007-section{position:relative;z-index:1;padding:7rem 0;overflow:hidden}
-.agent007-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,58,237,.06) 0%,rgba(0,229,255,.04) 50%,rgba(124,58,237,.06) 100%);z-index:0}
-.agent007-bg::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 40px,rgba(124,58,237,.03) 40px,rgba(124,58,237,.03) 41px),repeating-linear-gradient(90deg,transparent,transparent 40px,rgba(124,58,237,.03) 40px,rgba(124,58,237,.03) 41px)}
-.agent007-border-top{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--purple),var(--cyan),var(--purple),transparent)}
-.agent007-border-bottom{position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--purple),var(--cyan),var(--purple),transparent)}
-.agent007-inner{position:relative;z-index:1}
-.agent007-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
-.agent007-classified{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--purple);border:1px solid rgba(124,58,237,.3);padding:.3rem .8rem;border-radius:4px;margin-bottom:1.25rem;background:var(--purple-dim)}
-.agent007-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.2rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:1.25rem}
-.agent007-desc{font-size:1.05rem;color:var(--text-secondary);line-height:1.75;margin-bottom:1.75rem}
-.agent007-risks{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:2rem}
-.risk-item{background:var(--purple-dim);border:1px solid rgba(124,58,237,.2);border-radius:var(--radius-sm);padding:.65rem .875rem;font-size:.8rem;color:var(--text-secondary);display:flex;align-items:center;gap:.5rem}
-.risk-item::before{content:'⚠';font-size:.75rem;color:var(--purple);flex-shrink:0}
-.agent007-card{background:rgba(11,12,24,.95);border:1px solid rgba(124,58,237,.3);border-radius:var(--radius-xl);overflow:hidden;box-shadow:0 0 80px rgba(124,58,237,.12)}
-.agent007-card-header{background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(0,229,255,.08));padding:1.5rem 2rem;border-bottom:1px solid rgba(124,58,237,.2);display:flex;align-items:center;justify-content:space-between}
-.agent007-badge{font-family:var(--font-mono);font-size:.7rem;color:var(--purple);background:var(--purple-dim);border:1px solid rgba(124,58,237,.3);padding:.25rem .7rem;border-radius:4px}
-.agent007-card-body{padding:1.75rem 2rem}
-.rmf-phases{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.65rem;margin-bottom:1.5rem}
-.rmf-phase{background:var(--bg-tertiary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);padding:.6rem .75rem;text-align:center}
-.rmf-phase-num{font-family:var(--font-mono);font-size:.7rem;color:var(--cyan);margin-bottom:.2rem}
-.rmf-phase-name{font-size:.72rem;color:var(--text-secondary)}
-.ato-outputs{display:flex;flex-direction:column;gap:.5rem}
-.ato-output{display:flex;align-items:center;gap:.6rem;font-size:.82rem;color:var(--text-secondary);padding:.5rem .75rem;background:var(--bg-tertiary);border-radius:var(--radius-sm);border:1px solid var(--border-subtle)}
-.ato-output-icon{color:var(--green);flex-shrink:0}
-.ato-timer{font-family:var(--font-mono);font-size:.72rem;color:var(--cyan);margin-left:auto}
-.agent007-score{background:linear-gradient(135deg,rgba(124,58,237,.1),rgba(0,229,255,.06));border:1px solid rgba(124,58,237,.2);border-radius:var(--radius-md);padding:1rem 1.25rem;margin-top:1.25rem;display:flex;align-items:center;justify-content:space-between}
-.score-val{font-family:var(--font-mono);font-size:2rem;font-weight:700;color:var(--green)}
-.score-label{font-size:.75rem;color:var(--text-muted)}
-
-/* ── DEMO TABS ── */
-.demo-wrap{background:var(--bg-secondary);border:1px solid var(--border-light);border-radius:var(--radius-xl);overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.4);margin-top:3.5rem}
-.demo-tabs{display:flex;background:var(--bg-tertiary);border-bottom:1px solid var(--border-subtle);overflow-x:auto}
-.demo-tab{padding:1rem 1.5rem;background:none;border:none;color:var(--text-muted);font-family:var(--font-body);font-size:.875rem;font-weight:500;cursor:pointer;transition:all .2s;position:relative;white-space:nowrap}
-.demo-tab.active{color:var(--cyan);background:rgba(0,229,255,.04)}
-.demo-tab.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--cyan)}
-.demo-tab:hover:not(.active){color:var(--text-primary);background:var(--bg-glass)}
-.demo-panel{display:none;padding:2.25rem;min-height:420px}
-.demo-panel.active{display:block;animation:panelIn .3s ease}
-@keyframes panelIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.compliance-overview{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;padding:1.5rem;background:var(--bg-tertiary);border-radius:var(--radius-md);gap:1.5rem;flex-wrap:wrap}
-.compliance-score-val{font-family:var(--font-mono);font-size:3rem;font-weight:700;color:var(--green);line-height:1}
-.compliance-score-lbl{font-size:.8rem;color:var(--text-muted);margin-top:.25rem}
-.compliance-stats{display:flex;gap:2.5rem;flex-wrap:wrap}
-.c-stat-val{font-family:var(--font-mono);font-size:1.5rem;font-weight:700;line-height:1}
-.c-stat-val.good{color:var(--green)}
-.c-stat-val.warn{color:var(--amber)}
-.c-stat-val.bad{color:var(--red)}
-.c-stat-lbl{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;margin-top:.25rem}
-.domains-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:.75rem}
-.domain{background:var(--bg-tertiary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);padding:.875rem .75rem;text-align:center;transition:all .2s;cursor:default}
-.domain:hover{border-color:var(--border-cyan);background:rgba(0,229,255,.03)}
-.domain-code{font-family:var(--font-mono);font-size:.7rem;color:var(--text-muted);margin-bottom:.25rem}
-.domain-score{font-size:1.3rem;font-weight:700;font-family:var(--font-mono)}
-.domain-score.high{color:var(--green)}
-.domain-score.med{color:var(--amber)}
-.domain-score.low{color:var(--red)}
-.domain-bar{height:3px;background:var(--bg-primary);border-radius:2px;margin-top:.4rem}
-.domain-fill{height:100%;border-radius:2px}
-.domain-fill.high{background:var(--green)}
-.domain-fill.med{background:var(--amber)}
-.domain-fill.low{background:var(--red)}
-.roi-inputs{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-bottom:2rem}
-.roi-label{display:block;font-size:.875rem;font-weight:500;color:var(--text-secondary);margin-bottom:.75rem}
-.roi-slider{width:100%;height:6px;-webkit-appearance:none;background:var(--bg-tertiary);border-radius:3px;outline:none;cursor:pointer}
-.roi-slider::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--cyan);cursor:pointer;box-shadow:0 0 12px var(--cyan-glow)}
-.roi-slider-vals{display:flex;justify-content:space-between;margin-top:.5rem}
-.roi-slider-vals span{font-size:.72rem;color:var(--text-muted)}
-.roi-slider-vals .current{color:var(--cyan);font-weight:600;font-family:var(--font-mono)}
-.roi-results{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;padding-top:2rem;border-top:1px solid var(--border-subtle)}
-.roi-result{text-align:center;padding:1.5rem;background:var(--bg-tertiary);border-radius:var(--radius-md)}
-.roi-result-val{font-family:var(--font-mono);font-size:2rem;font-weight:700;color:var(--green);margin-bottom:.25rem}
-.roi-result-lbl{font-size:.8rem;color:var(--text-muted)}
-.findings-list{max-height:380px;overflow-y:auto;display:flex;flex-direction:column;gap:.65rem}
-.finding{display:flex;align-items:flex-start;gap:.875rem;padding:.875rem 1rem;border-radius:var(--radius-md);border-left:3px solid;animation:findingIn .3s ease}
-@keyframes findingIn{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:translateX(0)}}
-.finding.critical{background:rgba(255,59,92,.05);border-left-color:var(--red)}
-.finding.warning{background:rgba(245,158,11,.05);border-left-color:var(--amber)}
-.finding.info{background:rgba(0,229,255,.04);border-left-color:var(--cyan)}
-.finding.success{background:rgba(0,255,157,.04);border-left-color:var(--green)}
-.finding-badge{font-family:var(--font-mono);font-size:.6rem;font-weight:700;padding:.2rem .5rem;border-radius:3px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;margin-top:.1rem}
-.finding-badge.critical{background:rgba(255,59,92,.15);color:var(--red)}
-.finding-badge.warning{background:rgba(245,158,11,.15);color:var(--amber)}
-.finding-badge.info{background:rgba(0,229,255,.12);color:var(--cyan)}
-.finding-badge.success{background:rgba(0,255,157,.12);color:var(--green)}
-.finding-msg{font-size:.875rem;flex:1}
-.finding-time{font-family:var(--font-mono);font-size:.7rem;color:var(--text-muted);white-space:nowrap}
-
-/* ── INTEGRATIONS ── */
-.integrations-strip{position:relative;z-index:1;padding:4rem 0;border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)}
-.integrations-grid{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:2.5rem}
-.integration-pill{display:flex;align-items:center;gap:.6rem;background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:50px;padding:.5rem 1.1rem;font-size:.82rem;color:var(--text-secondary);transition:all .2s;cursor:default}
-.integration-pill:hover{border-color:var(--border-cyan);color:var(--text-primary);background:var(--cyan-dim)}
-.integration-icon{font-size:.9rem}
-
-/* ── PRICING ── */
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1060px;margin:3.5rem auto 0}
-.pricing-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);padding:2.25rem;transition:all .28s;position:relative}
-.pricing-card:hover{border-color:var(--border-light);transform:translateY(-4px)}
-.pricing-card.featured{border-color:var(--cyan);box-shadow:0 0 60px rgba(0,229,255,.09)}
-.pricing-card.featured::before{content:'Most Popular';position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--cyan),var(--green));color:var(--bg-deep);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:.35rem 1rem;border-radius:20px;white-space:nowrap}
-.pricing-tier{font-size:.85rem;font-weight:600;color:var(--text-muted);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em;font-family:var(--font-mono)}
-.pricing-price-row{margin-bottom:.5rem}
-.pricing-amount{font-family:var(--font-mono);font-size:2.75rem;font-weight:700}
-.pricing-period{font-size:.85rem;color:var(--text-muted)}
-.pricing-desc{font-size:.875rem;color:var(--text-secondary);margin-bottom:1.75rem;padding-bottom:1.75rem;border-bottom:1px solid var(--border-subtle);line-height:1.6}
-.pricing-features{list-style:none;margin-bottom:2rem;display:flex;flex-direction:column;gap:.65rem}
-.pricing-features li{display:flex;align-items:flex-start;gap:.6rem;font-size:.875rem;color:var(--text-secondary)}
-.pricing-features li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;margin-top:.05rem}
-.pricing-card .btn{width:100%}
-
-/* ── FAQ ── */
-.faq-list{max-width:760px;margin:3rem auto 0;display:flex;flex-direction:column;gap:.75rem}
-.faq-item{background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:var(--radius-md);overflow:hidden}
-.faq-q{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.5rem;cursor:pointer;font-size:.95rem;font-weight:500;transition:background .2s}
-.faq-q:hover{background:var(--bg-tertiary)}
-.faq-chevron{width:18px;height:18px;flex-shrink:0;color:var(--text-muted);transition:transform .25s}
-.faq-item.open .faq-chevron{transform:rotate(180deg)}
-.faq-a{display:none;padding:0 1.5rem 1.25rem;font-size:.9rem;color:var(--text-secondary);line-height:1.75}
-.faq-item.open .faq-a{display:block;animation:panelIn .25s ease}
-
-/* ── LEAD MAGNET ── */
-.leadmagnet-card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-xl);padding:3rem;display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center;position:relative;overflow:hidden}
-.leadmagnet-card::before{content:'';position:absolute;top:0;right:0;width:300px;height:300px;background:radial-gradient(circle,rgba(0,229,255,.06),transparent 70%);pointer-events:none}
-.leadmagnet-list{list-style:none;margin:1.25rem 0 1.75rem;display:flex;flex-direction:column;gap:.6rem}
-.leadmagnet-list li{display:flex;align-items:center;gap:.65rem;font-size:.9rem;color:var(--text-secondary)}
-.leadmagnet-list li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
-.leadmagnet-form-wrap{background:var(--bg-tertiary);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:2rem}
-.form-group{margin-bottom:1rem}
-.form-label{display:block;font-size:.82rem;font-weight:500;color:var(--text-secondary);margin-bottom:.4rem}
-.form-input,.form-select{width:100%;padding:.8rem 1rem;background:var(--bg-primary);border:1px solid var(--border-light);border-radius:var(--radius-md);color:var(--text-primary);font-family:var(--font-body);font-size:.9rem;transition:border-color .2s;outline:none}
-.form-input:focus,.form-select:focus{border-color:var(--cyan)}
-.form-input::placeholder{color:var(--text-muted)}
-.form-select option{background:var(--bg-secondary)}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.875rem}
-.form-note{font-size:.72rem;color:var(--text-muted);margin-top:.875rem;text-align:center}
-.form-success{text-align:center;padding:2rem 1rem}
-.form-success-icon{width:60px;height:60px;background:var(--green-dim);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:1.5rem}
-.form-success h3{font-size:1.15rem;margin-bottom:.5rem}
-.form-success p{font-size:.875rem;color:var(--text-secondary)}
-.form-checkbox{display:flex;align-items:flex-start;gap:.6rem;margin-top:.875rem}
-.form-checkbox input{margin-top:.2rem;accent-color:var(--cyan)}
-.form-checkbox label{font-size:.8rem;color:var(--text-muted)}
-.form-checkbox a{color:var(--cyan)}
-
-/* ── CTA SECTION ── */
-.cta-section{position:relative;z-index:1;padding:7rem 0;overflow:hidden}
-.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(0,229,255,.04),transparent)}
-.cta-inner{text-align:center;max-width:660px;margin:0 auto;position:relative;z-index:1}
-.cta-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,2.75rem);font-weight:800;letter-spacing:-.03em;margin-bottom:1rem}
-.cta-sub{font-size:1.05rem;color:var(--text-secondary);margin-bottom:2.25rem;line-height:1.7}
-.cta-urgency{display:inline-flex;align-items:center;gap:.5rem;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);border-radius:20px;padding:.4rem 1rem;font-size:.78rem;color:var(--amber);margin-bottom:2.25rem;font-family:var(--font-mono)}
-.cta-buttons{display:flex;gap:.875rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem}
-.cta-note{font-size:.8rem;color:var(--text-muted)}
-
-/* ── FOOTER ── */
-.footer{position:relative;z-index:1;padding:5rem 0 2.5rem;border-top:1px solid var(--border-subtle)}
-.footer-grid{display:grid;grid-template-columns:2.25fr repeat(4,1fr);gap:3rem;margin-bottom:4rem}
-.footer-brand-desc{font-size:.875rem;color:var(--text-secondary);line-height:1.7;margin-top:1rem;max-width:270px}
-.footer-social{display:flex;gap:.6rem;margin-top:1.5rem}
-.footer-social a{width:34px;height:34px;background:var(--bg-tertiary);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:var(--text-muted);text-decoration:none;font-size:.85rem;transition:all .2s}
-.footer-social a:hover{background:var(--cyan-dim);border-color:var(--border-cyan);color:var(--cyan)}
-.footer-col h4{font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--text-primary);margin-bottom:1.25rem;font-family:var(--font-mono)}
-.footer-links{list-style:none;display:flex;flex-direction:column;gap:.65rem}
-.footer-links a{color:var(--text-secondary);text-decoration:none;font-size:.875rem;transition:color .2s}
-.footer-links a:hover{color:var(--cyan)}
-.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:2rem;border-top:1px solid var(--border-subtle);gap:1.5rem;flex-wrap:wrap}
-.footer-copyright{font-size:.8rem;color:var(--text-muted)}
-.footer-legal{display:flex;gap:1.75rem}
-.footer-legal a{color:var(--text-muted);font-size:.8rem;text-decoration:none;transition:color .2s}
-.footer-legal a:hover{color:var(--text-primary)}
-.footer-certs{display:flex;align-items:center;gap:1.25rem}
-.footer-cert{font-family:var(--font-mono);font-size:.65rem;color:var(--text-muted);padding:.2rem .6rem;border:1px solid var(--border-subtle);border-radius:4px}
-
-/* ── MODALS ── */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:9999;display:none;align-items:center;justify-content:center;padding:1.5rem}
-.modal-overlay.open{display:flex;animation:fadeIn .2s ease}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.modal{background:var(--bg-secondary);border:1px solid var(--border-light);border-radius:var(--radius-xl);max-width:480px;width:100%;max-height:90vh;overflow-y:auto;animation:slideUp .3s ease}
-@keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.modal-header{display:flex;align-items:center;justify-content:space-between;padding:1.4rem 1.75rem;border-bottom:1px solid var(--border-subtle)}
-.modal-title{font-size:1.1rem;font-weight:700}
-.modal-close{background:none;border:none;color:var(--text-muted);font-size:1.4rem;cursor:pointer;line-height:1;padding:.2rem;transition:color .2s}
-.modal-close:hover{color:var(--text-primary)}
-.modal-body{padding:1.75rem}
-.modal-body>p{font-size:.9rem;color:var(--text-secondary);margin-bottom:1.5rem;line-height:1.65}
-
-/* ── SCROLL REVEAL ── */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-delay-1{transition-delay:.1s}
-.reveal-delay-2{transition-delay:.2s}
-.reveal-delay-3{transition-delay:.3s}
-.reveal-delay-4{transition-delay:.4s}
-
-/* ── RESPONSIVE ── */
-@media(max-width:1100px){
-  .hero-grid{grid-template-columns:1fr;text-align:center}
-  .hero-sub{margin:0 auto 2rem}
-  .hero-cta{justify-content:center}
-  .hero-stats{justify-content:center}
-  .agent007-grid{grid-template-columns:1fr}
-  .leadmagnet-card{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:repeat(3,1fr)}
+/* GRID TEXTURE */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
+  background-size:72px 72px;
 }
-@media(max-width:900px){
-  .pricing-grid{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto}
-  .ps-grid{grid-template-columns:1fr}
-  .domains-grid{grid-template-columns:repeat(4,1fr)}
-  .roi-inputs{grid-template-columns:1fr}
-  .roi-results{grid-template-columns:1fr}
+
+a{color:var(--amber);text-decoration:none}
+.z1{position:relative;z-index:1}
+
+/* ════════ NAV ════════ */
+nav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(8,9,15,0.94);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 56px;height:60px;
 }
-@media(max-width:768px){
-  .nav-links{display:none}
-  .mobile-menu-btn{display:flex}
-  .nav-actions .btn-secondary{display:none}
-  .section{padding:5rem 0}
-  .hero{padding:5rem 0 4rem}
-  .hero-stats{flex-wrap:wrap;gap:1.25rem}
-  .stat-divider{display:none}
-  .logos-inner{flex-direction:column;gap:1.25rem}
-  .trust-inner{flex-direction:column;gap:1.25rem}
-  .trust-badges{gap:1.5rem;justify-content:center}
-  .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
-  .footer-bottom{flex-direction:column;text-align:center}
-  .footer-legal{justify-content:center}
-  .form-row{grid-template-columns:1fr}
-  .agent007-risks{grid-template-columns:1fr}
-  .domains-grid{grid-template-columns:repeat(3,1fr)}
-  .compliance-overview{flex-direction:column}
-  .compliance-stats{justify-content:center}
+.nav-logo{
+  font-family:var(--display);font-size:22px;letter-spacing:3px;
+  color:var(--amber);text-decoration:none;display:flex;align-items:center;gap:10px;
 }
-@media(max-width:480px){
-  .agents-grid{grid-template-columns:1fr}
-  .domains-grid{grid-template-columns:repeat(2,1fr)}
-  .rmf-phases{grid-template-columns:1fr 1fr}
-  .footer-grid{grid-template-columns:1fr}
+.nav-logo-dot{width:8px;height:8px;border-radius:50%;background:var(--amber);animation:pulse 2.5s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.85)}}
+.nav-logo span{color:var(--text);opacity:.35}
+.nav-center{display:flex;align-items:center;gap:4px}
+.nav-link{
+  font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--muted);padding:7px 14px;text-decoration:none;transition:color .2s;
+}
+.nav-link:hover{color:var(--text)}
+.nav-link.active{color:var(--amber)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.btn-nav-ghost{
+  font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--text-dim);padding:8px 18px;border:1px solid var(--border2);
+  background:transparent;text-decoration:none;transition:all .2s;
+}
+.btn-nav-ghost:hover{border-color:var(--amber);color:var(--amber)}
+.btn-nav-cta{
+  font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+  background:var(--amber);color:#000;padding:8px 22px;font-weight:500;
+  clip-path:polygon(0 0,calc(100%-8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100%-8px));
+  text-decoration:none;transition:opacity .2s;
+}
+.btn-nav-cta:hover{opacity:.85;color:#000}
+
+/* ════════ HERO ════════ */
+.hero{
+  position:relative;z-index:1;
+  padding:120px 56px 96px;
+  max-width:1240px;margin:0 auto;
+  overflow:hidden;
+}
+.hero-glow{
+  position:absolute;top:-80px;left:50%;transform:translateX(-50%);
+  width:900px;height:500px;
+  background:radial-gradient(ellipse at center,rgba(232,160,32,0.07) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--amber);margin-bottom:24px;
+  display:inline-flex;align-items:center;gap:12px;
+}
+.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--amber)}
+.hero-h1{
+  font-family:var(--display);
+  font-size:clamp(64px,8.5vw,108px);
+  line-height:.92;letter-spacing:1px;
+  margin-bottom:10px;
+  max-width:900px;
+}
+.hero-h1 .line2{color:var(--amber)}
+.hero-tagline{
+  font-family:var(--display);font-size:clamp(20px,2.5vw,30px);
+  color:var(--text-dim);letter-spacing:2px;margin-bottom:32px;
+  max-width:700px;line-height:1.15;
+}
+.hero-desc{
+  font-size:16px;font-weight:300;color:var(--text-dim);
+  max-width:560px;line-height:1.8;margin-bottom:44px;
+}
+.hero-desc strong{color:var(--text);font-weight:400}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:60px}
+.btn-primary{
+  font-family:var(--mono);font-size:12px;letter-spacing:2px;text-transform:uppercase;
+  background:var(--amber);color:#000;padding:15px 36px;font-weight:500;
+  clip-path:polygon(0 0,calc(100%-10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100%-10px));
+  border:none;cursor:pointer;transition:opacity .2s;text-decoration:none;display:inline-block;
+}
+.btn-primary:hover{opacity:.85;color:#000}
+.btn-secondary{
+  font-family:var(--mono);font-size:12px;letter-spacing:2px;text-transform:uppercase;
+  background:transparent;color:var(--text-dim);padding:15px 36px;
+  border:1px solid var(--border2);transition:all .2s;
+  text-decoration:none;display:inline-block;
+}
+.btn-secondary:hover{border-color:var(--amber);color:var(--amber)}
+.hero-proof{
+  display:flex;align-items:center;gap:32px;flex-wrap:wrap;
+  padding-top:32px;border-top:1px solid var(--border);
+}
+.proof-stat{display:flex;flex-direction:column;gap:4px}
+.proof-num{
+  font-family:var(--display);font-size:32px;letter-spacing:1px;
+  color:var(--text);line-height:1;
+}
+.proof-label{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.proof-divider{width:1px;height:40px;background:var(--border);flex-shrink:0}
+
+/* ════════ TRUST STRIP ════════ */
+.trust-strip{
+  position:relative;z-index:1;
+  background:var(--surface);
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:18px 56px;
+  display:flex;align-items:center;gap:0;overflow:hidden;
+}
+.trust-label{
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);white-space:nowrap;padding-right:32px;border-right:1px solid var(--border);
+  margin-right:32px;flex-shrink:0;
+}
+.trust-items{display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+.trust-item{
+  font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;
+  color:var(--border2);font-weight:500;white-space:nowrap;transition:color .2s;
+}
+.trust-item:hover{color:var(--amber)}
+
+/* ════════ SECTION PRIMITIVES ════════ */
+.section{position:relative;z-index:1;padding:88px 56px;max-width:1240px;margin:0 auto}
+.section-divider{position:relative;z-index:1;height:1px;background:var(--border)}
+.dark-section{
+  background:var(--surface);
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+}
+.section-eyebrow{
+  font-family:var(--mono);font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--amber);margin-bottom:16px;display:flex;align-items:center;gap:12px;
+}
+.section-eyebrow::before{content:'';width:20px;height:1px;background:var(--amber)}
+.section-h2{
+  font-family:var(--display);font-size:clamp(38px,5vw,60px);
+  line-height:.95;letter-spacing:1px;margin-bottom:18px;
+}
+.section-h2 em{color:var(--amber);font-style:normal}
+.section-desc{
+  font-size:15px;font-weight:300;color:var(--text-dim);max-width:580px;line-height:1.8;
+}
+
+/* ════════ PROBLEM SECTION ════════ */
+.problem-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--border);border:1px solid var(--border);margin-top:52px;
+}
+.problem-cell{background:var(--surface2);padding:32px 28px}
+.prob-num{
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--red);
+  margin-bottom:16px;
+}
+.prob-title{font-family:var(--display);font-size:22px;letter-spacing:1px;margin-bottom:10px;color:var(--text)}
+.prob-text{font-size:13px;font-weight:300;color:var(--text-dim);line-height:1.75}
+
+/* ════════ PLATFORM OVERVIEW ════════ */
+.platform-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:start;margin-top:52px}
+.platform-points{display:flex;flex-direction:column;gap:20px}
+.platform-point{
+  display:grid;grid-template-columns:20px 1fr;gap:16px;align-items:start;
+  padding-bottom:20px;border-bottom:1px solid var(--border);
+}
+.platform-point:last-child{border-bottom:none;padding-bottom:0}
+.pp-check{color:var(--amber);font-family:var(--mono);font-size:14px;margin-top:2px}
+.pp-title{font-size:15px;font-weight:500;margin-bottom:4px;color:var(--text)}
+.pp-text{font-size:13px;font-weight:300;color:var(--text-dim);line-height:1.7}
+
+/* ARCHITECTURE DIAGRAM */
+.arch-diagram{
+  background:var(--surface);border:1px solid var(--border);
+  padding:28px;
+}
+.arch-layer{
+  border:1px solid var(--border);margin-bottom:10px;
+}
+.arch-layer:last-child{margin-bottom:0}
+.arch-layer-title{
+  font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);padding:8px 14px;border-bottom:1px solid var(--border);
+  background:var(--surface2);display:flex;align-items:center;gap:8px;
+}
+.arch-layer-title::before{content:'';width:4px;height:4px;background:var(--amber);border-radius:50%}
+.arch-layer-body{padding:14px;display:flex;flex-wrap:wrap;gap:8px}
+.arch-chip{
+  font-family:var(--mono);font-size:10px;color:var(--text-dim);
+  border:1px solid var(--border2);padding:4px 10px;background:var(--bg);
+}
+.arch-chip.highlight{border-color:var(--amber);color:var(--amber);background:var(--amber-glow)}
+.arch-arrow{text-align:center;padding:6px 0;font-family:var(--mono);font-size:12px;color:var(--border2)}
+
+/* ════════ HOW IT WORKS — PIPELINE FLOW ════════ */
+.pipeline-flow{
+  display:grid;grid-template-columns:repeat(8,1fr);gap:0;
+  border:1px solid var(--border);margin-top:52px;
+  overflow:hidden;
+}
+.pipe-step{
+  border-right:1px solid var(--border);
+  padding:28px 18px 24px;
+  position:relative;display:flex;flex-direction:column;gap:10px;
+  transition:background .2s;
+}
+.pipe-step:last-child{border-right:none}
+.pipe-step:hover{background:var(--surface2)}
+.pipe-step-num{
+  font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);
+}
+.pipe-step-name{
+  font-family:var(--display);font-size:19px;letter-spacing:.5px;
+  color:var(--amber);line-height:1;
+}
+.pipe-step-text{font-size:11px;color:var(--text-dim);line-height:1.6;font-weight:300}
+.pipe-connector{
+  position:absolute;right:-9px;top:50%;transform:translateY(-50%);
+  font-family:var(--mono);font-size:13px;color:var(--border2);
+  background:var(--bg);padding:1px 0;z-index:2;
+}
+.pipe-step.gate .pipe-step-name{color:var(--text)}
+.pipe-step.gate{background:var(--amber-glow);border-top:1px solid rgba(232,160,32,.2)}
+
+/* ════════ AGENTS GRID ════════ */
+.agents-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--border);border:1px solid var(--border);margin-top:52px;
+}
+.agent-card{
+  background:var(--surface);padding:28px 24px;
+  position:relative;overflow:hidden;
+  transition:background .2s;
+}
+.agent-card:hover{background:var(--surface2)}
+.agent-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,var(--ac,var(--amber)),transparent);
+  transform:scaleX(0);transform-origin:left;transition:transform .3s;
+}
+.agent-card:hover::after{transform:scaleX(1)}
+.ac-num{font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--muted);margin-bottom:14px}
+.ac-name{font-family:var(--display);font-size:26px;letter-spacing:1px;line-height:1;margin-bottom:8px}
+.ac-tag{
+  font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:12px;
+}
+.ac-desc{font-size:12px;font-weight:300;color:var(--text-dim);line-height:1.65;margin-bottom:16px}
+.ac-caps{display:flex;flex-direction:column;gap:4px}
+.ac-cap{
+  font-family:var(--mono);font-size:10px;color:var(--muted);
+  display:flex;gap:7px;align-items:flex-start;
+}
+.ac-cap::before{content:'→';color:var(--ac,var(--amber));flex-shrink:0}
+.agent-card.new-badge::before{
+  content:'NEW';position:absolute;top:10px;right:10px;
+  font-family:var(--mono);font-size:9px;letter-spacing:1.5px;
+  background:var(--amber);color:#000;padding:2px 7px;font-weight:600;
+}
+
+/* WARDEN SPOTLIGHT */
+.warden-spotlight{
+  margin-top:52px;background:var(--surface);border:1px solid var(--border);
+  display:grid;grid-template-columns:1fr 1fr;gap:0;overflow:hidden;
+}
+.ws-left{
+  padding:40px 36px;
+  border-right:1px solid var(--border);
+  background:linear-gradient(135deg,var(--surface) 0%,rgba(232,96,32,.04) 100%);
+}
+.ws-right{padding:40px 36px}
+.ws-label{
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(232,96,32,.7);margin-bottom:16px;
+}
+.ws-name{
+  font-family:var(--display);font-size:52px;letter-spacing:2px;
+  color:var(--text);line-height:.95;margin-bottom:8px;
+}
+.ws-subtitle{
+  font-family:var(--display);font-size:20px;letter-spacing:1px;
+  color:var(--text-dim);margin-bottom:20px;
+}
+.ws-desc{font-size:14px;font-weight:300;color:var(--text-dim);line-height:1.8;margin-bottom:28px}
+.ws-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
+.ws-cell{background:var(--surface2);padding:16px 14px}
+.ws-cell-label{font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.ws-cell-num{font-family:var(--display);font-size:28px;letter-spacing:1px;color:var(--text)}
+.ws-cell-sub{font-family:var(--mono);font-size:10px;color:var(--text-dim)}
+
+/* ════════ HITL — HUMAN IN THE LOOP ════════ */
+.hitl-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:52px;align-items:start}
+.hitl-flow{display:flex;flex-direction:column;gap:0}
+.hitl-step{
+  display:grid;grid-template-columns:40px 1fr;gap:16px;
+  padding:20px 0;border-bottom:1px solid var(--border);align-items:start;
+}
+.hitl-step:last-child{border-bottom:none}
+.hitl-icon{
+  width:36px;height:36px;background:var(--surface2);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;flex-shrink:0;margin-top:2px;
+}
+.hitl-icon.amber{background:var(--amber-glow);border-color:rgba(232,160,32,.3)}
+.hitl-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:4px}
+.hitl-text{font-size:13px;font-weight:300;color:var(--text-dim);line-height:1.65}
+.hitl-callout{
+  background:var(--surface2);border:1px solid var(--border);
+  border-left:3px solid var(--amber);padding:28px;
+  display:flex;flex-direction:column;gap:20px;
+}
+.hc-header{
+  font-family:var(--display);font-size:28px;letter-spacing:1px;color:var(--amber);
+  margin-bottom:4px;
+}
+.hc-sub{font-size:13px;font-weight:300;color:var(--text-dim);line-height:1.7;margin-bottom:16px}
+.approval-mock{
+  background:var(--bg);border:1px solid var(--border);padding:18px;
+}
+.am-header{
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);
+}
+.am-inc{
+  display:flex;align-items:center;gap:10px;margin-bottom:16px;
+}
+.am-sev{
+  font-family:var(--mono);font-size:9px;padding:2px 7px;
+  background:rgba(220,80,80,.15);color:#e57373;
+}
+.am-title{font-size:13px;color:var(--text)}
+.am-context{
+  font-family:var(--mono);font-size:11px;color:var(--muted);
+  background:var(--surface2);padding:10px 12px;margin-bottom:14px;
+  border-left:2px solid var(--border2);line-height:1.6;
+}
+.am-btns{display:flex;gap:8px}
+.am-btn-approve{
+  font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
+  background:var(--amber);color:#000;padding:7px 16px;
+  font-weight:600;border:none;cursor:pointer;flex:1;
+  clip-path:polygon(0 0,calc(100%-6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100%-6px));
+}
+.am-btn-reject{
+  font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
+  background:var(--surface3);color:var(--text-dim);padding:7px 16px;
+  border:1px solid var(--border2);cursor:pointer;flex:1;
+}
+.am-log{font-family:var(--mono);font-size:10px;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+.am-log-item{display:flex;gap:10px;align-items:flex-start}
+.am-log-item::before{content:'✓';color:var(--green);flex-shrink:0}
+
+/* ════════ COMPLIANCE ════════ */
+.compliance-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:52px;
+}
+.comp-card{
+  background:var(--surface);border:1px solid var(--border);padding:28px 24px;
+}
+.comp-fw{font-family:var(--display);font-size:30px;letter-spacing:1px;color:var(--amber);margin-bottom:8px}
+.comp-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:10px}
+.comp-controls{display:flex;flex-direction:column;gap:4px}
+.comp-control{
+  font-family:var(--mono);font-size:11px;color:var(--text-dim);
+  display:flex;gap:8px;align-items:flex-start;
+}
+.comp-control::before{content:'→';color:var(--amber);flex-shrink:0}
+.evidence-flow{
+  margin-top:28px;background:var(--surface2);border:1px solid var(--border);
+  padding:20px 24px;
+}
+.ef-title{
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:14px;
+}
+.ef-steps{display:flex;align-items:center;gap:0;flex-wrap:wrap}
+.ef-step{
+  font-family:var(--mono);font-size:11px;color:var(--text-dim);
+  background:var(--bg);border:1px solid var(--border);padding:8px 14px;
+  white-space:nowrap;
+}
+.ef-arrow{font-family:var(--mono);font-size:12px;color:var(--border2);padding:0 8px}
+
+/* ════════ PERSONAS ════════ */
+.persona-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:52px}
+.persona-cell{background:var(--surface);padding:28px 24px}
+.persona-role{
+  font-family:var(--display);font-size:22px;letter-spacing:1px;color:var(--amber);
+  margin-bottom:6px;
+}
+.persona-org{font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--muted);margin-bottom:14px}
+.persona-pain{font-size:13px;font-weight:300;color:var(--text-dim);line-height:1.7;margin-bottom:14px}
+.persona-wins{display:flex;flex-direction:column;gap:5px}
+.persona-win{
+  font-family:var(--mono);font-size:11px;color:var(--text-dim);
+  display:flex;gap:8px;align-items:flex-start;
+}
+.persona-win::before{content:'✓';color:var(--amber);flex-shrink:0}
+
+/* ════════ VS COMPARISON ════════ */
+.vs-table{width:100%;border-collapse:collapse;margin-top:52px;border:1px solid var(--border)}
+.vs-table th{
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);padding:14px 20px;text-align:left;
+  background:var(--surface2);border-bottom:1px solid var(--border);
+}
+.vs-table th.tnops{color:var(--amber)}
+.vs-table td{
+  padding:13px 20px;font-size:13px;color:var(--text-dim);
+  border-bottom:1px solid var(--border);font-weight:300;vertical-align:top;line-height:1.55;
+}
+.vs-table tr:last-child td{border-bottom:none}
+.vs-table td:first-child{
+  font-family:var(--mono);font-size:11px;color:var(--text);font-weight:500;
+}
+.vs-table td.tnops{color:var(--text)}
+.v-yes{color:var(--green)!important}
+.v-no{color:var(--red)!important;opacity:.6}
+.v-partial{color:var(--amber)!important;opacity:.75}
+.vs-table tbody tr:hover td{background:var(--surface)}
+
+/* ════════ METRICS BAND ════════ */
+.metrics-band{
+  position:relative;z-index:1;
+  background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:52px 56px;
+}
+.metrics-inner{max-width:1240px;margin:0 auto}
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:36px}
+.metric-cell{background:var(--bg);padding:32px 28px}
+.metric-num{font-family:var(--display);font-size:52px;letter-spacing:1px;color:var(--amber);line-height:1;margin-bottom:8px}
+.metric-label{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+
+/* ════════ CTA BAND ════════ */
+.cta-band{
+  position:relative;z-index:1;
+  background:var(--amber);padding:80px 56px;
+  display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;
+}
+.cta-band::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(0,0,0,.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,0,0,.07) 1px,transparent 1px);
+  background-size:44px 44px;
+}
+.cta-left{position:relative}
+.cta-h{font-family:var(--display);font-size:clamp(36px,5vw,60px);letter-spacing:2px;color:#000;line-height:.95;margin-bottom:12px}
+.cta-sub{font-size:15px;color:rgba(0,0,0,.55);font-weight:300;max-width:440px;line-height:1.7}
+.cta-btns{position:relative;display:flex;gap:12px;flex-wrap:wrap}
+.btn-cta-dark{
+  font-family:var(--mono);font-size:12px;letter-spacing:2px;text-transform:uppercase;
+  background:#000;color:var(--amber);padding:15px 36px;font-weight:500;
+  clip-path:polygon(0 0,calc(100%-10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100%-10px));
+  border:none;cursor:pointer;transition:opacity .2s;text-decoration:none;display:inline-block;
+}
+.btn-cta-dark:hover{opacity:.85;color:var(--amber)}
+.btn-cta-outline{
+  font-family:var(--mono);font-size:12px;letter-spacing:2px;text-transform:uppercase;
+  background:transparent;color:#000;padding:15px 36px;
+  border:1px solid rgba(0,0,0,.25);transition:border-color .2s;
+  text-decoration:none;display:inline-block;
+}
+.btn-cta-outline:hover{border-color:#000}
+
+/* ════════ FOOTER ════════ */
+footer{
+  position:relative;z-index:1;
+  background:var(--surface);border-top:1px solid var(--border);
+  padding:40px 56px;
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;align-items:start;
+}
+.footer-brand .f-logo{font-family:var(--display);font-size:20px;letter-spacing:3px;color:var(--amber)}
+.footer-brand .f-logo span{color:var(--text);opacity:.3}
+.footer-brand p{font-size:12px;font-weight:300;color:var(--muted);line-height:1.7;margin-top:10px;max-width:240px}
+.footer-links{display:flex;flex-direction:column;gap:10px}
+.footer-links h4{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.footer-link{font-size:13px;color:var(--text-dim);text-decoration:none;transition:color .15s}
+.footer-link:hover{color:var(--amber)}
+.footer-bottom{
+  position:relative;z-index:1;
+  background:var(--surface);border-top:1px solid var(--border);
+  padding:18px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+}
+.footer-copy{font-family:var(--mono);font-size:10px;color:var(--muted);opacity:.45}
+.footer-compliance{display:flex;gap:16px;flex-wrap:wrap}
+.fc-badge{
+  font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;
+  color:var(--muted);border:1px solid var(--border);padding:3px 8px;opacity:.6;
+}
+
+/* ════════ RESPONSIVE ════════ */
+@media(max-width:1024px){
+  nav{padding:0 24px}
+  .nav-center{display:none}
+  .hero{padding:72px 24px 64px}
+  .section{padding:64px 24px}
+  .trust-strip{padding:16px 24px}
+  .metrics-band,.cta-band{padding:52px 24px}
+  footer{padding:36px 24px;grid-template-columns:1fr 1fr}
+  .footer-bottom{padding:16px 24px}
+  .pipeline-flow{grid-template-columns:repeat(4,1fr)}
+  .pipe-connector{display:none}
+  .agents-grid{grid-template-columns:repeat(2,1fr)}
+  .problem-grid{grid-template-columns:1fr}
+  .platform-layout{grid-template-columns:1fr}
+  .hitl-layout{grid-template-columns:1fr}
+  .warden-spotlight{grid-template-columns:1fr}
+  .ws-left{border-right:none;border-bottom:1px solid var(--border)}
+  .compliance-grid{grid-template-columns:1fr}
+  .persona-grid{grid-template-columns:repeat(2,1fr)}
+  .metrics-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:640px){
+  .hero-h1{font-size:52px}
+  .agents-grid,.persona-grid{grid-template-columns:1fr}
+  .pipeline-flow{grid-template-columns:repeat(2,1fr)}
+  .ws-grid{grid-template-columns:1fr}
+  footer{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
-<!-- CANVAS BACKGROUND -->
-<canvas id="bg-canvas"></canvas>
-
-<!-- MOBILE NAV OVERLAY -->
-<div id="mobile-overlay" style="display:none;position:fixed;inset:0;background:rgba(3,4,10,.97);z-index:997;padding:2rem;flex-direction:column;gap:1.5rem">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
-    <a href="#" class="logo"><svg width="34" height="34" viewBox="0 0 80 80" fill="none" style="flex-shrink:0"><defs><linearGradient id="lm1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00e5ff"/><stop offset="100%" stop-color="#00ff9d"/></linearGradient><linearGradient id="lm2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00e5ff" stop-opacity=".2"/><stop offset="100%" stop-color="#00ff9d" stop-opacity=".07"/></linearGradient></defs><path d="M40 6 L69 22 L69 52 Q69 68 40 78 Q11 68 11 52 L11 22 Z" fill="url(#lm2)" stroke="url(#lm1)" stroke-width="1.5"/><line x1="40" y1="42" x2="40" y2="26" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="53.1" y2="32.1" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="55.5" y2="46.8" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="46.8" y2="57.6" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="33.2" y2="57.6" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="24.5" y2="46.8" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="26.9" y2="32.1" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><circle cx="40" cy="26" r="3" fill="#00ff9d"/><circle cx="53.1" cy="32.1" r="3" fill="#00e5ff"/><circle cx="55.5" cy="46.8" r="3" fill="#00e5ff"/><circle cx="46.8" cy="57.6" r="3" fill="#00e5ff"/><circle cx="33.2" cy="57.6" r="3" fill="#00e5ff"/><circle cx="24.5" cy="46.8" r="3" fill="#00e5ff"/><circle cx="26.9" cy="32.1" r="3" fill="#00e5ff"/><circle cx="40" cy="42" r="4.5" fill="url(#lm1)"/><circle cx="40" cy="42" r="2" fill="#03040a"/></svg><span class="logo-text">Trust<span>Nova</span>Ops</span></a>
-    <button onclick="closeMobile()" style="background:none;border:none;color:var(--text-primary);font-size:1.6rem;cursor:pointer">×</button>
+<!-- ════════════ NAV ════════════ -->
+<nav>
+<a href="/" class="nav-logo">
+  <svg width="28" height="28" viewBox="0 0 52 52" fill="none" style="flex-shrink:0"><polygon points="26,3 45,14 45,38 26,49 7,38 7,14" fill="none" stroke="#e8a020" stroke-width="1.8" opacity=".5"/><line x1="26" y1="26" x2="37" y2="20" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="37" y2="32" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="38" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="32" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="20" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="14" stroke="#e8a020" stroke-width="1" opacity=".38"/><circle cx="37" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="37" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="38" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="14" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="26" r="4" fill="#e8a020"/></svg>
+  TrustNova<span>Ops</span>
+</a>
+  <div class="nav-center">
+    <a href="/warden" class="nav-link">WARDEN</a>
+    <a href="/platform" class="nav-link">Platform</a>
+    <a href="#how-it-works" class="nav-link">How It Works</a>
+    <a href="#compliance" class="nav-link">Compliance</a>
+    <a href="#personas" class="nav-link">Who It's For</a>
   </div>
-  <div style="display:flex;flex-direction:column;gap:.5rem">
-    <a href="#agents" onclick="closeMobile()" style="padding:.875rem 1rem;color:var(--text-secondary);text-decoration:none;font-size:1rem;border-bottom:1px solid var(--border-subtle)">AI Agents</a>
-    <a href="#agent007" onclick="closeMobile()" style="padding:.875rem 1rem;color:var(--text-secondary);text-decoration:none;font-size:1rem;border-bottom:1px solid var(--border-subtle)">Agent 007: ATO</a>
-    <a href="#demo" onclick="closeMobile()" style="padding:.875rem 1rem;color:var(--text-secondary);text-decoration:none;font-size:1rem;border-bottom:1px solid var(--border-subtle)">Live Demo</a>
-    <a href="#integrations" onclick="closeMobile()" style="padding:.875rem 1rem;color:var(--text-secondary);text-decoration:none;font-size:1rem;border-bottom:1px solid var(--border-subtle)">Integrations</a>
-    <a href="#pricing" onclick="closeMobile()" style="padding:.875rem 1rem;color:var(--text-secondary);text-decoration:none;font-size:1rem;border-bottom:1px solid var(--border-subtle)">Pricing</a>
-    <a href="#leadmagnet" onclick="closeMobile()" style="padding:.875rem 1rem;color:var(--text-secondary);text-decoration:none;font-size:1rem;border-bottom:1px solid var(--border-subtle)">Free CMMC Checklist</a>
-  </div>
-  <div style="display:flex;flex-direction:column;gap:.75rem;margin-top:auto">
-    <button class="btn btn-secondary btn-lg" onclick="openModal('demo');closeMobile()">Book Assessment Call</button>
-    <button class="btn btn-primary btn-lg" onclick="openModal('trial');closeMobile()">Start Free Trial</button>
-  </div>
-</div>
-
-<!-- BANNER -->
-<div id="banner">
-  <strong>⚡ CMMC 2.0 is now enforced in new DoD contracts.</strong> Defense contractors without Level 2 certification risk losing bids.
-  <a href="#leadmagnet">Get your readiness score →</a>
-  <button id="banner-close" onclick="this.closest('#banner').style.display='none'">×</button>
-</div>
-
-<!-- NAV -->
-<nav class="nav" id="mainNav">
-  <div class="nav-inner">
-    <a href="#" class="logo"><svg width="34" height="34" viewBox="0 0 80 80" fill="none" style="flex-shrink:0"><defs><linearGradient id="ln1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00e5ff"/><stop offset="100%" stop-color="#00ff9d"/></linearGradient><linearGradient id="ln2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00e5ff" stop-opacity=".2"/><stop offset="100%" stop-color="#00ff9d" stop-opacity=".07"/></linearGradient></defs><path d="M40 6 L69 22 L69 52 Q69 68 40 78 Q11 68 11 52 L11 22 Z" fill="url(#ln2)" stroke="url(#ln1)" stroke-width="1.5"/><line x1="40" y1="42" x2="40" y2="26" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="53.1" y2="32.1" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="55.5" y2="46.8" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="46.8" y2="57.6" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="33.2" y2="57.6" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="24.5" y2="46.8" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="26.9" y2="32.1" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><circle cx="40" cy="26" r="3" fill="#00ff9d"/><circle cx="53.1" cy="32.1" r="3" fill="#00e5ff"/><circle cx="55.5" cy="46.8" r="3" fill="#00e5ff"/><circle cx="46.8" cy="57.6" r="3" fill="#00e5ff"/><circle cx="33.2" cy="57.6" r="3" fill="#00e5ff"/><circle cx="24.5" cy="46.8" r="3" fill="#00e5ff"/><circle cx="26.9" cy="32.1" r="3" fill="#00e5ff"/><circle cx="40" cy="42" r="4.5" fill="url(#ln1)"/><circle cx="40" cy="42" r="2" fill="#03040a"/></svg><span class="logo-text">Trust<span>Nova</span>Ops</span></a>
-    <ul class="nav-links">
-      <li>
-        <button>Platform
-          <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
-        </button>
-        <div class="dropdown">
-          <a href="#agents">AI Agent Ecosystem <span>7 purpose-built agents</span></a>
-          <a href="#agent007">Agent 007: ATO Streamliner <span>AI system ATO automation</span></a>
-          <div class="dropdown-divider"></div>
-          <a href="#integrations">Integrations <span>GitHub, AWS, Azure, Okta + more</span></a>
-          <a href="#demo">Live Demo <span>Real-time compliance dashboards</span></a>
-        </div>
-      </li>
-      <li>
-        <button>Solutions
-          <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
-        </button>
-        <div class="dropdown">
-          <a href="#agents">For CISOs & Security Teams <span>Technical depth, agent architecture</span></a>
-          <a href="#agents">For Compliance Managers <span>Evidence automation, audit readiness</span></a>
-          <a href="#agents">For CEOs & CFOs <span>ROI, contract risk, cost reduction</span></a>
-          <div class="dropdown-divider"></div>
-          <a href="#agents">Starting CMMC Journey <span>Gap assessment & roadmap</span></a>
-          <a href="#agents">Pre-Audit Readiness <span>C3PAO preparation & evidence</span></a>
-          <a href="#agents">Continuous Monitoring <span>Real-time posture management</span></a>
-        </div>
-      </li>
-      <li>
-        <button>Resources
-          <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
-        </button>
-        <div class="dropdown">
-          <a href="#leadmagnet">Free CMMC Checklist <span>47-point readiness assessment</span></a>
-          <a href="#faq">CMMC 2.0 FAQ <span>Common questions answered</span></a>
-          <a href="#demo">ROI Calculator <span>Estimate your savings</span></a>
-        </div>
-      </li>
-      <li><a href="#pricing">Pricing</a></li>
-    </ul>
-    <div class="nav-actions">
-      <button class="btn btn-secondary btn-sm" onclick="openModal('demo')">Book Assessment Call</button>
-      <button class="btn btn-primary btn-sm" onclick="openModal('trial')">Free Trial</button>
-    </div>
-    <button class="mobile-menu-btn" onclick="openMobile()" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
+  <div class="nav-right">
+    <a href="/platform" class="btn-nav-ghost">See Demo</a>
+    <a href="/demo" class="btn-nav-cta">Request Demo</a>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="container">
-    <div class="hero-grid">
-      <div class="hero-content reveal">
-        <div class="hero-badge"><span class="dot"></span>CMMC 2.0 Enforced · SOC 2 Type II Certified</div>
-        <h1>Achieve CMMC Level 2<br><span class="gradient-text">in Weeks, Not Months</span></h1>
-        <p class="hero-sub">7 autonomous AI agents handle evidence collection, code audits, access control, and ATO packages — so your team spends hours on compliance, not months.</p>
-        <div class="hero-cta">
-          <button class="btn btn-primary btn-lg" onclick="openModal('trial')">Start 14-Day Free Trial</button>
-          <button class="btn btn-secondary btn-lg" onclick="openModal('demo')">Book Assessment Call</button>
-        </div>
-        <div class="hero-stats">
-          <div>
-            <div class="stat-val">80%</div>
-            <div class="stat-label">Cost Reduction</div>
-          </div>
-          <div class="stat-divider"></div>
-          <div>
-            <div class="stat-val">&lt;5s</div>
-            <div class="stat-label">ATO Packages</div>
-          </div>
-          <div class="stat-divider"></div>
-          <div>
-            <div class="stat-val">110+</div>
-            <div class="stat-label">Controls Covered</div>
-          </div>
-          <div class="stat-divider"></div>
-          <div>
-            <div class="stat-val">90%</div>
-            <div class="stat-label">Time Saved</div>
-          </div>
+<!-- ════════════ HERO ════════════ -->
+<div class="z1" style="position:relative">
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-eyebrow">Agentic DevSecOps Control Tower</div>
+  <h1 class="hero-h1">CONTROLLED<br><span class="line2">AUTOMATION.</span><br>AUDIT-READY<br>EVIDENCE.</h1>
+  <div class="hero-tagline">From commit to compliance — without the manual overhead.</div>
+  <p class="hero-desc">
+    TrustNovaOps deploys <strong>seven specialized AI agents</strong> across your pipelines, endpoints, cloud, and repositories. They inspect, classify, score risk, and enforce policy — then hand off to humans for approval when it matters. Every action generates <strong>timestamped, framework-mapped compliance evidence</strong> automatically.
+  </p>
+  <div class="hero-btns">
+    <a href="/platform" class="btn-primary">See the Platform Live</a>
+    <a href="/demo" class="btn-secondary">Request a Demo →</a>
+  </div>
+  <div class="hero-proof">
+    <div class="proof-stat">
+      <div class="proof-num">&lt;90ms</div>
+      <div class="proof-label">Mean time to contain</div>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-stat">
+      <div class="proof-num">83%</div>
+      <div class="proof-label">Incidents auto-resolved</div>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-stat">
+      <div class="proof-num">7</div>
+      <div class="proof-label">Specialized agents</div>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-stat">
+      <div class="proof-num">24/7</div>
+      <div class="proof-label">Continuous evidence generation</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════ TRUST STRIP ════════════ -->
+<div class="trust-strip z1">
+  <div class="trust-label">Framework coverage</div>
+  <div class="trust-items">
+    <div class="trust-item">CMMC 2.0</div>
+    <div class="trust-item">NIST 800-53 Rev 5</div>
+    <div class="trust-item">FedRAMP High / Moderate</div>
+    <div class="trust-item">HIPAA / HITECH</div>
+    <div class="trust-item">DFARS 252.204-7012</div>
+    <div class="trust-item">RMF / ATO</div>
+    <div class="trust-item">Zero Trust Architecture</div>
+    <div class="trust-item">SOC 2 Type II</div>
+  </div>
+</div>
+
+<!-- ════════════ THE PROBLEM ════════════ -->
+<div class="section-divider"></div>
+<div class="dark-section">
+<div class="section">
+  <div class="section-eyebrow">Section 01 — The Problem</div>
+  <h2 class="section-h2">SECURITY TEAMS ARE<br>DROWNING IN <em>MANUAL WORK.</em></h2>
+  <p class="section-desc">Federal contractors, defense programs, and enterprise DevSecOps teams face the same structural problem: the tools they have were not designed to work together — and every gap between them is a compliance liability.</p>
+
+  <div class="problem-grid">
+    <div class="problem-cell">
+      <div class="prob-num">PROBLEM 01</div>
+      <div class="prob-title">Pipelines have no security spine</div>
+      <div class="prob-text">CI/CD pipelines ship code, containers, and IaC daily — but most security reviews happen after deployment, if at all. Secrets get committed. Vulnerable base images ship. Misconfigurations go live. Nobody's watching the build.</div>
+    </div>
+    <div class="problem-cell">
+      <div class="prob-num">PROBLEM 02</div>
+      <div class="prob-title">Compliance evidence is assembled manually — and is instantly stale</div>
+      <div class="prob-text">ISSOs and compliance teams spend weeks assembling audit packages from screenshots, spreadsheets, and email threads. By the time the package is ready, the evidence is already months out of date. CMMC assessments and FedRAMP reviews shouldn't work this way.</div>
+    </div>
+    <div class="problem-cell">
+      <div class="prob-num">PROBLEM 03</div>
+      <div class="prob-title">DLP tools scan. They don't reason.</div>
+      <div class="prob-text">Traditional DLP sees patterns. It doesn't understand context — who touched the file, where it's going, what compliance control it implicates, or what the risk delta is. The result is either too many false positives or critical exposure going undetected.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════ THE PLATFORM ════════════ -->
+<div class="section-divider"></div>
+<div class="z1">
+<div class="section">
+  <div class="section-eyebrow">Section 02 — The Platform</div>
+  <h2 class="section-h2">AN AGENTIC OPERATIONS<br>LAYER FOR YOUR ENTIRE<br>SECURITY STACK.</h2>
+
+  <div class="platform-layout">
+    <div class="platform-points">
+      <div class="platform-point">
+        <div class="pp-check">◈</div>
+        <div>
+          <div class="pp-title">Seven purpose-built AI agents, one coordinated platform</div>
+          <div class="pp-text">Each Nova agent specializes in a specific security domain — endpoint control, DLP, threat response, cloud, audit, compliance, and data protection. They share telemetry and coordinate through the Nova Orchestrator, so no event is processed in isolation.</div>
         </div>
       </div>
-      <div class="hero-visual reveal reveal-delay-2">
-        <div class="terminal-wrap">
-          <div class="terminal">
-            <div class="term-bar">
-              <div class="term-dots"><span></span><span></span><span></span></div>
-              <div class="term-title">trustnova-cli · compliance-scan</div>
-              <div class="term-status">LIVE</div>
-            </div>
-            <div class="term-body" id="terminal"></div>
-          </div>
+      <div class="platform-point">
+        <div class="pp-check">◈</div>
+        <div>
+          <div class="pp-title">Continuous pipeline, container, and infrastructure inspection</div>
+          <div class="pp-text">TrustNovaOps embeds into your CI/CD workflow. Every commit, pull request, build artifact, Dockerfile, and IaC template is inspected before promotion. Policy gates block what shouldn't ship. Evidence is captured for what does.</div>
+        </div>
+      </div>
+      <div class="platform-point">
+        <div class="pp-check">◈</div>
+        <div>
+          <div class="pp-title">Compliance evidence generated as a byproduct — not an afterthought</div>
+          <div class="pp-text">Every agent action automatically produces timestamped, framework-mapped evidence for CMMC 2.0, NIST 800-53, FedRAMP, HIPAA, and DFARS. When the auditor arrives, the package already exists.</div>
+        </div>
+      </div>
+      <div class="platform-point">
+        <div class="pp-check">◈</div>
+        <div>
+          <div class="pp-title">Humans stay in control — always</div>
+          <div class="pp-text">For known threats, agents act. For ambiguous or high-impact situations, TrustNovaOps assembles full context and routes to the right person for approval. One-click decide. All decisions logged. Nothing happens without appropriate human oversight.</div>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- CUSTOMER LOGOS -->
-<div class="logos-section">
-  <div class="container">
-    <div class="logos-inner">
-      <span class="logos-label">Trusted by defense contractors</span>
-      <div class="logos-row">
-        <div class="company-logo"><div class="company-logo-mark"><svg viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="8" width="14" height="14" rx="3"/><text x="20" y="22" font-family="Arial" font-weight="700" font-size="15">APEX DEFENSE</text></svg></div></div>
-        <div class="company-logo"><div class="company-logo-mark"><svg viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="15" r="7"/><text x="28" y="22" font-family="Arial" font-weight="700" font-size="15">MERIDIAN AERO</text></svg></div></div>
-        <div class="company-logo"><div class="company-logo-mark"><svg viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg"><polygon points="14,3 25,24 3,24"/><text x="30" y="22" font-family="Arial" font-weight="700" font-size="15">SECURELOGIX</text></svg></div></div>
-        <div class="company-logo"><div class="company-logo-mark"><svg viewBox="0 0 110 30" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="5" width="18" height="20" rx="2"/><rect x="4" y="9" width="10" height="12" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="25" y="22" font-family="Arial" font-weight="700" font-size="15">VAULTEX SYS</text></svg></div></div>
-        <div class="company-logo"><div class="company-logo-mark"><svg viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg"><path d="M4 15 L14 4 L24 15 L14 26 Z"/><text x="30" y="22" font-family="Arial" font-weight="700" font-size="15">IRONCLAD DIB</text></svg></div></div>
+    <!-- ARCHITECTURE DIAGRAM -->
+    <div class="arch-diagram">
+      <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--border)">Platform Architecture</div>
+
+      <div class="arch-layer">
+        <div class="arch-layer-title">Input Sources</div>
+        <div class="arch-layer-body">
+          <span class="arch-chip">GitHub / GitLab</span>
+          <span class="arch-chip">CI/CD Pipelines</span>
+          <span class="arch-chip">AWS / Azure / GCP</span>
+          <span class="arch-chip">Endpoints</span>
+          <span class="arch-chip">Docker / K8s</span>
+          <span class="arch-chip">SIEM / Logs</span>
+          <span class="arch-chip">Microsoft 365</span>
+        </div>
+      </div>
+      <div class="arch-arrow">↓ telemetry streams ↓</div>
+      <div class="arch-layer" style="border-color:rgba(232,160,32,.3)">
+        <div class="arch-layer-title" style="color:var(--amber)">Nova Agent Orchestrator</div>
+        <div class="arch-layer-body">
+          <span class="arch-chip highlight">SENTINEL</span>
+          <span class="arch-chip highlight">VAULT</span>
+          <span class="arch-chip highlight">STRIKER</span>
+          <span class="arch-chip highlight">NIMBUS</span>
+          <span class="arch-chip highlight">LEDGER</span>
+          <span class="arch-chip highlight">ACCORD</span>
+          <span class="arch-chip highlight">WARDEN</span>
+        </div>
+      </div>
+      <div class="arch-arrow">↓ scored findings → human approval → action ↓</div>
+      <div class="arch-layer">
+        <div class="arch-layer-title">Policy + Evidence + Response</div>
+        <div class="arch-layer-body">
+          <span class="arch-chip">Policy Gates</span>
+          <span class="arch-chip">Risk Scores</span>
+          <span class="arch-chip">HITL Approval</span>
+          <span class="arch-chip">Evidence Packages</span>
+          <span class="arch-chip">Remediation</span>
+        </div>
+      </div>
+      <div class="arch-arrow">↓ outputs ↓</div>
+      <div class="arch-layer">
+        <div class="arch-layer-title">Delivery</div>
+        <div class="arch-layer-body">
+          <span class="arch-chip">CMMC Audit Packets</span>
+          <span class="arch-chip">FedRAMP ConMon</span>
+          <span class="arch-chip">Executive Dashboard</span>
+          <span class="arch-chip">Splunk / SIEM</span>
+          <span class="arch-chip">ServiceNow</span>
+        </div>
       </div>
     </div>
   </div>
 </div>
+</div>
 
-<!-- TRUST BADGES -->
-<div class="trust-section">
-  <div class="container">
-    <div class="trust-inner">
-      <span class="trust-label">Frameworks & Standards</span>
-      <div class="trust-badges">
-        <div class="trust-badge"><div class="trust-badge-name">CMMC</div><div class="trust-badge-sub">Level 1 & 2</div></div>
-        <div class="trust-badge"><div class="trust-badge-name">NIST</div><div class="trust-badge-sub">800-171 / 800-37</div></div>
-        <div class="trust-badge"><div class="trust-badge-name">SOC 2</div><div class="trust-badge-sub">Type II Certified</div></div>
-        <div class="trust-badge"><div class="trust-badge-name">FedRAMP</div><div class="trust-badge-sub">In Process</div></div>
-        <div class="trust-badge"><div class="trust-badge-name">DFARS</div><div class="trust-badge-sub">252.204-7012</div></div>
-        <div class="trust-badge"><div class="trust-badge-name">NIST AI</div><div class="trust-badge-sub">RMF 1.0</div></div>
+<!-- ════════════ HOW IT WORKS ════════════ -->
+<div class="section-divider"></div>
+<div class="dark-section">
+<div class="section" id="how-it-works">
+  <div class="section-eyebrow">Section 03 — How It Works</div>
+  <h2 class="section-h2">COMMIT TO AUDIT PACKET<br>IN <em>ONE CLOSED LOOP.</em></h2>
+  <p class="section-desc">TrustNovaOps intercepts the pipeline at every stage — from the first commit to the final deployment receipt. Every transition generates evidence. Every risk generates a score. Every high-stakes decision routes to a human.</p>
+
+  <div class="pipeline-flow">
+    <div class="pipe-step">
+      <div class="pipe-step-num">01</div>
+      <div class="pipe-step-name">COMMIT</div>
+      <div class="pipe-step-text">Developer pushes code. WARDEN and LEDGER begin scanning immediately — secrets, PII, credentials, CUI patterns.</div>
+      <div class="pipe-connector">›</div>
+    </div>
+    <div class="pipe-step">
+      <div class="pipe-step-num">02</div>
+      <div class="pipe-step-name">INSPECT</div>
+      <div class="pipe-step-text">Agents inspect the PR, Dockerfile, IaC templates, and build artifacts for sensitive data, misconfigs, and policy violations.</div>
+      <div class="pipe-connector">›</div>
+    </div>
+    <div class="pipe-step">
+      <div class="pipe-step-num">03</div>
+      <div class="pipe-step-name">SCORE</div>
+      <div class="pipe-step-text">Nova Orchestrator assigns a risk score to the build. Weighted by finding severity, data type, destination, and compliance impact.</div>
+      <div class="pipe-connector">›</div>
+    </div>
+    <div class="pipe-step gate">
+      <div class="pipe-step-num">04</div>
+      <div class="pipe-step-name">GATE</div>
+      <div class="pipe-step-text">Policy gates evaluate the score. Builds above threshold are blocked. Humans are notified with full context for review.</div>
+      <div class="pipe-connector">›</div>
+    </div>
+    <div class="pipe-step">
+      <div class="pipe-step-num">05</div>
+      <div class="pipe-step-name">EVIDENCE</div>
+      <div class="pipe-step-text">ACCORD captures findings, scan results, approvals, and policy mappings as timestamped evidence entries for CMMC / FedRAMP.</div>
+      <div class="pipe-connector">›</div>
+    </div>
+    <div class="pipe-step">
+      <div class="pipe-step-num">06</div>
+      <div class="pipe-step-name">APPROVE</div>
+      <div class="pipe-step-text">Human analyst reviews flagged builds with context pre-assembled. One-click: approve, reject, or escalate. Decision is logged.</div>
+      <div class="pipe-connector">›</div>
+    </div>
+    <div class="pipe-step">
+      <div class="pipe-step-num">07</div>
+      <div class="pipe-step-name">DEPLOY</div>
+      <div class="pipe-step-text">Approved builds proceed. Rejected builds are blocked with full remediation guidance returned to the developer.</div>
+      <div class="pipe-connector">›</div>
+    </div>
+    <div class="pipe-step">
+      <div class="pipe-step-num">08</div>
+      <div class="pipe-step-name">AUDIT</div>
+      <div class="pipe-step-text">Audit packet is ready. Evidence is timestamped, scoped to the control framework, and exportable for ISSO or C3PAO review.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════ AGENT FLEET ════════════ -->
+<div class="section-divider"></div>
+<div class="z1">
+<div class="section" id="agents">
+  <div class="section-eyebrow">Section 04 — Agent Fleet</div>
+  <h2 class="section-h2">SEVEN AGENTS.<br>ONE MISSION.<br><em>ZERO GAPS.</em></h2>
+  <p class="section-desc">Each Nova agent is purpose-built for its domain. Together they share telemetry, coordinate findings, and act as a unified security control layer — not seven separate products bolted together.</p>
+
+  <div class="agents-grid">
+    <div class="agent-card" style="--ac:#00b090">
+      <div class="ac-num">AGT-01 // ENDPOINT</div>
+      <div class="ac-name" style="color:#00b090">SENTINEL</div>
+      <div class="ac-tag">Device & Endpoint Control</div>
+      <div class="ac-desc">Monitors every USB, Bluetooth, CD, and peripheral in real time. Locks rogue devices in under 90ms.</div>
+      <div class="ac-caps">
+        <div class="ac-cap" style="--ac:#00b090">USB port lockdown & remote unlock</div>
+        <div class="ac-cap" style="--ac:#00b090">Device blocklist enforcement</div>
+        <div class="ac-cap" style="--ac:#00b090">Executable-on-USB prevention</div>
+      </div>
+    </div>
+    <div class="agent-card" style="--ac:#3090e0">
+      <div class="ac-num">AGT-02 // DATA</div>
+      <div class="ac-name" style="color:#3090e0">VAULT</div>
+      <div class="ac-tag">Content-Aware DLP</div>
+      <div class="ac-desc">Classifies PII, ePHI, and PCI data. Blocks exfiltration through email, print, and cloud sync before it leaves.</div>
+      <div class="ac-caps">
+        <div class="ac-cap" style="--ac:#3090e0">Automated PII / ePHI / PCI discovery</div>
+        <div class="ac-cap" style="--ac:#3090e0">Outlook attachment interception</div>
+        <div class="ac-cap" style="--ac:#3090e0">Copy / print / share enforcement</div>
+      </div>
+    </div>
+    <div class="agent-card" style="--ac:#e05050">
+      <div class="ac-num">AGT-03 // THREAT</div>
+      <div class="ac-name" style="color:#e05050">STRIKER</div>
+      <div class="ac-tag">Active Threat Response</div>
+      <div class="ac-desc">Isolates ransomware-infected endpoints at first IOC. Executes custom remediation scripts without waiting for human escalation.</div>
+      <div class="ac-caps">
+        <div class="ac-cap" style="--ac:#e05050">Ransomware isolation at inception</div>
+        <div class="ac-cap" style="--ac:#e05050">Custom script remediation</div>
+        <div class="ac-cap" style="--ac:#e05050">IOC-based automatic response</div>
+      </div>
+    </div>
+    <div class="agent-card" style="--ac:#e0c040">
+      <div class="ac-num">AGT-04 // CLOUD</div>
+      <div class="ac-name" style="color:#e0c040">NIMBUS</div>
+      <div class="ac-tag">Cloud & Shadow IT</div>
+      <div class="ac-desc">Audits shadow app usage and blocks malware, phishing, and spyware at the URL layer before it reaches the endpoint.</div>
+      <div class="ac-caps">
+        <div class="ac-cap" style="--ac:#e0c040">Shadow app discovery & risk scoring</div>
+        <div class="ac-cap" style="--ac:#e0c040">URL-layer malware/phishing block</div>
+        <div class="ac-cap" style="--ac:#e0c040">SharePoint, OneDrive auditing</div>
+      </div>
+    </div>
+    <div class="agent-card" style="--ac:#a060e0">
+      <div class="ac-num">AGT-05 // AUDIT</div>
+      <div class="ac-name" style="color:#a060e0">LEDGER</div>
+      <div class="ac-tag">Immutable Audit Trail</div>
+      <div class="ac-desc">Logs every file, print, email, and browser action across Windows endpoints. Forensics-ready from day one.</div>
+      <div class="ac-caps">
+        <div class="ac-cap" style="--ac:#a060e0">Real-time Windows file audit</div>
+        <div class="ac-cap" style="--ac:#a060e0">Print server monitoring</div>
+        <div class="ac-cap" style="--ac:#a060e0">Browser upload/download tracking</div>
+      </div>
+    </div>
+    <div class="agent-card" style="--ac:#e8a020">
+      <div class="ac-num">AGT-06 // COMPLIANCE</div>
+      <div class="ac-name" style="color:#e8a020">ACCORD</div>
+      <div class="ac-tag">Compliance Evidence Engine</div>
+      <div class="ac-desc">Maps every agent action to CMMC 2.0, NIST 800-53, FedRAMP, HIPAA, and DFARS. Auto-generates evidence packages continuously.</div>
+      <div class="ac-caps">
+        <div class="ac-cap">CMMC / FedRAMP / HIPAA mapping</div>
+        <div class="ac-cap">Automated evidence collection</div>
+        <div class="ac-cap">Audit-ready package export</div>
+      </div>
+    </div>
+    <div class="agent-card new-badge" style="--ac:#e86020;grid-column:span 2">
+      <div class="ac-num">AGT-07 // DATA PROTECTION</div>
+      <div class="ac-name" style="color:#e86020;font-size:32px">WARDEN</div>
+      <div class="ac-tag">Agentic DLP + Data Governance + Compliance Evidence</div>
+      <div class="ac-desc">The missing link in the Nova fleet. WARDEN continuously discovers, classifies, and monitors sensitive data across cloud storage, repositories, CI/CD pipelines, logs, and endpoints — then generates the compliance evidence to prove it.</div>
+      <div class="ac-caps" style="display:grid;grid-template-columns:1fr 1fr;gap:4px 20px">
+        <div class="ac-cap" style="--ac:#e86020">CUI / PII / PHI / PCI / secrets detection</div>
+        <div class="ac-cap" style="--ac:#e86020">Source code & repo scanning</div>
+        <div class="ac-cap" style="--ac:#e86020">CI/CD pipeline inspection</div>
+        <div class="ac-cap" style="--ac:#e86020">Insider risk behavioral scoring</div>
+        <div class="ac-cap" style="--ac:#e86020">Policy-as-code enforcement (YAML/Rego)</div>
+        <div class="ac-cap" style="--ac:#e86020">Palantir Foundry integration</div>
+      </div>
+      <div style="margin-top:18px">
+        <a href="/warden" style="font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#e86020;border-bottom:1px solid rgba(232,96,32,.3);padding-bottom:2px">Full WARDEN Brief →</a>
       </div>
     </div>
   </div>
 </div>
-
-<!-- PROBLEM / SOLUTION -->
-<section class="section-sm" style="position:relative;z-index:1">
-  <div class="container">
-    <div class="section-header center reveal">
-      <div class="label">The Reality Check</div>
-      <h2 class="section-title">Manual Compliance Is Killing Your Team</h2>
-      <p class="section-sub">Defense contractors spend an average of 11 weeks per year on compliance tasks. That ends with TrustNovaOps.</p>
-    </div>
-    <div class="ps-grid reveal reveal-delay-1">
-      <div class="ps-col before">
-        <div class="ps-header">
-          <div class="ps-icon">❌</div>
-          <h3>Without TrustNovaOps</h3>
-        </div>
-        <div class="ps-item"><span class="ps-item-icon">📋</span>Spreadsheets tracking 110 NIST controls manually</div>
-        <div class="ps-item"><span class="ps-item-icon">📸</span>Screenshots and email attachments as "evidence"</div>
-        <div class="ps-item"><span class="ps-item-icon">💸</span>$200K–$500K in consultant fees per certification cycle</div>
-        <div class="ps-item"><span class="ps-item-icon">⏱</span>6–12 months to prepare for a C3PAO audit</div>
-        <div class="ps-item"><span class="ps-item-icon">😰</span>Last-minute scramble every time an assessor arrives</div>
-        <div class="ps-item"><span class="ps-item-icon">🚫</span>Lost DoD contracts due to failed or expired certification</div>
-      </div>
-      <div class="ps-col after">
-        <div class="ps-header">
-          <div class="ps-icon">✅</div>
-          <h3>With TrustNovaOps</h3>
-        </div>
-        <div class="ps-item"><span class="ps-item-icon">🤖</span>7 AI agents continuously monitor all 110 controls</div>
-        <div class="ps-item"><span class="ps-item-icon">⚡</span>Automated evidence pulled directly from your stack</div>
-        <div class="ps-item"><span class="ps-item-icon">💰</span>80% cost reduction vs. traditional consulting approach</div>
-        <div class="ps-item"><span class="ps-item-icon">🏁</span>From first scan to CMMC-ready in as little as 8 weeks</div>
-        <div class="ps-item"><span class="ps-item-icon">✅</span>Always audit-ready — real-time compliance score, always on</div>
-        <div class="ps-item"><span class="ps-item-icon">🎯</span>Win more DoD bids with a certified, verifiable posture</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- AGENTS -->
-<section class="section" id="agents">
-  <div class="container">
-    <div class="section-header center reveal">
-      <div class="label">AI Agent Ecosystem</div>
-      <h2 class="section-title">Seven Specialists.<br><span class="gradient-text">One Mission.</span></h2>
-      <p class="section-sub">Each agent is purpose-built for a specific security domain, running autonomously 24/7. No human handoffs. No gaps.</p>
-    </div>
-    <div class="agents-grid">
-      <div class="agent-card reveal reveal-delay-1">
-        <div class="agent-card-inner">
-          <div class="agent-top"><span class="agent-id-badge">Agent 001</span><span class="agent-status-dot">Active</span></div>
-          <div class="agent-name">Compliance Scanner</div>
-          <div class="agent-desc">Continuous CMMC readiness assessment with automated evidence collection across all 110 Level 2 controls and 14 security domains.</div>
-          <div class="agent-metrics">
-            <div><div class="agent-metric-val">847</div><div class="agent-metric-label">Scans Today</div></div>
-            <div><div class="agent-metric-val">99.2%</div><div class="agent-metric-label">Uptime</div></div>
-            <div><div class="agent-metric-val">23</div><div class="agent-metric-label">Findings</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="agent-card reveal reveal-delay-2">
-        <div class="agent-card-inner">
-          <div class="agent-top"><span class="agent-id-badge">Agent 002</span><span class="agent-status-dot">Active</span></div>
-          <div class="agent-name">Code Auditor</div>
-          <div class="agent-desc">AI-powered static and dynamic analysis that catches security vulnerabilities and compliance issues before they reach production.</div>
-          <div class="agent-metrics">
-            <div><div class="agent-metric-val">1.2M</div><div class="agent-metric-label">Lines Scanned</div></div>
-            <div><div class="agent-metric-val">156</div><div class="agent-metric-label">PRs Reviewed</div></div>
-            <div><div class="agent-metric-val">12</div><div class="agent-metric-label">Critical</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="agent-card reveal reveal-delay-3">
-        <div class="agent-card-inner">
-          <div class="agent-top"><span class="agent-id-badge">Agent 003</span><span class="agent-status-dot">Active</span></div>
-          <div class="agent-name">Infrastructure Guardian</div>
-          <div class="agent-desc">Multi-cloud security posture management with automated drift detection, configuration enforcement, and instant remediation.</div>
-          <div class="agent-metrics">
-            <div><div class="agent-metric-val">342</div><div class="agent-metric-label">Resources</div></div>
-            <div><div class="agent-metric-val">98.7%</div><div class="agent-metric-label">Compliant</div></div>
-            <div><div class="agent-metric-val">5</div><div class="agent-metric-label">Drifts</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="agent-card reveal reveal-delay-1">
-        <div class="agent-card-inner">
-          <div class="agent-top"><span class="agent-id-badge">Agent 004</span><span class="agent-status-dot">Active</span></div>
-          <div class="agent-name">Access Controller</div>
-          <div class="agent-desc">Zero-trust identity governance with continuous verification, least-privilege enforcement, and privileged access monitoring.</div>
-          <div class="agent-metrics">
-            <div><div class="agent-metric-val">2,847</div><div class="agent-metric-label">Users</div></div>
-            <div><div class="agent-metric-val">156</div><div class="agent-metric-label">Roles</div></div>
-            <div><div class="agent-metric-val">23</div><div class="agent-metric-label">Elevated</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="agent-card reveal reveal-delay-2">
-        <div class="agent-card-inner">
-          <div class="agent-top"><span class="agent-id-badge">Agent 005</span><span class="agent-status-dot">Active</span></div>
-          <div class="agent-name">Policy Engine</div>
-          <div class="agent-desc">Policy-as-code generation aligned with CMMC requirements, auto-mapped to NIST 800-171 controls with automatic enforcement and versioning.</div>
-          <div class="agent-metrics">
-            <div><div class="agent-metric-val">89</div><div class="agent-metric-label">Policies</div></div>
-            <div><div class="agent-metric-val">12</div><div class="agent-metric-label">Updated</div></div>
-            <div><div class="agent-metric-val">3</div><div class="agent-metric-label">Pending</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="agent-card reveal reveal-delay-3">
-        <div class="agent-card-inner">
-          <div class="agent-top"><span class="agent-id-badge">Agent 006</span><span class="agent-status-dot">Active</span></div>
-          <div class="agent-name">Pipeline Orchestrator</div>
-          <div class="agent-desc">Secure CI/CD integration with automated security gates for GitHub, GitLab, and Azure DevOps. Compliance-as-code baked into every deploy.</div>
-          <div class="agent-metrics">
-            <div><div class="agent-metric-val">1,247</div><div class="agent-metric-label">Pipelines</div></div>
-            <div><div class="agent-metric-val">98.9%</div><div class="agent-metric-label">Pass Rate</div></div>
-            <div><div class="agent-metric-val">4.2s</div><div class="agent-metric-label">Avg Scan</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- AGENT 007 FEATURE SECTION -->
-<section class="agent007-section" id="agent007">
-  <div class="agent007-bg"></div>
-  <div class="agent007-border-top"></div>
-  <div class="agent007-border-bottom"></div>
-  <div class="container agent007-inner">
-    <div class="agent007-grid">
-      <div class="reveal">
-        <div class="agent007-classified">▲ AGENT 007 — CLASSIFIED CAPABILITY</div>
-        <h2 class="agent007-title"><span class="gradient-text-purple">ATO Streamliner</span><br>AI System Compliance<br>in Under 5 Seconds</h2>
-        <p class="agent007-desc">The only platform that automates the full Authority to Operate workflow for AI systems. Agent 007 assesses 8 AI-specific risk categories that traditional GRC tools completely miss — then generates a complete ATO package across all 6 NIST RMF phases.</p>
-        <div class="agent007-risks">
-          <div class="risk-item">Model Bias & Fairness</div>
-          <div class="risk-item">Data Poisoning</div>
-          <div class="risk-item">Adversarial Inputs</div>
-          <div class="risk-item">Model Explainability</div>
-          <div class="risk-item">Supply Chain Integrity</div>
-          <div class="risk-item">Operational Drift</div>
-          <div class="risk-item">Boundary Violations</div>
-          <div class="risk-item">Decision Accountability</div>
-        </div>
-        <div style="display:flex;gap:.875rem;flex-wrap:wrap">
-          <button class="btn btn-purple btn-lg" onclick="openModal('trial')">Activate Agent 007</button>
-          <button class="btn btn-secondary btn-lg" onclick="openModal('demo')">See ATO Demo</button>
-        </div>
-      </div>
-      <div class="reveal reveal-delay-2">
-        <div class="agent007-card">
-          <div class="agent007-card-header">
-            <div>
-              <div style="font-family:var(--font-mono);font-size:.7rem;color:var(--purple);margin-bottom:.2rem">AGENT 007 · ATO STREAMLINER</div>
-              <div style="font-size:.95rem;font-weight:600">AI System Assessment — Active Run</div>
-            </div>
-            <div class="agent007-badge">RMF v2 · NIST AI RMF 1.0</div>
-          </div>
-          <div class="agent007-card-body">
-            <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--text-muted);margin-bottom:.875rem">Processing: Predictive Maintenance AI · GovCloud IL4</div>
-            <div class="rmf-phases">
-              <div class="rmf-phase"><div class="rmf-phase-num" style="color:var(--green)">✓ 01</div><div class="rmf-phase-name">Categorize</div></div>
-              <div class="rmf-phase"><div class="rmf-phase-num" style="color:var(--green)">✓ 02</div><div class="rmf-phase-name">Select</div></div>
-              <div class="rmf-phase"><div class="rmf-phase-num" style="color:var(--green)">✓ 03</div><div class="rmf-phase-name">Implement</div></div>
-              <div class="rmf-phase"><div class="rmf-phase-num" style="color:var(--green)">✓ 04</div><div class="rmf-phase-name">Assess</div></div>
-              <div class="rmf-phase"><div class="rmf-phase-num" style="color:var(--amber)">● 05</div><div class="rmf-phase-name">Authorize</div></div>
-              <div class="rmf-phase"><div class="rmf-phase-num">○ 06</div><div class="rmf-phase-name">Monitor</div></div>
-            </div>
-            <div style="font-family:var(--font-mono);font-size:.7rem;color:var(--text-muted);margin-bottom:.75rem;text-transform:uppercase;letter-spacing:.08em">Generated Artifacts</div>
-            <div class="ato-outputs">
-              <div class="ato-output"><span class="ato-output-icon">📄</span>System Security Plan (SSP)<span class="ato-timer">0.8s</span></div>
-              <div class="ato-output"><span class="ato-output-icon">🔍</span>Security Assessment Report (SAR)<span class="ato-timer">1.2s</span></div>
-              <div class="ato-output"><span class="ato-output-icon">📋</span>POA&amp;M — 3 items tracked<span class="ato-timer">1.9s</span></div>
-              <div class="ato-output"><span class="ato-output-icon">⚠️</span>AI Risk Assessment Report<span class="ato-timer">2.4s</span></div>
-              <div class="ato-output"><span class="ato-output-icon">📊</span>Executive Risk Summary<span class="ato-timer">3.1s</span></div>
-            </div>
-            <div class="agent007-score">
-              <div>
-                <div class="score-val">87%</div>
-                <div class="score-label">ATO Readiness Score</div>
-              </div>
-              <div style="text-align:right">
-                <div style="font-family:var(--font-mono);font-size:.7rem;color:var(--purple);margin-bottom:.2rem">TOTAL RUNTIME</div>
-                <div style="font-family:var(--font-mono);font-size:1.5rem;font-weight:700;color:var(--cyan)">4.7s</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- LIVE DEMO -->
-<section class="section" id="demo">
-  <div class="container">
-    <div class="section-header center reveal">
-      <div class="label">Interactive Demo</div>
-      <h2 class="section-title">See TrustNovaOps<br><span class="gradient-text">In Action</span></h2>
-      <p class="section-sub">Explore the real-time compliance dashboard, calculate your ROI, and watch live findings as agents work.</p>
-    </div>
-    <div class="demo-wrap reveal reveal-delay-1">
-      <div class="demo-tabs">
-        <button class="demo-tab active" data-tab="compliance">Compliance Dashboard</button>
-        <button class="demo-tab" data-tab="roi">ROI Calculator</button>
-        <button class="demo-tab" data-tab="findings">Live Findings Feed</button>
-      </div>
-      <div class="demo-panel active" id="panel-compliance">
-        <div class="compliance-overview">
-          <div>
-            <div class="compliance-score-val">92%</div>
-            <div class="compliance-score-lbl">Overall CMMC Score</div>
-          </div>
-          <div class="compliance-stats">
-            <div><div class="c-stat-val good">101</div><div class="c-stat-lbl">Controls Passing</div></div>
-            <div><div class="c-stat-val warn">7</div><div class="c-stat-lbl">Needs Review</div></div>
-            <div><div class="c-stat-val bad">2</div><div class="c-stat-lbl">Critical Gaps</div></div>
-            <div><div class="c-stat-val" style="color:var(--cyan)">94%</div><div class="c-stat-lbl">Evidence Complete</div></div>
-          </div>
-        </div>
-        <div class="domains-grid" id="domains-grid"></div>
-      </div>
-      <div class="demo-panel" id="panel-roi">
-        <div class="roi-inputs">
-          <div>
-            <label class="roi-label">Number of Employees</label>
-            <input type="range" class="roi-slider" id="roi-emp" min="10" max="500" value="100">
-            <div class="roi-slider-vals"><span>10</span><span class="current" id="emp-val">100</span><span>500</span></div>
-          </div>
-          <div>
-            <label class="roi-label">Current Annual Compliance Budget</label>
-            <input type="range" class="roi-slider" id="roi-budget" min="25000" max="500000" step="5000" value="150000">
-            <div class="roi-slider-vals"><span>$25K</span><span class="current" id="budget-val">$150K</span><span>$500K</span></div>
-          </div>
-        </div>
-        <div class="roi-results">
-          <div class="roi-result"><div class="roi-result-val" id="roi-savings">$90K</div><div class="roi-result-lbl">Annual Savings</div></div>
-          <div class="roi-result"><div class="roi-result-val" id="roi-hours">1,200</div><div class="roi-result-lbl">Hours Saved Per Year</div></div>
-          <div class="roi-result"><div class="roi-result-val" id="roi-roi">340%</div><div class="roi-result-lbl">First-Year ROI</div></div>
-        </div>
-      </div>
-      <div class="demo-panel" id="panel-findings">
-        <div class="findings-list" id="findings-list"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- INTEGRATIONS -->
-<div class="integrations-strip" id="integrations">
-  <div class="container">
-    <div class="section-header center reveal">
-      <div class="label">Integrations</div>
-      <h2 class="section-title" style="font-size:clamp(1.5rem,2.5vw,2rem)">Connects to Your Entire Stack</h2>
-      <p class="section-sub" style="font-size:.95rem">No rip-and-replace. TrustNovaOps pulls evidence directly from the tools you already use.</p>
-    </div>
-    <div class="integrations-grid reveal reveal-delay-1">
-      <div class="integration-pill"><span class="integration-icon">☁️</span>AWS GovCloud</div>
-      <div class="integration-pill"><span class="integration-icon">☁️</span>Microsoft Azure</div>
-      <div class="integration-pill"><span class="integration-icon">☁️</span>Google Cloud</div>
-      <div class="integration-pill"><span class="integration-icon">🐙</span>GitHub</div>
-      <div class="integration-pill"><span class="integration-icon">🦊</span>GitLab</div>
-      <div class="integration-pill"><span class="integration-icon">🔵</span>Azure DevOps</div>
-      <div class="integration-pill"><span class="integration-icon">🔐</span>Okta</div>
-      <div class="integration-pill"><span class="integration-icon">🔐</span>Azure AD</div>
-      <div class="integration-pill"><span class="integration-icon">🔐</span>CrowdStrike</div>
-      <div class="integration-pill"><span class="integration-icon">🛡</span>Tenable</div>
-      <div class="integration-pill"><span class="integration-icon">📊</span>Splunk</div>
-      <div class="integration-pill"><span class="integration-icon">📊</span>Elastic SIEM</div>
-      <div class="integration-pill"><span class="integration-icon">🔧</span>Terraform</div>
-      <div class="integration-pill"><span class="integration-icon">🔧</span>Ansible</div>
-      <div class="integration-pill"><span class="integration-icon">🐳</span>Kubernetes</div>
-      <div class="integration-pill"><span class="integration-icon">🐳</span>Docker</div>
-      <div class="integration-pill"><span class="integration-icon">📋</span>ServiceNow</div>
-      <div class="integration-pill"><span class="integration-icon">🎫</span>Jira</div>
-      <div class="integration-pill"><span class="integration-icon">💬</span>Slack</div>
-      <div class="integration-pill"><span class="integration-icon">📧</span>Microsoft 365</div>
-    </div>
-  </div>
 </div>
 
-<!-- PRICING -->
-<section class="section" id="pricing" style="background:var(--bg-secondary);border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)">
-  <div class="container">
-    <div class="section-header center reveal">
-      <div class="label">Straightforward Pricing</div>
-      <h2 class="section-title">Built for Defense Contractors<br><span class="gradient-text">of Every Size</span></h2>
-      <p class="section-sub">No hidden fees. No consultants. No long-term contracts. Connect your stack in under an hour.</p>
-    </div>
-    <div class="pricing-grid">
-      <div class="pricing-card reveal reveal-delay-1">
-        <div class="pricing-tier">Starter</div>
-        <div class="pricing-price-row"><span class="pricing-amount">$499</span><span class="pricing-period">/month</span></div>
-        <p class="pricing-desc">For small contractors starting their CMMC journey. Everything you need to get assessment-ready.</p>
-        <ul class="pricing-features">
-          <li>Up to 50 employees</li>
-          <li>3 AI agents (Scanner, Infrastructure, Access Controller)</li>
-          <li>Weekly compliance scans</li>
-          <li>Basic automated evidence collection</li>
-          <li>CMMC readiness dashboard</li>
-          <li>Email support</li>
-        </ul>
-        <button class="btn btn-secondary" onclick="openModal('trial')">Start 14-Day Free Trial</button>
-      </div>
-      <div class="pricing-card featured reveal reveal-delay-2">
-        <div class="pricing-tier">Professional</div>
-        <div class="pricing-price-row"><span class="pricing-amount">$1,299</span><span class="pricing-period">/month</span></div>
-        <p class="pricing-desc">For growing teams with complex compliance needs and active DoD contracts. Includes all 7 agents.</p>
-        <ul class="pricing-features">
-          <li>Up to 250 employees</li>
-          <li>All 7 AI agents including Agent 007 ATO</li>
-          <li>Continuous real-time monitoring</li>
-          <li>Advanced evidence automation & SSP generation</li>
-          <li>CI/CD pipeline security gates</li>
-          <li>ATO package generation (&lt;5 seconds)</li>
-          <li>Priority support + Slack channel</li>
-        </ul>
-        <button class="btn btn-primary" onclick="openModal('trial')">Start 14-Day Free Trial</button>
-      </div>
-      <div class="pricing-card reveal reveal-delay-3">
-        <div class="pricing-tier">Enterprise</div>
-        <div class="pricing-price-row"><span class="pricing-amount">Custom</span></div>
-        <p class="pricing-desc">For large primes and complex organizations with custom requirements, on-premise needs, or multiple programs.</p>
-        <ul class="pricing-features">
-          <li>Unlimited employees & business units</li>
-          <li>Custom agent configurations & thresholds</li>
-          <li>Dedicated compliance advisor (vCISO option)</li>
-          <li>On-premise or GovCloud deployment</li>
-          <li>Custom integrations & API access</li>
-          <li>Multi-framework (CMMC + FedRAMP + SOC 2)</li>
-          <li>24/7 phone support + SLA guarantee</li>
-        </ul>
-        <button class="btn btn-secondary" onclick="openModal('demo')">Contact Sales</button>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ════════════ HUMAN IN THE LOOP ════════════ -->
+<div class="section-divider"></div>
+<div class="dark-section">
+<div class="section" id="hitl">
+  <div class="section-eyebrow">Section 05 — Human-in-the-Loop Governance</div>
+  <h2 class="section-h2">AGENTS ACT.<br>HUMANS <em>DECIDE.</em><br>EVERYTHING IS LOGGED.</h2>
+  <p class="section-desc">Autonomous remediation is powerful. But in federal, defense, and regulated environments, certain actions require a human signature. TrustNovaOps was designed with this boundary built in — not bolted on.</p>
 
-<!-- FAQ -->
-<section class="section-sm" id="faq" style="position:relative;z-index:1">
-  <div class="container">
-    <div class="section-header center reveal">
-      <div class="label">Common Questions</div>
-      <h2 class="section-title" style="font-size:clamp(1.6rem,2.5vw,2.1rem)">Frequently Asked Questions</h2>
-    </div>
-    <div class="faq-list reveal reveal-delay-1">
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          How long does it actually take to go from zero to CMMC Level 2 certified with TrustNovaOps?
-          <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+  <div class="hitl-layout">
+    <div class="hitl-flow">
+      <div class="hitl-step">
+        <div class="hitl-icon">🔍</div>
+        <div>
+          <div class="hitl-title">Agent detects a risk and assembles context</div>
+          <div class="hitl-text">Before routing anything to a human, the agent pre-assembles every relevant data point: risk score, data lineage, user history, policy match, CMMC control reference, and ranked remediation options.</div>
         </div>
-        <div class="faq-a">Most customers see meaningful compliance improvement within 2–4 weeks of connecting their stack, and reach audit-ready status in 6–10 weeks. Timeline depends on your starting point — organizations with significant gaps may need longer remediation periods. Our Compliance Scanner provides a precise readiness estimate on day one.</div>
       </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          Does TrustNovaOps replace our need for a C3PAO auditor?
-          <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+      <div class="hitl-step">
+        <div class="hitl-icon amber">⚡</div>
+        <div>
+          <div class="hitl-title">Autonomous action for known threat patterns</div>
+          <div class="hitl-text">For pre-approved playbooks — USB lockdown, PR block, secret rotation — agents act immediately. No ticket needed. No wait. Sub-90ms response for defined threat signatures.</div>
         </div>
-        <div class="faq-a">No — a C3PAO (Certified Third-Party Assessment Organization) is still required for CMMC Level 2 certification. TrustNovaOps dramatically reduces what that auditor will find and the time they need on-site, by ensuring your evidence is complete, current, and organized before they arrive. Most customers cut their C3PAO engagement time by 60–80%.</div>
       </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          How long does implementation take? Do we need a consultant to set it up?
-          <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+      <div class="hitl-step">
+        <div class="hitl-icon amber">👤</div>
+        <div>
+          <div class="hitl-title">Human approval for ambiguous or high-impact events</div>
+          <div class="hitl-text">Anything outside known patterns, above a risk threshold, or touching sensitive data routes to a named analyst with everything they need to decide already assembled. One click: approve, modify, or reject.</div>
         </div>
-        <div class="faq-a">No implementation consultant required. TrustNovaOps uses API-based connectors to integrate with your existing tools (AWS, Azure, GitHub, Okta, etc.). Most organizations are connected and running their first compliance scan within one hour. The platform guides you through setup with a step-by-step onboarding flow.</div>
       </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          What makes TrustNovaOps different from Drata, Vanta, or Secureframe?
-          <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+      <div class="hitl-step">
+        <div class="hitl-icon">📋</div>
+        <div>
+          <div class="hitl-title">Every decision is evidence</div>
+          <div class="hitl-text">Whether the agent acted autonomously or a human approved the action, the event is logged with full context, timestamp, policy reference, and outcome. The audit trail is continuous — not assembled at audit time.</div>
         </div>
-        <div class="faq-a">Those are excellent general-purpose compliance platforms, but they are not purpose-built for defense. TrustNovaOps is designed exclusively for the defense industrial base: it maps natively to CMMC Level 2 and NIST 800-171, integrates with DevSecOps pipelines out of the box, and is the only platform with a dedicated AI system ATO workflow (Agent 007) that addresses the 8 AI-specific risk categories defined by NIST AI RMF 1.0 and DoD guidance. We also publish our pricing transparently — most competitors require a sales call to get a number.</div>
       </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          Is our CUI data safe inside TrustNovaOps?
-          <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+      <div class="hitl-step">
+        <div class="hitl-icon">🔒</div>
+        <div>
+          <div class="hitl-title">Humans can override — and that override is tracked too</div>
+          <div class="hitl-text">Overrides are legitimate actions in a real security program. TrustNovaOps doesn't fight them — it captures them. An override with a documented rationale is still an audit-ready evidence item.</div>
         </div>
-        <div class="faq-a">Yes. TrustNovaOps is SOC 2 Type II certified and FedRAMP authorization is in process. All data is encrypted at rest (AES-256) and in transit (TLS 1.3). We use read-only API access to connected systems and never store CUI content — only metadata and compliance evidence artifacts. Enterprise customers can deploy on-premise or in AWS GovCloud for complete data sovereignty.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          Do we need all 7 agents, or can we start with just a few?
-          <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
-        </div>
-        <div class="faq-a">The Starter plan includes 3 agents (Compliance Scanner, Infrastructure Guardian, and Access Controller), which is sufficient for organizations beginning their CMMC journey. The Professional plan unlocks all 7 agents including Agent 007 ATO Streamliner and the Pipeline Orchestrator for DevSecOps teams. You can upgrade at any time without data migration.</div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- LEAD MAGNET -->
-<section class="section" id="leadmagnet" style="position:relative;z-index:1;background:rgba(11,12,24,.5);border-top:1px solid var(--border-subtle)">
-  <div class="container">
-    <div class="leadmagnet-card reveal">
+    <!-- MOCK APPROVAL UI -->
+    <div class="hitl-callout">
       <div>
-        <div class="label">Free Resource</div>
-        <h2 class="section-title" style="font-size:clamp(1.6rem,2.5vw,2.2rem);margin-bottom:.875rem">CMMC 2.0 Readiness Checklist</h2>
-        <p style="color:var(--text-secondary);margin-bottom:1rem;line-height:1.7">Our comprehensive 47-point checklist used by 200+ defense contractors to prepare for CMMC Level 2 certification. Includes gap assessment worksheet, evidence templates, and a timeline planning guide.</p>
-        <ul class="leadmagnet-list">
-          <li>All 110 CMMC Level 2 controls mapped to evidence requirements</li>
-          <li>Gap assessment worksheet with priority scoring</li>
-          <li>Evidence collection templates for every domain</li>
-          <li>Timeline planning guide — 4-week, 8-week, and 12-week paths</li>
-          <li>Cost estimation calculator for consultant vs. automation</li>
-          <li>C3PAO audit preparation checklist</li>
-        </ul>
+        <div class="hc-header">HUMAN APPROVAL</div>
+        <div class="hc-sub">What the analyst sees — context pre-assembled, decision required. Not a raw alert. A decision package.</div>
       </div>
-      <div class="leadmagnet-form-wrap">
-        <h3 style="font-size:1.1rem;margin-bottom:.3rem">Get Instant Access</h3>
-        <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:1.25rem">No credit card. Delivered to your inbox immediately.</p>
-        <form id="lm-form" onsubmit="handleLeadMagnet(event)">
-          <div class="form-group">
-            <label class="form-label">Work Email *</label>
-            <input type="email" class="form-input" placeholder="you@company.com" required>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">First Name *</label>
-              <input type="text" class="form-input" placeholder="First" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Company *</label>
-              <input type="text" class="form-input" placeholder="Your company" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Company Size</label>
-            <select class="form-select">
-              <option value="">Select...</option>
-              <option>1–50 employees</option>
-              <option>51–200 employees</option>
-              <option>201–500 employees</option>
-              <option>500+ employees</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary" style="width:100%;margin-top:.5rem">Download Free Checklist →</button>
-          <p class="form-note">🔒 Your info is never sold. Unsubscribe anytime.</p>
-        </form>
+      <div class="approval-mock">
+        <div class="am-header">Approval Required — INC-3824</div>
+        <div class="am-inc">
+          <span class="am-sev">HIGH</span>
+          <span class="am-title">API key exposed in GitHub commit a3f9b21</span>
+        </div>
+        <div class="am-context">
+          Agent: WARDEN // Vector: Repository<br>
+          Data: AWS_SECRET_ACCESS_KEY — commit a3f9b21<br>
+          Policy: SECRETS-CODE-001 // CMMC: CM.3.068<br>
+          Risk Score: 94 / 100<br>
+          Recommended: Block PR + rotate key
+        </div>
+        <div class="am-btns">
+          <button class="am-btn-approve" onclick="this.textContent='✓ Approved';this.style.background='#00b090';this.style.color='#fff'">APPROVE &amp; EXECUTE</button>
+          <button class="am-btn-reject" onclick="this.textContent='✗ Rejected'">REJECT</button>
+        </div>
+      </div>
+      <div class="am-log">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Actions already taken (autonomous)</div>
+        <div class="am-log-item">PR #847 blocked — pre-merge gate triggered</div>
+        <div class="am-log-item">Dev team Slack notification sent</div>
+        <div class="am-log-item">ACCORD: CM.3.068 evidence entry created</div>
+        <div class="am-log-item">Key rotation playbook queued — awaiting your approval</div>
       </div>
     </div>
   </div>
-</section>
+</div>
+</div>
 
-<!-- CTA -->
-<section class="cta-section">
-  <div class="container">
-    <div class="cta-inner reveal">
-      <div class="cta-urgency">⚡ CMMC enforcement began November 2025 — are you ready?</div>
-      <h2 class="cta-title">Stop Guessing.<br><span class="gradient-text">Know Your Compliance Score.</span></h2>
-      <p class="cta-sub">Join 200+ defense contractors who've reduced their compliance burden by 80%. Get full platform access for 14 days — no credit card, no setup fee, no consultants required.</p>
-      <div class="cta-buttons">
-        <button class="btn btn-primary btn-lg" onclick="openModal('trial')">Start Free Trial — No Card Needed</button>
-        <button class="btn btn-secondary btn-lg" onclick="openModal('demo')">Book 15-Min Assessment Call</button>
-      </div>
-      <p class="cta-note">14-day full access · Connects in under 1 hour · Cancel anytime</p>
+<!-- ════════════ COMPLIANCE EVIDENCE ════════════ -->
+<div class="section-divider"></div>
+<div class="z1">
+<div class="section" id="compliance">
+  <div class="section-eyebrow">Section 06 — Compliance Evidence Automation</div>
+  <h2 class="section-h2">YOUR AUDIT PACKAGE<br>IS ALWAYS <em>READY.</em></h2>
+  <p class="section-desc">TrustNovaOps doesn't generate evidence at audit time. It generates evidence continuously — as a byproduct of every agent action, every pipeline gate, and every human decision. When the auditor arrives, the package already exists.</p>
+
+  <div style="margin-top:36px;background:var(--surface);border:1px solid var(--border);padding:28px">
+    <div class="ef-title">Evidence generation flow</div>
+    <div class="ef-steps">
+      <div class="ef-step">Agent Event</div>
+      <div class="ef-arrow">→</div>
+      <div class="ef-step">Risk Score</div>
+      <div class="ef-arrow">→</div>
+      <div class="ef-step">Policy Match</div>
+      <div class="ef-arrow">→</div>
+      <div class="ef-step">Human Decision</div>
+      <div class="ef-arrow">→</div>
+      <div class="ef-step">Framework Mapping</div>
+      <div class="ef-arrow">→</div>
+      <div class="ef-step">Timestamp + Sign</div>
+      <div class="ef-arrow">→</div>
+      <div class="ef-step" style="border-color:var(--amber);color:var(--amber)">Audit Packet</div>
     </div>
   </div>
-</section>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <a href="#" class="logo"><svg width="34" height="34" viewBox="0 0 80 80" fill="none" style="flex-shrink:0"><defs><linearGradient id="lf1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00e5ff"/><stop offset="100%" stop-color="#00ff9d"/></linearGradient><linearGradient id="lf2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00e5ff" stop-opacity=".2"/><stop offset="100%" stop-color="#00ff9d" stop-opacity=".07"/></linearGradient></defs><path d="M40 6 L69 22 L69 52 Q69 68 40 78 Q11 68 11 52 L11 22 Z" fill="url(#lf2)" stroke="url(#lf1)" stroke-width="1.5"/><line x1="40" y1="42" x2="40" y2="26" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="53.1" y2="32.1" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="55.5" y2="46.8" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="46.8" y2="57.6" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="33.2" y2="57.6" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="24.5" y2="46.8" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><line x1="40" y1="42" x2="26.9" y2="32.1" stroke="#00e5ff" stroke-width=".9" stroke-opacity=".4"/><circle cx="40" cy="26" r="3" fill="#00ff9d"/><circle cx="53.1" cy="32.1" r="3" fill="#00e5ff"/><circle cx="55.5" cy="46.8" r="3" fill="#00e5ff"/><circle cx="46.8" cy="57.6" r="3" fill="#00e5ff"/><circle cx="33.2" cy="57.6" r="3" fill="#00e5ff"/><circle cx="24.5" cy="46.8" r="3" fill="#00e5ff"/><circle cx="26.9" cy="32.1" r="3" fill="#00e5ff"/><circle cx="40" cy="42" r="4.5" fill="url(#lf1)"/><circle cx="40" cy="42" r="2" fill="#03040a"/></svg><span class="logo-text">Trust<span>Nova</span>Ops</span></a>
-        <p class="footer-brand-desc">The AI-native compliance platform for the defense industrial base. 7 autonomous agents. Continuous monitoring. Audit-ready, always.</p>
-        <div class="footer-social">
-          <a href="https://linkedin.com/company/trustnovaops" target="_blank" rel="noopener" title="LinkedIn">in</a>
-          <a href="https://twitter.com/trustnovaops" target="_blank" rel="noopener" title="X / Twitter">𝕏</a>
-          <a href="https://github.com/trustnovaops" target="_blank" rel="noopener" title="GitHub">⌘</a>
-        </div>
-        <div class="footer-certs" style="margin-top:1.25rem">
-          <div class="footer-cert">SOC 2 Type II</div>
-          <div class="footer-cert">CMMC L2</div>
-          <div class="footer-cert">FedRAMP ℹ</div>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Platform</h4>
-        <ul class="footer-links">
-          <li><a href="#agents">AI Agents</a></li>
-          <li><a href="#agent007">Agent 007: ATO</a></li>
-          <li><a href="#integrations">Integrations</a></li>
-          <li><a href="#demo">Live Demo</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Solutions</h4>
-        <ul class="footer-links">
-          <li><a href="#agents">For CISOs</a></li>
-          <li><a href="#agents">For Compliance Teams</a></li>
-          <li><a href="#agents">For DevSecOps</a></li>
-          <li><a href="#agents">For Executives</a></li>
-          <li><a href="#agents">CMMC Level 2</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Resources</h4>
-        <ul class="footer-links">
-          <li><a href="#leadmagnet">CMMC Checklist</a></li>
-          <li><a href="#faq">CMMC FAQ</a></li>
-          <li><a href="#demo">ROI Calculator</a></li>
-          <li><a href="#" onclick="openModal('demo');return false">Documentation</a></li>
-          <li><a href="#" onclick="openModal('demo');return false">Blog</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul class="footer-links">
-          <li><a href="https://linkedin.com/in/thomasmmitchell" target="_blank" rel="noopener">About Us</a></li>
-          <li><a href="#" onclick="openModal('demo');return false">Contact</a></li>
-          <li><a href="#" onclick="openModal('demo');return false">Security</a></li>
-          <li><a href="#" onclick="openModal('demo');return false">Careers</a></li>
-          <li><a href="#" onclick="openModal('demo');return false">Partners</a></li>
-        </ul>
+  <div class="compliance-grid">
+    <div class="comp-card">
+      <div class="comp-fw">CMMC 2.0</div>
+      <div class="comp-title">Level 1 through Level 3 evidence, automated</div>
+      <div class="comp-controls">
+        <div class="comp-control">All 110 NIST SP 800-171 practices mapped</div>
+        <div class="comp-control">SPRS score tracking — continuous, not quarterly</div>
+        <div class="comp-control">Assessment-ready packages exportable for C3PAO</div>
+        <div class="comp-control">CUI discovery and movement documentation</div>
+        <div class="comp-control">DFARS 252.204-7012 chain-of-custody</div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p class="footer-copyright">© 2026 TrustNovaOps. All rights reserved.</p>
-      <div class="footer-legal">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Security</a>
-        <a href="#">Compliance</a>
+    <div class="comp-card">
+      <div class="comp-fw">FedRAMP</div>
+      <div class="comp-title">High and Moderate continuous monitoring</div>
+      <div class="comp-controls">
+        <div class="comp-control">ConMon report generation from live telemetry</div>
+        <div class="comp-control">AC, AU, SC, SI, MP control family evidence</div>
+        <div class="comp-control">Automated POA&M entries for identified gaps</div>
+        <div class="comp-control">SSP data flow documentation</div>
+        <div class="comp-control">Significant change flagging for AO</div>
       </div>
     </div>
+    <div class="comp-card">
+      <div class="comp-fw">RMF / ATO</div>
+      <div class="comp-title">Living authorization — not a point-in-time snapshot</div>
+      <div class="comp-controls">
+        <div class="comp-control">Real-time evidence mapped to ATO control baseline</div>
+        <div class="comp-control">SCTM auto-population from observed telemetry</div>
+        <div class="comp-control">SAR data feeds for ISSO reporting</div>
+        <div class="comp-control">Authorization boundary monitoring</div>
+        <div class="comp-control">Continuous risk posture for AO dashboard</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════ BUYER PERSONAS ════════════ -->
+<div class="section-divider"></div>
+<div class="dark-section">
+<div class="section" id="personas">
+  <div class="section-eyebrow">Section 07 — Who It's For</div>
+  <h2 class="section-h2">BUILT FOR THE PEOPLE<br>WHO CARRY THE <em>MISSION.</em></h2>
+  <p class="section-desc">TrustNovaOps was designed with four distinct buyer personas in mind. Each has a different primary pain point — and TrustNovaOps addresses all four from a single platform.</p>
+
+  <div class="persona-grid">
+    <div class="persona-cell">
+      <div class="persona-role">CISO</div>
+      <div class="persona-org">Enterprise / Federal</div>
+      <div class="persona-pain">"I need to show the board and the auditor that our security posture is continuous, provable, and improving — not just a point-in-time report."</div>
+      <div class="persona-wins">
+        <div class="persona-win">Executive risk dashboard with live posture</div>
+        <div class="persona-win">Audit-ready evidence always available</div>
+        <div class="persona-win">Platform-level visibility, not tool sprawl</div>
+      </div>
+    </div>
+    <div class="persona-cell">
+      <div class="persona-role">ISSO</div>
+      <div class="persona-org">Federal Contractor / DoD Program</div>
+      <div class="persona-pain">"I'm manually assembling CMMC evidence packages from screenshots and spreadsheets. The POAM is always behind. The assessment window is coming and I'm not ready."</div>
+      <div class="persona-wins">
+        <div class="persona-win">Automated CMMC 2.0 / RMF evidence packages</div>
+        <div class="persona-win">POAM auto-generation from live gap data</div>
+        <div class="persona-win">Assessment-ready export in one click</div>
+      </div>
+    </div>
+    <div class="persona-cell">
+      <div class="persona-role">DevSecOps Lead</div>
+      <div class="persona-org">Software Factory / Cloud Team</div>
+      <div class="persona-pain">"I need security in the pipeline — not bolted on after deployment. I want shift-left that actually works without slowing my team down or drowning them in false positives."</div>
+      <div class="persona-wins">
+        <div class="persona-win">Pre-commit and pre-merge secret scanning</div>
+        <div class="persona-win">CI/CD policy gates with risk scoring</div>
+        <div class="persona-win">Dockerfile and IaC misconfiguration detection</div>
+      </div>
+    </div>
+    <div class="persona-cell">
+      <div class="persona-role">Defense Contractor</div>
+      <div class="persona-org">Prime / Sub / CMMC-bound</div>
+      <div class="persona-pain">"CUI is everywhere across my environment. If I can't demonstrate I know where it is and how it's protected, I can't bid on contracts. My SPRS score depends on this."</div>
+      <div class="persona-wins">
+        <div class="persona-win">Continuous CUI discovery and classification</div>
+        <div class="persona-win">Chain-of-custody for all CUI movement</div>
+        <div class="persona-win">DFARS 252.204-7012 documentation automated</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════ VS COMPARISON ════════════ -->
+<div class="section-divider"></div>
+<div class="z1">
+<div class="section" id="why">
+  <div class="section-eyebrow">Section 08 — Why TrustNovaOps</div>
+  <h2 class="section-h2">NOT ANOTHER POINT SOLUTION.<br>AN <em>OPERATIONS LAYER.</em></h2>
+  <p class="section-desc">Point solutions scan, alert, and wait. TrustNovaOps reasons, coordinates, acts, and documents — across your entire stack, through a single platform, with humans appropriately in the loop.</p>
+
+  <table class="vs-table">
+    <thead>
+      <tr>
+        <th>Capability</th>
+        <th>Point Solutions (SAST / DLP / GRC tools)</th>
+        <th class="tnops">TrustNovaOps</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Detection method</td>
+        <td>Scheduled scans, static rules, regex patterns</td>
+        <td class="tnops">Continuous AI reasoning — context, behavior, risk scoring</td>
+      </tr>
+      <tr>
+        <td>Pipeline integration</td>
+        <td class="v-partial">Bolt-on scanners, separate tools per stage</td>
+        <td class="tnops v-yes">Native — inspects commit, build, container, IaC in one pass</td>
+      </tr>
+      <tr>
+        <td>Cross-signal correlation</td>
+        <td class="v-no">Siloed — each tool sees only its own domain</td>
+        <td class="tnops v-yes">Nova Orchestrator correlates all agents into one picture</td>
+      </tr>
+      <tr>
+        <td>Compliance evidence generation</td>
+        <td class="v-no">Manual — screenshots and spreadsheets at audit time</td>
+        <td class="tnops v-yes">Automated — continuous, framework-mapped, timestamped</td>
+      </tr>
+      <tr>
+        <td>Human-in-the-loop workflow</td>
+        <td class="v-no">Alert only — human must navigate to a separate tool to act</td>
+        <td class="tnops v-yes">Built-in — context pre-assembled, one-click decision, logged</td>
+      </tr>
+      <tr>
+        <td>CMMC 2.0 / FedRAMP alignment</td>
+        <td class="v-partial">Some coverage — weak framework mapping, no evidence chain</td>
+        <td class="tnops v-yes">Native — all 110 NIST 800-171 practices, FedRAMP ConMon</td>
+      </tr>
+      <tr>
+        <td>DLP + pipeline + compliance</td>
+        <td class="v-no">Three separate vendor contracts, three separate UIs</td>
+        <td class="tnops v-yes">Single platform — WARDEN, ACCORD, and Nova Orchestrator</td>
+      </tr>
+      <tr>
+        <td>Time to value</td>
+        <td>Months — rule tuning, integration, training</td>
+        <td class="tnops">Hours — agents establish baseline automatically on connect</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+<!-- ════════════ METRICS BAND ════════════ -->
+<div class="metrics-band">
+  <div class="metrics-inner">
+    <div class="section-eyebrow">By the numbers</div>
+    <div class="metrics-grid">
+      <div class="metric-cell">
+        <div class="metric-num">&lt;90ms</div>
+        <div class="metric-label">Mean time to contain</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-num">83%</div>
+        <div class="metric-label">Incidents resolved without human escalation</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-num">99.7%</div>
+        <div class="metric-label">Threat detection accuracy</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-num">Hours</div>
+        <div class="metric-label">Audit package generation, not weeks</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ CTA ════════════ -->
+<div class="cta-band" id="cta">
+  <div class="cta-left">
+    <div class="cta-h">READY TO SEE<br>IT LIVE?</div>
+    <div class="cta-sub">A TrustNovaOps engineer walks you through a live deployment against your actual environment — not a canned demo. 30-day trial follows. No credit card. No pressure.</div>
+  </div>
+  <div class="cta-btns">
+    <a href="/demo" class="btn-cta-dark">Request Live Demo</a>
+    <a href="/platform" class="btn-cta-outline">Explore the Platform</a>
+  </div>
+</div>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer>
+  <div class="footer-brand">
+    <div class="f-logo" style="display:flex;align-items:center;gap:10px">
+      <svg width="22" height="22" viewBox="0 0 52 52" fill="none"><polygon points="26,3 45,14 45,38 26,49 7,38 7,14" fill="none" stroke="#e8a020" stroke-width="2" opacity=".5"/><circle cx="37" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="37" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="38" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="14" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="26" r="4" fill="#e8a020"/></svg>
+      TrustNova<span>Ops</span>
+    </div>
+    <p>Agentic DevSecOps control tower for federal contractors, defense programs, and enterprise security teams.</p>
+  </div>
+  <div class="footer-links">
+    <h4>Platform</h4>
+    <a href="/platform" class="footer-link">Command Center</a>
+    <a href="/warden" class="footer-link">WARDEN // DLP Agent</a>
+    <a href="#agents" class="footer-link">Agent Fleet</a>
+    <a href="#compliance" class="footer-link">Compliance Coverage</a>
+    <a href="/demo" class="footer-link">Request a Demo</a>
+  </div>
+  <div class="footer-links">
+    <h4>Company</h4>
+    <a href="/security" class="footer-link">Security</a>
+    <a href="/privacy" class="footer-link">Privacy Policy</a>
+    <a href="/compliance" class="footer-link">Compliance</a>
+    <a href="/docs" class="footer-link">Documentation</a>
+    <a href="/status" class="footer-link">System Status</a>
   </div>
 </footer>
-
-<!-- MODAL: Demo / Assessment -->
-<div class="modal-overlay" id="modal-demo">
-  <div class="modal">
-    <div class="modal-header">
-      <span class="modal-title">Book Your Assessment Call</span>
-      <button class="modal-close" onclick="closeModal('demo')">×</button>
-    </div>
-    <div class="modal-body">
-      <p>Schedule a 15-minute call with a CMMC compliance specialist. We'll review your current posture and show you exactly how TrustNovaOps fits your program.</p>
-      <form id="demo-form" onsubmit="handleDemoForm(event)">
-        <div class="form-row">
-          <div class="form-group"><label class="form-label">First Name *</label><input type="text" class="form-input" placeholder="First" required></div>
-          <div class="form-group"><label class="form-label">Last Name *</label><input type="text" class="form-input" placeholder="Last" required></div>
-        </div>
-        <div class="form-group"><label class="form-label">Work Email *</label><input type="email" class="form-input" placeholder="you@company.com" required></div>
-        <div class="form-group"><label class="form-label">Company *</label><input type="text" class="form-input" placeholder="Your company" required></div>
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Company Size</label>
-            <select class="form-select"><option value="">Select...</option><option>1–50</option><option>51–200</option><option>201–500</option><option>500+</option></select>
-          </div>
-          <div class="form-group"><label class="form-label">Phone</label><input type="tel" class="form-input" placeholder="(555) 123-4567"></div>
-        </div>
-        <div class="form-group"><label class="form-label">What's your biggest compliance challenge?</label><input type="text" class="form-input" placeholder="e.g. ATO backlog, evidence collection..."></div>
-        <div class="form-checkbox"><input type="checkbox" id="demo-consent" required><label for="demo-consent">I agree to receive communications from TrustNovaOps. <a href="#">Privacy Policy</a>.</label></div>
-        <button type="submit" class="btn btn-primary" style="width:100%;margin-top:1rem">Schedule My Assessment Call</button>
-      </form>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL: Trial -->
-<div class="modal-overlay" id="modal-trial">
-  <div class="modal">
-    <div class="modal-header">
-      <span class="modal-title">Start Your Free Trial</span>
-      <button class="modal-close" onclick="closeModal('trial')">×</button>
-    </div>
-    <div class="modal-body">
-      <p>Full platform access for 14 days. No credit card. Connect your stack in under an hour and see your compliance score immediately.</p>
-      <form id="trial-form" onsubmit="handleTrialForm(event)">
-        <div class="form-row">
-          <div class="form-group"><label class="form-label">First Name *</label><input type="text" class="form-input" placeholder="First" required></div>
-          <div class="form-group"><label class="form-label">Last Name *</label><input type="text" class="form-input" placeholder="Last" required></div>
-        </div>
-        <div class="form-group"><label class="form-label">Work Email *</label><input type="email" class="form-input" placeholder="you@company.com" required></div>
-        <div class="form-group"><label class="form-label">Company *</label><input type="text" class="form-input" placeholder="Your company" required></div>
-        <div class="form-group"><label class="form-label">Create Password *</label><input type="password" class="form-input" placeholder="Min 8 characters" minlength="8" required></div>
-        <div class="form-checkbox"><input type="checkbox" id="trial-terms" required><label for="trial-terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</label></div>
-        <button type="submit" class="btn btn-primary" style="width:100%;margin-top:1rem">Create Free Account →</button>
-      </form>
-    </div>
+<div class="footer-bottom">
+  <div class="footer-copy">© 2026 TrustNovaOps.com — All rights reserved</div>
+  <div class="footer-compliance">
+    <div class="fc-badge">CMMC 2.0</div>
+    <div class="fc-badge">FedRAMP Ready</div>
+    <div class="fc-badge">NIST 800-53</div>
+    <div class="fc-badge">HIPAA</div>
+    <div class="fc-badge">Zero Trust</div>
   </div>
 </div>
 
 <script>
-/* ── HERO OFFSET: account for banner + nav height ── */
-function setHeroOffset(){
-  const banner=document.getElementById('banner');
-  const nav=document.getElementById('mainNav');
-  const bannerH=(banner&&banner.style.display!=='none')?banner.offsetHeight:0;
-  const navH=nav?nav.offsetHeight:0;
-  const hero=document.querySelector('.hero');
-  if(hero)hero.style.paddingTop=(navH+16)+'px';
-}
-window.addEventListener('load',setHeroOffset);
-window.addEventListener('resize',setHeroOffset);
-document.getElementById('banner-close').addEventListener('click',()=>setTimeout(setHeroOffset,50));
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (el) { e.preventDefault(); el.scrollIntoView({behavior:'smooth',block:'start'}); }
+  });
+});
 
-/* ── CANVAS BACKGROUND ── */
-(function(){
-  const c=document.getElementById('bg-canvas');
-  const ctx=c.getContext('2d');
-  let W,H,nodes=[],RAF;
-  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight}
-  function init(){
-    nodes=[];
-    const count=Math.floor((W*H)/22000);
-    for(let i=0;i<count;i++){
-      nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,r:Math.random()*1.2+.3})
+// Active nav highlight on scroll
+const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+const sections = [...navLinks].map(l => document.getElementById(l.getAttribute('href').slice(1))).filter(Boolean);
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = [...navLinks].find(l => l.getAttribute('href') === '#' + e.target.id);
+      if (active) active.classList.add('active');
     }
+  });
+}, {threshold:.3});
+sections.forEach(s => obs.observe(s));
+
+// Count-up animation for proof stats
+function countUpEl(el, target, suffix, duration) {
+  if (!el) return;
+  const raw = el.textContent;
+  if (raw.includes('<')) return;
+  let start = 0;
+  const step = Math.max(1, Math.ceil(target / (duration / 30)));
+  const t = setInterval(() => {
+    start = Math.min(start + step, target);
+    el.textContent = start.toLocaleString() + (suffix || '');
+    if (start >= target) clearInterval(t);
+  }, 30);
+}
+
+// Only run count-up when hero is visible
+const heroObs = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting) {
+    setTimeout(() => countUpEl(document.querySelector('.proof-stat:nth-child(3) .proof-num'), 7, '', 600), 200);
+    heroObs.disconnect();
   }
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    nodes.forEach(n=>{
-      n.x+=n.vx;n.y+=n.vy;
-      if(n.x<0||n.x>W)n.vx*=-1;
-      if(n.y<0||n.y>H)n.vy*=-1;
-      ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
-      ctx.fillStyle='rgba(0,229,255,.5)';ctx.fill();
-    });
-    for(let i=0;i<nodes.length;i++){
-      for(let j=i+1;j<nodes.length;j++){
-        const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,dist=Math.sqrt(dx*dx+dy*dy);
-        if(dist<120){
-          ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);
-          ctx.strokeStyle=`rgba(0,229,255,${.12*(1-dist/120)})`;ctx.lineWidth=.6;ctx.stroke();
-        }
-      }
-    }
-    RAF=requestAnimationFrame(draw);
-  }
-  window.addEventListener('resize',()=>{resize();init()});
-  resize();init();draw();
-})();
-
-/* ── NAV SCROLL ── */
-window.addEventListener('scroll',()=>{
-  document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60);
-});
-
-/* ── MOBILE MENU ── */
-function openMobile(){document.getElementById('mobile-overlay').style.display='flex';document.body.style.overflow='hidden'}
-function closeMobile(){document.getElementById('mobile-overlay').style.display='none';document.body.style.overflow=''}
-
-/* ── MODALS ── */
-function openModal(t){document.getElementById('modal-'+t).classList.add('open');document.body.style.overflow='hidden'}
-function closeModal(t){document.getElementById('modal-'+t).classList.remove('open');document.body.style.overflow=''}
-document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o){o.classList.remove('open');document.body.style.overflow=''}}));
-
-/* ── TERMINAL ── */
-const termLines=[
-  {t:'cmd',v:'trustnova scan --scope cmmc-l2 --output json'},
-  {t:'out',v:'Initializing 7-agent compliance assessment...'},
-  {t:'agent',v:'Compliance Scanner','c':'cyan'},
-  {t:'agent',v:'Code Auditor','c':'cyan'},
-  {t:'agent',v:'Infrastructure Guardian','c':'cyan'},
-  {t:'agent',v:'Access Controller','c':'cyan'},
-  {t:'progress',v:100},
-  {t:'out',v:'Assessment complete — 4m 32s'},
-  {t:'res',l:'Compliance Score',v:'92%',c:'ts'},
-  {t:'res',l:'Controls Passing',v:'101 / 110',c:'ts'},
-  {t:'res',l:'Critical Findings',v:'2',c:'tw'},
-  {t:'res',l:'Evidence Complete',v:'94%',c:'ti'},
-  {t:'cmd',v:'trustnova ato --agent 007 --system predictive-maintenance-ai'},
-  {t:'out',v:'Running AI risk assessment across 8 categories...'},
-  {t:'res',l:'ATO Readiness Score',v:'87%',c:'ts'},
-  {t:'res',l:'Package Generated',v:'cmmc-ato-2026.zip',c:'ti'},
-  {t:'res',l:'Total Runtime',v:'4.7 seconds',c:'ts'},
-];
-function renderTerm(){
-  const el=document.getElementById('terminal');
-  el.innerHTML='';
-  termLines.forEach((line,i)=>{
-    setTimeout(()=>{
-      const d=document.createElement('div');
-      d.className='tl';d.style.animationDelay=(i*40)+'ms';
-      if(line.t==='cmd')d.innerHTML=`<span class="tp">▸</span><span class="tc">${line.v}</span>`;
-      else if(line.t==='out')d.innerHTML=`<span class="to">${line.v}</span>`;
-      else if(line.t==='agent')d.innerHTML=`<div class="ta"><span class="ta-dot"></span><span class="ti">${line.v}</span><span class="to"> scanning...</span></div>`;
-      else if(line.t==='progress')d.innerHTML=`<div class="tprog"><div class="tprog-bar" id="pbar" style="width:0%"></div></div>`;
-      else if(line.t==='res')d.innerHTML=`<span class="to">${line.l}: </span><span class="${line.c}">${line.v}</span>`;
-      el.appendChild(d);
-      if(line.t==='progress')setTimeout(()=>{const b=document.getElementById('pbar');if(b)b.style.width=line.v+'%'},100);
-      el.scrollTop=el.scrollHeight;
-    },i*200);
-  });
-}
-renderTerm();
-setInterval(renderTerm,16000);
-
-/* ── DOMAIN GRID ── */
-const domains=[{c:'AC',s:96},{c:'AU',s:92},{c:'CM',s:88},{c:'IA',s:94},{c:'IR',s:78},{c:'MA',s:98},{c:'MP',s:100},{c:'PE',s:95},{c:'PS',s:91},{c:'RA',s:100},{c:'SC',s:82},{c:'SI',s:85}];
-const dg=document.getElementById('domains-grid');
-domains.forEach(d=>{
-  const cls=d.s>=90?'high':d.s>=75?'med':'low';
-  dg.innerHTML+=`<div class="domain"><div class="domain-code">${d.c}</div><div class="domain-score ${cls}">${d.s}%</div><div class="domain-bar"><div class="domain-fill ${cls}" style="width:${d.s}%"></div></div></div>`;
-});
-
-/* ── DEMO TABS ── */
-document.querySelectorAll('.demo-tab').forEach(tab=>{
-  tab.addEventListener('click',()=>{
-    document.querySelectorAll('.demo-tab').forEach(t=>t.classList.remove('active'));
-    document.querySelectorAll('.demo-panel').forEach(p=>p.classList.remove('active'));
-    tab.classList.add('active');
-    document.getElementById('panel-'+tab.dataset.tab).classList.add('active');
-  });
-});
-
-/* ── ROI CALCULATOR ── */
-const empSlider=document.getElementById('roi-emp'),budgetSlider=document.getElementById('roi-budget');
-function updateROI(){
-  const emp=parseInt(empSlider.value),budget=parseInt(budgetSlider.value);
-  document.getElementById('emp-val').textContent=emp;
-  document.getElementById('budget-val').textContent='$'+(budget/1000)+'K';
-  const cost=Math.max(6000,emp*62);
-  const savings=Math.max(0,budget-cost);
-  const hours=emp*12;
-  const roi=Math.round((savings/cost)*100);
-  document.getElementById('roi-savings').textContent='$'+Math.round(savings/1000)+'K';
-  document.getElementById('roi-hours').textContent=hours.toLocaleString();
-  document.getElementById('roi-roi').textContent=roi+'%';
-}
-empSlider.addEventListener('input',updateROI);budgetSlider.addEventListener('input',updateROI);
-
-/* ── FINDINGS ── */
-const findingsData=[
-  {s:'critical',m:'Unencrypted S3 bucket detected: logs-backup-prod (AC-3 violation)',t:'Just now'},
-  {s:'warning',m:'IAM user without MFA enabled: svc-account-legacy',t:'2m ago'},
-  {s:'info',m:'Pull request flagged for security review: feat/auth-token-refresh',t:'5m ago'},
-  {s:'success',m:'Auto-remediated: Security group 0.0.0.0/0 rule removed',t:'8m ago'},
-  {s:'warning',m:'TLS certificate expiring in 14 days: api.internal.company.com',t:'12m ago'},
-  {s:'success',m:'Evidence automatically collected for AC-2 control (Access Management)',t:'15m ago'},
-  {s:'info',m:'Infrastructure drift detected: 3 resources modified outside Terraform',t:'18m ago'},
-  {s:'success',m:'Agent 007 ATO package generated: predictive-maintenance-ai.zip (4.7s)',t:'22m ago'},
-];
-const fl=document.getElementById('findings-list');
-findingsData.forEach((f,i)=>{
-  setTimeout(()=>{
-    fl.innerHTML+=`<div class="finding ${f.s}"><span class="finding-badge ${f.s}">${f.s}</span><span class="finding-msg">${f.m}</span><span class="finding-time">${f.t}</span></div>`;
-  },i*200);
-});
-
-/* ── FAQ ── */
-function toggleFaq(el){
-  const item=el.closest('.faq-item');
-  const wasOpen=item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
-  if(!wasOpen)item.classList.add('open');
-}
-
-/* ── FORM HANDLERS ── */
-function handleDemoForm(e){
-  e.preventDefault();
-  e.target.innerHTML='<div class="form-success"><div class="form-success-icon">📅</div><h3>Call Booked!</h3><p>A CMMC compliance specialist will reach out within 24 hours to confirm your time.</p></div>';
-}
-function handleTrialForm(e){
-  e.preventDefault();
-  e.target.innerHTML='<div class="form-success"><div class="form-success-icon">🚀</div><h3>Welcome to TrustNovaOps!</h3><p>Check your email for login credentials and setup instructions.</p></div>';
-}
-function handleLeadMagnet(e){
-  e.preventDefault();
-  e.target.innerHTML='<div class="form-success"><div class="form-success-icon">📄</div><h3>Checklist Sent!</h3><p>Check your inbox — the CMMC 2.0 Readiness Checklist is on its way.</p></div>';
-}
-
-/* ── SCROLL REVEAL ── */
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}});
-},{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-
-/* ── SMOOTH SCROLL NAV ── */
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',function(e){
-    const t=document.querySelector(this.getAttribute('href'));
-    if(t){e.preventDefault();const offset=document.getElementById('banner')&&document.getElementById('banner').style.display!=='none'?96:72;window.scrollTo({top:t.offsetTop-offset,behavior:'smooth'})}
-  });
-});
+}, {threshold:.5});
+const hero = document.querySelector('.hero-proof');
+if (hero) heroObs.observe(hero);
 </script>
 </body>
 </html>

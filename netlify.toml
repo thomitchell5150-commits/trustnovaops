@@ -32,8 +32,4 @@
     Content-Type = "text/plain"
     Cache-Control = "public, max-age=86400"
 
-# SPA catch-all redirect
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Redirects are managed in _redirects file
