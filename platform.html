@@ -457,12 +457,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 <!-- ═══ DEMO BANNER ═══ -->
 <div class="demo-banner">
   <div class="db-left">
-    <div class="db-pill">Interactive Demo</div>
-    <div class="db-text">Simulated live data — all interactions are real. No backend required.</div>
+    <div class="db-pill">Live Demo</div>
+    <div class="db-text"><strong style="color:var(--amber)">Apex Defense Systems</strong> &nbsp;·&nbsp; 847 endpoints &nbsp;·&nbsp; CMMC L2 assessment: Q2 2026 &nbsp;·&nbsp; C3PAO: SecureVault Assessment Group</div>
   </div>
   <div class="db-right">
-    <a href="/" class="db-link">← Back to trustnovaops.com</a>
-    <a href="/#pricing" class="db-cta">Start Free Trial</a>
+    <a href="https://www.trustnovaops.com" class="db-link" target="_blank">← Back to trustnovaops.com</a>
+    <a href="https://www.trustnovaops.com/#pricing" class="db-cta" target="_blank">Start Free Trial</a>
   </div>
 </div>
 
@@ -520,27 +520,27 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
     <div class="stat" style="--cc:var(--green)">
       <div class="stat-label">CMMC Score</div>
       <div class="stat-num" id="s-cmmc">0<span style="font-size:22px">%</span></div>
-      <div class="stat-sub">↑ 3pts since last scan</div>
+      <div class="stat-sub">↑ 4pts since last C3PAO review</div>
     </div>
     <div class="stat" style="--cc:var(--amber)">
       <div class="stat-label">Controls Passing</div>
       <div class="stat-num" id="s-controls">0</div>
-      <div class="stat-sub">7 need review · 2 critical</div>
+      <div class="stat-sub">7 need review · 2 critical gaps</div>
     </div>
     <div class="stat" style="--cc:var(--red)">
       <div class="stat-label">Active Findings</div>
       <div class="stat-num" id="s-findings">0</div>
-      <div class="stat-sub">↓ 12 resolved today</div>
+      <div class="stat-sub">↓ 18 resolved this week</div>
     </div>
     <div class="stat" style="--cc:var(--blue)">
       <div class="stat-label">Pipelines Scanned</div>
       <div class="stat-num" id="s-pipes">0</div>
-      <div class="stat-sub">98.9% pass rate (30d)</div>
+      <div class="stat-sub">99.1% pass rate (30d)</div>
     </div>
     <div class="stat" style="--cc:var(--purple)">
       <div class="stat-label">ATO Packages</div>
       <div class="stat-num" id="s-atos">0</div>
-      <div class="stat-sub">Generated today</div>
+      <div class="stat-sub">28 total packages on file</div>
     </div>
   </div>
 
@@ -596,15 +596,15 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
       <div class="pi-field">
         <label class="pi-label">Repository</label>
         <select class="pi-select" id="repoSelect">
-          <option>frontend-app (React, Node 18)</option>
-          <option>backend-api (Python 3.11, FastAPI)</option>
-          <option>infra-terraform (AWS GovCloud)</option>
-          <option>ml-pipeline (PyTorch, Docker)</option>
+          <option>f35-logistics-api (Python 3.11, FastAPI)</option>
+          <option>jtac-comms (Node 18, Docker)</option>
+          <option>infra-terraform (AWS GovCloud IL4)</option>
+          <option>apex-ml-pipeline (PyTorch, K8s)</option>
         </select>
       </div>
       <div class="pi-field">
         <label class="pi-label">Branch</label>
-        <input class="pi-input" value="feature/user-auth-refactor" id="branchInput">
+        <input class="pi-input" value="feature/jtac-comms-encryption-v2" id="branchInput">
       </div>
       <div class="pi-field">
         <label class="pi-label">Environment Target</label>
@@ -728,7 +728,7 @@ USER root</div>
         <div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:18px">System Configuration</div>
         <div class="pi-field" style="margin-bottom:14px">
           <label class="pi-label">AI System / Program Name</label>
-          <input class="pi-input" id="atoSystemName" value="Predictive Threat Analytics v2.1" placeholder="System name">
+          <input class="pi-input" id="atoSystemName" value="JTAC Integration System v3.1" placeholder="System name">
         </div>
         <div class="pi-field" style="margin-bottom:14px">
           <label class="pi-label">Deployment Environment</label>
@@ -838,7 +838,7 @@ USER root</div>
     <div class="exec-card">
       <div class="ec-label">CMMC Score Trend (30d)</div>
       <div class="ec-big" style="color:var(--green)">92%</div>
-      <div class="ec-sub trend-up">▲ +4 points since last assessment</div>
+      <div class="ec-sub trend-up">▲ +4pts since last C3PAO review</div>
       <div class="mini-chart" id="cmmcTrend" style="--cc:var(--green)"></div>
     </div>
     <div class="exec-card">
@@ -868,14 +868,14 @@ USER root</div>
     </div>
     <div class="exec-card">
       <div class="ec-label">Blocked Deployments (30d)</div>
-      <div class="ec-big" style="color:var(--red)">8</div>
-      <div class="ec-sub">4 CISO-approved · 3 remediated · 1 pending</div>
+      <div class="ec-big" style="color:var(--red)">11</div>
+      <div class="ec-sub">5 CISO-approved · 4 remediated · 2 pending</div>
       <div class="mini-chart" id="blockChart" style="--cc:var(--red)"></div>
     </div>
     <div class="exec-card">
       <div class="ec-label">Agent Activity (30d)</div>
-      <div class="ec-big" style="color:var(--amber)">14.8K</div>
-      <div class="ec-sub">Events processed · 99.7% accuracy</div>
+      <div class="ec-big" style="color:var(--amber)">21.4K</div>
+      <div class="ec-sub">Events processed · 99.8% accuracy</div>
       <div class="mini-chart" id="actChart" style="--cc:var(--amber)"></div>
     </div>
     <div class="exec-card">
@@ -901,12 +901,12 @@ USER root</div>
     </div>
     <div class="exec-card">
       <div class="ec-label">Cost Avoidance</div>
-      <div class="ec-big" style="color:var(--green)">$340K</div>
-      <div class="ec-sub">vs. manual compliance consulting (est.)</div>
+      <div class="ec-big" style="color:var(--green)">$420K</div>
+      <div class="ec-sub">vs. manual consulting + C3PAO overruns (est.)</div>
       <div style="margin-top:12px;display:flex;flex-direction:column;gap:6px">
         <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px">
           <span style="color:var(--muted)">Hours saved / year</span>
-          <span style="color:var(--text)">1,240 hrs</span>
+          <span style="color:var(--text)">2,140 hrs</span>
         </div>
         <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px">
           <span style="color:var(--muted)">C3PAO prep time</span>
@@ -940,135 +940,269 @@ USER root</div>
 
 <script>
 // ═══════════════════════════════════════════════
-// DATA
+// DEMO ORGANIZATION PROFILE
+// Apex Defense Systems, Inc. — fictional defense contractor
 // ═══════════════════════════════════════════════
 
+const DEMO_ORG = {
+  name:      'Apex Defense Systems, Inc.',
+  cage:      '7X4Y2',
+  program:   'F-35 Avionics Sustainment · DoD Contract #W58RGZ-24-C-0047',
+  cmmc:      'Level 2 · C3PAO Assessment: Q3 2026',
+  c3pao:     'Cleared Assessment Partners, LLC',
+  endpoints: 847,
+  cloud:     'AWS GovCloud (us-gov-east-1) · Azure Government · Microsoft 365 GCC High',
+  users:     412,
+  sprs:      '88 / 110',
+};
+
+// ═══════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════
+// Demo persona: Apex Defense Systems (fictional)
+// CMMC L2 assessment in progress · Q2 2026
+// ═══════════════════════════════════════════════
+
+const COMPANY = {
+  name:'Apex Defense Systems',
+  location:'Alexandria, VA · Huntsville, AL · Colorado Springs, CO',
+  employees:847,
+  contracts:['F-35 Logistics Data Systems (FA8623-22-C-7011)',
+             'JTAC Communications Integration (W911QY-23-C-0124)'],
+  isso:'M. Nakamura',
+  ciso:'D. Harrison',
+  c3pao:'SecureVault Assessment Group',
+  assessmentDate:'Q2 2026',
+};
+
 const AGENTS = [
-  {num:'001',name:'Compliance Scanner',color:'#00b090',desc:'110 controls · real-time',events:847,status:'ACTIVE'},
-  {num:'002',name:'Code Auditor',color:'#3090e0',desc:'1.2M lines scanned',events:1203,status:'ACTIVE'},
-  {num:'003/WARDEN',name:'Infrastructure Guardian',color:'#e86020',desc:'342 resources · DLP',events:412,status:'ACTIVE'},
-  {num:'004',name:'Access Controller',color:'#e0c040',desc:'2,847 users monitored',events:234,status:'ACTIVE'},
-  {num:'005',name:'Policy Engine',color:'#a060e0',desc:'89 policies active',events:89,status:'ACTIVE'},
-  {num:'006',name:'Pipeline Orchestrator',color:'#e8a020',desc:'1,247 pipelines · 98.9%',events:1247,status:'ACTIVE'},
-  {num:'007',name:'ATO Streamliner',color:'#d04060',desc:'AI system ATO · <5s',events:14,status:'READY'},
+  {num:'001',name:'Compliance Scanner',color:'#00b090',desc:'847 endpoints · 110 controls · live',events:2847,blocked:0,status:'ACTIVE'},
+  {num:'002',name:'Code Auditor',color:'#3090e0',desc:'4.2M lines scanned · 847 PRs reviewed',events:1847,blocked:34,status:'ACTIVE'},
+  {num:'003/WARDEN',name:'Infrastructure Guardian',color:'#e86020',desc:'342 resources · DLP · secrets',events:614,blocked:47,status:'ACTIVE'},
+  {num:'004',name:'Access Controller',color:'#e0c040',desc:'847 users · 42 roles · 0 stale',events:389,blocked:12,status:'ACTIVE'},
+  {num:'005',name:'Policy Engine',color:'#a060e0',desc:'124 policies · CMMC L2 enforced',events:124,blocked:8,status:'ACTIVE'},
+  {num:'006',name:'Pipeline Orchestrator',color:'#e8a020',desc:'1,847 pipelines · 99.1% pass rate',events:1847,blocked:16,status:'ACTIVE'},
+  {num:'007',name:'ATO Streamliner',color:'#d04060',desc:'AI system ATO · NIST RMF 2.0',events:22,blocked:0,status:'READY'},
+];
+
+const INCIDENTS = [
+  {id:'INC-4201',sev:'critical',agent:'WARDEN',title:'CUI emailed to personal Gmail — F-35 maint schedule',endpoint:'WKSTN-APX-214',user:'t.morrison@apexdef.com',status:'open',time:'09:14:33',
+   detail:{vector:'Email / Data Exfiltration',data:'F35_MAINT_SCHED_Q1_2026.xlsx — 847KB — CUI//SP-EXPT',policy:'CUI-EMAIL-001',cmmc:'SC.3.177 · MP.2.120',
+   actions:['Email quarantined before send','File classified CUI//SP-EXPT automatically','ISSO M. Nakamura notified','DFARS 252.204-7012 incident report queued'],
+   timeline:[{t:'09:14:31',txt:'Outlook: outbound draft detected — attachment F35_MAINT_SCHED_Q1_2026.xlsx'},{t:'09:14:33',txt:'WARDEN: CUI pattern match — DoD drawing number, export control indicator'},{t:'09:14:33',txt:'Email quarantined — NOT sent. User shown policy warning.'},{t:'09:14:34',txt:'ACCORD: SC.3.177 + MP.2.120 evidence entries created'},{t:'09:15:01',txt:'ISSO notified via Slack. INC-4201 opened.'}]}},
+
+  {id:'INC-4200',sev:'critical',agent:'WARDEN',title:'JTAC config file with CUI on unencrypted USB',endpoint:'WKSTN-APX-338',user:'l.garcia@apexdef.com',status:'investigating',time:'08:47:12',
+   detail:{vector:'Removable Media',data:'JTAC_CONFIG_v4.2.json — contract W911QY-23-C-0124 ref',policy:'USB-CUI-001',cmmc:'MP.2.120 · AC.1.001',
+   actions:['USB port locked in 82ms','0 bytes transferred before lock','Device SN logged for inventory audit','User badge access review initiated'],
+   timeline:[{t:'08:47:10',txt:'USB mass storage connected — SN:SB4F2A9E1 (unvetted, 64GB)'},{t:'08:47:12',txt:'SENTINEL: device not in approved list. Port locked.'},{t:'08:47:12',txt:'WARDEN: CUI scan of targeted files initiated'},{t:'08:47:13',txt:'0 bytes transferred. JTAC config confirmed CUI.'},{t:'08:48:20',txt:'ISSO reviewing. Investigation open.'}]}},
+
+  {id:'INC-4199',sev:'critical',agent:'Agent 002',title:'DoD contract number hardcoded in GitLab pipeline',endpoint:'GITLAB-PROD-01',user:'j.okafor@apexdef.com',status:'open',time:'Yesterday 16:22',
+   detail:{vector:'CI/CD Repository',data:'Contract FA8623-22-C-7011 + AWS key in .env.production',policy:'SECRETS-CODE-001',cmmc:'CM.3.068 · IA.3.083',
+   actions:['PR #1,247 blocked at pre-merge gate','AWS key flagged for immediate rotation','DevSecOps lead notified','Key rotation playbook queued — awaiting CISO approval'],
+   timeline:[{t:'16:22:01',txt:'Pipeline Gate: .env.production scanned on PR #1247'},{t:'16:22:03',txt:'Code Auditor: AWS key + DoD contract # detected'},{t:'16:22:03',txt:'PR blocked. Branch protected.'},{t:'16:22:04',txt:'j.okafor@apexdef.com notified via GitLab comment + Slack'},{t:'16:22:05',txt:'ACCORD: CM.3.068 evidence gap flagged'}]}},
+
+  {id:'INC-4198',sev:'critical',agent:'Agent 004',title:'Former contractor SSO active 14 days post-termination',endpoint:'APEX-IAM-PROD',user:'vendor-csc@csci.com',status:'open',time:'Yesterday 11:30',
+   detail:{vector:'Identity & Access',data:'CSC Integration contractor — SSO not revoked after contract end',policy:'AC-OFFBOARD-001',cmmc:'AC.2.006 · PS.3.114',
+   actions:['SSO session terminated immediately','All active tokens revoked','HR notified of access gap','Offboarding checklist audit initiated'],
+   timeline:[{t:'11:28:00',txt:'Access Controller: contractor account active 14 days post contract-end'},{t:'11:30:12',txt:'SSO session terminated. All tokens revoked.'},{t:'11:30:13',txt:'D. Harrison (CISO) alerted — AC.2.006 violation'},{t:'11:31:00',txt:'HR offboarding process audit initiated. PS.3.114 gap flagged.'}]}},
+
+  {id:'INC-4197',sev:'high',agent:'WARDEN',title:'SSH private key hardcoded in deployment script',endpoint:'GITLAB-PROD-01',user:'k.washington@apexdef.com',status:'resolved',time:'Yesterday 14:15',
+   detail:{vector:'Source Code',data:'ECDSA private key in infra/deploy_prod.sh:47',policy:'SECRETS-CODE-001',cmmc:'IA.3.083 · CM.3.068',
+   actions:['Key immediately revoked in AWS','New key pair generated + stored in Secrets Manager','Developer retrained on secret handling policy','ACCORD evidence package generated'],
+   timeline:[{t:'14:15:01',txt:'WARDEN: ECDSA private key detected in commit b4f9a21'},{t:'14:15:02',txt:'PR blocked. Key flagged for revocation.'},{t:'14:15:10',txt:'k.washington@apexdef.com notified. Key revoked in AWS.'},{t:'14:22:00',txt:'New key pair provisioned via Secrets Manager'},{t:'14:25:00',txt:'INC-4197 resolved. Evidence package generated.'}]}},
+
+  {id:'INC-4196',sev:'high',agent:'Agent 006',title:'Docker container runs as root in production pipeline',endpoint:'APEX-K8S-PROD-01',user:'t.morrison@apexdef.com',status:'open',time:'Yesterday 10:08',
+   detail:{vector:'CI/CD Container',data:'Dockerfile: USER root — image: node:18 (unpinned)',policy:'CONTAINER-SEC-001',cmmc:'CM.2.061 · SI.1.210',
+   actions:['Deployment to production blocked','Dev team notified of remediation requirements','Dockerfile review scheduled','Pipeline policy gate updated'],
+   timeline:[{t:'10:08:01',txt:'Pipeline Orchestrator: Dockerfile scan — USER root detected'},{t:'10:08:02',txt:'Deployment BLOCKED. Gate failed: CM.2.061'},{t:'10:08:03',txt:'t.morrison@apexdef.com notified via Slack'},{t:'10:09:00',txt:'Remediation ticket created: APEX-2841'}]}},
+
+  {id:'INC-4195',sev:'high',agent:'Agent 006',title:'Terraform config exposes port 22 to 0.0.0.0/0',endpoint:'AWS-GOVCLOUD-VPC',user:'l.garcia@apexdef.com',status:'acknowledged',time:'Yesterday 09:44',
+   detail:{vector:'IaC / Cloud Config',data:'aws_security_group.apex_prod — ingress port 22 open',policy:'IaC-POLICY-001',cmmc:'SC.1.175 · CM.3.068',
+   actions:['Deployment blocked','IaC change request raised in ServiceNow','Network team notified','Terraform plan rejected with remediation guidance'],
+   timeline:[{t:'09:44:01',txt:'Pipeline Orchestrator: Terraform plan scanned'},{t:'09:44:02',txt:'Port 22 open to 0.0.0.0/0 detected — deployment blocked'},{t:'09:44:03',txt:'ServiceNow CR#47821 created automatically'},{t:'09:50:00',txt:'Acknowledged by l.garcia@apexdef.com. Fix scheduled.'}]}},
+
+  {id:'INC-4194',sev:'high',agent:'WARDEN',title:'Bulk download — 1,240 files before resignation date',endpoint:'WKSTN-APX-099',user:'a.chen@apexdef.com',status:'resolved',time:'2 days ago',
+   detail:{vector:'Insider Risk',data:'1,240 files downloaded to OneDrive personal in 4 hours',policy:'INSIDER-RISK-001',cmmc:'AU.2.042 · AC.2.007',
+   actions:['Personal OneDrive sync blocked','HR and legal notified','Files inventoried — no CUI confirmed exfiltrated','Exit interview documentation updated'],
+   timeline:[{t:'11:12:00',txt:'WARDEN: anomalous bulk download — 1,240 files / 4h / a.chen@apexdef.com'},{t:'11:12:01',txt:'OneDrive personal sync blocked. Files quarantined for review.'},{t:'11:15:00',txt:'HR and legal notified. Departure date confirmed: 5 days.'},{t:'11:30:00',txt:'File inventory complete — no CUI confirmed. INC-4194 resolved.'}]}},
+
+  {id:'INC-4193',sev:'high',agent:'Agent 002',title:'CVE-2024-3094 (xz-utils 5.6.0) in 3 production images',endpoint:'APEX-K8S-PROD-01',user:'system',status:'resolved',time:'3 days ago',
+   detail:{vector:'Container Vulnerability',data:'xz-utils 5.6.0 — CVSS 10.0 — supply chain backdoor',policy:'VULN-CRITICAL-001',cmmc:'SI.1.210 · RA.3.077',
+   actions:['3 affected images rebuilt immediately','Pods restarted with clean images','Dependency pinned to 5.4.6 in all Dockerfiles','Incident disclosed to ISSO per DFARS 252.204-7012'],
+   timeline:[{t:'08:14:00',txt:'Code Auditor: CVE-2024-3094 detected in xz-utils 5.6.0'},{t:'08:14:01',txt:'3 production images flagged. Rollback initiated.'},{t:'08:25:00',txt:'Clean images deployed. Pods restarted.'},{t:'09:00:00',txt:'DFARS 252.204-7012 incident disclosure submitted.'}]}},
+
+  {id:'INC-4192',sev:'medium',agent:'Agent 004',title:'Privileged access outside approved hours — CUI system',endpoint:'APEX-NAS-CUI-01',user:'r.patel@apexdef.com',status:'resolved',time:'3 days ago',
+   detail:{vector:'Access Anomaly',data:'CUI NAS accessed at 01:47 AM — outside r.patel@apexdef.com approved window',policy:'AC-HOURS-001',cmmc:'AC.2.007 · AU.2.042',
+   actions:['Session allowed — user on approved list','Access logged and flagged for review','ISSO briefed next morning','No CUI data exfiltrated confirmed'],
+   timeline:[{t:'01:47:00',txt:'Access Controller: CUI NAS access at 01:47 AM — flagged'},{t:'01:47:01',txt:'Session allowed per approved-list policy. Access logged.'},{t:'08:30:00',txt:'ISSO M. Nakamura reviewed. Confirmed legitimate — r.patel on deadline'},{t:'08:35:00',txt:'INC-4192 resolved. Audit evidence generated.'}]}},
+
+  {id:'INC-4191',sev:'medium',agent:'Agent 005',title:'Shadow IT — personal Dropbox sync on engineering laptop',endpoint:'WKSTN-APX-441',user:'t.morrison@apexdef.com',status:'acknowledged',time:'4 days ago',
+   detail:{vector:'Shadow IT / Cloud',data:'Dropbox personal account syncing from engineering workstation',policy:'SHADOW-IT-001',cmmc:'CM.2.061 · SC.1.175',
+   actions:['Dropbox blocked at URL filter layer','User warned via pop-up policy notification','Logged for 30-day monitoring','Approved cloud storage alternatives provided'],
+   timeline:[{t:'14:22:00',txt:'NIMBUS: Dropbox personal sync attempt — WKSTN-APX-441'},{t:'14:22:01',txt:'Blocked at URL filter. User shown policy page.'},{t:'14:22:02',txt:'CM.2.061 evidence logged. 30-day monitoring flag set.'}]}},
+
+  {id:'INC-4190',sev:'medium',agent:'Agent 006',title:'Python dependency confusion attack in requirements.txt',endpoint:'GITLAB-PROD-01',user:'j.okafor@apexdef.com',status:'resolved',time:'5 days ago',
+   detail:{vector:'Supply Chain / CI/CD',data:'requests-apex==2.1.0 — internal name on PyPI (typosquatting)',policy:'SUPPLY-CHAIN-001',cmmc:'SR.3.169 · CM.3.068',
+   actions:['Malicious package blocked before install','Build failed safely','Internal package registry policy updated','Supply chain review initiated'],
+   timeline:[{t:'10:14:00',txt:'Code Auditor: dependency confusion risk — requests-apex on PyPI'},{t:'10:14:01',txt:'Build blocked. Package quarantined.'},{t:'10:30:00',txt:'Package registry policy updated — internal first.'},{t:'11:00:00',txt:'SR.3.169 evidence generated. INC-4190 resolved.'}]}},
+
+  {id:'INC-4189',sev:'medium',agent:'WARDEN',title:'ITAR drawing printed on unmonitored PRN-07',endpoint:'PRN-07',user:'k.washington@apexdef.com',status:'open',time:'5 days ago',
+   detail:{vector:'Print',data:'F35_WING_ASSY_DWG_2024.pdf — ITAR-controlled — 8 pages',policy:'PRINT-ITAR-001',cmmc:'MP.2.120 · MP.3.122',
+   actions:['Print job logged with full metadata','ITAR custodian notified','PRN-07 moved to monitored zone (pending)','Physical security review scheduled'],
+   timeline:[{t:'15:44:00',txt:'LEDGER: print job — F35_WING_ASSY_DWG_2024.pdf on PRN-07'},{t:'15:44:01',txt:'WARDEN: ITAR indicator confirmed — custodian alerted'},{t:'15:44:02',txt:'MP.2.120 evidence logged. PRN-07 relocation request raised.'}]}},
+
+  {id:'INC-4188',sev:'low',agent:'Agent 001',title:'CMMC AU-2 evidence gap — 72h stale',endpoint:'SYSTEM',user:'auto-detect',status:'resolved',time:'6 days ago',
+   detail:{vector:'Compliance Automation',data:'AU-2 audit events evidence — 72h overdue',policy:'CONMON-001',cmmc:'AU.2.041 · AU.2.042',
+   actions:['Auto-remediation triggered immediately','Evidence snapshot regenerated in 8 minutes','AO notified of gap and resolution','ConMon schedule reviewed'],
+   timeline:[{t:'06:00:00',txt:'Compliance Scanner: AU-2 evidence 72h stale — gap detected'},{t:'06:00:01',txt:'Auto-remediation playbook triggered'},{t:'06:08:14',txt:'Evidence snapshot regenerated and timestamped'},{t:'06:08:15',txt:'AO notification sent. INC-4188 resolved.'}]}},
+
+  {id:'INC-4187',sev:'low',agent:'Agent 004',title:'Expired MFA token — 4 accounts not re-enrolled',endpoint:'APEX-IAM-PROD',user:'system',status:'resolved',time:'1 week ago',
+   detail:{vector:'Identity Management',data:'4 accounts with expired MFA tokens — 90d re-enrollment overdue',policy:'IA-MFA-001',cmmc:'IA.3.083',
+   actions:['Forced re-enrollment triggered','All 4 accounts re-enrolled within 24h','IA.3.083 evidence package updated','Policy reminder sent to all users'],
+   timeline:[{t:'08:00:00',txt:'Access Controller: 4 accounts with expired MFA (90d)'},{t:'08:00:01',txt:'Forced re-enrollment emails sent'},{t:'32:00:00',txt:'All 4 accounts re-enrolled. IA.3.083 evidence updated.'},{t:'32:01:00',txt:'INC-4187 resolved.'}]}},
 ];
 
 const EVENT_POOL = [
-  {s:'so',m:'<strong>Agent 001</strong> — Control AC.1.001 evidence snapshot completed · 14:03:22'},
-  {s:'sl',m:'<strong>Agent 006</strong> — Pipeline scan pass: backend-api PR #847 · 0 critical findings'},
-  {s:'sh',m:'<strong>Agent 003/WARDEN</strong> — PII pattern detected: <strong>app_debug.log</strong> · SSN ×2 · /var/logs/'},
-  {s:'so',m:'<strong>Agent 004</strong> — Privileged access review: 3 accounts recertified'},
-  {s:'sc',m:'<strong>Agent 002</strong> — Critical vuln: <strong>CVE-2024-3094</strong> · dependency: xz-utils 5.6.0 · blocked'},
-  {s:'sl',m:'<strong>Agent 001</strong> — CMMC evidence package generated: MP.2.120 · timestamped'},
-  {s:'sh',m:'<strong>Agent 003/WARDEN</strong> — GitHub commit scan: <strong>hardcoded API key</strong> detected · PR blocked'},
-  {s:'so',m:'<strong>Agent 005</strong> — Policy update propagated to 89 endpoints · CM.3.068 enforced'},
-  {s:'sm',m:'<strong>Agent 006</strong> — Container image scan: 2 medium CVEs in node:18-alpine · flagged'},
-  {s:'sl',m:'<strong>Agent 001</strong> — ATO readiness score updated: 92% (+1) · CMMC Level 2'},
-  {s:'sc',m:'<strong>Agent 003/WARDEN</strong> — S3 bucket misconfigured as public · <strong>auto-remediated in 340ms</strong>'},
-  {s:'so',m:'<strong>Agent 007</strong> — ATO package generated: Predictive Analytics v2 · 4.7s runtime'},
-  {s:'sh',m:'<strong>Agent 004</strong> — Anomalous access: j.harris accessed 847 files in 6 min · escalated'},
-  {s:'sl',m:'<strong>Agent 002</strong> — Static analysis complete: 0 critical · 3 medium · PR approved'},
-  {s:'sm',m:'<strong>Agent 006</strong> — IaC scan: Terraform config exposes port 22 to 0.0.0.0/0 · blocked'},
-  {s:'so',m:'<strong>Agent 005</strong> — DFARS 252.204-7012 evidence snapshot · control AU-2 satisfied'},
-];
-
-const FINDINGS_DATA = [
-  {id:'FND-4421',agent:'Agent 002',finding:'SQL injection vulnerability in /api/users endpoint',ctrl:'SI.3.218',sev:'critical',status:'open',detail:{vector:'Source Code',file:'src/api/users.py:147',remediation:'Parameterize all DB queries — see OWASP top-10 guidance',timeline:[{t:'14:03',txt:'Code Auditor: SQL injection pattern detected in commit a3f9b'},{t:'14:03',txt:'PR #847 blocked — pre-merge gate triggered'},{t:'14:04',txt:'Developer notified via Slack and GitHub comment'},{t:'14:04',txt:'ACCORD: SI.3.218 evidence gap flagged'}]}},
-  {id:'FND-4420',agent:'WARDEN',finding:'AWS secret key hardcoded in frontend-app repo',ctrl:'CM.3.068',sev:'critical',status:'open',detail:{vector:'Repository',file:'config/env.defaults.js:23',remediation:'Rotate key immediately. Use AWS Secrets Manager.',timeline:[{t:'13:42',txt:'WARDEN: hardcoded AWS_SECRET_ACCESS_KEY in commit a3f9b21'},{t:'13:42',txt:'PR blocked — pre-merge gate triggered'},{t:'13:43',txt:'Key rotation playbook queued — human approval required'},{t:'13:43',txt:'Dev team notified'}]}},
-  {id:'FND-4419',agent:'WARDEN',finding:'SSN pattern in outbound email attachment',ctrl:'SC.3.177',sev:'high',status:'investigating',detail:{vector:'Email',file:'patient_data_Q1.xlsx',remediation:'Quarantine file. Conduct data handling review for user.',timeline:[{t:'14:08',txt:'VAULT: SSN ×4 in Outlook draft attachment'},{t:'14:08',txt:'Email quarantined — not sent'},{t:'14:08',txt:'HIPAA §164.312 evidence logged'},{t:'14:09',txt:'Manager notified — awaiting review'}]}},
-  {id:'FND-4418',agent:'Agent 004',finding:'Privileged user accessing CUI outside approved hours',ctrl:'AC.2.007',sev:'high',status:'investigating',detail:{vector:'Access Control',file:'User: a.patel@corp',remediation:'Suspend session. Review access entitlements.',timeline:[{t:'01:47',txt:'Access Controller: CUI access at 01:47 AM — anomalous'},{t:'01:47',txt:'Session flagged for review'},{t:'01:48',txt:'Security team notified'},{t:'08:12',txt:'ISSO reviewing — investigation open'}]}},
-  {id:'FND-4417',agent:'Agent 006',finding:'Container exposes port 22 to 0.0.0.0/0',ctrl:'CM.2.061',sev:'medium',status:'acknowledged',detail:{vector:'CI/CD Pipeline',file:'Dockerfile:14 — infra-terraform/compute.tf',remediation:'Remove SSH port exposure. Use Systems Manager for access.',timeline:[{t:'12:15',txt:'Pipeline Orchestrator: port 22 exposed in Terraform config'},{t:'12:15',txt:'Deployment blocked'},{t:'12:16',txt:'DevOps team notified'},{t:'12:30',txt:'Acknowledged — fix scheduled for next sprint'}]}},
-  {id:'FND-4416',agent:'Agent 001',finding:'CMMC control SC-28 evidence 72h overdue',ctrl:'SC-28',sev:'low',status:'resolved',detail:{vector:'Compliance',file:'System: Encryption-at-rest monitoring',remediation:'Auto-remediated: evidence snapshot re-generated.',timeline:[{t:'11:00',txt:'Compliance Scanner: SC-28 evidence gap — 72h stale'},{t:'11:00',txt:'Auto-remediation triggered'},{t:'11:08',txt:'Evidence package regenerated and timestamped'},{t:'11:08',txt:'Gap resolved — AO notified'}]}},
+  {s:'sl',m:'<strong>Agent 001</strong> — AC.1.001 evidence snapshot complete · 847 endpoints compliant · CMMC L2'},
+  {s:'so',m:'<strong>Agent 006</strong> — Pipeline pass: backend-api PR #1,247 · 0 critical · 2 medium flagged'},
+  {s:'sh',m:'<strong>WARDEN</strong> — CUI pattern detected: <strong>F35_MAINT_SCHED_Q1_2026.xlsx</strong> · outbound email blocked'},
+  {s:'so',m:'<strong>Agent 004</strong> — Privileged access recertification: 42 roles reviewed · 3 reduced'},
+  {s:'sc',m:'<strong>Agent 002</strong> — Critical: <strong>CVE-2024-3094</strong> in xz-utils 5.6.0 · 3 production images affected · rebuild triggered'},
+  {s:'sl',m:'<strong>Agent 001</strong> — MP.2.120 evidence generated: USB event WKSTN-APX-338 · CUI confirmed safe'},
+  {s:'sh',m:'<strong>WARDEN</strong> — SSH private key detected: <strong>infra/deploy_prod.sh:47</strong> · PR blocked · rotation queued'},
+  {s:'so',m:'<strong>Agent 005</strong> — Policy update propagated: 124 endpoints · ITAR data handling rule CM.3.068'},
+  {s:'sm',m:'<strong>Agent 006</strong> — Container scan: Dockerfile USER root in <strong>jtac-comms:latest</strong> · deployment blocked'},
+  {s:'sl',m:'<strong>Agent 001</strong> — CMMC readiness: 92% · 101 controls passing · 7 under review · 2 critical gaps'},
+  {s:'sc',m:'<strong>WARDEN</strong> — S3 bucket apex-jtac-config made public · <strong>auto-remediated in 312ms</strong> · evidence logged'},
+  {s:'so',m:'<strong>Agent 007</strong> — ATO package generated: JTAC Integration System v3.1 · 4.9s · 87% ready score'},
+  {s:'sh',m:'<strong>Agent 004</strong> — Anomalous access: r.patel@apexdef.com · 1,240 CUI files in 4h · bulk download blocked'},
+  {s:'sl',m:'<strong>Agent 002</strong> — SAST complete: f35-logistics-api PR #892 · 0 critical · RA.3.077 evidence logged'},
+  {s:'sm',m:'<strong>Agent 006</strong> — Terraform: security group open port 22 to 0.0.0.0/0 · deployment blocked · CR#47821 raised'},
+  {s:'so',m:'<strong>Agent 005</strong> — DFARS 252.204-7012 CUI handling policy enforced · 847 endpoints in scope'},
+  {s:'sl',m:'<strong>Agent 001</strong> — FedRAMP ConMon: SC-28 evidence updated · encryption-at-rest verified 847 resources'},
+  {s:'sm',m:'<strong>WARDEN</strong> — Print job flagged: <strong>F35_WING_ASSY_DWG_2024.pdf</strong> on PRN-07 · ITAR indicator · custodian alerted'},
+  {s:'so',m:'<strong>Agent 004</strong> — MFA re-enrollment complete: 4 accounts · IA.3.083 satisfied · evidence logged'},
+  {s:'sl',m:'<strong>Agent 006</strong> — CI/CD gate pass: f35-logistics-data · 6/6 checks · CMMC CM.3.068 evidence captured'},
+  {s:'sh',m:'<strong>Agent 002</strong> — Dependency confusion: <strong>requests-apex==2.1.0</strong> on PyPI · SR.3.169 violation · blocked'},
+  {s:'so',m:'<strong>Agent 001</strong> — AU.2.042 audit log snapshot: 847 endpoints · 0 gaps · ConMon updated'},
+  {s:'sm',m:'<strong>WARDEN</strong> — Dropbox personal sync blocked: WKSTN-APX-441 / t.morrison@apexdef.com · CM.2.061 logged'},
+  {s:'sl',m:'<strong>Agent 005</strong> — Policy-as-code update deployed: ITAR data classification rule v2.4 · all pipelines'},
+  {s:'so',m:'<strong>Agent 006</strong> — Pipeline pass: jtac-comms PR #488 · container rebuilt non-root · SI.1.210 satisfied'},
+  {s:'sc',m:'<strong>Agent 004</strong> — Contractor SSO active 14 days post-termination: vendor-csc@csci.com · session terminated'},
+  {s:'sl',m:'<strong>Agent 007</strong> — NIST AI RMF 1.0 assessment: Predictive Maintenance AI · Phase 4 of 6 complete'},
+  {s:'sh',m:'<strong>WARDEN</strong> — PII pattern: <strong>contractor_clearances_2025.csv</strong> · 847 SSNs · /onedrive/hr/ · encrypt flagged'},
+  {s:'so',m:'<strong>Agent 001</strong> — C3PAO readiness package: SecureVault Assessment Group · 94% evidence complete'},
+  {s:'sm',m:'<strong>Agent 006</strong> — IaC scan: Bicep template missing encryption-at-rest · SC-28 gap · PR blocked'},
 ];
 
 const WARDEN_FINDINGS = [
-  {file:'patient_data_Q1.xlsx',path:'/onedrive/hr/',type:'ePHI',count:'341',risk:98,rc:'risk-critical',action:'Quarantine'},
-  {file:'hr_payroll_2025.csv',path:'/shares/hr/',type:'PII/SSN',count:'892',risk:92,rc:'risk-critical',action:'Encrypt'},
-  {file:'stripe_keys.env',path:'/repo:checkout/',type:'Secret',count:'3',risk:95,rc:'risk-critical',action:'Rotate'},
-  {file:'app_debug.log',path:'/var/logs/app/',type:'PII',count:'2',risk:74,rc:'risk-high',action:'Purge'},
-  {file:'customers_export.csv',path:'/s3:prod-backups/',type:'PII/PCI',count:'14,200',risk:88,rc:'risk-critical',action:'Restrict'},
-  {file:'config.yml',path:'/repo:backend-api/',type:'Credential',count:'1',risk:91,rc:'risk-critical',action:'Rotate'},
-  {file:'sales_pipeline_Q4.xlsx',path:'/sharepoint/sales/',type:'PII',count:'234',risk:45,rc:'risk-medium',action:'Review'},
-  {file:'model_training_data.parquet',path:'/s3:ml-datasets/',type:'CUI',count:'1,204',risk:82,rc:'risk-high',action:'Classify'},
+  {file:'F35_MAINT_SCHED_Q1_2026.xlsx',path:'/onedrive/engineering/f35/',type:'CUI//SP-EXPT',count:'1 file',risk:97,rc:'risk-critical',action:'Restrict'},
+  {file:'JTAC_CONFIG_v4.2.json',path:'/gitlab:jtac-comms/configs/',type:'CUI',count:'1 file',risk:94,rc:'risk-critical',action:'Encrypt'},
+  {file:'contractor_clearances_2025.csv',path:'/onedrive/hr/',type:'PII/SSN',count:'847',risk:91,rc:'risk-critical',action:'Encrypt'},
+  {file:'deploy_prod.sh',path:'/gitlab:infra-automation/scripts/',type:'SSH Key',count:'1',risk:95,rc:'risk-critical',action:'Rotate'},
+  {file:'F35_WING_ASSY_DWG_2024.pdf',path:'/shares/engineering/itar/',type:'ITAR',count:'1 file',risk:88,rc:'risk-critical',action:'Audit'},
+  {file:'apex_db_backup_nov24.sql',path:'/s3:apex-govcloud-backups/',type:'PII/PCI',count:'14,200',risk:85,rc:'risk-critical',action:'Restrict'},
+  {file:'network_topology_classified.vsd',path:'/shares/it/network/',type:'CUI//CTRL',count:'1 file',risk:82,rc:'risk-high',action:'Classify'},
+  {file:'payroll_q4_2025.xlsx',path:'/onedrive/finance/',type:'PII/SSN',count:'847',risk:78,rc:'risk-high',action:'Encrypt'},
+  {file:'app_debug.log',path:'/var/logs/jtac-api/',type:'PII',count:'12',risk:72,rc:'risk-high',action:'Purge'},
+  {file:'legacy_api_keys.env',path:'/shares/devops/archive/',type:'Credential',count:'14',risk:69,rc:'risk-high',action:'Rotate'},
+  {file:'project_status_w911qy.pptx',path:'/sharepoint/contracts/',type:'CUI',count:'1 file',risk:54,rc:'risk-medium',action:'Review'},
+  {file:'employee_handbook_v7.pdf',path:'/sharepoint/hr/',type:'PII',count:'847',risk:22,rc:'risk-low',action:'Monitor'},
 ];
 
 const VIOLATIONS_DATA = [
-  {time:'15:02',fw:'HIPAA',desc:'PHI printed — patient_records_Q1.xlsx (12pp)'},
-  {time:'14:31',fw:'SHADOW-IT',desc:'Telegram Web accessed from WKSTN-088'},
-  {time:'14:08',fw:'PII-EMAIL',desc:'SSN in outbound Outlook — attachment blocked'},
-  {time:'13:42',fw:'SECRETS',desc:'AWS key in GitHub commit a3f9b21'},
-  {time:'12:15',fw:'CI/CD',desc:'Port 22 exposed to 0.0.0.0/0 in Terraform'},
-  {time:'11:47',fw:'DATA-MOVE',desc:'847 files bulk-copied OneDrive → USB — blocked'},
-  {time:'09:12',fw:'CLOUD',desc:'S3 bucket public — auto-remediated in 340ms'},
+  {time:'09:14',fw:'CUI-EMAIL',desc:'F-35 maint schedule emailed to personal Gmail — quarantined'},
+  {time:'08:47',fw:'USB-CUI',desc:'JTAC config on unvetted USB — port locked in 82ms'},
+  {time:'16:22',fw:'SECRETS',desc:'AWS key + DoD contract # in GitLab pipeline — PR blocked'},
+  {time:'15:44',fw:'ITAR-PRINT',desc:'F35 drawing on unmonitored printer PRN-07 — custodian alerted'},
+  {time:'14:22',fw:'SHADOW-IT',desc:'Dropbox personal sync on engineering workstation — blocked'},
+  {time:'11:28',fw:'AC-IAM',desc:'Former contractor SSO active 14 days post-termination — revoked'},
+  {time:'10:14',fw:'SUPPLY-CHAIN',desc:'Dependency confusion: requests-apex on PyPI — blocked'},
+  {time:'10:08',fw:'CONTAINER',desc:'Docker USER root in production pipeline — deployment blocked'},
+  {time:'09:44',fw:'IaC-POLICY',desc:'Terraform: port 22 open to 0.0.0.0/0 in GovCloud VPC'},
+  {time:'08:14',fw:'CVE-CRITICAL',desc:'CVE-2024-3094 in xz-utils 5.6.0 — 3 prod images rebuilt'},
+  {time:'01:47',fw:'AC-HOURS',desc:'CUI NAS access at 01:47 AM — outside approved window'},
+  {time:'Yesterday',fw:'BULK-DL',desc:'1,240 files bulk-downloaded by departing employee — blocked'},
 ];
 
 const RMF_PHASES = [
-  {num:'01',name:'Categorize',text:'Classify the AI system based on impact, mission criticality, and data sensitivity.',artifacts:['System Characterization Report','Impact Level Determination','Data Classification Matrix'],dur:800},
-  {num:'02',name:'Select',text:'Choose the appropriate security and AI-specific control baseline.',artifacts:['Control Baseline Selection','AI Risk Category Mapping','Tailoring Decisions Log'],dur:1100},
-  {num:'03',name:'Implement',text:'Apply controls and document implementation evidence across all 8 AI risk domains.',artifacts:['Implementation Evidence Package','Configuration Baselines','Technical Control Documentation'],dur:950},
-  {num:'04',name:'Assess',text:'Evaluate control effectiveness against NIST 800-53 and NIST AI RMF 1.0 requirements.',artifacts:['Security Assessment Report (SAR)','AI Risk Assessment Report','Testing Evidence'],dur:1300},
-  {num:'05',name:'Authorize',text:'Package all artifacts for Authorizing Official review and ATO determination.',artifacts:['System Security Plan (SSP)','POA&M — 3 items tracked','Executive Risk Summary','ATO Decision Memo'],dur:700},
-  {num:'06',name:'Monitor',text:'Establish continuous monitoring posture for ongoing authorization maintenance.',artifacts:['ConMon Strategy & Plan','Risk Posture Dashboard','Automated Alert Configuration'],dur:600},
+  {num:'01',name:'Categorize',text:'Classify the JTAC Integration System based on impact, CUI scope, and ITAR data exposure.',artifacts:['System Characterization Report','Impact Level Determination (High)','CUI Registry Extract','ITAR Data Flow Diagram'],dur:800},
+  {num:'02',name:'Select',text:'Choose the High baseline + CMMC L2 overlay controls for this DoD program.',artifacts:['NIST 800-53 High Baseline Selection','CMMC L2 Control Overlay','AI Risk Category Mapping','Tailoring Decisions Log'],dur:1100},
+  {num:'03',name:'Implement',text:'Document control implementations across all 847 endpoints and 3 GovCloud regions.',artifacts:['Implementation Evidence Package','GovCloud Configuration Baselines','Endpoint Hardening Documentation','CUI Handling Procedures v4'],dur:950},
+  {num:'04',name:'Assess',text:'Test all 110 NIST 800-171 controls + 8 AI risk domains against the JTAC system.',artifacts:['Security Assessment Report (SAR)','AI Risk Assessment — JTAC ML Module','Penetration Test Summary (SecureVault)','Control Testing Evidence'],dur:1300},
+  {num:'05',name:'Authorize',text:'Package all evidence for AO signature — Contracting Officer notified.',artifacts:['System Security Plan (SSP) v3.1','POA&M — 7 items tracked','Executive Risk Summary (D. Harrison)','ATO Decision Memo Draft'],dur:700},
+  {num:'06',name:'Monitor',text:'Activate TrustNovaOps continuous monitoring — 24/7 evidence generation.',artifacts:['ConMon Strategy & Plan','TrustNovaOps Integration Config','Automated Alert Thresholds','Risk Posture Dashboard — Live'],dur:600},
 ];
 
 const CMMC_DOMAINS = [
-  {id:'AC',name:'Access Control',pct:94,controls:22,passing:20,gaps:['AC.2.007','AC.3.012']},
+  {id:'AC',name:'Access Control',pct:91,controls:22,passing:19,gaps:['AC.2.006','AC.2.007','AC.3.012']},
   {id:'AU',name:'Audit',pct:98,controls:9,passing:9,gaps:[]},
   {id:'AT',name:'Awareness',pct:100,controls:3,passing:3,gaps:[]},
   {id:'CM',name:'Config Mgmt',pct:88,controls:9,passing:7,gaps:['CM.3.068','CM.3.073']},
-  {id:'IA',name:'Identification',pct:97,controls:11,passing:11,gaps:[]},
+  {id:'IA',name:'Identification',pct:95,controls:11,passing:10,gaps:['IA.3.083']},
   {id:'IR',name:'Incident Resp',pct:89,controls:3,passing:2,gaps:['IR.2.093']},
   {id:'MA',name:'Maintenance',pct:100,controls:6,passing:6,gaps:[]},
-  {id:'MP',name:'Media Prot',pct:91,controls:9,passing:8,gaps:['MP.2.120']},
+  {id:'MP',name:'Media Prot',pct:88,controls:9,passing:7,gaps:['MP.2.120','MP.3.122']},
   {id:'PE',name:'Physical Env',pct:100,controls:6,passing:6,gaps:[]},
   {id:'PS',name:'Personnel',pct:100,controls:2,passing:2,gaps:[]},
   {id:'RA',name:'Risk Assessment',pct:87,controls:3,passing:2,gaps:['RA.3.077']},
   {id:'CA',name:'Assessment',pct:82,controls:4,passing:3,gaps:['CA.3.161']},
-  {id:'SC',name:'Sys Comms',pct:83,controls:16,passing:13,gaps:['SC-28','SC.3.177','SC.3.187']},
-  {id:'SI',name:'Sys Integrity',pct:86,controls:7,passing:6,gaps:['SI.3.218']},
+  {id:'SC',name:'Sys Comms',pct:85,controls:16,passing:13,gaps:['SC.1.175','SC.3.177','SC.3.187']},
+  {id:'SI',name:'Sys Integrity',pct:88,controls:7,passing:6,gaps:['SI.3.218']},
 ];
 
 const EVIDENCE_DATA = [
-  {icon:'📋',title:'MP.2.120 — USB device control evidence',fw:'CMMC 2.0',agent:'Agent 001',ctrl:'Removable media protection',time:'15:09 today',size:'2.1 MB'},
-  {icon:'🏥',title:'HIPAA §164.312 — PHI print audit package',fw:'HIPAA',agent:'WARDEN',ctrl:'PHI access safeguards',time:'15:02 today',size:'0.8 MB'},
-  {icon:'🚨',title:'IR-4 — Ransomware response evidence',fw:'NIST',agent:'Agent 006',ctrl:'Incident handling',time:'14:44 today',size:'3.4 MB'},
-  {icon:'📧',title:'HIPAA §164.308 — Email PHI interception log',fw:'HIPAA',agent:'WARDEN',ctrl:'Access management',time:'14:08 today',size:'1.2 MB'},
-  {icon:'🔑',title:'CM.3.068 — Code secrets policy evidence',fw:'CMMC 2.0',agent:'WARDEN',ctrl:'Configuration control',time:'13:42 today',size:'0.4 MB'},
-  {icon:'✅',title:'CA-7 — Continuous monitoring gap resolved',fw:'FedRAMP',agent:'Agent 001',ctrl:'Continuous monitoring',time:'11:22 today',size:'5.8 MB'},
-  {icon:'📊',title:'AU-2 — Audit logging evidence snapshot',fw:'NIST',agent:'Agent 001',ctrl:'Audit events',time:'10:15 today',size:'12.1 MB'},
-  {icon:'🔐',title:'AC.1.001 — Access control evidence package',fw:'CMMC 2.0',agent:'Agent 004',ctrl:'Limit system access',time:'09:30 today',size:'1.7 MB'},
-  {icon:'🛡️',title:'RA.3.077 — Risk assessment documentation',fw:'CMMC 2.0',agent:'Agent 001',ctrl:'Risk assessments',time:'09:00 today',size:'4.2 MB'},
-  {icon:'📄',title:'SSP Update — System boundary change event',fw:'RMF',agent:'Agent 007',ctrl:'System Security Plan',time:'Yesterday',size:'8.9 MB'},
-  {icon:'⚡',title:'DFARS 7012 — CUI incident report evidence',fw:'CMMC 2.0',agent:'WARDEN',ctrl:'CUI protection',time:'Yesterday',size:'1.1 MB'},
-  {icon:'🔒',title:'SC-28 — Encryption-at-rest verification',fw:'FedRAMP',agent:'Agent 005',ctrl:'Protection at rest',time:'2 days ago',size:'0.6 MB'},
-];
-
-const GATE_CHECKS_CONFIG = [
-  {icon:'🔑',name:'WARDEN Secret Scan',agent:'Agent 003 / WARDEN',check:'Scanning for hardcoded secrets, API keys, tokens, and credentials in code and environment variables'},
-  {icon:'🏷️',name:'WARDEN PII/CUI Check',agent:'Agent 003 / WARDEN',check:'Detecting PII, PHI, CUI patterns and data classification violations in commit artifacts'},
-  {icon:'🐳',name:'Container Security',agent:'Agent 006',check:'Analyzing Dockerfile, base image CVEs, exposed ports, USER root, and privilege escalation vectors'},
-  {icon:'⚙️',name:'IaC Policy Gate',agent:'Agent 005',check:'Reviewing Terraform/CloudFormation for open security groups, IAM over-privilege, and encryption gaps'},
-  {icon:'💻',name:'Code Auditor SAST',agent:'Agent 002',check:'Running static analysis against NIST 800-171 requirements — SQLi, XSS, SSRF, dependency CVEs'},
-  {icon:'📋',name:'ACCORD Policy Gate',agent:'Agent 001',check:'Evaluating build readiness against CMMC Level 2 policy controls and deployment authorization criteria'},
+  {icon:'🔒',title:'MP.2.120 — CUI USB event: WKSTN-APX-338 · JTAC config',fw:'CMMC 2.0',agent:'WARDEN',ctrl:'Media protection',time:'09:14 today',size:'1.2 MB'},
+  {icon:'📧',title:'SC.3.177 — CUI email quarantine: F35_MAINT_SCHED_Q1_2026.xlsx',fw:'CMMC 2.0',agent:'WARDEN',ctrl:'Data in transit protection',time:'09:14 today',size:'0.9 MB'},
+  {icon:'🔑',title:'IA.3.083 — Secret detection: deploy_prod.sh SSH key · rotated',fw:'CMMC 2.0',agent:'WARDEN',ctrl:'Authenticator mgmt',time:'Yesterday 14:25',size:'0.4 MB'},
+  {icon:'🐳',title:'CM.2.061 — Container policy gate: USER root blocked',fw:'CMMC 2.0',agent:'Agent 006',ctrl:'Baseline config',time:'Yesterday 10:08',size:'0.6 MB'},
+  {icon:'🌐',title:'SC.1.175 — IaC gate: port 22 exposure blocked (Terraform)',fw:'CMMC 2.0',agent:'Agent 006',ctrl:'System comms boundary',time:'Yesterday 09:44',size:'0.8 MB'},
+  {icon:'👤',title:'AC.2.006 — Contractor SSO revoked: vendor-csc@csci.com',fw:'CMMC 2.0',agent:'Agent 004',ctrl:'Controlled access',time:'Yesterday 11:30',size:'1.1 MB'},
+  {icon:'🚨',title:'SI.3.218 — CVE-2024-3094: 3 images rebuilt · supply chain',fw:'CMMC 2.0',agent:'Agent 002',ctrl:'Security alerts + advisories',time:'3 days ago',size:'3.4 MB'},
+  {icon:'📋',title:'SR.3.169 — Dependency confusion blocked: requests-apex',fw:'CMMC 2.0',agent:'Agent 006',ctrl:'Supply chain risk mgmt',time:'5 days ago',size:'1.8 MB'},
+  {icon:'🖨️',title:'MP.3.122 — ITAR print event: F35 drawing on PRN-07',fw:'CMMC 2.0',agent:'WARDEN',ctrl:'Media sanitization',time:'5 days ago',size:'0.7 MB'},
+  {icon:'📊',title:'AU.2.042 — Audit log snapshot: 847 endpoints · 0 gaps',fw:'NIST',agent:'Agent 001',ctrl:'Audit record review',time:'Today 06:08',size:'14.2 MB'},
+  {icon:'✅',title:'CA-7 — ConMon package: week 47 · SecureVault C3PAO format',fw:'FedRAMP',agent:'Agent 001',ctrl:'Continuous monitoring',time:'Today 08:00',size:'28.4 MB'},
+  {icon:'🏥',title:'IA.3.083 — MFA re-enrollment: 4 accounts · 100% compliant',fw:'CMMC 2.0',agent:'Agent 004',ctrl:'Multi-factor authentication',time:'1 week ago',size:'0.5 MB'},
+  {icon:'🔐',title:'SC-28 — Encryption at rest: 342 GovCloud resources verified',fw:'FedRAMP',agent:'Agent 005',ctrl:'Protection at rest',time:'2 days ago',size:'2.1 MB'},
+  {icon:'📄',title:'SSP Update — System boundary: JTAC v3.1 boundary change',fw:'RMF',agent:'Agent 007',ctrl:'System Security Plan',time:'3 days ago',size:'11.7 MB'},
+  {icon:'⚡',title:'DFARS 7012 — CUI incident disclosure: INC-4199 pipeline',fw:'CMMC 2.0',agent:'WARDEN',ctrl:'CUI incident reporting',time:'Yesterday',size:'1.4 MB'},
+  {icon:'🎯',title:'RA.3.077 — Risk assessment update: JTAC ML module',fw:'NIST',agent:'Agent 001',ctrl:'Risk response',time:'2 days ago',size:'4.8 MB'},
+  {icon:'🛡️',title:'AC.2.007 — Least privilege audit: 42 roles reviewed · 3 reduced',fw:'CMMC 2.0',agent:'Agent 004',ctrl:'Least privilege enforcement',time:'2 days ago',size:'2.2 MB'},
+  {icon:'📦',title:'CM.3.068 — Configuration control: GitLab pipeline hardening',fw:'CMMC 2.0',agent:'Agent 005',ctrl:'Config change control',time:'3 days ago',size:'1.9 MB'},
+  {icon:'🔍',title:'IR.2.093 — Incident response test: tabletop exercise record',fw:'CMMC 2.0',agent:'Agent 001',ctrl:'Incident response testing',time:'1 week ago',size:'5.1 MB'},
+  {icon:'📜',title:'SPRS Score Report — 92/110 practices · delta +4 this month',fw:'CMMC 2.0',agent:'Agent 001',ctrl:'SPRS submission evidence',time:'1 week ago',size:'3.3 MB'},
+  {icon:'🌐',title:'FedRAMP ConMon — Week 47 monitoring report · 83% ready',fw:'FedRAMP',agent:'Agent 001',ctrl:'Monthly monitoring',time:'1 week ago',size:'18.6 MB'},
+  {icon:'🤖',title:'NIST AI RMF — JTAC ML module Phase 4 assessment',fw:'RMF',agent:'Agent 007',ctrl:'AI system assessment',time:'1 week ago',size:'7.4 MB'},
+  {icon:'🏗️',title:'CA.3.161 — C3PAO readiness review: SecureVault Group',fw:'CMMC 2.0',agent:'Agent 001',ctrl:'Third-party assessment',time:'2 weeks ago',size:'42.1 MB'},
+  {icon:'🔄',title:'CM.3.073 — Baseline config verification: 847 endpoints',fw:'CMMC 2.0',agent:'Agent 005',ctrl:'Config monitoring',time:'2 weeks ago',size:'8.9 MB'},
+  {icon:'📱',title:'DFARS 7012 — Annual CUI program review: Apex Defense Systems',fw:'CMMC 2.0',agent:'Agent 001',ctrl:'Annual CUI assessment',time:'2 weeks ago',size:'31.2 MB'},
+  {icon:'🔗',title:'SC.3.187 — CUI data flow documentation: all 3 locations',fw:'CMMC 2.0',agent:'WARDEN',ctrl:'CUI protection measures',time:'3 weeks ago',size:'6.7 MB'},
+  {icon:'👥',title:'PS — Personnel security clearance verification: all 847',fw:'CMMC 2.0',agent:'Agent 004',ctrl:'Personnel security',time:'Last month',size:'12.3 MB'},
+  {icon:'🏢',title:'PE — Physical security audit: Alexandria HQ + Huntsville',fw:'CMMC 2.0',agent:'Agent 001',ctrl:'Physical access control',time:'Last month',size:'9.1 MB'},
 ];
 
 const RISKY_SNIPPET = `FROM python:3.11-slim
+# DoD Contract: FA8623-22-C-7011
 ENV AWS_SECRET_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE
-ENV DATABASE_URL=postgres://admin:P@ssword123@prod-db.internal/
+ENV DATABASE_URL=postgres://apexadmin:P@ssw0rd!@prod-db.apex-gc.internal/
+ENV ITAR_API_TOKEN=apex_itar_tok_847abc123
 EXPOSE 22 80 443 8080
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app
 USER root`;
 
-const CLEAN_SNIPPET = `FROM python:3.11-slim@sha256:abc123...
+const CLEAN_SNIPPET = `FROM python:3.11-slim@sha256:a4d3bc421...
 ENV APP_ENV=production
+ENV AWS_REGION=us-gov-east-1
 EXPOSE 8080
 RUN pip install --no-cache-dir -r requirements.txt
-COPY --chown=appuser:appuser . /app
-USER appuser
-HEALTHCHECK --interval=30s CMD curl -f http://localhost:8080/health`;
+COPY --chown=apexapp:apexapp . /app
+USER apexapp
+HEALTHCHECK --interval=30s --timeout=3s CMD curl -f http://localhost:8080/health
+LABEL maintainer="DevSecOps Team <devsecops@apexdef.com>"`;
 
-// ═══════════════════════════════════════════════
+
 // STATE
 // ═══════════════════════════════════════════════
 const state = {
@@ -1549,8 +1683,8 @@ function init() {
   setTimeout(() => countUp(document.getElementById('s-cmmc'), 92, '%', 1000), 100);
   setTimeout(() => countUp(document.getElementById('s-controls'), 101, '', 900), 200);
   setTimeout(() => countUp(document.getElementById('s-findings'), 47, '', 700), 300);
-  setTimeout(() => countUp(document.getElementById('s-pipes'), 1247, '', 1100), 400);
-  setTimeout(() => countUp(document.getElementById('s-atos'), 14, '', 600), 500);
+  setTimeout(() => countUp(document.getElementById('s-pipes'), 1847, '', 1100), 400);
+  setTimeout(() => countUp(document.getElementById('s-atos'), 22, '', 600), 500);
 
   // Agent mini list
   renderAgentMini();
