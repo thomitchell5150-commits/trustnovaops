@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Request a Demo — TrustNovaOps</title>
+<meta name="description" content="See the Nova agent fleet in action against your actual threat profile. Live session, no slides, no BS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Crect width='52' height='52' fill='%2307090e'/%3E%3Cpolygon points='26,3 45,14 45,38 26,49 7,38 7,14' fill='none' stroke='%23e8a020' stroke-width='2.5' opacity='.55'/%3E%3Cline x1='26' y1='26' x2='37' y2='20' stroke='%23e8a020' stroke-width='1.2' opacity='.4'/%3E%3Cline x1='26' y1='26' x2='37' y2='32' stroke='%23e8a020' stroke-width='1.2' opacity='.4'/%3E%3Cline x1='26' y1='26' x2='26' y2='38' stroke='%23e8a020' stroke-width='1.2' opacity='.4'/%3E%3Cline x1='26' y1='26' x2='15' y2='32' stroke='%23e8a020' stroke-width='1.2' opacity='.4'/%3E%3Cline x1='26' y1='26' x2='15' y2='20' stroke='%23e8a020' stroke-width='1.2' opacity='.4'/%3E%3Cline x1='26' y1='26' x2='26' y2='14' stroke='%23e8a020' stroke-width='1.2' opacity='.4'/%3E%3Ccircle cx='37' cy='20' r='3' fill='%23e8a020' opacity='.8'/%3E%3Ccircle cx='37' cy='32' r='3' fill='%23e8a020' opacity='.8'/%3E%3Ccircle cx='26' cy='38' r='3' fill='%23e8a020' opacity='.8'/%3E%3Ccircle cx='15' cy='32' r='3' fill='%23e8a020' opacity='.8'/%3E%3Ccircle cx='15' cy='20' r='3' fill='%23e8a020' opacity='.8'/%3E%3Ccircle cx='26' cy='14' r='3' fill='%23e8a020' opacity='.8'/%3E%3Ccircle cx='26' cy='26' r='5.5' fill='%23e8a020'/%3E%3C/svg%3E">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#08090f;
+  --surface:#0e1220;
+  --surface2:#141c2a;
+  --border:#1e2030;
+  --amber:#e8a020;
+  --amber-dim:#7a5010;
+  --red:#c0392b;
+  --green:#00b090;
+  --text:#ccd4e8;
+  --muted:#4a5870;
+  --mono:'IBM Plex Mono',monospace;
+  --sans:'IBM Plex Sans',sans-serif;
+  --display:'Bebas Neue',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:var(--sans);font-size:16px;line-height:1.6;
+  min-height:100vh;overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:
+    linear-gradient(var(--border) 1px,transparent 1px),
+    linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:60px 60px;
+  opacity:0.3;pointer-events:none;z-index:0;
+}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(8,9,15,0.94);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;height:56px;
+}
+.nav-logo{
+  font-family:var(--display);font-size:22px;letter-spacing:2px;
+  color:var(--amber);text-decoration:none;
+}
+.nav-logo span{color:var(--text);opacity:0.4}
+.nav-back{
+  font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;
+  display:flex;align-items:center;gap:8px;
+  transition:color .2s;
+}
+.nav-back:hover{color:var(--amber)}
+.nav-back::before{content:'←'}
+
+/* PAGE LAYOUT */
+.page{
+  position:relative;z-index:1;
+  max-width:1100px;margin:0 auto;
+  padding:72px 48px 100px;
+  display:grid;
+  grid-template-columns:1fr 1.1fr;
+  gap:80px;
+  align-items:start;
+}
+
+/* LEFT COLUMN */
+.left-col{}
+.page-eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--amber);margin-bottom:20px;
+  display:flex;align-items:center;gap:12px;
+}
+.page-eyebrow::before{content:'';width:28px;height:1px;background:var(--amber)}
+.page-h1{
+  font-family:var(--display);font-size:clamp(52px,6vw,80px);
+  line-height:0.95;letter-spacing:2px;color:var(--text);
+  margin-bottom:20px;
+}
+.page-h1 em{color:var(--amber);font-style:normal}
+.page-desc{
+  font-size:15px;font-weight:300;color:var(--muted);
+  line-height:1.75;margin-bottom:44px;max-width:420px;
+}
+.page-desc strong{color:var(--text);font-weight:400}
+
+/* TRUST LIST */
+.trust-list{
+  display:flex;flex-direction:column;gap:0;
+  border:1px solid var(--border);
+}
+.trust-item{
+  padding:18px 22px;border-bottom:1px solid var(--border);
+  display:grid;grid-template-columns:20px 1fr;gap:14px;align-items:start;
+}
+.trust-item:last-child{border-bottom:none}
+.trust-check{
+  font-family:var(--mono);font-size:12px;color:var(--amber);
+  margin-top:1px;
+}
+.trust-text{font-size:13px;font-weight:300;color:var(--muted);line-height:1.6}
+.trust-text strong{color:var(--text);font-weight:400}
+
+/* AGENT BADGES */
+.agent-badges{
+  margin-top:36px;
+  display:flex;flex-wrap:wrap;gap:8px;
+}
+.agent-badge{
+  font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--muted);border:1px solid var(--border);padding:5px 12px;
+}
+.agent-badge span{color:var(--amber)}
+
+/* SOCIAL PROOF */
+.social-proof{
+  margin-top:44px;
+  padding-top:36px;
+  border-top:1px solid var(--border);
+  display:flex;flex-direction:column;gap:20px;
+}
+.stat-row{display:flex;gap:32px}
+.stat{display:flex;flex-direction:column;gap:4px}
+.stat-num{
+  font-family:var(--display);font-size:36px;letter-spacing:1px;color:var(--amber);line-height:1;
+}
+.stat-label{
+  font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);
+}
+
+/* RIGHT COLUMN — FORM CARD */
+.form-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:44px 40px;
+  position:relative;
+}
+.form-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--amber);
+}
+.form-card-title{
+  font-family:var(--display);font-size:26px;letter-spacing:1px;
+  margin-bottom:6px;
+}
+.form-card-sub{
+  font-family:var(--mono);font-size:11px;color:var(--muted);
+  letter-spacing:0.5px;margin-bottom:32px;
+}
+.form-card-sub span{
+  display:inline-flex;align-items:center;gap:6px;
+}
+.dot-live{
+  width:7px;height:7px;border-radius:50%;background:var(--green);
+  animation:pulse 2s infinite;display:inline-block;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+
+/* FORM ELEMENTS */
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.f-group{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.f-group:last-of-type{margin-bottom:0}
+.f-label{
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);
+}
+.f-label .req{color:var(--amber)}
+.f-input,.f-select,.f-textarea{
+  background:var(--surface2);border:1px solid var(--border);
+  color:var(--text);font-family:var(--sans);font-size:14px;
+  padding:11px 14px;outline:none;width:100%;
+  transition:border-color .15s;
+  -webkit-appearance:none;border-radius:0;
+}
+.f-input::placeholder,.f-textarea::placeholder{color:var(--muted);opacity:0.45}
+.f-input:focus,.f-select:focus,.f-textarea:focus{border-color:var(--amber)}
+.f-input.err,.f-select.err{border-color:var(--red)}
+.f-select{
+  background-image:url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%236b7280' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+  background-color:var(--surface2);
+  padding-right:36px;cursor:pointer;color:var(--text);
+}
+.f-select option{background:var(--surface2);color:var(--text)}
+.f-textarea{resize:vertical;min-height:82px;line-height:1.6}
+.f-divider{height:1px;background:var(--border);margin:20px 0}
+
+/* AGENT CHECKBOXES */
+.f-check-label{
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:10px;display:block;
+}
+.f-check-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:20px}
+.f-check{
+  display:flex;align-items:center;gap:7px;
+  font-family:var(--mono);font-size:11px;letter-spacing:0.5px;color:var(--muted);
+  border:1px solid var(--border);padding:9px 10px;cursor:pointer;
+  transition:border-color .15s,color .15s,background .15s;
+  user-select:none;
+}
+.f-check:hover{border-color:var(--amber-dim);color:var(--text)}
+.f-check input[type=checkbox]{
+  accent-color:var(--amber);width:13px;height:13px;flex-shrink:0;cursor:pointer;
+}
+.f-check input[type=checkbox]:checked ~ span{color:var(--text)}
+.f-check:has(input:checked){border-color:var(--amber-dim);background:rgba(232,160,32,0.05)}
+
+/* HONEYPOT */
+.f-honeypot{display:none}
+
+/* SUBMIT */
+.f-submit-wrap{margin-top:22px;display:flex;flex-direction:column;gap:12px}
+.f-submit{
+  font-family:var(--mono);font-size:12px;letter-spacing:2px;text-transform:uppercase;
+  background:var(--amber);color:#000;padding:16px 32px;font-weight:500;
+  clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));
+  border:none;cursor:pointer;transition:opacity .2s;width:100%;
+}
+.f-submit:hover{opacity:0.85}
+.f-submit:disabled{opacity:0.5;cursor:not-allowed}
+.f-legal{
+  font-family:var(--mono);font-size:10px;color:var(--muted);opacity:0.55;
+  line-height:1.65;text-align:center;
+}
+
+/* ERROR MESSAGE */
+.f-err-msg{
+  font-family:var(--mono);font-size:11px;color:#e57373;
+  display:none;margin-top:-6px;
+}
+.f-err-msg.show{display:block}
+
+/* SUCCESS STATE */
+.form-success{
+  display:none;
+  flex-direction:column;align-items:center;
+  text-align:center;padding:60px 24px;
+  gap:18px;
+}
+.form-success.visible{display:flex}
+.success-mark{
+  width:64px;height:64px;border:1px solid var(--amber);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:24px;color:var(--amber);
+}
+.success-h{font-family:var(--display);font-size:36px;letter-spacing:1px;color:var(--text)}
+.success-sub{
+  font-size:14px;font-weight:300;color:var(--muted);max-width:300px;line-height:1.7;
+}
+.success-detail{
+  font-family:var(--mono);font-size:11px;color:var(--amber-dim);letter-spacing:0.5px;
+  margin-top:4px;
+}
+
+/* FOOTER */
+footer{
+  position:relative;z-index:1;
+  background:var(--surface);border-top:1px solid var(--border);
+  padding:32px 48px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;
+}
+.footer-logo{font-family:var(--display);font-size:18px;letter-spacing:2px;color:var(--amber);text-decoration:none}
+.footer-logo span{color:var(--text);opacity:0.3}
+.footer-links{display:flex;gap:28px;flex-wrap:wrap}
+.footer-link{
+  font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color .2s;
+}
+.footer-link:hover{color:var(--amber)}
+.footer-copy{font-family:var(--mono);font-size:11px;color:var(--muted);opacity:0.4}
+
+@media(max-width:860px){
+  nav{padding:0 24px}
+  .page{grid-template-columns:1fr;padding:48px 24px 72px;gap:52px}
+  .page-h1{font-size:52px}
+  .f-row{grid-template-columns:1fr}
+  .f-check-grid{grid-template-columns:repeat(2,1fr)}
+  .stat-row{gap:24px}
+  footer{padding:28px 24px}
+}
+@media(max-width:480px){
+  .f-check-grid{grid-template-columns:1fr 1fr}
+  .agent-badges{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo" style="display:flex;align-items:center;gap:10px">
+    <svg width="26" height="26" viewBox="0 0 52 52" fill="none" style="flex-shrink:0"><polygon points="26,3 45,14 45,38 26,49 7,38 7,14" fill="none" stroke="#e8a020" stroke-width="1.8" opacity=".5"/><line x1="26" y1="26" x2="37" y2="20" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="37" y2="32" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="38" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="32" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="20" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="14" stroke="#e8a020" stroke-width="1" opacity=".38"/><circle cx="37" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="37" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="38" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="14" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="26" r="4" fill="#e8a020"/></svg>
+    TrustNova<span>Ops</span>
+  </a>
+  <a href="/" class="nav-back">Back to site</a>
+</nav>
+
+<main class="page">
+
+  <!-- LEFT: PITCH -->
+  <div class="left-col">
+    <div class="page-eyebrow">Request a Demo</div>
+    <h1 class="page-h1">SEE THE<br>AGENTS<br><em>LIVE.</em></h1>
+    <p class="page-desc">
+      A TrustNovaOps engineer walks you through a <strong>live deployment against your actual threat profile.</strong> No recorded walkthrough. No generic slide deck.
+    </p>
+
+    <div class="trust-list">
+      <div class="trust-item">
+        <div class="trust-check">✓</div>
+        <div class="trust-text"><strong>Live session in your environment</strong> — we connect to your stack and show real telemetry, not sandbox data</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-check">✓</div>
+        <div class="trust-text"><strong>Tailored to your compliance requirements</strong> — HIPAA, GDPR, CCPA, or PCI. We map to what matters to you</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-check">✓</div>
+        <div class="trust-text"><strong>Response in under 1 business day</strong> — an engineer, not a BDR, contacts you to schedule</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-check">✓</div>
+        <div class="trust-text"><strong>30-day full trial activated immediately after</strong> — all 6 agents, no credit card</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-check">✓</div>
+        <div class="trust-text">No runbook sales pitch. If it's not the right fit, we'll tell you straight</div>
+      </div>
+    </div>
+
+    <div class="agent-badges">
+      <div class="agent-badge"><span>AGT-01</span> SENTINEL</div>
+      <div class="agent-badge"><span>AGT-02</span> VAULT</div>
+      <div class="agent-badge"><span>AGT-03</span> STRIKER</div>
+      <div class="agent-badge"><span>AGT-04</span> NIMBUS</div>
+      <div class="agent-badge"><span>AGT-05</span> LEDGER</div>
+      <div class="agent-badge"><span>AGT-06</span> ACCORD</div>
+    </div>
+
+    <div class="social-proof">
+      <div class="stat-row">
+        <div class="stat">
+          <div class="stat-num">&lt;90ms</div>
+          <div class="stat-label">Mean time to contain</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">83%</div>
+          <div class="stat-label">Auto-resolved, no human</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">99.7%</div>
+          <div class="stat-label">Detection accuracy</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: FORM -->
+  <div class="form-card">
+    <div id="formWrap">
+      <div class="form-card-title">BOOK YOUR SESSION</div>
+      <div class="form-card-sub">
+        <span><span class="dot-live"></span>&nbsp;Engineers available — typical response &lt;4 hours</span>
+      </div>
+
+      <!--
+        Netlify form handling:
+        - The `netlify` attribute enables Netlify Forms
+        - `netlify-honeypot` catches bots
+        - `data-netlify-success` redirects on JS-off submissions
+        Remove the action attribute if you handle success with JS only
+      -->
+      <form
+        name="demo-request"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        id="demoForm"
+        novalidate
+      >
+        <input type="hidden" name="form-name" value="demo-request">
+        <p class="f-honeypot"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+        <div class="f-row">
+          <div class="f-group">
+            <label class="f-label" for="fname">First Name <span class="req">*</span></label>
+            <input class="f-input" type="text" id="fname" name="first_name" autocomplete="given-name" placeholder="Jane">
+            <span class="f-err-msg" id="err-fname">Required</span>
+          </div>
+          <div class="f-group">
+            <label class="f-label" for="lname">Last Name <span class="req">*</span></label>
+            <input class="f-input" type="text" id="lname" name="last_name" autocomplete="family-name" placeholder="Smith">
+            <span class="f-err-msg" id="err-lname">Required</span>
+          </div>
+        </div>
+
+        <div class="f-group">
+          <label class="f-label" for="email">Work Email <span class="req">*</span></label>
+          <input class="f-input" type="email" id="email" name="email" autocomplete="email" placeholder="jane@company.com">
+          <span class="f-err-msg" id="err-email">Enter a valid work email</span>
+        </div>
+
+        <div class="f-row">
+          <div class="f-group">
+            <label class="f-label" for="company">Company <span class="req">*</span></label>
+            <input class="f-input" type="text" id="company" name="company" autocomplete="organization" placeholder="Acme Corp">
+            <span class="f-err-msg" id="err-company">Required</span>
+          </div>
+          <div class="f-group">
+            <label class="f-label" for="title">Job Title</label>
+            <input class="f-input" type="text" id="title" name="job_title" autocomplete="organization-title" placeholder="CISO / IT Director">
+          </div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-group">
+            <label class="f-label" for="seats">Workstation Count <span class="req">*</span></label>
+            <select class="f-select" id="seats" name="workstation_count">
+              <option value="" disabled selected>Select range</option>
+              <option value="1-50">1 – 50</option>
+              <option value="51-200">51 – 200</option>
+              <option value="201-500">201 – 500</option>
+              <option value="501-2000">501 – 2,000</option>
+              <option value="2000+">2,000+</option>
+            </select>
+            <span class="f-err-msg" id="err-seats">Please select a range</span>
+          </div>
+          <div class="f-group">
+            <label class="f-label" for="concern">Primary Concern</label>
+            <select class="f-select" id="concern" name="primary_concern">
+              <option value="" disabled selected>Select one</option>
+              <option>Data exfiltration / DLP</option>
+              <option>Ransomware response</option>
+              <option>Compliance (HIPAA / GDPR)</option>
+              <option>Insider threat</option>
+              <option>Cloud / shadow IT</option>
+              <option>All of the above</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="f-divider"></div>
+
+        <label class="f-check-label">Agents you want to see in the demo</label>
+        <div class="f-check-grid">
+          <label class="f-check"><input type="checkbox" name="agents" value="SENTINEL"><span>SENTINEL</span></label>
+          <label class="f-check"><input type="checkbox" name="agents" value="VAULT"><span>VAULT</span></label>
+          <label class="f-check"><input type="checkbox" name="agents" value="STRIKER"><span>STRIKER</span></label>
+          <label class="f-check"><input type="checkbox" name="agents" value="NIMBUS"><span>NIMBUS</span></label>
+          <label class="f-check"><input type="checkbox" name="agents" value="LEDGER"><span>LEDGER</span></label>
+          <label class="f-check"><input type="checkbox" name="agents" value="ACCORD"><span>ACCORD</span></label>
+        </div>
+
+        <div class="f-group">
+          <label class="f-label" for="notes">Anything else?</label>
+          <textarea class="f-textarea" id="notes" name="notes" placeholder="Current tooling, specific compliance deadlines, or questions for the engineer…"></textarea>
+        </div>
+
+        <div class="f-submit-wrap">
+          <button type="submit" class="f-submit" id="submitBtn">REQUEST DEMO →</button>
+          <div class="f-legal">
+            By submitting you agree to our <a href="/privacy" style="color:var(--muted)">Privacy Policy</a>.
+            We will never sell your data or add you to bulk marketing lists.
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="form-success" id="formSuccess">
+      <div class="success-mark">✓</div>
+      <div class="success-h">YOU'RE IN.</div>
+      <div class="success-sub">A TrustNovaOps engineer will reach out within 1 business day to schedule your live session.</div>
+      <div class="success-detail">Check your inbox — including spam, just in case.</div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <a href="/" class="footer-logo" style="display:flex;align-items:center;gap:10px">
+    <svg width="20" height="20" viewBox="0 0 52 52" fill="none"><polygon points="26,3 45,14 45,38 26,49 7,38 7,14" fill="none" stroke="#e8a020" stroke-width="2" opacity=".5"/><circle cx="37" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="37" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="38" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="14" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="26" r="4" fill="#e8a020"/></svg>
+    TrustNova<span>Ops</span>
+  </a>
+  <div class="footer-links">
+    <a href="/security" class="footer-link">Security</a>
+    <a href="/privacy" class="footer-link">Privacy</a>
+    <a href="/compliance" class="footer-link">Compliance</a>
+    <a href="/docs" class="footer-link">Docs</a>
+    <a href="/status" class="footer-link">Status</a>
+  </div>
+  <div class="footer-copy">© 2026 TrustNovaOps.com</div>
+</footer>
+
+<script>
+// Validate helpers
+function required(id, errId) {
+  const el = document.getElementById(id);
+  const err = document.getElementById(errId);
+  const ok = el.value.trim() !== '';
+  el.classList.toggle('err', !ok);
+  if (err) err.classList.toggle('show', !ok);
+  return ok;
+}
+function validEmail(id, errId) {
+  const el = document.getElementById(id);
+  const err = document.getElementById(errId);
+  const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
+  el.classList.toggle('err', !ok);
+  if (err) err.classList.toggle('show', !ok);
+  return ok;
+}
+function requiredSelect(id, errId) {
+  const el = document.getElementById(id);
+  const err = document.getElementById(errId);
+  const ok = el.value !== '';
+  el.classList.toggle('err', !ok);
+  if (err) err.classList.toggle('show', !ok);
+  return ok;
+}
+
+// Clear error on input
+['fname','lname','email','company','seats'].forEach(id => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener('input', () => {
+    el.classList.remove('err');
+    const err = document.getElementById('err-' + id);
+    if (err) err.classList.remove('show');
+  });
+});
+
+// Submit handler — intercepts the native Netlify POST and shows inline success
+document.getElementById('demoForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const v1 = required('fname','err-fname');
+  const v2 = required('lname','err-lname');
+  const v3 = validEmail('email','err-email');
+  const v4 = required('company','err-company');
+  const v5 = requiredSelect('seats','err-seats');
+
+  if (!v1 || !v2 || !v3 || !v4 || !v5) {
+    // Scroll first error into view
+    document.querySelector('.f-input.err, .f-select.err')?.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'SENDING…';
+
+  try {
+    const formData = new FormData(this);
+    await fetch('/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: new URLSearchParams(formData).toString()
+    });
+  } catch(_) {
+    // Still show success — Netlify may have received it
+  }
+
+  document.getElementById('formWrap').style.display = 'none';
+  const success = document.getElementById('formSuccess');
+  success.classList.add('visible');
+  success.scrollIntoView({behavior:'smooth', block:'center'});
+});
+</script>
+</body>
+</html>

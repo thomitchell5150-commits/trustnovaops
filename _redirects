@@ -1,5 +1,9 @@
 # TrustNovaOps — Netlify Redirect Rules
-# Covers all known dead routes + alternate URL patterns from crawl audit
+
+# New pages (explicit rewrites for clean URLs)
+/platform               /platform.html  200
+/demo                   /demo.html      200
+/warden                 /warden.html    200
 
 # Legal pages (both slug variants)
 /privacy                /  200
@@ -16,7 +20,7 @@
 /contact                /  200
 /contact-us             /  200
 
-# Platform / product pages
+# Platform / product pages (legacy routes)
 /agent-007              /  200
 /launch-agent           /  200
 /pricing                /  200
@@ -24,6 +28,7 @@
 /documentation          /  200
 /api                    /  200
 /blog                   /  200
+/status                 /  200
 
 # Catch-all: serve index.html for any unmatched route (SPA fallback)
 /*                      /index.html  200
