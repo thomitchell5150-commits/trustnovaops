@@ -119,7 +119,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 .row35{display:grid;grid-template-columns:1fr 1.4fr;gap:12px}
 
 /* ═══ EVENT STREAM ═══ */
-.ev-stream{display:flex;flex-direction:column;gap:2px;max-height:300px;overflow-y:auto}
+.ev-stream{scroll-behavior:smooth;display:flex;flex-direction:column;gap:2px;max-height:300px;overflow-y:auto}
 .ev-item{
   display:grid;grid-template-columns:64px 52px 1fr;gap:10px;
   padding:5px 6px;border-bottom:1px solid var(--bd);
@@ -364,8 +364,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
   font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;
   color:var(--muted);padding-bottom:8px;border-bottom:1px solid var(--bd);margin-bottom:10px;
 }
-.dp-kv{display:grid;grid-template-columns:110px 1fr;gap:6px;margin-bottom:4px}
-.dp-k{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.dp-kv{display:grid;grid-template-columns:140px 1fr;gap:8px;margin-bottom:6px}
+.dp-k{font-family:var(--mono);font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .dp-v{font-family:var(--mono);font-size:11px;color:var(--text)}
 .dp-footer{padding:14px 18px;border-top:1px solid var(--bd);display:flex;gap:8px;flex-shrink:0}
 .dp-btn{
@@ -451,194 +451,150 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 }
 
 /* ─── INTERACTIVE STAT CARDS ─── */
-.stat{cursor:pointer;transition:border-color .2s,background .2s;position:relative;overflow:hidden}
+.stat{cursor:pointer;transition:background .2s,border-color .2s;position:relative;overflow:hidden}
 .stat:hover{background:var(--s2);border-color:var(--b2)}
-.stat-nav{
-  font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--amber);margin-top:8px;opacity:0;transform:translateY(4px);
-  transition:opacity .2s,transform .2s;
-}
+.stat-nav{font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);margin-top:8px;opacity:0;transform:translateY(4px);transition:opacity .2s,transform .2s}
 .stat:hover .stat-nav{opacity:1;transform:none}
-
-/* ─── NEEDS ATTENTION BANNER ─── */
-.attn-banner{
-  background:rgba(217,64,64,.06);border:1px solid rgba(217,64,64,.22);
-  border-left:3px solid var(--red);padding:14px 18px;
-  display:flex;flex-direction:column;gap:8px;
-}
+/* ─── NEEDS ATTENTION ─── */
+.attn-banner{background:rgba(217,64,64,.06);border:1px solid rgba(217,64,64,.22);border-left:3px solid var(--red);padding:14px 18px;display:flex;flex-direction:column;gap:8px}
 .ab-hdr{display:flex;align-items:center;gap:10px;margin-bottom:2px}
 .ab-pulse{width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse 1.4s infinite;flex-shrink:0}
 .ab-title{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--red);flex:1}
 .ab-dismiss{font-family:var(--mono);font-size:10px;color:var(--muted);cursor:pointer;transition:color .15s}
 .ab-dismiss:hover{color:var(--text)}
 .ab-items{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
-.ab-item{
-  background:var(--sf);border:1px solid rgba(217,64,64,.18);padding:10px 12px;
-  display:grid;grid-template-columns:46px 1fr auto;gap:10px;align-items:center;
-  cursor:pointer;transition:background .15s;
-}
+.ab-item{background:var(--sf);border:1px solid rgba(217,64,64,.18);padding:10px 12px;display:grid;grid-template-columns:46px 1fr auto;gap:10px;align-items:center;cursor:pointer;transition:background .15s}
 .ab-item:hover{background:var(--s2)}
 .ab-item-title{font-size:12px;color:var(--text);line-height:1.4;margin-bottom:2px}
 .ab-item-sub{font-family:var(--mono);font-size:10px;color:var(--muted)}
-.ab-btn{
-  font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;
-  background:var(--s3);color:var(--muted);border:1px solid var(--bd);
-  padding:5px 10px;cursor:pointer;white-space:nowrap;transition:all .15s;
-}
+.ab-btn{font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;background:var(--s3);color:var(--muted);border:1px solid var(--bd);padding:5px 10px;cursor:pointer;white-space:nowrap;transition:all .15s}
 .ab-btn:hover{border-color:var(--amber);color:var(--amber)}
-
 /* ─── CMD GRID ─── */
 .cmd-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:12px}
-
-/* ─── PIPELINE STATUS ITEMS ─── */
-.pipe-status-item{
-  padding:10px 12px;border-bottom:1px solid var(--bd);
-  cursor:pointer;transition:background .15s;
-  display:flex;flex-direction:column;gap:5px;
-}
+/* ─── PIPELINE STATUS ─── */
+.pipe-status-item{padding:10px 12px;border-bottom:1px solid var(--bd);cursor:pointer;transition:background .15s;display:flex;flex-direction:column;gap:5px}
 .pipe-status-item:hover{background:var(--s2)}
 .pipe-status-item:last-child{border-bottom:none}
 .psi-top{display:flex;align-items:center;gap:8px}
 .psi-title{font-size:12px;color:var(--text);flex:1;line-height:1.3}
 .psi-repo{font-family:var(--mono);font-size:10px;color:var(--muted);display:flex;align-items:center;gap:6px}
 .psi-repo::before{content:'↳'}
-.psi-action{
-  font-family:var(--mono);font-size:9px;color:var(--muted);
-  display:flex;align-items:center;gap:6px;
-}
+.psi-action{font-family:var(--mono);font-size:9px;color:var(--muted);display:flex;align-items:center;gap:6px}
 .psi-action::before{content:'→';color:var(--amber)}
-
 /* ─── AGENT HEALTH ─── */
-.ah-item{
-  padding:9px 12px;border-bottom:1px solid var(--bd);
-  display:grid;grid-template-columns:10px 1fr 56px;gap:10px;align-items:center;
-  cursor:pointer;transition:background .15s;
-}
+.ah-item{padding:9px 12px;border-bottom:1px solid var(--bd);display:grid;grid-template-columns:10px 1fr 56px;gap:10px;align-items:center;cursor:pointer;transition:background .15s}
 .ah-item:hover{background:var(--s2)}
 .ah-item:last-child{border-bottom:none}
-.ah-dot{width:8px;height:8px;border-radius:50%;animation:pulse 2s infinite}
+.ah-dot{width:8px;height:8px;border-radius:50%}
 .ah-name{font-family:var(--disp);font-size:14px;letter-spacing:.5px;line-height:1}
 .ah-act{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:1px}
-.ah-events{font-family:var(--disp);font-size:16px;color:var(--cc,var(--amber));text-align:right}
-
-/* ─── BLOCKED BUILDS ALERT (pipeline view) ─── */
-.blocked-alert{
-  background:rgba(217,64,64,.06);border:1px solid rgba(217,64,64,.22);
-  border-left:3px solid var(--red);padding:14px 18px;margin-bottom:0;
-}
+.ah-events{font-family:var(--disp);font-size:16px;text-align:right}
+/* ─── BLOCKED BUILDS ALERT ─── */
+.blocked-alert{background:rgba(217,64,64,.06);border:1px solid rgba(217,64,64,.22);border-left:3px solid var(--red);padding:14px 18px;display:none}
 .ba-hdr{display:flex;align-items:center;gap:10px;margin-bottom:12px}
 .ba-title{font-family:var(--disp);font-size:18px;letter-spacing:1px}
 .ba-sub{font-family:var(--mono);font-size:10px;color:var(--muted)}
 .ba-items{display:flex;flex-direction:column;gap:4px}
-.ba-item{
-  background:var(--sf);border:1px solid var(--bd);padding:10px 14px;
-  display:grid;grid-template-columns:46px 1fr auto;gap:12px;
-  align-items:center;cursor:pointer;transition:background .15s;
-}
+.ba-item{background:var(--sf);border:1px solid var(--bd);padding:10px 14px;display:grid;grid-template-columns:46px 1fr auto;gap:12px;align-items:center;cursor:pointer;transition:background .15s}
 .ba-item:hover{background:var(--s2)}
 .ba-detail{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:3px}
-.ba-cta{
-  font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;
-  background:var(--s2);color:var(--muted);border:1px solid var(--bd);
-  padding:5px 10px;cursor:pointer;white-space:nowrap;transition:all .15s;
-}
+.ba-cta{font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;background:var(--s2);color:var(--muted);border:1px solid var(--bd);padding:5px 10px;cursor:pointer;white-space:nowrap;transition:all .15s}
 .ba-cta:hover{border-color:var(--amber);color:var(--amber)}
-
 /* ─── WARDEN SEVERITY FILTERS ─── */
 .sev-filters{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
-.sf-btn{
-  font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;
-  background:var(--s2);color:var(--muted);padding:5px 12px;border:1px solid var(--bd);
-  cursor:pointer;transition:all .15s;
-}
+.sf-btn{font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;background:var(--s2);color:var(--muted);padding:5px 12px;border:1px solid var(--bd);cursor:pointer;transition:all .15s}
 .sf-btn.active{background:var(--amber);color:#000;border-color:var(--amber)}
 .sf-btn:hover:not(.active){color:var(--text);border-color:var(--b2)}
-
 /* ─── NOTIFICATION DRAWER ─── */
-.notif-drawer{
-  position:fixed;right:0;top:0;bottom:0;width:380px;
-  background:var(--sf);border-left:1px solid var(--bd);
-  z-index:400;transform:translateX(100%);
-  transition:transform .25s ease;display:flex;flex-direction:column;
-}
+.notif-drawer{position:fixed;right:0;top:0;bottom:0;width:380px;background:var(--sf);border-left:1px solid var(--bd);z-index:400;transform:translateX(100%);transition:transform .25s ease;display:flex;flex-direction:column}
 .notif-drawer.open{transform:none}
-.nd-hdr{
-  padding:14px 18px;border-bottom:1px solid var(--bd);
-  display:flex;align-items:center;justify-content:space-between;flex-shrink:0;
-  background:var(--s2);
-}
+.nd-hdr{padding:14px 18px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--s2)}
 .nd-title-row{display:flex;align-items:center;gap:10px}
 .nd-title{font-family:var(--disp);font-size:20px;letter-spacing:1px}
-.nd-count{
-  font-family:var(--mono);font-size:10px;background:var(--red);
-  color:#fff;padding:2px 8px;border-radius:10px;font-weight:600;
-}
+.nd-count{font-family:var(--mono);font-size:10px;background:var(--red);color:#fff;padding:2px 8px;border-radius:10px;font-weight:600}
 .nd-close{background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;transition:color .15s}
 .nd-close:hover{color:var(--text)}
 .nd-body{flex:1;overflow-y:auto}
-.nd-section-hdr{
-  padding:10px 18px;font-family:var(--mono);font-size:9px;letter-spacing:2px;
-  text-transform:uppercase;color:var(--muted);background:var(--s2);
-  border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);
-  display:flex;align-items:center;justify-content:space-between;
-}
-.nd-item{
-  padding:12px 18px;border-bottom:1px solid var(--bd);
-  cursor:pointer;transition:background .15s;
-  display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start;
-}
+.nd-section-hdr{padding:10px 18px;font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);background:var(--s2);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between}
+.nd-item{padding:12px 18px;border-bottom:1px solid var(--bd);cursor:pointer;transition:background .15s;display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start}
 .nd-item:hover{background:var(--s2)}
-.nd-item-sev{margin-top:2px}
 .nd-item-title{font-size:12px;color:var(--text);margin-bottom:3px;line-height:1.4}
 .nd-item-meta{font-family:var(--mono);font-size:10px;color:var(--muted)}
-.nd-footer{
-  padding:12px 18px;border-top:1px solid var(--bd);flex-shrink:0;
-  display:flex;gap:8px;background:var(--s2);
-}
-.nd-footer-btn{
-  font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
-  flex:1;padding:9px;border:none;cursor:pointer;transition:opacity .15s;font-weight:500;
-}
+.nd-footer{padding:12px 18px;border-top:1px solid var(--bd);flex-shrink:0;display:flex;gap:8px;background:var(--s2)}
+.nd-footer-btn{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;flex:1;padding:9px;border:none;cursor:pointer;transition:opacity .15s;font-weight:500}
 .nd-footer-btn.primary{background:var(--amber);color:#000;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px))}
 .nd-footer-btn.ghost{background:var(--s3);color:var(--muted);border:1px solid var(--bd)}
 .nd-footer-btn:hover{opacity:.85}
-
 /* ─── TOPBAR BELL ─── */
-.tb-bell{
-  position:relative;cursor:pointer;color:var(--muted);
-  display:flex;align-items:center;justify-content:center;
-  width:32px;height:32px;border:1px solid var(--bd);
-  background:var(--s2);transition:all .15s;flex-shrink:0;
-}
+.tb-bell{position:relative;cursor:pointer;color:var(--muted);display:flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid var(--bd);background:var(--s2);transition:all .15s;flex-shrink:0}
 .tb-bell:hover{color:var(--text);border-color:var(--b2)}
-.tb-bell-count{
-  position:absolute;top:-4px;right:-4px;background:var(--red);color:#fff;
-  font-family:var(--mono);font-size:8px;font-weight:700;
-  min-width:16px;height:16px;border-radius:8px;
-  display:flex;align-items:center;justify-content:center;padding:0 3px;
-  border:1.5px solid var(--bg);
-}
-
-/* ─── EVIDENCE STAT ROW IN CMD ─── */
+.tb-bell-count{position:absolute;top:-4px;right:-4px;background:var(--red);color:#fff;font-family:var(--mono);font-size:8px;font-weight:700;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 3px;border:1.5px solid var(--bg)}
+/* ─── AGENT FLEET VIEW ─── */
+.af-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bd);border:1px solid var(--bd)}
+.af-card{background:var(--sf);padding:24px 20px;cursor:default;transition:background .2s;position:relative;overflow:hidden}
+.af-card:hover{background:var(--s2)}
+.af-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--ac,var(--amber)),transparent)}
 .ev-stat-row{display:flex;gap:0;margin-top:10px;border:1px solid var(--bd)}
-.ev-stat{flex:1;padding:12px 14px;border-right:1px solid var(--bd);text-align:center}
+.ev-stat{flex:1;padding:10px 12px;border-right:1px solid var(--bd);text-align:center}
 .ev-stat:last-child{border-right:none}
-.ev-stat-num{font-family:var(--disp);font-size:22px;color:var(--amber);line-height:1}
-.ev-stat-lbl{font-family:var(--mono);font-size:9px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-top:3px}
-
-@media(max-width:1100px){
-  .cmd-grid{grid-template-columns:1fr 1fr}
-  .ab-items{grid-template-columns:1fr}
-}
-@media(max-width:800px){
-  .cmd-grid{grid-template-columns:1fr}
-  .notif-drawer{width:100%}
-  .ab-items{grid-template-columns:1fr}
-}
+.ev-stat-num{font-family:var(--disp);font-size:20px;line-height:1}
+.ev-stat-lbl{font-family:var(--mono);font-size:9px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-top:2px}
+/* ─── TITLE BAR ─── */
+#tbTitle{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:0 16px 0 8px;border-right:1px solid var(--bd);margin-right:4px;white-space:nowrap;flex-shrink:0}
+@media(max-width:1100px){.cmd-grid{grid-template-columns:1fr 1fr}.ab-items{grid-template-columns:1fr}.notif-drawer{width:360px}.ab-items{grid-template-columns:1fr}.notif-drawer{width:360px}}
+@media(max-width:800px){.cmd-grid{grid-template-columns:1fr}.ab-items{grid-template-columns:1fr}.notif-drawer{width:100%}.notif-drawer{width:100%}.ab-items{grid-template-columns:1fr}.stat-row{grid-template-columns:1fr 1fr}.af-grid{grid-template-columns:1fr 1fr}}
 
 
-/* ─── AGENT FLEET GRID ─── */
-#agentsGrid > div:hover { background:var(--s2) !important; }
+/* ─── TAB CLICK AREA ─── */
+.tab { cursor:pointer !important; user-select:none; }
+.tab:hover { color:var(--text) !important; }
+.tab.active { color:var(--amber) !important; border-bottom-color:var(--amber) !important; }
+.tab-nav { pointer-events:all; }
+
+/* ─── FINDINGS QUEUE (detail panel mode) ─── */
+.fq-row{padding:10px 0;border-bottom:1px solid var(--bd);cursor:pointer;display:grid;grid-template-columns:46px 1fr 28px;gap:10px;align-items:center;transition:background .15s}
+.fq-row:hover{background:var(--s2);margin:0 -14px;padding:10px 14px}
+.fq-title{font-size:12px;color:var(--text);line-height:1.3;margin-bottom:2px}
+.fq-meta{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.fq-arr{color:var(--amber);font-size:14px;text-align:center}
+/* ─── PIPELINE CONTEXT PANEL ─── */
+.pipe-context{background:var(--s2);border:1px solid var(--bd);border-left:3px solid var(--blue);padding:16px 20px;margin-bottom:0}
+.pc-title{font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.pc-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bd);border:1px solid var(--bd)}
+.pc-stat{background:var(--sf);padding:14px 16px;text-align:center}
+.pc-num{font-family:var(--disp);font-size:26px;line-height:1}
+.pc-lbl{font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.pc-trend{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.pc-tag{font-family:var(--mono);font-size:10px;padding:4px 10px;border:1px solid var(--bd);background:var(--sf)}
+/* ─── ATO PACKAGE LIST ─── */
+.apl-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.apl-title{font-family:var(--disp);font-size:18px;letter-spacing:1px}
+.apl-count{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.apl-row{background:var(--sf);border:1px solid var(--bd);padding:10px 14px;display:grid;grid-template-columns:28px 1fr 80px 90px;gap:12px;align-items:center;cursor:pointer;transition:background .15s}
+.apl-row:hover{background:var(--s2)}
+.apl-icon{font-size:16px;text-align:center}
+.apl-name{font-size:12px;color:var(--text);line-height:1.3;margin-bottom:2px}
+.apl-meta{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.apl-fw{font-family:var(--mono);font-size:10px;color:var(--amber);text-align:right}
+.apl-size{font-family:var(--mono);font-size:10px;color:var(--muted);text-align:right}
+
+
+/* ─── TAB ACTIVE ANIMATION ─── */
+@keyframes tabActivate{from{opacity:.7}to{opacity:1}}
+.tab.active{animation:tabActivate .15s ease}
+.tab:active{transform:scale(.97)}
+
+
+.dp-breadcrumb{font-family:var(--mono);font-size:9px;letter-spacing:1px;color:var(--muted);margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid var(--bd)}
+.dp-breadcrumb span{cursor:pointer;transition:color .15s}.dp-breadcrumb span:hover{color:var(--amber)}
+.dp-section{padding:14px 0;border-bottom:1px solid var(--bd)}.dp-section:last-child{border-bottom:none}
+.dp-section-title{font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,.05)}
+.tl-item{display:flex;gap:12px;align-items:flex-start;margin-bottom:2px}
+.tl-dot{width:8px;height:8px;border-radius:50%;background:var(--amber);margin-top:5px;flex-shrink:0}
+.tl-line{width:1px;background:var(--bd);flex:1;min-height:16px;margin:2px auto 0}
+.tl-time{font-family:var(--mono);font-size:10px;color:var(--amber);margin-bottom:2px}
+.tl-txt{font-size:12px;color:var(--dim);line-height:1.5;padding-bottom:10px}
+
 </style>
 </head>
 <body>
@@ -648,7 +604,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 <div class="demo-banner">
   <div class="db-left">
     <div class="db-pill">Live Demo</div>
-    <div class="db-text"><strong style="color:var(--amber)">Apex Defense Systems</strong> &nbsp;·&nbsp; 847 endpoints &nbsp;·&nbsp; CMMC L2 assessment: Q2 2026 &nbsp;·&nbsp; C3PAO: SecureVault Assessment Group</div>
+    <div class="db-text" id="dbStatus"><strong style="color:var(--amber)">Apex Defense Systems</strong> &nbsp;·&nbsp; 847 endpoints &nbsp;·&nbsp; CMMC L2 assessment: Q2 2026 &nbsp;·&nbsp; C3PAO: SecureVault Assessment Group</div>
   </div>
   <div class="db-right">
     <a href="https://www.trustnovaops.com" class="db-link" target="_blank">← Back to trustnovaops.com</a>
@@ -662,52 +618,51 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
     <svg width="26" height="26" viewBox="0 0 52 52" fill="none" style="flex-shrink:0"><polygon points="26,3 45,14 45,38 26,49 7,38 7,14" fill="none" stroke="#e8a020" stroke-width="1.8" opacity=".5"/><line x1="26" y1="26" x2="37" y2="20" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="37" y2="32" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="38" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="32" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="20" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="14" stroke="#e8a020" stroke-width="1" opacity=".38"/><circle cx="37" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="37" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="38" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="14" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="26" r="4" fill="#e8a020"/></svg>
     TrustNova<span>Ops</span>
   </div>
-  <div id="tbTitle" style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:0 18px 0 10px;border-right:1px solid var(--bd);margin-right:4px;white-space:nowrap;flex-shrink:0">COMMAND CENTER</div>
   <div class="tab-nav">
-    <div class="tab active" data-view="dashboard">
+    <div class="tab active" data-view="dashboard" onclick="switchTab('dashboard')">
       <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect width="4" height="4" fill="currentColor" opacity=".7"/><rect x="7" y="0" width="4" height="4" fill="currentColor" opacity=".7"/><rect x="0" y="7" width="4" height="4" fill="currentColor" opacity=".7"/><rect x="7" y="7" width="4" height="4" fill="currentColor" opacity=".7"/></svg>
       Command Center
     </div>
-    <div class="tab" data-view="pipeline">
+    <div class="tab" data-view="pipeline" onclick="switchTab('pipeline')">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="1" y="4" width="10" height="4" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="3" cy="6" r="1.2" fill="currentColor"/></svg>
       Pipeline Gate
-      <span class="tab-badge" onclick="event.stopPropagation();switchTab('pipeline');setTimeout(showBlockedBuildsAlert,80)" title="4 blocked builds — click to view" style="cursor:pointer">4</span>
+      <span class="tab-badge" onclick="event.stopPropagation();switchTab('pipeline');setTimeout(showBlockedBuildsAlert,80)" style="cursor:pointer" title="4 blocked builds">4</span>
     </div>
-    <div class="tab" data-view="warden">
+    <div class="tab" data-view="warden" onclick="switchTab('warden')">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 .5L11.5 3v4C11.5 9.8 9 12 6 12.5 3 12 .5 9.8.5 7V3L6 .5z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
       WARDEN // DLP
-      <span class="tab-badge amber" onclick="event.stopPropagation();switchTab('warden');setTimeout(()=>filterWardenSev('critical'),80)" title="23 DLP findings — click to filter critical" style="cursor:pointer">23</span>
+      <span class="tab-badge amber" onclick="event.stopPropagation();switchTab('warden');setTimeout(()=>filterWardenSev('critical'),80)" style="cursor:pointer" title="23 DLP findings">23</span>
     </div>
-    <div class="tab" data-view="agents">
+    <div class="tab" data-view="agents" onclick="switchTab('agents')">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="4" r="2.5" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M1 11c0-2.8 2.2-5 5-5s5 2.2 5 5" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>
       Agent Fleet
     </div>
-    <div class="tab" data-view="ato">
+    <div class="tab" data-view="ato" onclick="switchTab('ato')">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5.5" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M4 6l1.5 1.5L8.5 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
       Agent 007 ATO
     </div>
-    <div class="tab" data-view="cmmc">
+    <div class="tab" data-view="cmmc" onclick="switchTab('cmmc')">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polyline points="1,8 4,5 7,7 11,2" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round"/></svg>
       CMMC Controls
     </div>
-    <div class="tab" data-view="evidence">
+    <div class="tab" data-view="evidence" onclick="switchTab('evidence')">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="2" y="1" width="8" height="10" rx="1" stroke="currentColor" stroke-width="1.2" fill="none"/><line x1="4" y1="4" x2="8" y2="4" stroke="currentColor" stroke-width="1.1"/><line x1="4" y1="6.5" x2="8" y2="6.5" stroke="currentColor" stroke-width="1.1"/><line x1="4" y1="9" x2="6" y2="9" stroke="currentColor" stroke-width="1.1"/></svg>
       Evidence Vault
     </div>
-    <div class="tab" data-view="exec">
+    <div class="tab" data-view="exec" onclick="switchTab('exec')">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="1" y="7" width="2" height="4" fill="currentColor" opacity=".7"/><rect x="5" y="4" width="2" height="7" fill="currentColor" opacity=".7"/><rect x="9" y="1" width="2" height="10" fill="currentColor" opacity=".7"/></svg>
       Exec Dashboard
     </div>
   </div>
   <div class="tb-right">
     <div class="tb-clock" id="clock">—</div>
-    <div class="tb-status">
-      <div class="status-dot" style="background:var(--green)"></div>
-      <span>All 7 agents active</span>
-    </div>
     <div class="tb-bell" onclick="toggleNotifDrawer()" title="Open alerts">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1a1 1 0 00-1 1c0 .1 0 .2.02.3A4 4 0 003 6.5V9l-1 1.5h10L11 9V6.5A4 4 0 008.98 2.3c.01-.1.02-.2.02-.3a1 1 0 00-1-1z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M5.5 11.5a1.5 1.5 0 003 0" stroke="currentColor" stroke-width="1.2"/></svg>
       <div class="tb-bell-count" id="bellCount">7</div>
+    </div>
+    <div class="tb-status">
+      <div class="status-dot" style="background:var(--green)"></div>
+      <span>All 7 agents active</span>
     </div>
   </div>
 </div>
@@ -716,112 +671,226 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 <div class="content">
 <div id="v-dashboard" class="view active">
 
-  <!-- ── STAT CARDS (all navigate) ── -->
+  <!-- STAT CARDS — all clickable -->
   <div class="stat-row">
     <div class="stat" style="--cc:var(--green)" onclick="switchTab('cmmc')" title="View CMMC Controls">
       <div class="stat-label">CMMC Score</div>
-      <div class="stat-num" id="s-cmmc">0<span style="font-size:22px">%</span></div>
-      <div class="stat-sub">↑ 4pts since last C3PAO review</div>
+      <div class="stat-num" id="s-cmmc">92<span style="font-size:22px">%</span></div>
+      <div class="stat-sub">↑ 4pts · last C3PAO review</div>
       <div class="stat-nav">CMMC CONTROLS →</div>
     </div>
-    <div class="stat" style="--cc:var(--amber)" onclick="switchTab('cmmc')" title="View Passing Controls">
+    <div class="stat" style="--cc:var(--amber)" onclick="switchTab('cmmc');setTimeout(function(){var el=document.getElementById('cmmcDomains');if(el)el.scrollIntoView({behavior:'smooth'})},200)" title="View passing and failing controls">{const el=document.getElementById('cmmcDomains');if(el)el.scrollIntoView({behavior:'smooth'})},200)" title="View passing and failing controls">
       <div class="stat-label">Controls Passing</div>
-      <div class="stat-num" id="s-controls">0</div>
-      <div class="stat-sub">7 need review · 2 critical gaps</div>
-      <div class="stat-nav">VIEW GAPS →</div>
+      <div class="stat-num" id="s-controls">101</div>
+      <div class="stat-sub">101 controls · 7 gaps · 2 critical</div>
+      <div class="stat-nav">VIEW CONTROLS →</div>
     </div>
-    <div class="stat" style="--cc:var(--red)" onclick="switchTab('warden')" title="View DLP Findings">
+    <div class="stat" style="--cc:var(--red)" onclick="showFindingsQueue()" title="View all 47 open incidents">
       <div class="stat-label">Active Findings</div>
-      <div class="stat-num" id="s-findings">0</div>
-      <div class="stat-sub">↓ 18 resolved this week</div>
-      <div class="stat-nav">WARDEN // DLP →</div>
+      <div class="stat-num" id="s-findings">47</div>
+      <div class="stat-sub">47 open · 18 resolved this week</div>
+      <div class="stat-nav">OPEN INCIDENTS →</div>
     </div>
-    <div class="stat" style="--cc:var(--blue)" onclick="switchTab('pipeline')" title="View Pipeline Gates">
+    <div class="stat" style="--cc:var(--blue)" onclick="switchTab('pipeline');setTimeout(showPipelineContext,100)" title="View 30-day pipeline scan history">
       <div class="stat-label">Pipelines Scanned</div>
-      <div class="stat-num" id="s-pipes">0</div>
-      <div class="stat-sub">99.1% pass rate (30d)</div>
-      <div class="stat-nav">PIPELINE GATE →</div>
+      <div class="stat-num" id="s-pipes">1,847</div>
+      <div class="stat-sub">1,847 scanned · 99.1% pass rate</div>
+      <div class="stat-nav">SCAN HISTORY →</div>
     </div>
-    <div class="stat" style="--cc:var(--purple)" onclick="switchTab('ato')" title="View ATO Packages">
+    <div class="stat" style="--cc:var(--purple)" onclick="switchTab('ato');setTimeout(showATOPackageList,100)" title="View 22 ATO evidence packages">
       <div class="stat-label">ATO Packages</div>
-      <div class="stat-num" id="s-atos">0</div>
-      <div class="stat-sub">28 total packages on file</div>
-      <div class="stat-nav">AGENT 007 →</div>
+      <div class="stat-num" id="s-atos">22</div>
+      <div class="stat-sub">22 ATO packages · 28 evidence files</div>
+      <div class="stat-nav">ATO PACKAGES →</div>
     </div>
   </div>
 
-  <!-- ── NEEDS ATTENTION ── -->
+  <!-- NEEDS ATTENTION -->
   <div id="attnBanner" class="attn-banner">
     <div class="ab-hdr">
       <div class="ab-pulse"></div>
       <div class="ab-title">Needs Attention — 4 items require action</div>
       <div class="ab-dismiss" onclick="document.getElementById('attnBanner').style.display='none'">DISMISS ✕</div>
     </div>
-    <div class="ab-items" id="attnItems"><!-- populated by JS --></div>
+    <div class="ab-items" id="attnItems">
+      <div class="ab-item" onclick="openFinding('INC-4201')">
+        <span class="badge" style="background:var(--rd);color:#e57373;text-align:center;display:block">CRITICAL</span>
+        <div><div class="ab-item-title">CUI emailed to personal Gmail — F-35 maint schedule</div><div class="ab-item-sub">INC-4201 · WARDEN · WKSTN-APX-214</div></div>
+        <button class="ab-btn" onclick="event.stopPropagation();openFinding('INC-4201')">INVESTIGATE</button>
+      </div>
+      <div class="ab-item" onclick="openFinding('INC-4200')">
+        <span class="badge" style="background:var(--rd);color:#e57373;text-align:center;display:block">CRITICAL</span>
+        <div><div class="ab-item-title">JTAC config file with CUI on unencrypted USB</div><div class="ab-item-sub">INC-4200 · WARDEN · WKSTN-APX-338</div></div>
+        <button class="ab-btn" onclick="event.stopPropagation();openFinding('INC-4200')">INVESTIGATE</button>
+      </div>
+      <div class="ab-item" onclick="openFinding('INC-4199')">
+        <span class="badge" style="background:var(--rd);color:#e57373;text-align:center;display:block">CRITICAL</span>
+        <div><div class="ab-item-title">DoD contract number hardcoded in GitLab pipeline</div><div class="ab-item-sub">INC-4199 · Code Auditor · GITLAB-PROD-01</div></div>
+        <button class="ab-btn" onclick="event.stopPropagation();openFinding('INC-4199')">INVESTIGATE</button>
+      </div>
+      <div class="ab-item" onclick="openFinding('INC-4198')">
+        <span class="badge" style="background:var(--rd);color:#e57373;text-align:center;display:block">CRITICAL</span>
+        <div><div class="ab-item-title">Former contractor SSO active 14 days post-termination</div><div class="ab-item-sub">INC-4198 · Agent 004 · APEX-IAM-PROD</div></div>
+        <button class="ab-btn" onclick="event.stopPropagation();openFinding('INC-4198')">INVESTIGATE</button>
+      </div>
+    </div>
   </div>
 
-  <!-- ── 3-COL CMD GRID ── -->
+  <!-- 3-COLUMN CMD GRID -->
   <div class="cmd-grid">
-
-    <!-- Live Feed -->
-    <div class="card" style="min-height:340px">
+    <div class="card" style="min-height:320px">
       <div class="card-hdr">
         Live Agent Feed
         <div class="live"><div class="status-dot" style="background:var(--green);width:6px;height:6px"></div>STREAMING</div>
       </div>
-      <div class="ev-stream" id="eventStream"></div>
+      <div class="ev-stream" id="eventStream">
+      <div class="ev-item" onclick="switchTab('cmmc')" style="cursor:pointer;transition:background .15s" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background=''"><span class="ev-time">09:14:33</span><span class="ev-sev sl">LOW</span><span class="ev-msg"><strong>Agent 001</strong> — AC.1.001 evidence snapshot · 847 endpoints compliant</span></div>
+      <div class="ev-item" onclick="openFinding('INC-4201')" style="cursor:pointer;transition:background .15s" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background=''"><span class="ev-time">09:14:31</span><span class="ev-sev sh">HIGH</span><span class="ev-msg"><strong>WARDEN</strong> — CUI email quarantined: F35_MAINT_SCHED_Q1_2026.xlsx → personal Gmail</span></div>
+      <div class="ev-item" onclick="switchTab('pipeline')" style="cursor:pointer;transition:background .15s" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background=''"><span class="ev-time">09:08:12</span><span class="ev-sev so">INFO</span><span class="ev-msg"><strong>Agent 006</strong> — Pipeline pass: backend-api PR #1,247 · 0 critical · 2 medium</span></div>
+      <div class="ev-item" onclick="openFinding('INC-4200')" style="cursor:pointer;transition:background .15s" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background=''"><span class="ev-time">08:47:12</span><span class="ev-sev sc">CRIT</span><span class="ev-msg"><strong>WARDEN</strong> — USB blocked: SN:SB4F2A9E1 on WKSTN-APX-338 · JTAC config CUI</span></div>
+      <div class="ev-item" onclick="switchTab('evidence')" style="cursor:pointer;transition:background .15s" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background=''"><span class="ev-time">08:14:22</span><span class="ev-sev sl">LOW</span><span class="ev-msg"><strong>Agent 001</strong> — MP.2.120 evidence generated: USB event logged · 0 bytes transferred</span></div>
+      <div class="ev-item" onclick="openFinding('INC-4198')" style="cursor:pointer;transition:background .15s" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background=''"><span class="ev-time">08:00:11</span><span class="ev-sev sm">MED</span><span class="ev-msg"><strong>Agent 004</strong> — Anomalous: vendor-csc@csci.com SSO active 14d post-termination</span></div>
+      <div class="ev-item" onclick="switchTab('pipeline')" style="cursor:pointer;transition:background .15s" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background=''"><span class="ev-time">07:44:09</span><span class="ev-sev so">INFO</span><span class="ev-msg"><strong>Agent 002</strong> — SAST: f35-logistics-api PR #892 · 0 critical · RA.3.077 logged</span></div>
+      <div class="ev-item" onclick="switchTab('cmmc')" style="cursor:pointer;transition:background .15s" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background=''"><span class="ev-time">07:30:00</span><span class="ev-sev sl">LOW</span><span class="ev-msg"><strong>Agent 005</strong> — Policy-as-code update: ITAR data classification rule v2.4</span></div>
+      <div class="ev-item" onclick="openFinding('INC-4195')" style="cursor:pointer;transition:background .15s" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background=''"><span class="ev-time">07:15:44</span><span class="ev-sev sh">HIGH</span><span class="ev-msg"><strong>Agent 006</strong> — Terraform: port 22 open to 0.0.0.0/0 · deployment blocked</span></div>
+      <div class="ev-item" onclick="switchTab('ato')" style="cursor:pointer;transition:background .15s" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background=''"><span class="ev-time">07:00:00</span><span class="ev-sev so">INFO</span><span class="ev-msg"><strong>Agent 007</strong> — NIST AI RMF: JTAC ML module Phase 4 complete · 87% ready</span></div>
+      </div>
+      </div>
     </div>
-
-    <!-- Pipeline Status -->
     <div class="card">
       <div class="card-hdr">
         Pipeline Gate Status
         <span style="font-family:var(--mono);font-size:10px;color:var(--red);cursor:pointer;letter-spacing:1px" onclick="switchTab('pipeline');setTimeout(showBlockedBuildsAlert,80)">4 BLOCKED →</span>
       </div>
-      <div id="pipelineStatusPanel"><!-- populated by JS --></div>
-      <div class="ev-stat-row" style="margin-top:auto">
-        <div class="ev-stat"><div class="ev-stat-num">1,847</div><div class="ev-stat-lbl">Scanned (30d)</div></div>
-        <div class="ev-stat" onclick="switchTab('pipeline')" style="cursor:pointer"><div class="ev-stat-num" style="color:var(--red)">4</div><div class="ev-stat-lbl">Blocked</div></div>
+      <div id="pipelineStatusPanel">
+        <div class="pipe-status-item" onclick="openFinding('INC-4199')" style="border-left:3px solid var(--red)">
+          <div class="psi-top"><span class="badge" style="background:var(--rd);color:#e57373">CRITICAL</span><span class="psi-title">DoD contract # hardcoded in GitLab pipeline</span></div>
+          <div class="psi-repo">GITLAB-PROD-01 · CM.3.068</div><div class="psi-action">Block PR · rotate credentials</div>
+        </div>
+        <div class="pipe-status-item" onclick="openFinding('INC-4196')" style="border-left:3px solid var(--yel)">
+          <div class="psi-top"><span class="badge" style="background:var(--yd);color:var(--yel)">HIGH</span><span class="psi-title">Docker container runs as root in production</span></div>
+          <div class="psi-repo">APEX-K8S-PROD-01 · CM.2.061</div><div class="psi-action">Rebuild with non-root USER</div>
+        </div>
+        <div class="pipe-status-item" onclick="openFinding('INC-4195')" style="border-left:3px solid var(--yel)">
+          <div class="psi-top"><span class="badge" style="background:var(--yd);color:var(--yel)">HIGH</span><span class="psi-title">Terraform port 22 open to 0.0.0.0/0</span></div>
+          <div class="psi-repo">AWS-GOVCLOUD-VPC · SC.1.175</div><div class="psi-action">Restrict security group ingress</div>
+        </div>
+        <div class="pipe-status-item" onclick="openFinding('INC-4190')" style="border-left:3px solid var(--blue)">
+          <div class="psi-top"><span class="badge" style="background:var(--bld);color:#60b0ff">MEDIUM</span><span class="psi-title">Dependency confusion in requirements.txt</span></div>
+          <div class="psi-repo">f35-logistics-api · SR.3.169</div><div class="psi-action">Remove from PyPI · use internal registry</div>
+        </div>
+      </div>
+      <div class="ev-stat-row">
+        <div class="ev-stat"><div class="ev-stat-num" style="color:var(--blue)">1,847</div><div class="ev-stat-lbl">Scanned</div></div>
+        <div class="ev-stat" style="cursor:pointer" onclick="switchTab('pipeline');setTimeout(showBlockedBuildsAlert,80)"><div class="ev-stat-num" style="color:var(--red)">4</div><div class="ev-stat-lbl">Blocked</div></div>
         <div class="ev-stat"><div class="ev-stat-num" style="color:var(--green)">99.1<span style="font-size:12px">%</span></div><div class="ev-stat-lbl">Pass Rate</div></div>
       </div>
     </div>
-
-    <!-- Agent Health -->
     <div class="card">
       <div class="card-hdr">
         Agent Health
         <span style="font-family:var(--mono);font-size:10px;color:var(--amber);cursor:pointer;letter-spacing:1px" onclick="switchTab('agents')">ALL AGENTS →</span>
       </div>
-      <div id="agentHealthPanel"><!-- populated by JS --></div>
+      <div id="agentHealthPanel">
+        <div class="ah-item" onclick="switchTab('agents')"><div class="ah-dot" style="background:#00b090;animation:pulse 2s 0.0s infinite"></div><div><div class="ah-name" style="color:#00b090">Compliance Scanner</div><div class="ah-act">AC.1.001 evidence snapshot · 847 endpoints <span style="opacity:.5">· 2m ago</span></div></div><div style="font-family:var(--disp);font-size:14px;color:#00b090;text-align:right">2,847</div></div>
+        <div class="ah-item" onclick="switchTab('agents')"><div class="ah-dot" style="background:#3090e0;animation:pulse 2s 0.2s infinite"></div><div><div class="ah-name" style="color:#3090e0">Code Auditor</div><div class="ah-act">SAST: f35-logistics PR #892 · 0 critical <span style="opacity:.5">· 8m ago</span></div></div><div style="font-family:var(--disp);font-size:14px;color:#3090e0;text-align:right">1,847</div></div>
+        <div class="ah-item" onclick="switchTab('agents')"><div class="ah-dot" style="background:#e86020;animation:pulse 2s 0.4s infinite"></div><div><div class="ah-name" style="color:#e86020">WARDEN / Guardian</div><div class="ah-act">CUI email blocked: F35_MAINT_SCHED.xlsx <span style="opacity:.5">· 14m ago</span></div></div><div style="font-family:var(--disp);font-size:14px;color:#e86020;text-align:right">614</div></div>
+        <div class="ah-item" onclick="switchTab('agents')"><div class="ah-dot" style="background:#e0c040;animation:pulse 2s 0.6s infinite"></div><div><div class="ah-name" style="color:#e0c040">Access Controller</div><div class="ah-act">SSO revoked: vendor-csc@csci.com <span style="opacity:.5">· 4h ago</span></div></div><div style="font-family:var(--disp);font-size:14px;color:#e0c040;text-align:right">389</div></div>
+        <div class="ah-item" onclick="switchTab('agents')"><div class="ah-dot" style="background:#a060e0;animation:pulse 2s 0.8s infinite"></div><div><div class="ah-name" style="color:#a060e0">Policy Engine</div><div class="ah-act">Policy update: ITAR rule v2.4 deployed <span style="opacity:.5">· 6h ago</span></div></div><div style="font-family:var(--disp);font-size:14px;color:#a060e0;text-align:right">124</div></div>
+        <div class="ah-item" onclick="switchTab('agents')"><div class="ah-dot" style="background:#e8a020;animation:pulse 2s 1.0s infinite"></div><div><div class="ah-name" style="color:#e8a020">Pipeline Orchestrator</div><div class="ah-act">Pipeline blocked: Docker USER root <span style="opacity:.5">· 1d ago</span></div></div><div style="font-family:var(--disp);font-size:14px;color:#e8a020;text-align:right">1,847</div></div>
+        <div class="ah-item" onclick="switchTab('agents')"><div class="ah-dot" style="background:#d04060;animation:pulse 2s 1.2s infinite"></div><div><div class="ah-name" style="color:#d04060">ATO Streamliner</div><div class="ah-act">ATO package ready: JTAC v3.1 · 87% <span style="opacity:.5">· 3d ago</span></div></div><div style="font-family:var(--disp);font-size:14px;color:#d04060;text-align:right">22</div></div>
+      </div>
     </div>
-
   </div>
 
-  <!-- ── RECENT FINDINGS TABLE ── -->
+  <!-- RECENT FINDINGS TABLE — click any row -->
   <div class="card">
     <div class="card-hdr">
       Recent Findings — <span style="color:var(--muted);font-weight:300">click any row to investigate</span>
       <a style="font-family:var(--mono);font-size:10px;color:var(--amber);cursor:pointer;letter-spacing:1px" onclick="switchTab('warden')">VIEW ALL IN WARDEN →</a>
     </div>
     <table style="width:100%;border-collapse:collapse">
-      <thead>
-        <tr>
-          <th style="font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 12px;text-align:left;border-bottom:1px solid var(--bd);background:var(--s2)">ID</th>
-          <th style="font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 12px;text-align:left;border-bottom:1px solid var(--bd);background:var(--s2)">Agent</th>
-          <th style="font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 12px;text-align:left;border-bottom:1px solid var(--bd);background:var(--s2)">Finding</th>
-          <th style="font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 12px;text-align:left;border-bottom:1px solid var(--bd);background:var(--s2)">CMMC Control</th>
-          <th style="font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 12px;text-align:left;border-bottom:1px solid var(--bd);background:var(--s2)">Sev</th>
-          <th style="font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 12px;text-align:left;border-bottom:1px solid var(--bd);background:var(--s2)">Status</th>
-        </tr>
-      </thead>
-      <tbody id="findingsTable"></tbody>
+      <thead><tr>
+        <th style="font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 12px;text-align:left;border-bottom:1px solid var(--bd);background:var(--s2)">ID</th>
+        <th style="font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 12px;text-align:left;border-bottom:1px solid var(--bd);background:var(--s2)">Agent</th>
+        <th style="font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 12px;text-align:left;border-bottom:1px solid var(--bd);background:var(--s2)">Finding</th>
+        <th style="font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 12px;text-align:left;border-bottom:1px solid var(--bd);background:var(--s2)">CMMC Control</th>
+        <th style="font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 12px;text-align:left;border-bottom:1px solid var(--bd);background:var(--s2)">Sev</th>
+        <th style="font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 12px;text-align:left;border-bottom:1px solid var(--bd);background:var(--s2)">Status</th>
+      </tr></thead>
+      <tbody id="findingsTable">
+          <tr onclick="openFinding('INC-4201')" style="cursor:pointer;transition:background .15s" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background=''">
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--text);border-bottom:1px solid var(--bd)">INC-4201</td>
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--amber);border-bottom:1px solid var(--bd)">WARDEN</td>
+            <td style="padding:10px 12px;font-size:12px;color:var(--text);border-bottom:1px solid var(--bd)">CUI emailed to personal Gmail — F-35 maint schedule</td>
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--dim);border-bottom:1px solid var(--bd)">SC.3.177 · MP.2.120</td>
+            <td style="padding:10px 12px;border-bottom:1px solid var(--bd)"><span class="badge" style="background:var(--rd);color:#e57373">CRITICAL</span></td>
+            <td style="padding:10px 12px;border-bottom:1px solid var(--bd)"><span class="badge b-open">OPEN</span></td>
+          </tr>
+          <tr onclick="openFinding('INC-4200')" style="cursor:pointer;transition:background .15s" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background=''">
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--text);border-bottom:1px solid var(--bd)">INC-4200</td>
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--amber);border-bottom:1px solid var(--bd)">WARDEN</td>
+            <td style="padding:10px 12px;font-size:12px;color:var(--text);border-bottom:1px solid var(--bd)">JTAC config file with CUI on unencrypted USB</td>
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--dim);border-bottom:1px solid var(--bd)">MP.2.120 · AC.1.001</td>
+            <td style="padding:10px 12px;border-bottom:1px solid var(--bd)"><span class="badge" style="background:var(--rd);color:#e57373">CRITICAL</span></td>
+            <td style="padding:10px 12px;border-bottom:1px solid var(--bd)"><span class="badge b-inv">INVESTIGATING</span></td>
+          </tr>
+          <tr onclick="openFinding('INC-4199')" style="cursor:pointer;transition:background .15s" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background=''">
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--text);border-bottom:1px solid var(--bd)">INC-4199</td>
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--amber);border-bottom:1px solid var(--bd)">Code Auditor</td>
+            <td style="padding:10px 12px;font-size:12px;color:var(--text);border-bottom:1px solid var(--bd)">DoD contract # hardcoded in GitLab pipeline</td>
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--dim);border-bottom:1px solid var(--bd)">CM.3.068 · IA.3.083</td>
+            <td style="padding:10px 12px;border-bottom:1px solid var(--bd)"><span class="badge" style="background:var(--rd);color:#e57373">CRITICAL</span></td>
+            <td style="padding:10px 12px;border-bottom:1px solid var(--bd)"><span class="badge b-open">OPEN</span></td>
+          </tr>
+          <tr onclick="openFinding('INC-4198')" style="cursor:pointer;transition:background .15s" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background=''">
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--text);border-bottom:1px solid var(--bd)">INC-4198</td>
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--amber);border-bottom:1px solid var(--bd)">Agent 004</td>
+            <td style="padding:10px 12px;font-size:12px;color:var(--text);border-bottom:1px solid var(--bd)">Former contractor SSO active 14 days post-termination</td>
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--dim);border-bottom:1px solid var(--bd)">AC.2.006 · PS.3.114</td>
+            <td style="padding:10px 12px;border-bottom:1px solid var(--bd)"><span class="badge" style="background:var(--rd);color:#e57373">CRITICAL</span></td>
+            <td style="padding:10px 12px;border-bottom:1px solid var(--bd)"><span class="badge b-open">OPEN</span></td>
+          </tr>
+          <tr onclick="openFinding('INC-4197')" style="cursor:pointer;transition:background .15s" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background=''">
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--text);border-bottom:1px solid var(--bd)">INC-4197</td>
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--amber);border-bottom:1px solid var(--bd)">WARDEN</td>
+            <td style="padding:10px 12px;font-size:12px;color:var(--text);border-bottom:1px solid var(--bd)">SSH private key hardcoded in deployment script</td>
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--dim);border-bottom:1px solid var(--bd)">IA.3.083 · CM.3.068</td>
+            <td style="padding:10px 12px;border-bottom:1px solid var(--bd)"><span class="badge" style="background:var(--yd);color:var(--yel)">HIGH</span></td>
+            <td style="padding:10px 12px;border-bottom:1px solid var(--bd)"><span class="badge b-res">RESOLVED</span></td>
+          </tr>
+          <tr onclick="openFinding('INC-4196')" style="cursor:pointer;transition:background .15s" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background=''">
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--text);border-bottom:1px solid var(--bd)">INC-4196</td>
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--amber);border-bottom:1px solid var(--bd)">Agent 006</td>
+            <td style="padding:10px 12px;font-size:12px;color:var(--text);border-bottom:1px solid var(--bd)">Docker container runs as root in production</td>
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--dim);border-bottom:1px solid var(--bd)">CM.2.061 · SI.1.210</td>
+            <td style="padding:10px 12px;border-bottom:1px solid var(--bd)"><span class="badge" style="background:var(--yd);color:var(--yel)">HIGH</span></td>
+            <td style="padding:10px 12px;border-bottom:1px solid var(--bd)"><span class="badge b-open">OPEN</span></td>
+          </tr>
+          <tr onclick="openFinding('INC-4195')" style="cursor:pointer;transition:background .15s" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background=''">
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--text);border-bottom:1px solid var(--bd)">INC-4195</td>
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--amber);border-bottom:1px solid var(--bd)">Agent 006</td>
+            <td style="padding:10px 12px;font-size:12px;color:var(--text);border-bottom:1px solid var(--bd)">Terraform port 22 open to 0.0.0.0/0</td>
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--dim);border-bottom:1px solid var(--bd)">SC.1.175 · CM.3.068</td>
+            <td style="padding:10px 12px;border-bottom:1px solid var(--bd)"><span class="badge" style="background:var(--yd);color:var(--yel)">HIGH</span></td>
+            <td style="padding:10px 12px;border-bottom:1px solid var(--bd)"><span class="badge b-ack">ACKNOWLEDGED</span></td>
+          </tr>
+          <tr onclick="openFinding('INC-4194')" style="cursor:pointer;transition:background .15s" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background=''">
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--text);border-bottom:1px solid var(--bd)">INC-4194</td>
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--amber);border-bottom:1px solid var(--bd)">WARDEN</td>
+            <td style="padding:10px 12px;font-size:12px;color:var(--text);border-bottom:1px solid var(--bd)">Bulk download — 1,240 files before resignation date</td>
+            <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--dim);border-bottom:1px solid var(--bd)">AU.2.042 · AC.2.007</td>
+            <td style="padding:10px 12px;border-bottom:1px solid var(--bd)"><span class="badge" style="background:var(--yd);color:var(--yel)">HIGH</span></td>
+            <td style="padding:10px 12px;border-bottom:1px solid var(--bd)"><span class="badge b-res">RESOLVED</span></td>
+          </tr>
+      </tbody>
     </table>
   </div>
 
-</div>
-
+<!-- ═══════════════ VIEW: PIPELINE GATE ═══════════════ -->
 <div id="v-pipeline" class="view">
-  <div id="blockedBuildsAlert" style="display:none" class="blocked-alert"></div>
+  <div id="pipelineContextPanel" style="display:none"></div>
+  <div id="blockedBuildsAlert" class="blocked-alert"></div>
   <div class="pipeline-input">
     <div class="pi-header">
       <div>
@@ -916,9 +985,8 @@ USER root</div>
   <div class="sev-filters" id="wardenFilters">
     <button class="sf-btn active" onclick="filterWardenSev('all',this)">ALL FINDINGS</button>
     <button class="sf-btn" onclick="filterWardenSev('critical',this)" style="border-color:rgba(217,64,64,.4);color:var(--red)">CRITICAL</button>
-    <button class="sf-btn" onclick="filterWardenSev('high',this)" style="border-color:rgba(212,176,48,.4);color:var(--yel)">HIGH RISK</button>
+    <button class="sf-btn" onclick="filterWardenSev('high',this)" style="border-color:rgba(212,176,48,.4);color:var(--yel)">HIGH</button>
     <button class="sf-btn" onclick="filterWardenSev('medium',this)">MEDIUM</button>
-    <button class="sf-btn" onclick="filterWardenSev('low',this)">LOW RISK</button>
     <span id="wardenFindCount" style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-left:auto;display:flex;align-items:center">12 findings</span>
   </div>
   <div class="stat-row">
@@ -968,6 +1036,7 @@ USER root</div>
     <div style="margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--green)">▲ CLASSIFIED CAPABILITY</div>
   </div>
 
+  <div id="atoPackageListPanel" style="display:none"></div>
   <div class="ato-layout">
     <div>
       <div class="ato-input">
@@ -1068,7 +1137,55 @@ USER root</div>
     </div>
   </div>
 
-  <div class="evidence-list" id="evidenceList"></div>
+  <div class="evidence-list" id="evidenceList">      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bd);margin-bottom:12px" id="evidenceStaticFallback">
+        <div style="background:var(--sf);padding:16px;display:flex;flex-direction:column;gap:8px;cursor:pointer;transition:background .2s" onclick="showEvidenceDetail('MP.2.120','CUI USB event: WKSTN-APX-338 · JTAC config','CMMC 2.0','09:14 today','1.2 MB','Media protection — CUI handling · confirmed 0 bytes transferred before lock')" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background='var(--sf)'">
+          <div style="font-size:16px">🔒</div>
+          <div style="font-size:12px;color:var(--text)">MP.2.120 — CUI USB event: WKSTN-APX-338</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--amber)">CMMC 2.0</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--muted)">09:14 today · 1.2 MB</div>
+          <div style="display:flex;gap:6px;margin-top:4px">
+            <button onclick="event.stopPropagation();showToast('📥 MP.2.120 evidence exported')" style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;background:var(--s3);border:1px solid var(--bd);color:var(--muted);padding:4px 8px;cursor:pointer;flex:1">EXPORT</button>
+            <button onclick="event.stopPropagation();showEvidenceDetail('MP.2.120','CUI USB event: WKSTN-APX-338 · JTAC config','CMMC 2.0','09:14 today','1.2 MB','Media protection — CUI handling · confirmed 0 bytes transferred before lock')" style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;background:var(--s3);border:1px solid var(--amber);color:var(--amber);padding:4px 8px;cursor:pointer;flex:1">VIEW</button>
+          </div>
+        </div>
+        <div style="background:var(--sf);padding:16px;display:flex;flex-direction:column;gap:8px;cursor:pointer;transition:background .2s" onclick="showEvidenceDetail('AU.2.042','Audit log snapshot · 847 endpoints · 0 gaps','NIST','Today 06:08','14.2 MB','Audit record review and analysis — full endpoint coverage confirmed · ConMon updated')" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background='var(--sf)'">
+          <div style="font-size:16px">📊</div>
+          <div style="font-size:12px;color:var(--text)">AU.2.042 — Audit log snapshot · 847 endpoints</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--amber)">NIST</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--muted)">Today 06:08 · 14.2 MB</div>
+          <div style="display:flex;gap:6px;margin-top:4px">
+            <button onclick="event.stopPropagation();showToast('📥 AU.2.042 audit log exported')" style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;background:var(--s3);border:1px solid var(--bd);color:var(--muted);padding:4px 8px;cursor:pointer;flex:1">EXPORT</button>
+            <button onclick="event.stopPropagation();showEvidenceDetail('AU.2.042','Audit log snapshot · 847 endpoints · 0 gaps','NIST','Today 06:08','14.2 MB','Audit record review and analysis — full endpoint coverage confirmed · ConMon updated')" style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;background:var(--s3);border:1px solid var(--amber);color:var(--amber);padding:4px 8px;cursor:pointer;flex:1">VIEW</button>
+          </div>
+        </div>
+        <div style="background:var(--sf);padding:16px;display:flex;flex-direction:column;gap:8px;cursor:pointer;transition:background .2s" onclick="showEvidenceDetail('CA-7','ConMon package: week 47 · SecureVault C3PAO format','FedRAMP','Today 08:00','28.4 MB','Continuous monitoring strategy and plan — 83% FedRAMP readiness · week 47 report')" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background='var(--sf)'">
+          <div style="font-size:16px">✅</div>
+          <div style="font-size:12px;color:var(--text)">CA-7 — ConMon package: week 47</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--amber)">FedRAMP</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--muted)">Today 08:00 · 28.4 MB</div>
+          <div style="display:flex;gap:6px;margin-top:4px">
+            <button onclick="event.stopPropagation();showToast('📥 CA-7 ConMon package exported')" style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;background:var(--s3);border:1px solid var(--bd);color:var(--muted);padding:4px 8px;cursor:pointer;flex:1">EXPORT</button>
+            <button onclick="event.stopPropagation();showEvidenceDetail('CA-7','ConMon package: week 47 · SecureVault C3PAO format','FedRAMP','Today 08:00','28.4 MB','Continuous monitoring strategy and plan — 83% FedRAMP readiness · week 47 report')" style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;background:var(--s3);border:1px solid var(--amber);color:var(--amber);padding:4px 8px;cursor:pointer;flex:1">VIEW</button>
+          </div>
+        </div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--muted)">09:14 today · 1.2 MB</div>
+          <button onclick="showToast('📥 Evidence package downloaded')" style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;background:var(--s2);border:1px solid var(--bd);color:var(--muted);padding:4px 8px;cursor:pointer">EXPORT</button>
+        </div>
+        <div style="background:var(--sf);padding:16px;display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:16px">📊</div>
+          <div style="font-size:12px;color:var(--text)">AU.2.042 — Audit log snapshot · 847 endpoints</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--amber)">NIST</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--muted)">Today 06:08 · 14.2 MB</div>
+          <button onclick="showToast('📥 Evidence package downloaded')" style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;background:var(--s2);border:1px solid var(--bd);color:var(--muted);padding:4px 8px;cursor:pointer">EXPORT</button>
+        </div>
+        <div style="background:var(--sf);padding:16px;display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:16px">✅</div>
+          <div style="font-size:12px;color:var(--text)">CA-7 — ConMon package: week 47</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--amber)">FedRAMP</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--muted)">Today 08:00 · 28.4 MB</div>
+          <button onclick="showToast('📥 Evidence package downloaded')" style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;background:var(--s2);border:1px solid var(--bd);color:var(--muted);padding:4px 8px;cursor:pointer">EXPORT</button>
+        </div>
+      </div></div>
 </div>
 
 <!-- ═══════════════ VIEW: EXEC DASHBOARD ═══════════════ -->
@@ -1169,25 +1286,20 @@ USER root</div>
 
 <!-- ═══════════════ VIEW: AGENT FLEET ═══════════════ -->
 <div id="v-agents" class="view">
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bd);border:1px solid var(--bd)" id="agentsGrid">
-    <!-- populated by renderAgents() -->
-  </div>
+  <div class="af-grid" id="agentsGrid"></div>
 </div>
 
 </div><!-- end .content -->
 </div><!-- end .app -->
 
 
-<!-- ═══════════════ NOTIFICATION DRAWER ═══════════════ -->
+<!-- NOTIFICATION DRAWER -->
 <div class="notif-drawer" id="notifDrawer">
   <div class="nd-hdr">
-    <div class="nd-title-row">
-      <div class="nd-title">ALERTS</div>
-      <span class="nd-count" id="ndCount">7</span>
-    </div>
+    <div class="nd-title-row"><div class="nd-title">ALERTS</div><span class="nd-count" id="ndCount">7</span></div>
     <button class="nd-close" onclick="toggleNotifDrawer()">✕</button>
   </div>
-  <div class="nd-body" id="ndBody"><!-- populated by JS --></div>
+  <div class="nd-body" id="ndBody"></div>
   <div class="nd-footer">
     <button class="nd-footer-btn primary" onclick="switchTab('warden');toggleNotifDrawer()">VIEW IN WARDEN</button>
     <button class="nd-footer-btn ghost" onclick="switchTab('dashboard');toggleNotifDrawer()">ALL FINDINGS</button>
@@ -1335,37 +1447,38 @@ const INCIDENTS = [
 ];
 
 const EVENT_POOL = [
-  {s:'sl',m:'<strong>Agent 001</strong> — AC.1.001 evidence snapshot complete · 847 endpoints compliant · CMMC L2'},
-  {s:'so',m:'<strong>Agent 006</strong> — Pipeline pass: backend-api PR #1,247 · 0 critical · 2 medium flagged'},
-  {s:'sh',m:'<strong>WARDEN</strong> — CUI pattern detected: <strong>F35_MAINT_SCHED_Q1_2026.xlsx</strong> · outbound email blocked'},
-  {s:'so',m:'<strong>Agent 004</strong> — Privileged access recertification: 42 roles reviewed · 3 reduced'},
-  {s:'sc',m:'<strong>Agent 002</strong> — Critical: <strong>CVE-2024-3094</strong> in xz-utils 5.6.0 · 3 production images affected · rebuild triggered'},
-  {s:'sl',m:'<strong>Agent 001</strong> — MP.2.120 evidence generated: USB event WKSTN-APX-338 · CUI confirmed safe'},
-  {s:'sh',m:'<strong>WARDEN</strong> — SSH private key detected: <strong>infra/deploy_prod.sh:47</strong> · PR blocked · rotation queued'},
-  {s:'so',m:'<strong>Agent 005</strong> — Policy update propagated: 124 endpoints · ITAR data handling rule CM.3.068'},
-  {s:'sm',m:'<strong>Agent 006</strong> — Container scan: Dockerfile USER root in <strong>jtac-comms:latest</strong> · deployment blocked'},
-  {s:'sl',m:'<strong>Agent 001</strong> — CMMC readiness: 92% · 101 controls passing · 7 under review · 2 critical gaps'},
-  {s:'sc',m:'<strong>WARDEN</strong> — S3 bucket apex-jtac-config made public · <strong>auto-remediated in 312ms</strong> · evidence logged'},
-  {s:'so',m:'<strong>Agent 007</strong> — ATO package generated: JTAC Integration System v3.1 · 4.9s · 87% ready score'},
-  {s:'sh',m:'<strong>Agent 004</strong> — Anomalous access: r.patel@apexdef.com · 1,240 CUI files in 4h · bulk download blocked'},
-  {s:'sl',m:'<strong>Agent 002</strong> — SAST complete: f35-logistics-api PR #892 · 0 critical · RA.3.077 evidence logged'},
-  {s:'sm',m:'<strong>Agent 006</strong> — Terraform: security group open port 22 to 0.0.0.0/0 · deployment blocked · CR#47821 raised'},
-  {s:'so',m:'<strong>Agent 005</strong> — DFARS 252.204-7012 CUI handling policy enforced · 847 endpoints in scope'},
-  {s:'sl',m:'<strong>Agent 001</strong> — FedRAMP ConMon: SC-28 evidence updated · encryption-at-rest verified 847 resources'},
-  {s:'sm',m:'<strong>WARDEN</strong> — Print job flagged: <strong>F35_WING_ASSY_DWG_2024.pdf</strong> on PRN-07 · ITAR indicator · custodian alerted'},
-  {s:'so',m:'<strong>Agent 004</strong> — MFA re-enrollment complete: 4 accounts · IA.3.083 satisfied · evidence logged'},
-  {s:'sl',m:'<strong>Agent 006</strong> — CI/CD gate pass: f35-logistics-data · 6/6 checks · CMMC CM.3.068 evidence captured'},
-  {s:'sh',m:'<strong>Agent 002</strong> — Dependency confusion: <strong>requests-apex==2.1.0</strong> on PyPI · SR.3.169 violation · blocked'},
-  {s:'so',m:'<strong>Agent 001</strong> — AU.2.042 audit log snapshot: 847 endpoints · 0 gaps · ConMon updated'},
-  {s:'sm',m:'<strong>WARDEN</strong> — Dropbox personal sync blocked: WKSTN-APX-441 / t.morrison@apexdef.com · CM.2.061 logged'},
-  {s:'sl',m:'<strong>Agent 005</strong> — Policy-as-code update deployed: ITAR data classification rule v2.4 · all pipelines'},
-  {s:'so',m:'<strong>Agent 006</strong> — Pipeline pass: jtac-comms PR #488 · container rebuilt non-root · SI.1.210 satisfied'},
-  {s:'sc',m:'<strong>Agent 004</strong> — Contractor SSO active 14 days post-termination: vendor-csc@csci.com · session terminated'},
-  {s:'sl',m:'<strong>Agent 007</strong> — NIST AI RMF 1.0 assessment: Predictive Maintenance AI · Phase 4 of 6 complete'},
-  {s:'sh',m:'<strong>WARDEN</strong> — PII pattern: <strong>contractor_clearances_2025.csv</strong> · 847 SSNs · /onedrive/hr/ · encrypt flagged'},
-  {s:'so',m:'<strong>Agent 001</strong> — C3PAO readiness package: SecureVault Assessment Group · 94% evidence complete'},
-  {s:'sm',m:'<strong>Agent 006</strong> — IaC scan: Bicep template missing encryption-at-rest · SC-28 gap · PR blocked'},
+  {s:'sl',m:'<strong>Agent 001</strong> — AC.1.001 evidence snapshot complete · 847 endpoints compliant · CMMC L2',target:'evidence'},
+  {s:'so',m:'<strong>Agent 006</strong> — Pipeline pass: backend-api PR #1,247 · 0 critical · 2 medium flagged',target:'pipeline'},
+  {s:'sh',m:'<strong>WARDEN</strong> — CUI pattern detected: <strong>F35_MAINT_SCHED_Q1_2026.xlsx</strong> · outbound email blocked',target:'warden'},
+  {s:'so',m:'<strong>Agent 004</strong> — Privileged access recertification: 42 roles reviewed · 3 reduced',target:'dashboard'},
+  {s:'sc',m:'<strong>Agent 002</strong> — Critical: <strong>CVE-2024-3094</strong> in xz-utils 5.6.0 · 3 production images affected · rebuild triggered',target:'dashboard'},
+  {s:'sl',m:'<strong>Agent 001</strong> — MP.2.120 evidence generated: USB event WKSTN-APX-338 · CUI confirmed safe',target:'warden'},
+  {s:'sh',m:'<strong>WARDEN</strong> — SSH private key detected: <strong>infra/deploy_prod.sh:47</strong> · PR blocked · rotation queued',target:'warden'},
+  {s:'so',m:'<strong>Agent 005</strong> — Policy update propagated: 124 endpoints · ITAR data handling rule CM.3.068',target:'dashboard'},
+  {s:'sm',m:'<strong>Agent 006</strong> — Container scan: Dockerfile USER root in <strong>jtac-comms:latest</strong> · deployment blocked',target:'pipeline'},
+  {s:'sl',m:'<strong>Agent 001</strong> — CMMC readiness: 92% · 101 controls passing · 7 under review · 2 critical gaps',target:'cmmc'},
+  {s:'sc',m:'<strong>WARDEN</strong> — S3 bucket apex-jtac-config made public · <strong>auto-remediated in 312ms</strong> · evidence logged',target:'warden'},
+  {s:'so',m:'<strong>Agent 007</strong> — ATO package generated: JTAC Integration System v3.1 · 4.9s · 87% ready score',target:'ato'},
+  {s:'sh',m:'<strong>Agent 004</strong> — Anomalous access: r.patel@apexdef.com · 1,240 CUI files in 4h · bulk download blocked',target:'warden'},
+  {s:'sl',m:'<strong>Agent 002</strong> — SAST complete: f35-logistics-api PR #892 · 0 critical · RA.3.077 evidence logged',target:'pipeline'},
+  {s:'sm',m:'<strong>Agent 006</strong> — Terraform: security group open port 22 to 0.0.0.0/0 · deployment blocked · CR#47821 raised',target:'pipeline'},
+  {s:'so',m:'<strong>Agent 005</strong> — DFARS 252.204-7012 CUI handling policy enforced · 847 endpoints in scope',target:'warden'},
+  {s:'sl',m:'<strong>Agent 001</strong> — FedRAMP ConMon: SC-28 evidence updated · encryption-at-rest verified 847 resources',target:'evidence'},
+  {s:'sm',m:'<strong>WARDEN</strong> — Print job flagged: <strong>F35_WING_ASSY_DWG_2024.pdf</strong> on PRN-07 · ITAR indicator · custodian alerted',target:'warden'},
+  {s:'so',m:'<strong>Agent 004</strong> — MFA re-enrollment complete: 4 accounts · IA.3.083 satisfied · evidence logged',target:'evidence'},
+  {s:'sl',m:'<strong>Agent 006</strong> — CI/CD gate pass: f35-logistics-data · 6/6 checks · CMMC CM.3.068 evidence captured',target:'evidence'},
+  {s:'sh',m:'<strong>Agent 002</strong> — Dependency confusion: <strong>requests-apex==2.1.0</strong> on PyPI · SR.3.169 violation · blocked',target:'dashboard'},
+  {s:'so',m:'<strong>Agent 001</strong> — AU.2.042 audit log snapshot: 847 endpoints · 0 gaps · ConMon updated',target:'evidence'},
+  {s:'sm',m:'<strong>WARDEN</strong> — Dropbox personal sync blocked: WKSTN-APX-441 / t.morrison@apexdef.com · CM.2.061 logged',target:'warden'},
+  {s:'sl',m:'<strong>Agent 005</strong> — Policy-as-code update deployed: ITAR data classification rule v2.4 · all pipelines',target:'pipeline'},
+  {s:'so',m:'<strong>Agent 006</strong> — Pipeline pass: jtac-comms PR #488 · container rebuilt non-root · SI.1.210 satisfied',target:'pipeline'},
+  {s:'sc',m:'<strong>Agent 004</strong> — Contractor SSO active 14 days post-termination: vendor-csc@csci.com · session terminated',target:'warden'},
+  {s:'sl',m:'<strong>Agent 007</strong> — NIST AI RMF 1.0 assessment: Predictive Maintenance AI · Phase 4 of 6 complete',target:'ato'},
+  {s:'sh',m:'<strong>WARDEN</strong> — PII pattern: <strong>contractor_clearances_2025.csv</strong> · 847 SSNs · /onedrive/hr/ · encrypt flagged',target:'warden'},
+  {s:'so',m:'<strong>Agent 001</strong> — C3PAO readiness package: SecureVault Assessment Group · 94% evidence complete',target:'evidence'},
+  {s:'sm',m:'<strong>Agent 006</strong> — IaC scan: Bicep template missing encryption-at-rest · SC-28 gap · PR blocked',target:'pipeline'},
 ];
+
 
 const WARDEN_FINDINGS = [
   {file:'F35_MAINT_SCHED_Q1_2026.xlsx',path:'/onedrive/engineering/f35/',type:'CUI//SP-EXPT',count:'1 file',risk:97,rc:'risk-critical',action:'Restrict'},
@@ -1475,12 +1588,14 @@ HEALTHCHECK --interval=30s --timeout=3s CMD curl -f http://localhost:8080/health
 LABEL maintainer="DevSecOps Team <devsecops@apexdef.com>"`;
 
 
+// STATE
+// ═══════════════════════════════════════════════
 
 const PIPELINE_FAILURES = [
-  {id:'INC-4199',sev:'critical',agent:'Code Auditor',title:'DoD contract # hardcoded in pipeline',repo:'GITLAB-PROD-01',branch:'main',policy:'CM.3.068',action:'Block PR · rotate credentials',color:'var(--red)'},
-  {id:'INC-4196',sev:'high',agent:'Pipeline Orchestrator',title:'Docker container runs as root in prod',repo:'APEX-K8S-PROD-01',branch:'feature/jtac-v2',policy:'CM.2.061',action:'Rebuild with non-root USER',color:'var(--yel)'},
-  {id:'INC-4195',sev:'high',agent:'Pipeline Orchestrator',title:'Terraform port 22 open to 0.0.0.0/0',repo:'AWS-GOVCLOUD-VPC',branch:'infra/patch-sg',policy:'SC.1.175',action:'Restrict security group ingress',color:'var(--yel)'},
-  {id:'INC-4190',sev:'medium',agent:'Pipeline Orchestrator',title:'Dependency confusion in requirements.txt',repo:'f35-logistics-api',branch:'feature/api-refactor',policy:'SR.3.169',action:'Remove from PyPI · use internal registry',color:'#60b0ff'},
+  {id:'INC-4199',sev:'critical',agent:'Code Auditor',title:'DoD contract # hardcoded in pipeline',repo:'GITLAB-PROD-01',policy:'CM.3.068',action:'Block PR · rotate credentials',color:'var(--red)'},
+  {id:'INC-4196',sev:'high',agent:'Pipeline Orchestrator',title:'Docker container runs as root in prod',repo:'APEX-K8S-PROD-01',policy:'CM.2.061',action:'Rebuild with non-root USER',color:'var(--yel)'},
+  {id:'INC-4195',sev:'high',agent:'Pipeline Orchestrator',title:'Terraform port 22 open to 0.0.0.0/0',repo:'AWS-GOVCLOUD-VPC',policy:'SC.1.175',action:'Restrict security group ingress',color:'var(--yel)'},
+  {id:'INC-4190',sev:'medium',agent:'Pipeline Orchestrator',title:'Dependency confusion in requirements.txt',repo:'f35-logistics-api',policy:'SR.3.169',action:'Remove from PyPI · use internal registry',color:'#60b0ff'},
 ];
 
 const AGENT_LAST_ACTIONS = [
@@ -1493,21 +1608,22 @@ const AGENT_LAST_ACTIONS = [
   {num:'007',color:'#d04060',lastAct:'ATO package ready: JTAC v3.1 · 87%',time:'3d ago'},
 ];
 
-// STATE
-// ═══════════════════════════════════════════════
+const FINDINGS_DATA = []; // unused — using INCIDENTS as primary source
+
 const state = {
   view: 'dashboard',
   evIdx: 0,
   incidents: JSON.parse(JSON.stringify(INCIDENTS)),
-  findings: JSON.parse(JSON.stringify(FINDINGS_DATA)),
+  findings: JSON.parse(JSON.stringify(INCIDENTS)), // alias
   selectedId: null,
-  selectedIncidentId: null,
   evFilter: 'all',
   expandedDomain: null,
-  wardenFilter: 'all',
   gateRunning: false,
   scanRunning: false,
   atoRunning: false,
+  _pipelineVisited: false,
+  selectedIncidentId: null,
+  wardenFilter: 'all',
 };
 
 // ═══════════════════════════════════════════════
@@ -1517,43 +1633,41 @@ function switchTab(view) {
   state.view = view;
   document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.view === view));
   document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'v-' + view));
-  const titles = {dashboard:'COMMAND CENTER',warden:'WARDEN // DLP AGENT',incidents:'COMMAND CENTER',agents:'AGENT FLEET',pipeline:'PIPELINE GATE',cmmc:'CMMC CONTROLS',evidence:'EVIDENCE VAULT',ato:'AGENT 007 // ATO STREAMLINER',exec:'EXECUTIVE DASHBOARD'};
-  const ttEl = document.getElementById('tbTitle'); if(ttEl) ttEl.textContent = titles[view]||view.toUpperCase();
-  if (view === 'cmmc')       initCMMC();
-  if (view === 'warden')     { renderWarden(); }
-  if (view === 'evidence')   renderEvidence();
-  if (view === 'ato')        initATO();
-  if (view === 'exec')       initExec();
-  if (view === 'pipeline')   initPipeline();
-  if (view === 'agents')    renderAgents();
-  if (view === 'incidents')  { view = 'dashboard'; state.view = 'dashboard'; document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.view === 'dashboard')); document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'v-dashboard')); }
-  if (view === 'dashboard')  { renderAttnBanner(); renderPipelineStatusPanel(); renderAgentHealthPanel(); }
+  const titles = {dashboard:'COMMAND CENTER',warden:'WARDEN // DLP',incidents:'COMMAND CENTER',agents:'AGENT FLEET',pipeline:'PIPELINE GATE',cmmc:'CMMC CONTROLS',evidence:'EVIDENCE VAULT',ato:'AGENT 007 // ATO',exec:'EXECUTIVE DASHBOARD'};
+  const viewFns = {
+    cmmc: initCMMC, warden: renderWarden, evidence: renderEvidence,
+    ato: initATO, exec: initExec,
+    pipeline: () => { try { initPipeline(); } catch(e){} setTimeout(showBlockedBuildsAlert, 100); },
+    agents: renderAgents,
+    dashboard: () => { try{renderAttnBanner();}catch(e){} try{renderPipelineStatusPanel();}catch(e){} try{renderAgentHealthPanel();}catch(e){} }
+  };
+  if (viewFns[view]) try { viewFns[view](); } catch(e) { console.warn('switchTab ' + view + ':', e); }
 }
 document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => t.dataset.view && switchTab(t.dataset.view)));
 
 // ─── NEEDS ATTENTION BANNER ───
 function renderAttnBanner() {
-  const attn = document.getElementById('attnItems'); if(!attn) return;
-  const sevBg={critical:'var(--rd)',high:'var(--yd)'},sevClr={critical:'#e57373',high:'var(--yel)'};
-  const items=state.incidents.filter(i=>(i.status==='open'||i.status==='investigating')&&(i.sev==='critical'||i.sev==='high')).slice(0,4);
-  attn.innerHTML=items.map(i=>`
+  const el = document.getElementById('attnItems'); if(!el) return;
+  const sb={critical:'var(--rd)',high:'var(--yd)'},sc={critical:'#e57373',high:'var(--yel)'};
+  const items = (state.incidents||[]).filter(i=>(i.status==='open'||i.status==='investigating')&&(i.sev==='critical'||i.sev==='high')).slice(0,4);
+  el.innerHTML = items.map(i=>`
     <div class="ab-item" onclick="openFinding('${i.id}')">
-      <span class="badge" style="background:${sevBg[i.sev]};color:${sevClr[i.sev]};text-align:center;display:block">${i.sev.toUpperCase()}</span>
+      <span class="badge" style="background:${sb[i.sev]};color:${sc[i.sev]};text-align:center;display:block">${i.sev.toUpperCase()}</span>
       <div><div class="ab-item-title">${i.title}</div><div class="ab-item-sub">${i.id} · ${i.agent}</div></div>
       <button class="ab-btn" onclick="event.stopPropagation();openFinding('${i.id}')">INVESTIGATE</button>
     </div>`).join('');
 }
 
-// ─── PIPELINE STATUS PANEL (Command Center) ───
+// ─── PIPELINE STATUS PANEL ───
 function renderPipelineStatusPanel() {
-  const el=document.getElementById('pipelineStatusPanel'); if(!el) return;
-  const sevBg={critical:'var(--rd)',high:'var(--yd)',medium:'var(--bld)'};
-  const sevClr={critical:'#e57373',high:'var(--yel)',medium:'#60b0ff'};
-  const borderClr={critical:'var(--red)',high:'var(--yel)',medium:'var(--blue)'};
-  el.innerHTML=PIPELINE_FAILURES.map(f=>`
-    <div class="pipe-status-item" onclick="openFinding('${f.id}')" style="border-left:3px solid ${borderClr[f.sev]}">
+  const el = document.getElementById('pipelineStatusPanel'); if(!el) return;
+  const sb={critical:'var(--rd)',high:'var(--yd)',medium:'var(--bld)'};
+  const sc={critical:'#e57373',high:'var(--yel)',medium:'#60b0ff'};
+  const bc={critical:'var(--red)',high:'var(--yel)',medium:'var(--blue)'};
+  el.innerHTML = PIPELINE_FAILURES.map(f=>`
+    <div class="pipe-status-item" onclick="openFinding('${f.id}')" style="border-left:3px solid ${bc[f.sev]}">
       <div class="psi-top">
-        <span class="badge" style="background:${sevBg[f.sev]};color:${sevClr[f.sev]}">${f.sev.toUpperCase()}</span>
+        <span class="badge" style="background:${sb[f.sev]};color:${sc[f.sev]}">${f.sev.toUpperCase()}</span>
         <span class="psi-title">${f.title}</span>
       </div>
       <div class="psi-repo">${f.repo} · ${f.policy}</div>
@@ -1561,26 +1675,26 @@ function renderPipelineStatusPanel() {
     </div>`).join('');
 }
 
-// ─── AGENT HEALTH PANEL (Command Center) ───
+// ─── AGENT HEALTH PANEL ───
 function renderAgentHealthPanel() {
-  const el=document.getElementById('agentHealthPanel'); if(!el) return;
-  el.innerHTML=AGENT_LAST_ACTIONS.map((a,i)=>`
+  const el = document.getElementById('agentHealthPanel'); if(!el) return;
+  el.innerHTML = AGENT_LAST_ACTIONS.map((a,i)=>`
     <div class="ah-item" onclick="switchTab('agents')">
-      <div class="ah-dot" style="background:${a.color};animation:pulse 2s ${i*0.2}s infinite"></div>
+      <div class="ah-dot" style="background:${a.color};animation:pulse 2s ${i*.2}s infinite"></div>
       <div>
         <div class="ah-name" style="color:${a.color}">${AGENTS[i]?AGENTS[i].name:a.num}</div>
         <div class="ah-act">${a.lastAct} <span style="opacity:.5">· ${a.time}</span></div>
       </div>
-      <div style="font-family:var(--disp);font-size:16px;color:${a.color};text-align:right">${AGENTS[i]?AGENTS[i].events.toLocaleString():''}</div>
+      <div style="font-family:var(--disp);font-size:15px;color:${a.color};text-align:right">${AGENTS[i]?AGENTS[i].events.toLocaleString():''}</div>
     </div>`).join('');
 }
 
-// ─── BLOCKED BUILDS ALERT (Pipeline view) ───
+// ─── BLOCKED BUILDS ALERT (pipeline view) ───
 function showBlockedBuildsAlert() {
-  const el=document.getElementById('blockedBuildsAlert'); if(!el) return;
-  const sevBg={critical:'var(--rd)',high:'var(--yd)',medium:'var(--bld)'};
-  const sevClr={critical:'#e57373',high:'var(--yel)',medium:'#60b0ff'};
-  el.innerHTML=`
+  const el = document.getElementById('blockedBuildsAlert'); if(!el) return;
+  const sb={critical:'var(--rd)',high:'var(--yd)',medium:'var(--bld)'};
+  const sc={critical:'#e57373',high:'var(--yel)',medium:'#60b0ff'};
+  el.innerHTML = `
     <div class="ba-hdr">
       <div class="ab-pulse"></div>
       <div>
@@ -1591,7 +1705,7 @@ function showBlockedBuildsAlert() {
     </div>
     <div class="ba-items">${PIPELINE_FAILURES.map(f=>`
       <div class="ba-item" onclick="openFinding('${f.id}')">
-        <span class="badge" style="background:${sevBg[f.sev]};color:${sevClr[f.sev]};text-align:center;display:block">${f.sev.toUpperCase()}</span>
+        <span class="badge" style="background:${sb[f.sev]};color:${sc[f.sev]};text-align:center;display:block">${f.sev.toUpperCase()}</span>
         <div>
           <div style="font-size:12px;color:var(--text);line-height:1.3;margin-bottom:3px">${f.title}</div>
           <div style="font-family:var(--mono);font-size:10px;color:var(--muted)">${f.repo} · ${f.agent} · ${f.policy}</div>
@@ -1599,85 +1713,124 @@ function showBlockedBuildsAlert() {
         <button class="ba-cta" onclick="event.stopPropagation();openFinding('${f.id}')">REVIEW</button>
       </div>`).join('')}
     </div>`;
-  el.style.display='block';
+  el.style.display = 'block';
   el.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
 // ─── WARDEN SEVERITY FILTER ───
 function filterWardenSev(level, btn) {
-  state.wardenFilter=level;
+  state.wardenFilter = level;
   document.querySelectorAll('.sf-btn').forEach(b=>b.classList.remove('active'));
   if(btn) btn.classList.add('active');
-  else {
-    const map={all:0,critical:1,high:2,medium:3,low:4};
-    const btns=document.querySelectorAll('.sf-btn');
-    if(btns[map[level]]) btns[map[level]].classList.add('active');
-  }
-  const thresholds={all:[0,100],critical:[90,100],high:[70,89],medium:[45,69],low:[0,44]};
+  else { const map={all:0,critical:1,high:2,medium:3}; const btns=document.querySelectorAll('.sf-btn'); if(btns[map[level]]) btns[map[level]].classList.add('active'); }
+  const thresholds={all:[0,100],critical:[90,100],high:[70,89],medium:[45,69]};
   const [mn,mx]=thresholds[level]||[0,100];
-  const findings=WARDEN_FINDINGS.filter(f=>f.risk>=mn&&f.risk<=mx);
-  const findEl=document.getElementById('wardenFindings'); if(!findEl) return;
-  const countEl=document.getElementById('wardenFindCount');
-  if(countEl) countEl.textContent=findings.length+' finding'+(findings.length!==1?'s':'');
-  if(!findings.length){
-    findEl.innerHTML='<div style="padding:24px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--muted)">No findings at this severity level.</div>';
-    return;
-  }
-  findEl.innerHTML=findings.map(f=>`
+  const findings = WARDEN_FINDINGS.filter(f=>f.risk>=mn&&f.risk<=mx);
+  const el=document.getElementById('wardenFindings'); if(!el) return;
+  const ce=document.getElementById('wardenFindCount'); if(ce) ce.textContent=findings.length+' finding'+(findings.length!==1?'s':'');
+  if(!findings.length){el.innerHTML='<div style="padding:24px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--muted)">No findings at this severity level.</div>';return;}
+  el.innerHTML=findings.map(f=>`
     <div class="finding-row" onclick="openWardenFinding('${f.file}','${f.type}',${f.risk},'${f.rc}')">
       <div><div class="fr-file">${f.file}</div><div class="fr-path">${f.path}</div></div>
       <div class="fr-type ${f.rc}">${f.type}</div>
       <div class="fr-count ${f.rc}">${f.count}</div>
       <div class="fr-risk ${f.rc}">${f.risk}</div>
-      <div><button style="font-family:var(--mono);font-size:10px;text-transform:uppercase;background:${f.risk>=90?'var(--rd)':'var(--s2)'};color:${f.risk>=90?'#e57373':'var(--muted)'};border:1px solid var(--bd);padding:3px 9px;cursor:pointer" onclick="event.stopPropagation();showToast('🔒 ${f.action} action queued for ${f.file}')">${f.action}</button></div>
+      <div><button style="font-family:var(--mono);font-size:10px;text-transform:uppercase;background:${f.risk>=90?'var(--rd)':'var(--s2)'};color:${f.risk>=90?'#e57373':'var(--muted)'};border:1px solid var(--bd);padding:3px 9px;cursor:pointer" onclick="event.stopPropagation();showToast('🔒 ${f.action} queued')">${f.action}</button></div>
     </div>`).join('');
-  if(level==='critical') findEl.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 // ─── NOTIFICATION DRAWER ───
 function toggleNotifDrawer() {
   const drawer=document.getElementById('notifDrawer');
   const overlay=document.getElementById('notifOverlay');
+  if(!drawer||!overlay) return;
   const isOpen=drawer.classList.contains('open');
-  if(isOpen){
-    drawer.classList.remove('open');
-    overlay.style.opacity='0';
-    setTimeout(()=>{ overlay.style.display='none'; },250);
-  } else {
-    renderNotifDrawer();
-    overlay.style.display='block';
-    requestAnimationFrame(()=>{ overlay.style.opacity='1'; drawer.classList.add('open'); });
-  }
+  if(isOpen){drawer.classList.remove('open');overlay.style.opacity='0';setTimeout(()=>{overlay.style.display='none';},250);}
+  else{renderNotifDrawer();overlay.style.display='block';requestAnimationFrame(()=>{overlay.style.opacity='1';drawer.classList.add('open');});}
 }
-
 function renderNotifDrawer() {
-  const sevBg={critical:'var(--rd)',high:'var(--yd)',medium:'var(--bld)',low:'var(--gd)'};
-  const sevClr={critical:'#e57373',high:'var(--yel)',medium:'#60b0ff',low:'#40d090'};
-  const open=state.incidents.filter(i=>i.status==='open'||i.status==='investigating');
-  const crit=open.filter(i=>i.sev==='critical');
-  const high=open.filter(i=>i.sev==='high');
-  const med=open.filter(i=>i.sev==='medium');
-  const ndCount=document.getElementById('ndCount');
-  const bellCount=document.getElementById('bellCount');
-  if(ndCount) ndCount.textContent=open.length;
-  if(bellCount) bellCount.textContent=open.length;
-  const mkSection=(label,items)=>{
-    if(!items.length) return '';
-    return `<div class="nd-section-hdr"><span>${label}</span><span>${items.length}</span></div>`
-      +items.map(i=>`
-        <div class="nd-item" onclick="openFinding('${i.id}');toggleNotifDrawer()">
-          <span class="badge nd-item-sev" style="background:${sevBg[i.sev]};color:${sevClr[i.sev]};display:block;text-align:center">${i.sev.toUpperCase()}</span>
-          <div>
-            <div class="nd-item-title">${i.title}</div>
-            <div class="nd-item-meta">${i.id} · ${i.agent} · ${i.time}</div>
-          </div>
-        </div>`).join('');
-  };
-  const body=document.getElementById('ndBody');
-  if(body) body.innerHTML=mkSection('⛔  CRITICAL',crit)+mkSection('⚠  HIGH',high)+mkSection('◈  MEDIUM',med);
+  const sb={critical:'var(--rd)',high:'var(--yd)',medium:'var(--bld)'};
+  const sc={critical:'#e57373',high:'var(--yel)',medium:'#60b0ff'};
+  const open=(state.incidents||[]).filter(i=>i.status==='open'||i.status==='investigating');
+  const crit=open.filter(i=>i.sev==='critical'), high=open.filter(i=>i.sev==='high'), med=open.filter(i=>i.sev==='medium');
+  const nc=document.getElementById('ndCount'); if(nc) nc.textContent=open.length;
+  const bc=document.getElementById('bellCount'); if(bc) bc.textContent=open.length;
+  const mk=(label,items)=>!items.length?'':`<div class="nd-section-hdr"><span>${label}</span><span>${items.length}</span></div>`
+    +items.map(i=>`<div class="nd-item" onclick="openFinding('${i.id}');toggleNotifDrawer()"><span class="badge" style="background:${sb[i.sev]};color:${sc[i.sev]};display:block;text-align:center">${i.sev.toUpperCase()}</span><div><div class="nd-item-title">${i.title}</div><div class="nd-item-meta">${i.id} · ${i.agent} · ${i.time}</div></div></div>`).join('');
+  const body=document.getElementById('ndBody'); if(body) body.innerHTML=mk('⛔  CRITICAL',crit)+mk('⚠  HIGH',high)+mk('◈  MEDIUM',med);
 }
 
+// ─── INCIDENT DETAIL PANEL ───
+function openIncident(id) {
+  const inc=(state.incidents||[]).find(x=>x.id===id); if(!inc) return;
+  state.selectedIncidentId=id;
+  const d=inc.detail||{};
+  const sb={critical:'var(--rd)',high:'var(--yd)',medium:'var(--bld)',low:'var(--gd)'};
+  const sc={critical:'#e57373',high:'var(--yel)',medium:'#60b0ff',low:'#40d090'};
+  const sm={open:'b-open',investigating:'b-inv',resolved:'b-res',acknowledged:'b-ack'};
+  document.getElementById('dpId').textContent=inc.id+' // '+inc.agent;
+  document.getElementById('dpName').textContent=inc.title;
+  document.getElementById('dpBody').innerHTML=`
+    <div class="dp-section">
+      <div class="dp-section-title">Classification</div>
+      <div class="dp-kv"><div class="dp-k">Severity</div><div class="dp-v"><span class="badge" style="background:${sb[inc.sev]};color:${sc[inc.sev]}">${inc.sev.toUpperCase()}</span></div></div>
+      <div class="dp-kv"><div class="dp-k">Status</div><div class="dp-v"><span class="badge ${sm[inc.status]||''}">${inc.status.toUpperCase()}</span></div></div>
+      <div class="dp-kv"><div class="dp-k">Agent</div><div class="dp-v" style="color:var(--amber)">${inc.agent}</div></div>
+      <div class="dp-kv"><div class="dp-k">User</div><div class="dp-v">${inc.user||'—'}</div></div>
+      <div class="dp-kv"><div class="dp-k">Endpoint</div><div class="dp-v">${inc.endpoint||'—'}</div></div>
+      <div class="dp-kv"><div class="dp-k">Vector</div><div class="dp-v">${d.vector||'—'}</div></div>
+      <div class="dp-kv"><div class="dp-k">Data Involved</div><div class="dp-v" style="color:var(--yel)">${d.data||'—'}</div></div>
+      <div class="dp-kv"><div class="dp-k">Policy</div><div class="dp-v">${d.policy||'—'}</div></div>
+      <div class="dp-kv"><div class="dp-k">CMMC Control</div><div class="dp-v">${d.cmmc||'—'}</div></div>
+    </div>
+    ${d.actions&&d.actions.length?`<div class="dp-section"><div class="dp-section-title">Actions Taken</div>${d.actions.map(a=>`<div style="font-family:var(--mono);font-size:11px;color:var(--dim);padding:5px 0;border-bottom:1px solid var(--bd);display:flex;gap:8px"><span style="color:var(--green)">✓</span>${a}</div>`).join('')}</div>`:''}
+    ${d.timeline&&d.timeline.length?`<div class="dp-section"><div class="dp-section-title">Event Timeline</div><div class="timeline">${d.timeline.map((e,i)=>`<div class="tl-item"><div><div class="tl-dot"></div>${i<d.timeline.length-1?'<div class="tl-line"></div>':''}</div><div><div class="tl-time">${e.t}</div><div class="tl-txt">${e.txt}</div></div></div>`).join('')}</div></div>`:''}
+  `;
+  const isRes=inc.status==='resolved',isAck=inc.status==='acknowledged';
+  document.getElementById('dpFooter').innerHTML=`
+    <button class="dp-btn primary" onclick="ackIncident()" ${isRes||isAck?'disabled':''}>ACKNOWLEDGE</button>
+    <button class="dp-btn danger" onclick="resolveIncident()" ${isRes?'disabled':''}>RESOLVE</button>
+    <button class="dp-btn ghost" onclick="closePanel()">CLOSE</button>`;
+  document.getElementById('detailPanel').classList.add('open');
+  document.getElementById('overlay').classList.add('active');
+}
 
+function ackIncident(){
+  const inc=(state.incidents||[]).find(i=>i.id===state.selectedIncidentId); if(!inc) return;
+  inc.status='acknowledged'; closePanel(); renderAttnBanner(); renderFindingsTable();
+  document.getElementById('s-findings').textContent=(state.incidents||[]).filter(i=>i.status==='open').length;
+  showToast(inc.id+' acknowledged — monitoring continues');
+}
+function resolveIncident(){
+  const inc=(state.incidents||[]).find(i=>i.id===state.selectedIncidentId); if(!inc) return;
+  inc.status='resolved'; closePanel(); renderAttnBanner(); renderFindingsTable();
+  document.getElementById('s-findings').textContent=(state.incidents||[]).filter(i=>i.status==='open').length;
+  showToast(inc.id+' resolved — evidence package generated');
+}
+
+// ─── AGENT FLEET VIEW ───
+function renderAgents() {
+  const el=document.getElementById('agentsGrid'); if(!el) return;
+  el.innerHTML=AGENTS.map(a=>`
+    <div class="af-card" style="--ac:${a.color||'var(--amber)'}">
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--muted);margin-bottom:10px">AGT-${a.num} // ${a.status}</div>
+      <div style="font-family:var(--disp);font-size:24px;letter-spacing:1px;color:${a.color||'var(--amber)'};line-height:1;margin-bottom:6px">${a.name}</div>
+      <div style="font-size:12px;font-weight:300;color:var(--dim);line-height:1.6;margin-bottom:14px">${a.desc}</div>
+      <div style="display:flex;gap:18px;margin-bottom:12px">
+        <div><div style="font-family:var(--disp);font-size:20px;color:${a.color||'var(--amber)'};">${a.events.toLocaleString()}</div><div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Events</div></div>
+        <div><div style="font-family:var(--disp);font-size:20px;color:var(--text)">${a.blocked}</div><div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Blocked</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px">
+        <div style="width:7px;height:7px;border-radius:50%;background:${a.color||'var(--amber)'};animation:pulse 2s infinite"></div>
+        <span style="font-family:var(--mono);font-size:10px;color:${a.color||'var(--amber)'}">${a.status}</span>
+      </div>
+    </div>`).join('');
+}
+
+// ─── UPDATE initPipeline to show blocked builds on first visit ───
+// ─── UPDATE renderWarden to use filterWardenSev ───
+// ─── UPDATE renderFindingsTable to use incidents ───
+// ─── UPDATE openFinding: check incidents first ───
 // ═══════════════════════════════════════════════
 // CLOCK
 // ═══════════════════════════════════════════════
@@ -1713,164 +1866,399 @@ function renderAgentMini() {
 // EVENT STREAM
 // ═══════════════════════════════════════════════
 function addEvent() {
-  const pool = EVENT_POOL;
-  const e = pool[state.evIdx % pool.length]; state.evIdx++;
-  const t = new Date().toLocaleTimeString('en-US',{hour12:false});
+  const e = EVENT_POOL[state.evIdx % EVENT_POOL.length]; state.evIdx++;
   const el = document.getElementById('eventStream'); if (!el) return;
-  const div = document.createElement('div'); div.className = 'ev-item';
-  div.innerHTML = `<span class="ev-time">${t}</span><span class="ev-sev ${e.s}">${{sc:'CRIT',sh:'HIGH',sm:'MED',sl:'LOW',so:'INFO'}[e.s]}</span><span class="ev-msg">${e.m}</span>`;
-  el.prepend(div);
-  while (el.children.length > 18) el.removeChild(el.lastChild);
+  const t = new Date().toLocaleTimeString('en-US',{hour12:false});
+  const div = document.createElement('div');
+  div.className = 'ev-item';
+  div.style.cursor = 'pointer';
+  div.onmouseover = function(){ this.style.background='var(--s2)'; };
+  div.onmouseout  = function(){ this.style.background=''; };
+  const target = e.target || 'dashboard';
+  div.onclick = target.indexOf('INC-')===0 ? function(){openFinding(target);} : function(){switchTab(target);};
+  div.innerHTML = '<span class="ev-time">'+t+'</span>'
+    +'<span class="ev-sev '+e.s+'">'
+    +({sc:'CRIT',sh:'HIGH',sm:'MED',sl:'LOW',so:'INFO'}[e.s]||e.s)
+    +'</span><span class="ev-msg">'+e.m+'</span>';
+  el.appendChild(div);
+  while (el.children.length > 15) { el.removeChild(el.firstChild); }
+  el.scrollTop = el.scrollHeight;
 }
+
 
 // ═══════════════════════════════════════════════
 // FINDINGS TABLE (dashboard)
 // ═══════════════════════════════════════════════
 function renderFindingsTable() {
-  const el = document.getElementById('findingsTable');
-  if (!el) return;
-  const sevBg={critical:'var(--rd)',high:'var(--yd)',medium:'var(--bld)',low:'var(--gd)'};
-  const sevClr={critical:'#e57373',high:'var(--yel)',medium:'#60b0ff',low:'#40d090'};
-  const stMap={open:'st-open',investigating:'st-inv',resolved:'st-res',acknowledged:'st-ack'};
-  // Use incidents as the primary source, show top 8
-  const items = (state.incidents||[]).slice(0,8);
-  el.innerHTML = items.length===0 ? '<tr><td colspan="6" class="empty">No findings.</td></tr>' :
-    items.map(f=>`
-      <tr onclick="openFinding('${f.id}')" style="cursor:pointer;transition:background .15s" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background=''">
-        <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--text);border-bottom:1px solid var(--bd)">${f.id}</td>
-        <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--amber);border-bottom:1px solid var(--bd)">${f.agent}</td>
-        <td style="padding:10px 12px;font-size:12px;color:var(--text);border-bottom:1px solid var(--bd)">${f.title}</td>
-        <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--dim);border-bottom:1px solid var(--bd)">${(f.detail&&f.detail.cmmc)||'—'}</td>
-        <td style="padding:10px 12px;border-bottom:1px solid var(--bd)"><span class="badge" style="background:${sevBg[f.sev]};color:${sevClr[f.sev]}">${f.sev.toUpperCase()}</span></td>
-        <td style="padding:10px 12px;border-bottom:1px solid var(--bd)"><span class="badge ${stMap[f.status]||''}">${f.status.toUpperCase()}</span></td>
-      </tr>`).join('');
+  const sevBg = {critical:'var(--rd)',high:'var(--yd)',medium:'var(--bld)',low:'var(--gd)'};
+  const sevClr = {critical:'#e57373',high:'var(--yel)',medium:'#60b0ff',low:'#40d090'};
+  const stMap = {open:'b-open',investigating:'b-inv',resolved:'b-res',acknowledged:'b-ack'};
+  document.getElementById('findingsTable').innerHTML = state.findings.map(f => `
+    <tr onclick="openFinding('${f.id}')" style="cursor:pointer;transition:background .15s" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background=''">
+      <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--text);border-bottom:1px solid var(--bd)">${f.id}</td>
+      <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--amber);border-bottom:1px solid var(--bd)">${f.agent}</td>
+      <td style="padding:10px 12px;font-size:12px;color:var(--text);border-bottom:1px solid var(--bd)">${f.finding}</td>
+      <td style="padding:10px 12px;font-family:var(--mono);font-size:11px;color:var(--dim);border-bottom:1px solid var(--bd)">${f.ctrl}</td>
+      <td style="padding:10px 12px;border-bottom:1px solid var(--bd)"><span class="badge" style="background:${sevBg[f.sev]};color:${sevClr[f.sev]}">${f.sev.toUpperCase()}</span></td>
+      <td style="padding:10px 12px;border-bottom:1px solid var(--bd)"><span class="badge ${stMap[f.status]}">${f.status.toUpperCase()}</span></td>
+    </tr>
+  `).join('');
 }
 
 function openFinding(id) {
-  // Search incidents first (INC-xxxx), then legacy findings (FND-xxxx)
-  const inc = (state.incidents||[]).find(x => x.id === id);
-  if (inc) { _openIncidentPanel(inc); return; }
-  const f = (state.findings||[]).find(x => x.id === id);
-  if (f) { _openFindingPanel(f); return; }
-}
-
-// ── Incident panel (uses INCIDENTS structure) ──
-function _openIncidentPanel(inc) {
-  state.selectedIncidentId = inc.id;
-  state.selectedId = inc.id;
-  const d = inc.detail || {};
-  const sevBg={critical:'var(--rd)',high:'var(--yd)',medium:'var(--bld)',low:'var(--gd)'};
-  const sevClr={critical:'#e57373',high:'var(--yel)',medium:'#60b0ff',low:'#40d090'};
-  const stMap={open:'b-open',investigating:'b-inv',resolved:'b-res',acknowledged:'b-ack'};
-  document.getElementById('dpId').textContent = inc.id + ' // ' + inc.agent;
-  document.getElementById('dpName').textContent = inc.title;
-  document.getElementById('dpBody').innerHTML = `
-    <div class="dp-section">
-      <div class="dp-section-title">Classification</div>
-      <div class="dp-kv"><div class="dp-k">Severity</div><div class="dp-v"><span class="badge" style="background:${sevBg[inc.sev]};color:${sevClr[inc.sev]}">${inc.sev.toUpperCase()}</span></div></div>
-      <div class="dp-kv"><div class="dp-k">Status</div><div class="dp-v"><span class="badge ${stMap[inc.status]||''}">${inc.status.toUpperCase()}</span></div></div>
-      <div class="dp-kv"><div class="dp-k">Agent</div><div class="dp-v" style="color:var(--amber)">${inc.agent}</div></div>
-      <div class="dp-kv"><div class="dp-k">User</div><div class="dp-v">${inc.user||'—'}</div></div>
-      <div class="dp-kv"><div class="dp-k">Endpoint</div><div class="dp-v">${inc.endpoint||'—'}</div></div>
-      <div class="dp-kv"><div class="dp-k">Vector</div><div class="dp-v">${d.vector||'—'}</div></div>
-      <div class="dp-kv"><div class="dp-k">Data Involved</div><div class="dp-v" style="color:var(--yel)">${d.data||'—'}</div></div>
-      <div class="dp-kv"><div class="dp-k">Policy</div><div class="dp-v">${d.policy||'—'}</div></div>
-      <div class="dp-kv"><div class="dp-k">CMMC Control</div><div class="dp-v">${d.cmmc||'—'}</div></div>
-    </div>
-    ${d.actions&&d.actions.length?`
-    <div class="dp-section">
-      <div class="dp-section-title">Actions Taken</div>
-      ${d.actions.map(a=>`<div style="font-family:var(--mono);font-size:11px;color:var(--dim);padding:5px 0;border-bottom:1px solid var(--bd);display:flex;gap:8px"><span style="color:var(--green)">✓</span>${a}</div>`).join('')}
-    </div>`:''}
-    ${d.timeline&&d.timeline.length?`
-    <div class="dp-section">
-      <div class="dp-section-title">Event Timeline</div>
-      <div class="timeline">${d.timeline.map((e,i)=>`
-        <div class="tl-item">
-          <div><div class="tl-dot"></div>${i<d.timeline.length-1?'<div class="tl-line"></div>':''}</div>
-          <div><div class="tl-time">${e.t}</div><div class="tl-txt">${e.txt}</div></div>
-        </div>`).join('')}
-      </div>
-    </div>`:''}
-  `;
-  const isResolved = inc.status==='resolved', isAck = inc.status==='acknowledged';
-  document.getElementById('dpFooter').innerHTML = `
-    <button class="dp-btn primary" onclick="ackIncident()" ${isResolved||isAck?'disabled':''}>ACKNOWLEDGE</button>
-    <button class="dp-btn danger" onclick="resolveIncident()" ${isResolved?'disabled':''}>RESOLVE</button>
-    <button class="dp-btn ghost" onclick="closePanel()">CLOSE</button>
-  `;
-  document.getElementById('detailPanel').classList.add('open');
-  document.getElementById('overlay').classList.add('active');
-}
-
-// ── Findings panel (uses FINDINGS_DATA structure) ──
-function _openFindingPanel(f) {
-  state.selectedId = f.id;
+  const f = (state.findings||state.incidents||[]).find(x => x.id === id);
+  if (!f) { console.warn('[TrustNovaOps] No data for:', id); return; }
+  state.selectedId = id;
+  state.selectedIncidentId = id;
   const d = f.detail || {};
   const sevBg={critical:'var(--rd)',high:'var(--yd)',medium:'var(--bld)',low:'var(--gd)'};
-  const sevClr={critical:'#e57373',high:'var(--yel)',medium:'#60b0ff',low:'#40d090'};
-  document.getElementById('dpId').textContent = f.id + ' // ' + f.agent;
-  document.getElementById('dpName').textContent = f.finding;
+  const sevCl={critical:'#e57373',high:'var(--yel)',medium:'#60b0ff',low:'#40d090'};
+  const stCl ={open:'b-open',investigating:'b-inv',resolved:'b-res',acknowledged:'b-ack'};
+  const row=(k,v,s='')=>`<div class="dp-kv"><div class="dp-k">${k}</div><div class="dp-v" style="${s}">${v||'—'}</div></div>`;
+  const badge=(t,bg,cl)=>`<span class="badge" style="background:${bg};color:${cl}">${t}</span>`;
+
+  document.getElementById('dpId').textContent   = f.id + ' // ' + (f.agent||'System');
+  document.getElementById('dpName').textContent = f.title||f.finding||'—';
+
+  const hdr = document.querySelector('.dp-hdr > div');
+  if (hdr) {
+    let bc = hdr.querySelector('.dp-breadcrumb');
+    if (!bc) { bc = document.createElement('div'); bc.className = 'dp-breadcrumb'; hdr.insertBefore(bc, hdr.firstChild); }
+    bc.innerHTML = `<span onclick="closePanel()">Dashboard</span> › <span style="color:var(--muted)">Findings</span> › ${f.id}`;
+  }
+
   document.getElementById('dpBody').innerHTML = `
     <div class="dp-section">
       <div class="dp-section-title">Classification</div>
-      <div class="dp-kv"><div class="dp-k">Severity</div><div class="dp-v"><span class="badge" style="background:${sevBg[f.sev]};color:${sevClr[f.sev]}">${f.sev.toUpperCase()}</span></div></div>
-      <div class="dp-kv"><div class="dp-k">Vector</div><div class="dp-v">${d.vector||'—'}</div></div>
-      <div class="dp-kv"><div class="dp-k">Location</div><div class="dp-v" style="color:var(--yel)">${d.file||'—'}</div></div>
-      <div class="dp-kv"><div class="dp-k">CMMC Control</div><div class="dp-v">${f.ctrl||'—'}</div></div>
+      ${row('Severity',   badge(f.sev.toUpperCase(), sevBg[f.sev], sevCl[f.sev]))}
+      ${row('Status',     `<span class="badge ${stCl[f.status]||''}">${(f.status||'open').toUpperCase()}</span>`)}
+      ${row('Agent',      `<span style="color:var(--amber)">${f.agent||'—'}</span>`)}
     </div>
+    <div class="dp-section">
+      <div class="dp-section-title">Source Data — What Generated This Alert</div>
+      ${row('User',       f.user||'—')}
+      ${row('System',     f.endpoint||'—')}
+      ${row('Timestamp',  f.time||'—')}
+      ${row('Vector',     d.vector||'—')}
+      ${row('Data / File',`<span style="color:var(--yel)">${d.data||d.file||'—'}</span>`)}
+      ${row('Policy',     d.policy||'—')}
+    </div>
+    <div class="dp-section">
+      <div class="dp-section-title">Affected Controls &amp; Systems</div>
+      ${row('CMMC Control', `<strong style="color:var(--amber)">${d.cmmc||f.ctrl||'—'}</strong>`)}
+      ${(d.cmmc||'') ? `<div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:5px">${(d.cmmc||'').split('·').map(x=>`<span style="font-family:var(--mono);font-size:10px;padding:3px 9px;border:1px solid var(--amber);color:var(--amber)">${x.trim()}</span>`).join('')}</div>` : ''}
+    </div>
+    ${d.actions&&d.actions.length ? `
+    <div class="dp-section">
+      <div class="dp-section-title">Evidence — Actions Taken by Agents</div>
+      ${d.actions.map(a=>`<div style="display:flex;gap:10px;padding:6px 0;border-bottom:1px solid var(--bd)"><span style="color:var(--green);flex-shrink:0;font-family:var(--mono);font-size:11px">✓</span><span style="font-family:var(--mono);font-size:11px;color:var(--dim)">${a}</span></div>`).join('')}
+    </div>` : d.remediation ? `
     <div class="dp-section">
       <div class="dp-section-title">Recommended Remediation</div>
-      <div style="font-size:12px;color:var(--dim);line-height:1.65;background:var(--s2);border:1px solid var(--bd);border-left:2px solid var(--amber);padding:10px 12px">${d.remediation||'No recommendation available.'}</div>
-    </div>
-    ${d.timeline&&d.timeline.length?`
+      <div style="padding:10px 12px;background:var(--s2);border:1px solid var(--bd);border-left:2px solid var(--amber);font-size:12px;color:var(--dim);line-height:1.7">${d.remediation}</div>
+    </div>` : ''}
+    ${d.timeline&&d.timeline.length ? `
     <div class="dp-section">
-      <div class="dp-section-title">Timeline</div>
-      <div class="timeline">${d.timeline.map((e,i)=>`
-        <div class="tl-item">
-          <div><div class="tl-dot"></div>${i<d.timeline.length-1?'<div class="tl-line"></div>':''}</div>
-          <div><div class="tl-time">${e.t}</div><div class="tl-txt">${e.txt}</div></div>
-        </div>`).join('')}
-      </div>
-    </div>`:''}
+      <div class="dp-section-title">Event Timeline</div>
+      <div class="timeline">${d.timeline.map((e,i)=>`<div class="tl-item"><div><div class="tl-dot"></div>${i<d.timeline.length-1?'<div class="tl-line"></div>':''}</div><div><div class="tl-time">${e.t}</div><div class="tl-txt">${e.txt}</div></div></div>`).join('')}</div>
+    </div>` : ''}
+    <div class="dp-section" style="background:var(--s2);border:1px solid var(--bd);border-left:2px solid var(--blue);padding:12px">
+      <div class="dp-section-title" style="color:#4ab8f0">Recommended Next Action</div>
+      <div style="font-size:12px;color:var(--dim);line-height:1.7">${f.sev==='critical'?'Escalate immediately. Review DFARS 252.204-7012 and log incident report. Assign remediation to DevSecOps within 4 hours.':f.sev==='high'?'Assign to DevSecOps within 24 hours. Validate fix in staging. Generate evidence package on completion.':'Schedule for next sprint. Monitor for recurrence. Update CMMC evidence log.'}</div>
+    </div>
   `;
+  const isRes=f.status==='resolved', isAck=f.status==='acknowledged';
   document.getElementById('dpFooter').innerHTML = `
-    <button class="dp-btn primary" onclick="ackFinding()">ACKNOWLEDGE</button>
-    <button class="dp-btn danger" onclick="resolveFinding()">RESOLVE</button>
-    <button class="dp-btn ghost" onclick="closePanel()">CLOSE</button>
+    <button class="dp-btn primary" onclick="ackFinding()"     ${isRes||isAck?'disabled':''}>ACKNOWLEDGE</button>
+    <button class="dp-btn danger"  onclick="resolveFinding()" ${isRes?'disabled':''}>RESOLVE</button>
+    <button class="dp-btn ghost"   onclick="switchTab('evidence');closePanel()">EVIDENCE VAULT</button>
+    <button class="dp-btn ghost"   onclick="closePanel()">CLOSE ✕</button>
   `;
   document.getElementById('detailPanel').classList.add('open');
   document.getElementById('overlay').classList.add('active');
 }
 
-// ── Incident ack/resolve ──
-function ackIncident() {
-  const inc = (state.incidents||[]).find(i=>i.id===state.selectedIncidentId);
-  if (!inc) return;
-  inc.status = 'acknowledged';
-  showToast(`${inc.id} acknowledged — monitoring continues`);
-  closePanel();
-  renderAttnBanner(); renderFindingsTable();
-  document.getElementById('s-findings').textContent = (state.incidents||[]).filter(i=>i.status==='open').length;
-}
-function resolveIncident() {
-  const inc = (state.incidents||[]).find(i=>i.id===state.selectedIncidentId);
-  if (!inc) return;
-  inc.status = 'resolved';
-  showToast(`${inc.id} resolved — evidence package generated`);
-  closePanel();
-  renderAttnBanner(); renderFindingsTable();
-  document.getElementById('s-findings').textContent = (state.incidents||[]).filter(i=>i.status==='open').length;
-}
+
+
+
+
 function ackFinding() {
-  if (state.selectedIncidentId) { ackIncident(); return; }
-  const f = (state.findings||[]).find(x=>x.id===state.selectedId);
-  if (f) { f.status='acknowledged'; closePanel(); renderFindingsTable(); showToast(`${f.id} acknowledged`); }
+  const f = state.findings.find(x=>x.id===state.selectedId); if(!f) return;
+  f.status = 'acknowledged'; closePanel(); renderFindingsTable();
+  showToast(`${f.id} acknowledged — monitoring continues`);
 }
 function resolveFinding() {
-  if (state.selectedIncidentId) { resolveIncident(); return; }
-  const f = (state.findings||[]).find(x=>x.id===state.selectedId);
-  if (f) { f.status='resolved'; closePanel(); renderFindingsTable(); showToast(`${f.id} resolved`); }
+  const f = state.findings.find(x=>x.id===state.selectedId); if(!f) return;
+  f.status = 'resolved'; closePanel(); renderFindingsTable();
+  showToast(`${f.id} resolved — evidence package generated automatically`);
+}
+function showEvidenceDetail(ctrl, title, fw, time, size, description) {
+  document.getElementById('dpId').textContent = ctrl + ' // Evidence Package';
+  document.getElementById('dpName').textContent = title;
+  document.getElementById('dpBody').innerHTML = `
+    <div class="dp-section">
+      <div class="dp-section-title">Package Details</div>
+      <div class="dp-kv"><div class="dp-k">Control</div><div class="dp-v" style="color:var(--amber)">${ctrl}</div></div>
+      <div class="dp-kv"><div class="dp-k">Framework</div><div class="dp-v">${fw}</div></div>
+      <div class="dp-kv"><div class="dp-k">Generated</div><div class="dp-v">${time}</div></div>
+      <div class="dp-kv"><div class="dp-k">Package Size</div><div class="dp-v">${size}</div></div>
+      <div class="dp-kv"><div class="dp-k">Agent</div><div class="dp-v" style="color:var(--amber)">ACCORD — Auto-generated</div></div>
+      <div class="dp-kv"><div class="dp-k">Status</div><div class="dp-v"><span class="badge b-res">COMPLETE</span></div></div>
+    </div>
+    <div class="dp-section">
+      <div class="dp-section-title">Description</div>
+      <div style="font-size:12px;color:var(--dim);line-height:1.7;background:var(--s2);border:1px solid var(--bd);border-left:2px solid var(--green);padding:12px">${description}</div>
+    </div>
+    <div class="dp-section">
+      <div class="dp-section-title">Mapped To</div>
+      <div class="dp-kv"><div class="dp-k">CMMC L2</div><div class="dp-v" style="color:var(--green)">✓ Satisfies requirement</div></div>
+      <div class="dp-kv"><div class="dp-k">NIST 800-171</div><div class="dp-v" style="color:var(--green)">✓ Control family covered</div></div>
+      <div class="dp-kv"><div class="dp-k">ATO Package</div><div class="dp-v" style="color:var(--green)">✓ Included in SSP appendix</div></div>
+    </div>
+  `;
+  document.getElementById('dpFooter').innerHTML = \`
+    <button class="dp-btn primary" onclick="showToast('📥 ' + '${ctrl}' + ' evidence exported')">EXPORT PACKAGE</button>
+    <button class="dp-btn ghost" onclick="switchTab('evidence');closePanel()">ALL EVIDENCE</button>
+    <button class="dp-btn ghost" onclick="closePanel()">CLOSE</button>
+  \`;
+  document.getElementById('detailPanel').classList.add('open');
+  document.getElementById('overlay').classList.add('active');
+}
+
+// ─── ACTIVE FINDINGS → Full incident queue panel ───
+function showFindingsQueue() {
+  const sevBg={critical:'var(--rd)',high:'var(--yd)',medium:'var(--bld)',low:'var(--gd)'};
+  const sevCl={critical:'#e57373',high:'var(--yel)',medium:'#60b0ff',low:'#40d090'};
+  const all   = (state.incidents||[]);
+  const open  = all.filter(i=>i.status==='open'||i.status==='investigating');
+  const crit  = open.filter(i=>i.sev==='critical');
+  const high  = open.filter(i=>i.sev==='high');
+  const med   = open.filter(i=>i.sev==='medium');
+  const acked = all.filter(i=>i.status==='acknowledged');
+  const resol = all.filter(i=>i.status==='resolved');
+
+  document.getElementById('dpId').textContent   = 'FINDINGS QUEUE // ' + open.length + ' Open';
+  document.getElementById('dpName').textContent = 'All Active Incidents — Click any row to investigate';
+
+  const mkGroup = (label, items, color) => {
+    if (!items.length) return '';
+    return `<div class="dp-section">
+      <div class="dp-section-title" style="color:${color}">${label} (${items.length})</div>
+      ${items.map(i=>`
+        <div class="fq-row" onclick="openFinding('${i.id}')">
+          <span class="badge" style="background:${sevBg[i.sev]};color:${sevCl[i.sev]};text-align:center;display:block">${i.sev.toUpperCase()}</span>
+          <div>
+            <div class="fq-title">${i.title}</div>
+            <div class="fq-meta">${i.id} · ${i.agent} · ${i.endpoint||'—'} · <span style="color:${sevCl[i.sev]}">${i.status.toUpperCase()}</span></div>
+          </div>
+          <div class="fq-arr">→</div>
+        </div>`).join('')}
+    </div>`;
+  };
+
+  document.getElementById('dpBody').innerHTML =
+    `<div class="dp-section">
+       <div class="dp-section-title">Summary</div>
+       <div class="dp-kv"><div class="dp-k">Total Incidents</div><div class="dp-v">${all.length}</div></div>
+       <div class="dp-kv"><div class="dp-k">Open / Investigating</div><div class="dp-v" style="color:var(--red)">${open.length}</div></div>
+       <div class="dp-kv"><div class="dp-k">Acknowledged</div><div class="dp-v" style="color:var(--yel)">${acked.length}</div></div>
+       <div class="dp-kv"><div class="dp-k">Resolved</div><div class="dp-v" style="color:var(--green)">${resol.length}</div></div>
+     </div>`
+    + mkGroup('⛔  CRITICAL', crit, 'var(--red)')
+    + mkGroup('⚠  HIGH',     high, 'var(--yel)')
+    + mkGroup('◈  MEDIUM',   med,  '#60b0ff');
+
+  document.getElementById('dpFooter').innerHTML = `
+    <button class="dp-btn primary" onclick="switchTab('warden');closePanel()">VIEW DLP FINDINGS</button>
+    <button class="dp-btn ghost"   onclick="closePanel()">CLOSE</button>
+  `;
+  document.getElementById('detailPanel').classList.add('open');
+  document.getElementById('overlay').classList.add('active');
+}
+
+// ─── PIPELINES SCANNED → 30-day scan history context ───
+function showPipelineContext() {
+  const el = document.getElementById('pipelineContextPanel'); if(!el) return;
+  el.innerHTML = `
+    <div class="pipe-context">
+      <div class="pc-title">30-Day Pipeline Scan History</div>
+      <div class="pc-stats">
+        <div class="pc-stat">
+          <div class="pc-num" style="color:var(--blue)">1,847</div>
+          <div class="pc-lbl">Scanned</div>
+        </div>
+        <div class="pc-stat" style="cursor:pointer" onclick="showBlockedBuildsAlert()">
+          <div class="pc-num" style="color:var(--red)">4</div>
+          <div class="pc-lbl">Blocked →</div>
+        </div>
+        <div class="pc-stat">
+          <div class="pc-num" style="color:var(--green)">99.1<span style="font-size:14px">%</span></div>
+          <div class="pc-lbl">Pass Rate</div>
+        </div>
+        <div class="pc-stat">
+          <div class="pc-num" style="color:var(--amber)">6</div>
+          <div class="pc-lbl">Gate Checks</div>
+        </div>
+      </div>
+      <div class="pc-trend">
+        <span class="pc-tag" style="color:var(--green)">✓ Secret Scan</span>
+        <span class="pc-tag" style="color:var(--green)">✓ PII / CUI Detection</span>
+        <span class="pc-tag" style="color:var(--green)">✓ Container Security</span>
+        <span class="pc-tag" style="color:var(--green)">✓ IaC Policy</span>
+        <span class="pc-tag" style="color:var(--green)">✓ SAST / Code Audit</span>
+        <span class="pc-tag" style="color:var(--green)">✓ ACCORD Policy Gate</span>
+      </div>
+      <div style="margin-top:12px;font-family:var(--mono);font-size:10px;color:var(--muted)">
+        4 builds currently blocked · <span style="color:var(--amber);cursor:pointer" onclick="showBlockedBuildsAlert()">View blocked builds →</span>
+        &nbsp;|&nbsp; Run a new scan below ↓
+      </div>
+    </div>
+  `;
+  el.style.display = 'block';
+  el.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+// ─── ATO PACKAGES → Evidence package archive list ───
+function showATOPackageList() {
+  const el = document.getElementById('atoPackageListPanel'); if(!el) return;
+  if (typeof EVIDENCE_DATA === 'undefined') return;
+  el.innerHTML = `
+    <div style="background:var(--s2);border:1px solid var(--bd);border-left:3px solid var(--purple);padding:16px 20px;margin-bottom:0">
+      <div class="apl-header">
+        <div>
+          <div class="apl-title">ATO EVIDENCE PACKAGES</div>
+          <div class="apl-count">22 packages on file across ${[...new Set(EVIDENCE_DATA.map(e=>e.fw))].length} frameworks — click any row to view details</div>
+        </div>
+        <button onclick="switchTab('evidence')" style="font-family:var(--mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;background:var(--amber);color:#000;border:none;padding:8px 14px;cursor:pointer">VIEW ALL IN EVIDENCE VAULT →</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1px;background:var(--bd);border:1px solid var(--bd)">
+        ${EVIDENCE_DATA.slice(0,22).map(e=>`
+          <div class="apl-row" onclick="showEvidenceDetail('${e.ctrl||e.title.split(' ')[0]}','${e.title.replace(/'/g,'"')}','${e.fw}','${e.time}','${e.size}','${e.ctrl||''} — Mapped to ${e.fw}')">
+            <div class="apl-icon">${e.icon}</div>
+            <div>
+              <div class="apl-name">${e.title}</div>
+              <div class="apl-meta">${e.agent} · ${e.time}</div>
+            </div>
+            <div class="apl-fw">${e.fw}</div>
+            <div class="apl-size">${e.size}</div>
+          </div>`).join('')}
+      </div>
+    </div>
+  `;
+  el.style.display = 'block';
+  el.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+
+function closePanel() {
+  document.getElementById('detailPanel').classList.remove('open');
+  document.getElementById('overlay').classList.remove('active');
+}
+
+// ═══════════════════════════════════════════════
+// PIPELINE GATE
+// ═══════════════════════════════════════════════
+function initPipeline() {
+  document.getElementById('gateChecksList').innerHTML = '';
+  document.getElementById('gateSummary').style.display = 'none';
+  document.getElementById('gateScanProg').classList.remove('active');
+}
+function loadRiskyBuild() { document.getElementById('codeSnippet').textContent = RISKY_SNIPPET; }
+function loadCleanBuild() { document.getElementById('codeSnippet').textContent = CLEAN_SNIPPET; }
+
+function runPipelineGate() {
+  if (state.gateRunning) return;
+  state.gateRunning = true;
+  const btn = document.getElementById('runGateBtn');
+  btn.disabled = true; btn.textContent = '⏸ SCANNING…';
+  document.getElementById('gateSummary').style.display = 'none';
+  document.getElementById('gateScanProg').classList.add('active');
+  const list = document.getElementById('gateChecksList');
+  list.innerHTML = '';
+  const isRisky = document.getElementById('codeSnippet').textContent.includes('AWS_SECRET_ACCESS_KEY');
+  const results = isRisky
+    ? [{r:'fail',score:98,detail:'AWS_SECRET_ACCESS_KEY found in ENV · line 2 · rotate immediately'},{r:'fail',score:88,detail:'PII/credential patterns in ENV vars · DATABASE_URL with credentials'},{r:'fail',score:94,detail:'USER root · port 22 exposed · no HEALTHCHECK · image not pinned'},{r:'warn',score:52,detail:'2 medium CVEs in python:3.11-slim base image'},{r:'pass',score:15,detail:'No SQLi patterns detected · 0 critical code vulns'},{r:'fail',score:—,detail:'Build BLOCKED — 4 critical gates failed · CMMC CM.3.068 violated'}]
+    : [{r:'pass',score:2,detail:'No secrets detected · clean environment variables'},{r:'pass',score:0,detail:'No PII/CUI patterns detected'},{r:'pass',score:8,detail:'Non-root user · image pinned · port 8080 only · healthcheck present'},{r:'pass',score:5,detail:'No high/critical CVEs · Terraform config clean'},{r:'pass',score:12,detail:'0 critical · 1 low (advisory) · dependencies current'},{r:'pass',score:—,detail:'Build APPROVED — all gates passed · evidence captured'}];
+
+  let delay = 0;
+  GATE_CHECKS_CONFIG.forEach((check, i) => {
+    setTimeout(() => {
+      const r = results[i];
+      const div = document.createElement('div'); div.className = 'gate-check';
+      div.innerHTML = `
+        <div class="gc-icon">${check.icon}</div>
+        <div><div class="gc-name">${check.name}</div><div style="font-family:var(--mono);font-size:9px;color:var(--muted)">${check.agent}</div></div>
+        <div class="gc-detail">${r.r==='pass'?r.detail:r.r==='fail'?`<span style="color:#e57373">${r.detail}</span>`:`<span style="color:var(--yel)">${r.detail}</span>`}</div>
+        <div class="gc-status ${r.r==='pass'?'pass':r.r==='fail'?'fail':'warn'}">${r.r.toUpperCase()}</div>
+        <div class="gc-score" style="color:${r.r==='pass'?'#40d090':r.r==='fail'?'#e57373':'var(--yel)'}">${r.score!==undefined&&r.score!=='—'?r.score:'—'}</div>
+      `;
+      list.appendChild(div);
+      // update progress
+      const pct = Math.round(((i+1)/GATE_CHECKS_CONFIG.length)*100);
+      document.getElementById('gateBar').style.width = pct + '%';
+      document.getElementById('gatePct').textContent = pct + '%';
+      document.getElementById('gateLabel').textContent = check.check;
+      if (i === GATE_CHECKS_CONFIG.length - 1) finishGate(isRisky);
+    }, delay);
+    delay += isRisky ? 900 + Math.random()*400 : 700 + Math.random()*300;
+  });
+}
+
+function finishGate(isRisky) {
+  const totalRisk = isRisky ? 87 : 9;
+  document.getElementById('gsNum').textContent = totalRisk;
+  document.getElementById('gsNum').style.color = isRisky ? 'var(--red)' : 'var(--green)';
+  const verdict = document.getElementById('gsVerdict');
+  verdict.textContent = isRisky ? 'BLOCKED' : 'APPROVED';
+  verdict.style.borderColor = isRisky ? 'var(--red)' : 'var(--green)';
+  verdict.style.color = isRisky ? '#e57373' : '#40d090';
+  document.getElementById('gsBtns').innerHTML = isRisky
+    ? `<button class="run-btn danger" onclick="showToast('⛔ Deployment blocked. Evidence logged for CMMC CM.3.068.')">BLOCK DEPLOYMENT</button>
+       <button class="run-btn ghost" onclick="openPanel_gate()">REQUEST OVERRIDE</button>`
+    : `<button class="run-btn" onclick="showToast('✅ Deployment approved. Evidence package generated.')">APPROVE & DEPLOY</button>
+       <button class="run-btn ghost" onclick="showToast('📋 Gate report exported to ACCORD evidence vault.')">EXPORT EVIDENCE</button>`;
+  document.getElementById('gateSummary').style.display = 'block';
+  document.getElementById('runGateBtn').disabled = false;
+  document.getElementById('runGateBtn').textContent = '▶ RUN GATE SCAN';
+  state.gateRunning = false;
+  showToast(isRisky ? '⛔ Pipeline blocked — 4 critical findings · human review required' : '✅ Pipeline cleared — all 6 gates passed · evidence captured');
+}
+
+function openPanel_gate() {
+  document.getElementById('dpId').textContent = 'GATE-OVERRIDE // Manual Review';
+  document.getElementById('dpName').textContent = 'Request deployment override approval';
+  document.getElementById('dpBody').innerHTML = `
+    <div class="dp-section">
+      <div class="dp-section-title">Override Request</div>
+      <div class="dp-kv"><div class="dp-k">Risk Score</div><div class="dp-v" style="color:var(--red)">87 / 100 — CRITICAL</div></div>
+      <div class="dp-kv"><div class="dp-k">Failed Gates</div><div class="dp-v">4 of 6</div></div>
+      <div class="dp-kv"><div class="dp-k">CMMC Impact</div><div class="dp-v">CM.3.068, SC.3.177, MP.2.120</div></div>
+    </div>
+    <div class="dp-section">
+      <div class="dp-section-title">Override Justification</div>
+      <textarea style="width:100%;background:var(--s2);border:1px solid var(--bd);color:var(--text);font-family:var(--mono);font-size:11px;padding:10px;outline:none;resize:vertical;min-height:80px" placeholder="Provide business justification for override…"></textarea>
+    </div>
+    <div style="font-size:12px;color:var(--dim);line-height:1.6;padding:10px 12px;background:rgba(217,64,64,.08);border:1px solid var(--rd)">⚠ Override requires CISO signature. All decisions are logged as CMMC evidence. This action cannot be undone.</div>
+  `;
+  document.getElementById('dpFooter').innerHTML = `
+    <button class="dp-btn danger" onclick="showToast('🔐 Override request sent to CISO for approval. Logged as INC-3829.');closePanel()">REQUEST CISO APPROVAL</button>
+    <button class="dp-btn ghost" onclick="closePanel()">CANCEL</button>
+  `;
+  document.getElementById('detailPanel').classList.add('open');
+  document.getElementById('overlay').classList.add('active');
+}
+
+// ═══════════════════════════════════════════════
+// WARDEN
+// ═══════════════════════════════════════════════
+function renderWarden() {
+  // Populate violations panel (always unfiltered)
+  const vEl = document.getElementById('wardenViolations');
+  if (vEl) vEl.innerHTML = VIOLATIONS_DATA.map(v => `
+    <div class="vio-item"><div class="vio-time">${v.time}</div><div class="vio-fw">${v.fw}</div><div class="vio-desc">${v.desc}</div></div>
+  `).join('');
+  // Populate findings with current filter preserved
+  filterWardenSev(state.wardenFilter || 'all');
 }
 
 
@@ -2079,172 +2467,6 @@ function initExec() {
 // ═══════════════════════════════════════════════
 // TOAST
 // ═══════════════════════════════════════════════
-function renderWarden() {
-  filterWardenSev(state.wardenFilter || 'all');
-}
-
-function runPipelineGate() {
-  if (state.gateRunning) return;
-  state.gateRunning = true;
-  const btn = document.getElementById('runGateBtn');
-  if (btn) { btn.disabled = true; btn.textContent = '⏸ SCANNING…'; }
-  const alertEl = document.getElementById('blockedBuildsAlert');
-  if (alertEl) alertEl.style.display = 'none';
-  const list = document.getElementById('gateChecksList');
-  const summary = document.getElementById('gateSummary');
-  if (list) list.innerHTML = '';
-  if (summary) summary.style.display = 'none';
-  const prog = document.getElementById('gateScanProg');
-  if (prog) prog.classList.add('active');
-  const snippet = document.getElementById('codeSnippet');
-  const isRisky = snippet && snippet.textContent.includes('AWS_SECRET_ACCESS_KEY');
-  const RESULTS = isRisky
-    ? [{r:'fail',score:98,detail:'AWS_SECRET_ACCESS_KEY found in ENV · line 2 · rotate immediately'},{r:'fail',score:88,detail:'PII/credential patterns in ENV vars · DATABASE_URL with credentials'},{r:'fail',score:94,detail:'USER root · port 22 exposed · no HEALTHCHECK · image not pinned'},{r:'warn',score:52,detail:'2 medium CVEs in python:3.11-slim base image'},{r:'pass',score:15,detail:'No SQLi patterns detected · 0 critical code vulns'},{r:'fail',score:null,detail:'Build BLOCKED — 4 critical gates failed · CMMC CM.3.068 violated'}]
-    : [{r:'pass',score:2,detail:'No secrets detected · clean environment variables'},{r:'pass',score:0,detail:'No PII/CUI patterns detected'},{r:'pass',score:8,detail:'Non-root user · image pinned · port 8080 only · healthcheck present'},{r:'pass',score:5,detail:'No high/critical CVEs · Terraform config clean'},{r:'pass',score:12,detail:'0 critical · 1 low (advisory) · dependencies current'},{r:'pass',score:null,detail:'Build APPROVED — all gates passed · evidence captured'}];
-  const GATE_CHECKS_CONFIG = [
-    {icon:'🔑',name:'WARDEN Secret Scan',agent:'Agent 003 / WARDEN',check:'Scanning for secrets, API keys, tokens, and credentials'},
-    {icon:'🏷️',name:'WARDEN PII/CUI Check',agent:'Agent 003 / WARDEN',check:'Detecting PII, PHI, CUI patterns in commit artifacts'},
-    {icon:'🐳',name:'Container Security',agent:'Agent 006',check:'Analyzing Dockerfile, base image CVEs, exposed ports, USER root'},
-    {icon:'⚙️',name:'IaC Policy Gate',agent:'Agent 005',check:'Reviewing Terraform/CloudFormation for security misconfigurations'},
-    {icon:'💻',name:'Code Auditor SAST',agent:'Agent 002',check:'Running static analysis against NIST 800-171 requirements'},
-    {icon:'📋',name:'ACCORD Policy Gate',agent:'Agent 001',check:'Evaluating build readiness against CMMC Level 2 policy controls'},
-  ];
-  let delay = 0;
-  GATE_CHECKS_CONFIG.forEach((check, i) => {
-    setTimeout(() => {
-      const r = RESULTS[i];
-      const div = document.createElement('div'); div.className = 'gate-check';
-      const rColor = r.r==='pass'?'#40d090':r.r==='fail'?'#e57373':'var(--yel)';
-      div.innerHTML = `
-        <div class="gc-icon">${check.icon}</div>
-        <div><div class="gc-name">${check.name}</div><div style="font-family:var(--mono);font-size:9px;color:var(--muted)">${check.agent}</div></div>
-        <div class="gc-detail" style="color:${rColor}">${r.detail}</div>
-        <div class="gc-status ${r.r==='pass'?'pass':r.r==='fail'?'fail':'warn'}">${r.r.toUpperCase()}</div>
-        <div class="gc-score" style="color:${rColor}">${r.score!=null?r.score:'—'}</div>`;
-      if (list) list.appendChild(div);
-      const pct = Math.round(((i+1)/GATE_CHECKS_CONFIG.length)*100);
-      const bar = document.getElementById('gateBar');
-      const pctEl = document.getElementById('gatePct');
-      const labelEl = document.getElementById('gateLabel');
-      if (bar) bar.style.width = pct+'%';
-      if (pctEl) pctEl.textContent = pct+'%';
-      if (labelEl) labelEl.textContent = check.check;
-      if (i === GATE_CHECKS_CONFIG.length-1) {
-        const totalRisk = isRisky ? 87 : 9;
-        const gsNum = document.getElementById('gsNum');
-        const gsVerdict = document.getElementById('gsVerdict');
-        const gsBtns = document.getElementById('gsBtns');
-        if (gsNum) { gsNum.textContent = totalRisk; gsNum.style.color = isRisky?'var(--red)':'var(--green)'; }
-        if (gsVerdict) { gsVerdict.textContent = isRisky?'BLOCKED':'APPROVED'; gsVerdict.style.borderColor = isRisky?'var(--red)':'var(--green)'; gsVerdict.style.color = isRisky?'#e57373':'#40d090'; }
-        if (gsBtns) gsBtns.innerHTML = isRisky
-          ? `<button class="run-btn danger" onclick="showToast('⛔ Deployment blocked. Evidence logged.')">BLOCK DEPLOYMENT</button>
-             <button class="run-btn ghost" onclick="openPanel_gate()">REQUEST OVERRIDE</button>`
-          : `<button class="run-btn" onclick="showToast('✅ Deployment approved. Evidence captured.')">APPROVE & DEPLOY</button>
-             <button class="run-btn ghost" onclick="showToast('📋 Gate report exported.')">EXPORT EVIDENCE</button>`;
-        if (summary) summary.style.display = 'block';
-        if (btn) { btn.disabled = false; btn.textContent = '▶ RUN GATE SCAN'; }
-        state.gateRunning = false;
-        showToast(isRisky ? '⛔ Pipeline blocked — 4 critical findings' : '✅ Pipeline cleared — all gates passed');
-      }
-    }, delay);
-    delay += isRisky ? 900 + Math.random()*300 : 600 + Math.random()*200;
-  });
-}
-
-function openPanel_gate() {
-  document.getElementById('dpId').textContent = 'GATE-OVERRIDE // Manual Review';
-  document.getElementById('dpName').textContent = 'Request deployment override approval';
-  document.getElementById('dpBody').innerHTML = `
-    <div class="dp-section">
-      <div class="dp-section-title">Override Request</div>
-      <div class="dp-kv"><div class="dp-k">Risk Score</div><div class="dp-v" style="color:var(--red)">87 / 100 — CRITICAL</div></div>
-      <div class="dp-kv"><div class="dp-k">Failed Gates</div><div class="dp-v">4 of 6</div></div>
-      <div class="dp-kv"><div class="dp-k">CMMC Impact</div><div class="dp-v">CM.3.068 · SC.3.177 · IA.3.083</div></div>
-    </div>
-    <div class="dp-section">
-      <div class="dp-section-title">Override Justification</div>
-      <textarea style="width:100%;background:var(--s2);border:1px solid var(--bd);color:var(--text);font-family:var(--mono);font-size:11px;padding:10px;outline:none;resize:vertical;min-height:80px" placeholder="Provide business justification…"></textarea>
-    </div>
-    <div style="font-size:12px;color:var(--dim);line-height:1.6;padding:10px 12px;background:rgba(217,64,64,.08);border:1px solid var(--rd)">⚠ Override requires CISO signature. All decisions are logged as CMMC evidence.</div>
-  `;
-  document.getElementById('dpFooter').innerHTML = `
-    <button class="dp-btn danger" onclick="showToast('🔐 Override sent to CISO for approval.');closePanel()">REQUEST CISO APPROVAL</button>
-    <button class="dp-btn ghost" onclick="closePanel()">CANCEL</button>
-  `;
-  document.getElementById('detailPanel').classList.add('open');
-  document.getElementById('overlay').classList.add('active');
-}
-
-
-// ─── LOAD PIPELINE SNIPPETS ───
-function loadRiskyBuild() {
-  const el = document.getElementById('codeSnippet');
-  if (el) el.textContent = RISKY_SNIPPET;
-}
-function loadCleanBuild() {
-  const el = document.getElementById('codeSnippet');
-  if (el) el.textContent = CLEAN_SNIPPET;
-}
-
-// ─── PIPELINE VIEW INIT ───
-function initPipeline() {
-  const list = document.getElementById('gateChecksList');
-  const summary = document.getElementById('gateSummary');
-  const prog = document.getElementById('gateScanProg');
-  const btn = document.getElementById('runGateBtn');
-  if (list) list.innerHTML = '';
-  if (summary) summary.style.display = 'none';
-  if (prog) prog.classList.remove('active');
-  if (btn) { btn.disabled = false; btn.textContent = '▶ RUN GATE SCAN'; }
-  state.gateRunning = false;
-  // Auto-show blocked builds alert on first visit to pipeline tab
-  if (!state._pipelineVisited) {
-    state._pipelineVisited = true;
-    setTimeout(showBlockedBuildsAlert, 150);
-  }
-}
-
-// ─── RENDER AGENT FLEET VIEW ───
-function renderAgents() {
-  const el = document.getElementById('agentsGrid');
-  if (!el) return;
-  const statusColors = {'ACTIVE':'var(--green)','SCANNING':'var(--amber)','READY':'var(--blue)','DEGRADED':'var(--red)'};
-  el.innerHTML = AGENTS.map(a => {
-    const color = a.color || statusColors[a.status] || 'var(--amber)';
-    const dotAnim = a.status === 'ACTIVE' ? 'animation:pulse 2s infinite' : '';
-    return `
-    <div style="background:var(--sf);padding:26px 22px;cursor:default;transition:background .2s;position:relative;overflow:hidden"
-         onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background='var(--sf)'">
-      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,${color},transparent)"></div>
-      <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--muted);margin-bottom:10px">AGT-${a.num} // ${a.status}</div>
-      <div style="font-family:var(--disp);font-size:26px;letter-spacing:1px;color:${color};line-height:1;margin-bottom:6px">${a.name}</div>
-      <div style="font-size:12px;font-weight:300;color:var(--dim);line-height:1.6;margin-bottom:16px;min-height:36px">${a.desc}</div>
-      <div style="display:flex;gap:20px;margin-bottom:14px">
-        <div>
-          <div style="font-family:var(--disp);font-size:22px;color:${color};line-height:1">${a.events.toLocaleString()}</div>
-          <div style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)">Events Today</div>
-        </div>
-        <div>
-          <div style="font-family:var(--disp);font-size:22px;color:var(--text);line-height:1">${a.blocked}</div>
-          <div style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)">Blocked</div>
-        </div>
-      </div>
-      <div style="display:flex;align-items:center;gap:7px">
-        <div style="width:8px;height:8px;border-radius:50%;background:${color};flex-shrink:0;${dotAnim}"></div>
-        <span style="font-family:var(--mono);font-size:10px;color:${color}">${a.status}</span>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-
-function closePanel() {
-  document.getElementById('detailPanel').classList.remove('open');
-  document.getElementById('overlay').classList.remove('active');
-  state.selectedId = null;
-  state.selectedIncidentId = null;
-}
-
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg; t.style.display = 'block';
@@ -2255,6 +2477,10 @@ function showToast(msg) {
 // INIT
 // ═══════════════════════════════════════════════
 function init() {
+  // Confirm JS is running — update status bar
+  const dbSt = document.getElementById('dbStatus');
+  if (dbSt) dbSt.style.opacity = '1'; // already visible, just confirms JS ran
+
   // Count-ups
   setTimeout(() => countUp(document.getElementById('s-cmmc'), 92, '%', 1000), 100);
   setTimeout(() => countUp(document.getElementById('s-controls'), 101, '', 900), 200);
@@ -2262,35 +2488,45 @@ function init() {
   setTimeout(() => countUp(document.getElementById('s-pipes'), 1847, '', 1100), 400);
   setTimeout(() => countUp(document.getElementById('s-atos'), 22, '', 600), 500);
 
-  // Agent mini list (sidebar removed — agent health in dashboard panel)
-  // renderAgentMini(); // no-op: agentMiniList not in topbar layout
-  renderAttnBanner();
-  renderPipelineStatusPanel();
-  renderAgentHealthPanel();
+  // Dashboard panels (wrapped for safety)
+  try { renderAttnBanner(); } catch(e) { console.warn('renderAttnBanner:', e); }
+  try { renderPipelineStatusPanel(); } catch(e) { console.warn('renderPipelineStatusPanel:', e); }
+  try { renderAgentHealthPanel(); } catch(e) { console.warn('renderAgentHealthPanel:', e); }
+  try { renderFindingsTable(); } catch(e) { console.warn('renderFindingsTable:', e); }
 
-  // Seed events
+  // Seed live event stream
   for (let i = 9; i >= 0; i--) {
     const e = EVENT_POOL[i % EVENT_POOL.length];
     const t = new Date(Date.now() - i * 18000);
     const ts = t.toLocaleTimeString('en-US',{hour12:false});
     const el = document.getElementById('eventStream');
-    const div = document.createElement('div'); div.className = 'ev-item';
-    div.innerHTML = `<span class="ev-time">${ts}</span><span class="ev-sev ${e.s}">${{sc:'CRIT',sh:'HIGH',sm:'MED',sl:'LOW',so:'INFO'}[e.s]}</span><span class="ev-msg">${e.m}</span>`;
-    el.appendChild(div);
+    if (el) {
+      const div = document.createElement('div'); div.className = 'ev-item';
+      div.innerHTML = `<span class="ev-time">${ts}</span><span class="ev-sev ${e.s}">${{sc:'CRIT',sh:'HIGH',sm:'MED',sl:'LOW',so:'INFO'}[e.s]}</span><span class="ev-msg">${e.m}</span>`;
+      el.appendChild(div);
+    }
   }
 
-  renderFindingsTable();
+  // Scroll event stream to bottom to show latest events
+  const esEl = document.getElementById('eventStream');
+  if (esEl) setTimeout(() => { esEl.scrollTop = esEl.scrollHeight; }, 100);
 
-  // Live stream
+  // Start live event stream
   setInterval(addEvent, 4000);
-  // Slow metrics tick
+
+  // Slow pipeline counter tick
   setInterval(() => {
     const el = document.getElementById('s-pipes');
-    if (el) el.textContent = (parseInt(el.textContent.replace(/,/g,'')) + 1).toLocaleString();
+    if (el) el.textContent = (parseInt(el.textContent.replace(/,/g,''))+1).toLocaleString();
   }, 12000);
 }
 
-init();
+// Belt + suspenders: call init() directly AND on DOMContentLoaded
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init(); // DOM already ready
+}
 </script>
 </body>
 </html>
