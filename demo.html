@@ -199,7 +199,7 @@ nav{
   font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;
   color:var(--muted);margin-bottom:10px;display:block;
 }
-.f-check-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:20px}
+.f-check-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:20px}
 .f-check{
   display:flex;align-items:center;gap:7px;
   font-family:var(--mono);font-size:11px;letter-spacing:0.5px;color:var(--muted);
@@ -320,7 +320,7 @@ footer{
       </div>
       <div class="trust-item">
         <div class="trust-check">✓</div>
-        <div class="trust-text"><strong>Tailored to your compliance requirements</strong> — HIPAA, GDPR, CCPA, or PCI. We map to what matters to you</div>
+        <div class="trust-text"><strong>Tailored to your compliance requirements</strong> — CMMC, FedRAMP, NIST 800-53, HIPAA, or DFARS. We map to what matters to you</div>
       </div>
       <div class="trust-item">
         <div class="trust-check">✓</div>
@@ -328,7 +328,7 @@ footer{
       </div>
       <div class="trust-item">
         <div class="trust-check">✓</div>
-        <div class="trust-text"><strong>30-day full trial activated immediately after</strong> — all 6 agents, no credit card</div>
+        <div class="trust-text"><strong>30-day full trial activated immediately after</strong> — all 7 agents including WARDEN, no credit card</div>
       </div>
       <div class="trust-item">
         <div class="trust-check">✓</div>
@@ -343,6 +343,7 @@ footer{
       <div class="agent-badge"><span>AGT-04</span> NIMBUS</div>
       <div class="agent-badge"><span>AGT-05</span> LEDGER</div>
       <div class="agent-badge"><span>AGT-06</span> ACCORD</div>
+      <div class="agent-badge"><span>AGT-07</span> WARDEN</div>
     </div>
 
     <div class="social-proof">
@@ -439,9 +440,10 @@ footer{
               <option value="" disabled selected>Select one</option>
               <option>Data exfiltration / DLP</option>
               <option>Ransomware response</option>
-              <option>Compliance (HIPAA / GDPR)</option>
+              <option>CMMC 2.0 / FedRAMP compliance</option>
               <option>Insider threat</option>
               <option>Cloud / shadow IT</option>
+              <option>Pipeline / DevSecOps security</option>
               <option>All of the above</option>
             </select>
           </div>
@@ -457,6 +459,7 @@ footer{
           <label class="f-check"><input type="checkbox" name="agents" value="NIMBUS"><span>NIMBUS</span></label>
           <label class="f-check"><input type="checkbox" name="agents" value="LEDGER"><span>LEDGER</span></label>
           <label class="f-check"><input type="checkbox" name="agents" value="ACCORD"><span>ACCORD</span></label>
+          <label class="f-check"><input type="checkbox" name="agents" value="WARDEN"><span>WARDEN</span></label>
         </div>
 
         <div class="f-group">
