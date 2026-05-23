@@ -94,6 +94,10 @@
     border-top: 2px solid var(--border); transition: border-top-color .2s;
   }
   .card:hover { border-top-color: var(--accent); }
+  .card.drillable { cursor: pointer; position: relative; transition: border-top-color .2s, background .15s, transform .15s; }
+  .card.drillable:hover { background: rgba(0,180,255,.05); transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,.35); }
+  .card.drillable::after { content: '↗'; position: absolute; top: 10px; right: 12px; font-size: 11px; color: var(--text-muted); opacity: 0; transition: opacity .15s, color .15s; font-family: var(--mono); }
+  .card.drillable:hover::after { opacity: 1; color: var(--accent); }
   .card-label { font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 10px; font-family: var(--mono); font-weight: 700; }
   .card-value { font-size: 30px; font-weight: 800; line-height: 1; font-family: var(--mono); }
   .card-sub { font-size: 10px; color: var(--text-muted); margin-top: 5px; font-family: var(--mono); }
@@ -101,6 +105,8 @@
   /* Charts row */
   .charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
   .chart-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; }
+  .chart-card canvas { cursor: pointer; }
+  .chart-card-hint { font-size: 9px; color: var(--text-muted); font-family: var(--mono); letter-spacing: .06em; margin-left: auto; opacity: .6; }
   .chart-card h3 {
     font-size: 9px; font-weight: 700; margin-bottom: 14px;
     color: var(--text-muted); text-transform: uppercase; letter-spacing: .12em;
@@ -238,9 +244,9 @@
   .tag-pill { font-size: 8px; padding: 2px 5px; border: 1px solid var(--border); border-radius: 2px; color: var(--text-muted); font-family: var(--mono); letter-spacing: .05em; }
 
   /* Topbar module label */
-  .topbar-left { display: flex; flex-direction: column; flex: 1; }
-  .topbar-crumb { font-size: 9px; color: var(--text-muted); font-family: var(--mono); letter-spacing: .08em; text-transform: uppercase; }
-  .topbar-heading { font-size: 14px; font-weight: 800; color: var(--text); font-family: var(--mono); text-transform: uppercase; letter-spacing: .04em; }
+  .topbar-left { display: flex; flex-direction: column; flex: 1; min-width: 0; overflow: hidden; }
+  .topbar-crumb { font-size: 9px; color: var(--text-muted); font-family: var(--mono); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .topbar-heading { font-size: 14px; font-weight: 800; color: var(--text); font-family: var(--mono); text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
   .topbar-heading span { color: var(--accent); }
 
   /* Responsive */
@@ -602,8 +608,8 @@ let controls = [];
 let poams = [];
 let currentView = 'dashboard';
 let searchQuery = '';
-let ctrlFilter = { family: '', status: '', inheritance: '' };
-let poamFilter = { severity: '', status: '' };
+let ctrlFilter = { family: '', status: '', inheritance: '', statusArr: [] };
+let poamFilter = { severity: '', status: '', statusArr: [] };
 let ctrlSort = { col: 'id', dir: 'asc' };
 let poamSort = { col: 'id', dir: 'asc' };
 let charts = {};
@@ -646,6 +652,27 @@ function showView(v) {
   document.getElementById('global-search').style.display = noSearch.includes(v) ? 'none' : '';
   render();
 }
+// ─── DRILL-DOWN ──────────────────────────────────────────────────────────────
+// Navigate from a dashboard tile/chart to a filtered data view
+function drillTo(view, opts) {
+  opts = opts || {};
+  if (view === 'controls') {
+    ctrlFilter = {
+      family:     opts.family     || '',
+      status:     opts.status     || '',
+      inheritance:opts.inheritance|| '',
+      statusArr:  opts.statusArr  || []
+    };
+  } else if (view === 'poam') {
+    poamFilter = {
+      severity:  opts.severity  || '',
+      status:    opts.status    || '',
+      statusArr: opts.statusArr || []
+    };
+  }
+  showView(view);
+}
+
 function render() {
   document.getElementById('view-title').innerHTML =
     {dashboard: '<span style="color:var(--accent)">◈</span> DASHBOARD <span style="color:var(--text-muted);font-size:11px">// 01</span>',
@@ -694,32 +721,32 @@ function renderDashboard() {
 
   return `
   <div class="cards">
-    <div class="card">
+    <div class="card drillable" onclick="drillTo('controls')" title="View all controls →">
       <div class="card-label">◈ Total Controls</div>
       <div class="card-value" style="color:var(--accent)">${total}</div>
       <div class="card-sub">NIST 800-53 Rev5 · High Baseline</div>
     </div>
-    <div class="card">
+    <div class="card drillable" onclick="drillTo('controls',{status:'Implemented'})" title="View implemented controls →">
       <div class="card-label">◈ Implemented</div>
       <div class="card-value" style="color:var(--green)">${impl}</div>
       <div class="card-sub">${pct}% ATO posture</div>
     </div>
-    <div class="card">
+    <div class="card drillable" onclick="drillTo('controls',{statusArr:['Partially Implemented','Planned','Not Implemented']})" title="View gap controls (partial + planned + not impl) →">
       <div class="card-label">◈ Gaps</div>
-      <div class="card-value" style="color:var(--yellow)">${partial + planned}</div>
-      <div class="card-sub">${partial} partial · ${planned} planned</div>
+      <div class="card-value" style="color:var(--yellow)">${partial + planned + notImpl}</div>
+      <div class="card-sub">${partial} partial · ${planned} planned · ${notImpl} not impl</div>
     </div>
-    <div class="card">
+    <div class="card drillable" onclick="drillTo('poam',{statusArr:['Open','Ongoing']})" title="View active POA&Ms (Open + Ongoing) →">
       <div class="card-label">◈ Open POA&Ms</div>
       <div class="card-value" style="color:var(--red)">${openPoams}</div>
       <div class="card-sub">${critPoams} critical · ${closedPoams} closed</div>
     </div>
-    <div class="card">
+    <div class="card drillable" onclick="drillTo('controls',{inheritance:'Fully Inherited'})" title="View AWS-inherited controls →">
       <div class="card-label">◈ AWS Inherited</div>
       <div class="card-value" style="color:var(--text-muted)">${inherited}</div>
       <div class="card-sub">FedRAMP P-ATO coverage</div>
     </div>
-    <div class="card">
+    <div class="card drillable" onclick="drillTo('controls',{inheritance:'Customer'})" title="View customer-owned controls →">
       <div class="card-label">◈ Customer Owned</div>
       <div class="card-value" style="color:var(--accent2)">${customer}</div>
       <div class="card-sub">${hybrid} hybrid / shared</div>
@@ -728,41 +755,37 @@ function renderDashboard() {
 
   <div class="charts-row">
     <div class="chart-card">
-      <h3>Implementation Status <div class="ai-tip" style="display:inline-block;margin-left:6px"><span class="ai-chip">Predictive Analytics</span><div class="ai-tooltip">AI projects ATO readiness trajectory based on POA&M close rates</div></div></h3>
+      <h3>Implementation Status <div class="ai-tip" style="display:inline-block;margin-left:6px"><span class="ai-chip">Predictive Analytics</span><div class="ai-tooltip">AI projects ATO readiness trajectory based on POA&M close rates</div></div><span class="chart-card-hint">click slice to drill →</span></h3>
       <div class="chart-wrap"><canvas id="statusChart"></canvas></div>
     </div>
     <div class="chart-card">
-      <h3>Inheritance Distribution</h3>
+      <h3>Inheritance Distribution <span class="chart-card-hint">click slice to drill →</span></h3>
       <div class="chart-wrap"><canvas id="inheritChart"></canvas></div>
     </div>
   </div>
 
   <div class="charts-row">
     <div class="chart-card">
-      <h3>Controls by Family <div class="ai-tip" style="display:inline-block;margin-left:6px"><span class="ai-chip">Anomaly Detect</span><div class="ai-tooltip">AI flags families with high gap ratios or stale review dates</div></div></h3>
+      <h3>Controls by Family <div class="ai-tip" style="display:inline-block;margin-left:6px"><span class="ai-chip">Anomaly Detect</span><div class="ai-tooltip">AI flags families with high gap ratios or stale review dates</div></div><span class="chart-card-hint">click bar to drill →</span></h3>
       <div class="chart-wrap" style="height:240px"><canvas id="familyChart"></canvas></div>
     </div>
     <div class="chart-card">
-      <h3>POA&M Severity Breakdown</h3>
+      <h3>POA&M Severity Breakdown <span class="chart-card-hint">click slice to drill →</span></h3>
       <div class="chart-wrap"><canvas id="poamChart"></canvas></div>
     </div>
   </div>
 
   <div class="table-wrap">
     <div class="table-header">
-      <h3>◈ Open POA&amp;Ms — Requires Action</h3>
-      <div class="ai-tip" style="margin-right:auto;margin-left:8px">
-        <span class="ai-chip">SLA Forecast</span>
-        <div class="ai-tooltip">AI tracks days-to-close and flags overdue items automatically</div>
-      </div>
-      <button class="btn btn-ghost btn-sm" onclick="showView('poam')">View All →</button>
+      <h3>◈ Active POA&amp;Ms — Open &amp; Ongoing <div class="ai-tip" style="display:inline-block;margin-left:6px"><span class="ai-chip">SLA Forecast</span><div class="ai-tooltip">AI tracks days-to-close and flags overdue items automatically</div></div></h3>
+      <button class="btn btn-ghost btn-sm" onclick="drillTo('poam',{statusArr:['Open','Ongoing']})">View All →</button>
     </div>
     <table>
       <thead><tr>
         <th>ID</th><th>Control</th><th>Summary</th><th>Severity</th><th>Owner</th><th>Target Close</th><th>Status</th>
       </tr></thead>
       <tbody>
-        ${poams.filter(p=>p.status!=='Closed').map(p=>`<tr>
+        ${poams.filter(p=>p.status==='Open'||p.status==='Ongoing').map(p=>`<tr>
           <td class="td-mono" style="color:var(--accent)">${p.id}</td>
           <td class="td-mono">${p.control_id}</td>
           <td>${p.summary}</td>
@@ -771,7 +794,7 @@ function renderDashboard() {
           <td>${p.target_close ? daysUntilClose(p.target_close) : '—'}</td>
           <td>${poamStatusBadge(p.status)}</td>
         </tr>`).join('')}
-        ${poams.filter(p=>p.status!=='Closed').length===0?`<tr><td colspan="7" class="empty"><div class="empty-icon">◈</div>NO OPEN POA&Ms — AUTHORIZATION BOUNDARY CLEAN</td></tr>`:''}
+        ${poams.filter(p=>p.status==='Open'||p.status==='Ongoing').length===0?`<tr><td colspan="7" class="empty"><div class="empty-icon">◈</div>NO OPEN POA&Ms — AUTHORIZATION BOUNDARY CLEAN</td></tr>`:''}
       </tbody>
     </table>
   </div>`;
@@ -784,31 +807,45 @@ function initCharts() {
   const monoFont = { family: "'Courier New', monospace", size: 10 };
   const legendOpts = { position:'right', labels:{ color:textColor, font:monoFont, boxWidth:10, padding:12 } };
 
-  // Status donut
-  const statusData = ['Implemented','Partially Implemented','Planned','Not Implemented','Not Applicable']
-    .map(s => controls.filter(c=>c.status===s).length);
+  // Status donut — click drills into controls filtered by that status
+  const statusLabels = ['Implemented','Partially Implemented','Planned','Not Implemented','Not Applicable'];
+  const statusData = statusLabels.map(s => controls.filter(c=>c.status===s).length);
   charts.status = new Chart(document.getElementById('statusChart'), {
     type: 'doughnut',
     data: {
       labels: ['Implemented','Partial','Planned','Not Implemented','N/A'],
       datasets: [{data: statusData, backgroundColor:['#00d68f','#f59e0b','#00b4ff','#f04455','#1a2d44'], borderWidth:0, hoverOffset:8}]
     },
-    options: {responsive:true,maintainAspectRatio:false,plugins:{legend:legendOpts}}
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:legendOpts },
+      onClick(evt, els) {
+        if (!els.length) return;
+        drillTo('controls', {status: statusLabels[els[0].index]});
+      }
+    }
   });
 
-  // Inheritance donut
-  const inh = ['Fully Inherited','Hybrid / Shared','Customer','Common (Org-Provided)','Not Applicable']
-    .map(s => controls.filter(c=>c.inheritance===s).length);
+  // Inheritance donut — click drills into controls filtered by inheritance type
+  const inhLabels = ['Fully Inherited','Hybrid / Shared','Customer','Common (Org-Provided)','Not Applicable'];
+  const inh = inhLabels.map(s => controls.filter(c=>c.inheritance===s).length);
   charts.inherit = new Chart(document.getElementById('inheritChart'), {
     type: 'doughnut',
     data: {
       labels: ['Fully Inherited','Hybrid','Customer','Common','N/A'],
       datasets: [{data: inh, backgroundColor:['#1a2d44','#00b4ff','#00e5ff','#00d68f','#0f1a24'], borderWidth:0, hoverOffset:8}]
     },
-    options: {responsive:true,maintainAspectRatio:false,plugins:{legend:legendOpts}}
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:legendOpts },
+      onClick(evt, els) {
+        if (!els.length) return;
+        drillTo('controls', {inheritance: inhLabels[els[0].index]});
+      }
+    }
   });
 
-  // Family bar
+  // Family bar — click drills into controls for that family
   const fams = [...new Set(controls.map(c=>c.family))].sort();
   const famCounts = fams.map(f=>controls.filter(c=>c.family===f).length);
   charts.family = new Chart(document.getElementById('familyChart'), {
@@ -818,24 +855,36 @@ function initCharts() {
       datasets: [{label:'Controls',data:famCounts,backgroundColor:'rgba(0,180,255,.5)',borderColor:'rgba(0,180,255,.8)',borderWidth:1,borderRadius:3}]
     },
     options: {
-      responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false}},
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{display:false} },
       scales:{
         x:{ticks:{color:textColor,font:monoFont},grid:{color:gridColor}},
         y:{ticks:{color:textColor,font:monoFont,stepSize:1},grid:{color:gridColor},beginAtZero:true}
+      },
+      onClick(evt, els) {
+        if (!els.length) return;
+        drillTo('controls', {family: fams[els[0].index]});
       }
     }
   });
 
-  // POA&M severity
-  const sevCounts = ['Critical','High','Moderate','Low'].map(s=>poams.filter(p=>p.severity===s).length);
+  // POA&M severity donut — click drills into POA&Ms filtered by severity
+  const sevLabels = ['Critical','High','Moderate','Low'];
+  const sevCounts = sevLabels.map(s=>poams.filter(p=>p.severity===s).length);
   charts.poam = new Chart(document.getElementById('poamChart'), {
     type: 'doughnut',
     data: {
-      labels: ['Critical','High','Moderate','Low'],
+      labels: sevLabels,
       datasets: [{data:sevCounts,backgroundColor:['#f04455','#ff6b35','#f59e0b','#00d68f'],borderWidth:0,hoverOffset:8}]
     },
-    options: {responsive:true,maintainAspectRatio:false,plugins:{legend:legendOpts}}
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:legendOpts },
+      onClick(evt, els) {
+        if (!els.length) return;
+        drillTo('poam', {severity: sevLabels[els[0].index]});
+      }
+    }
   });
 }
 
@@ -848,7 +897,9 @@ function destroyCharts() {
 function renderControls() {
   let rows = controls.filter(c => {
     if (ctrlFilter.family && c.family !== ctrlFilter.family) return false;
-    if (ctrlFilter.status && c.status !== ctrlFilter.status) return false;
+    if (ctrlFilter.statusArr && ctrlFilter.statusArr.length > 0) {
+      if (!ctrlFilter.statusArr.includes(c.status)) return false;
+    } else if (ctrlFilter.status && c.status !== ctrlFilter.status) return false;
     if (ctrlFilter.inheritance && c.inheritance !== ctrlFilter.inheritance) return false;
     if (searchQuery) {
       const s = searchQuery;
@@ -859,13 +910,23 @@ function renderControls() {
     return true;
   });
 
-  // Sort
+  // Sort — use natural sort for Control IDs so AC-2 < AC-10 < AC-17
+  function nistIdKey(id) {
+    // e.g. "AC-2(1)" → ["AC", 2, 1]; "SI-4" → ["SI", 4, 0]
+    const m = id.match(/^([A-Z]+)-(\d+)(?:\((\d+)\))?/i);
+    if (!m) return [id, 0, 0];
+    return [m[1].toUpperCase(), parseInt(m[2]), parseInt(m[3]||0)];
+  }
   rows = [...rows].sort((a,b) => {
-    let av = a[ctrlSort.col]||'', bv = b[ctrlSort.col]||'';
+    let r = 0;
     if (ctrlSort.col === 'id') {
-      av = a.id; bv = b.id;
+      const [af, an, ae] = nistIdKey(a.id);
+      const [bf, bn, be] = nistIdKey(b.id);
+      r = af < bf ? -1 : af > bf ? 1 : an !== bn ? an - bn : ae - be;
+    } else {
+      const av = a[ctrlSort.col]||'', bv = b[ctrlSort.col]||'';
+      r = av < bv ? -1 : av > bv ? 1 : 0;
     }
-    const r = av < bv ? -1 : av > bv ? 1 : 0;
     return ctrlSort.dir === 'asc' ? r : -r;
   });
 
@@ -879,17 +940,20 @@ function renderControls() {
         <option value="">All Families</option>
         ${families.map(f=>`<option value="${f}" ${ctrlFilter.family===f?'selected':''}>${f} — ${FAMILY_NAMES[f]||f}</option>`).join('')}
       </select>
-      <select onchange="ctrlFilter.status=this.value;render()">
+      <select onchange="ctrlFilter.status=this.value;ctrlFilter.statusArr=[];render()">
         <option value="">All Statuses</option>
         ${PICKLISTS.status.map(s=>`<option value="${s}" ${ctrlFilter.status===s?'selected':''}>${s}</option>`).join('')}
+        ${ctrlFilter.statusArr&&ctrlFilter.statusArr.length>0?`<option value="" disabled>── Gap Mode Active ──</option>`:''}
       </select>
       <select onchange="ctrlFilter.inheritance=this.value;render()">
         <option value="">All Inheritance</option>
         ${PICKLISTS.inheritance.map(s=>`<option value="${s}" ${ctrlFilter.inheritance===s?'selected':''}>${s}</option>`).join('')}
       </select>
-      <button class="btn btn-ghost btn-sm" onclick="ctrlFilter={family:'',status:'',inheritance:''};render()">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="ctrlFilter={family:'',status:'',inheritance:'',statusArr:[]};render()">Clear</button>
       <button class="btn btn-ghost btn-sm" onclick="resetData()">↺ Reset</button>
     </div>
+    ${ctrlFilter.statusArr&&ctrlFilter.statusArr.length>0?`<div style="padding:6px 18px;background:rgba(245,158,11,.06);border-bottom:1px solid rgba(245,158,11,.18);font-size:10px;font-family:var(--mono);color:var(--yellow);display:flex;align-items:center;gap:10px">◈ DRILL-DOWN — Gap controls: ${ctrlFilter.statusArr.join(' · ')} <span onclick="ctrlFilter={family:'',status:'',inheritance:'',statusArr:[]};render()" style="cursor:pointer;color:var(--text-muted);margin-left:auto;border:1px solid var(--border);padding:1px 7px;border-radius:3px">✕ Clear</span></div>`:''}
+    ${(!ctrlFilter.statusArr||ctrlFilter.statusArr.length===0)&&(ctrlFilter.family||ctrlFilter.status||ctrlFilter.inheritance)?`<div style="padding:6px 18px;background:rgba(0,180,255,.04);border-bottom:1px solid rgba(0,180,255,.12);font-size:10px;font-family:var(--mono);color:var(--accent);display:flex;align-items:center;gap:10px">◈ DRILL-DOWN ACTIVE${ctrlFilter.family?' — Family: '+ctrlFilter.family:''}${ctrlFilter.status?' — Status: '+ctrlFilter.status:''}${ctrlFilter.inheritance?' — Inheritance: '+ctrlFilter.inheritance:''} <span onclick="ctrlFilter={family:'',status:'',inheritance:'',statusArr:[]};render()" style="cursor:pointer;color:var(--text-muted);margin-left:auto;border:1px solid var(--border);padding:1px 7px;border-radius:3px">✕ Clear</span></div>`:''}
     <div style="overflow-x:auto">
     <table>
       <thead><tr>
@@ -937,7 +1001,9 @@ function sortCtrl(col) {
 function renderPOAM() {
   let rows = poams.filter(p => {
     if (poamFilter.severity && p.severity !== poamFilter.severity) return false;
-    if (poamFilter.status && p.status !== poamFilter.status) return false;
+    if (poamFilter.statusArr && poamFilter.statusArr.length > 0) {
+      if (!poamFilter.statusArr.includes(p.status)) return false;
+    } else if (poamFilter.status && p.status !== poamFilter.status) return false;
     if (searchQuery) {
       const s = searchQuery;
       return p.id.toLowerCase().includes(s)||p.summary.toLowerCase().includes(s)||
@@ -961,16 +1027,18 @@ function renderPOAM() {
         <option value="">All Severities</option>
         ${PICKLISTS.poam_severity.map(s=>`<option value="${s}" ${poamFilter.severity===s?'selected':''}>${s}</option>`).join('')}
       </select>
-      <select onchange="poamFilter.status=this.value;render()">
+      <select onchange="poamFilter.status=this.value;poamFilter.statusArr=[];render()">
         <option value="">All Statuses</option>
         ${PICKLISTS.poam_status.map(s=>`<option value="${s}" ${poamFilter.status===s?'selected':''}>${s}</option>`).join('')}
       </select>
-      <button class="btn btn-ghost btn-sm" onclick="poamFilter={severity:'',status:''};render()">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="poamFilter={severity:'',status:'',statusArr:[]};render()">Clear</button>
       <div style="margin-left:auto;display:flex;gap:8px;align-items:center">
         <button class="btn btn-ghost btn-sm" onclick="exportPOAM()" title="Export POA&Ms to Excel">⬇ Export XLSX</button>
         <label class="btn btn-ghost btn-sm" style="cursor:pointer;margin:0" title="Import POA&Ms from Excel">⬆ Import XLSX<input type="file" id="poam-import-input" accept=".xlsx,.xls" style="display:none" onchange="importPOAM(this)"></label>
       </div>
     </div>
+    ${poamFilter.statusArr&&poamFilter.statusArr.length>0?`<div style="padding:6px 18px;background:rgba(240,68,85,.06);border-bottom:1px solid rgba(240,68,85,.18);font-size:10px;font-family:var(--mono);color:var(--red);display:flex;align-items:center;gap:10px">◈ DRILL-DOWN ACTIVE — Status: ${poamFilter.statusArr.join(' · ')} <span onclick="poamFilter.statusArr=[];render()" style="cursor:pointer;color:var(--text-muted);margin-left:auto;border:1px solid var(--border);padding:1px 7px;border-radius:3px">✕ Clear</span></div>`:''}
+    ${poamFilter.severity&&(!poamFilter.statusArr||poamFilter.statusArr.length===0)?`<div style="padding:6px 18px;background:rgba(255,107,53,.06);border-bottom:1px solid rgba(255,107,53,.18);font-size:10px;font-family:var(--mono);color:var(--orange);display:flex;align-items:center;gap:10px">◈ DRILL-DOWN ACTIVE — Severity: ${poamFilter.severity} <span onclick="poamFilter.severity='';render()" style="cursor:pointer;color:var(--text-muted);margin-left:auto;border:1px solid var(--border);padding:1px 7px;border-radius:3px">✕ Clear</span></div>`:''}
     <div style="overflow-x:auto">
     <table>
       <thead><tr>
@@ -989,7 +1057,7 @@ function renderPOAM() {
         ${rows.length === 0 ? `<tr><td colspan="10" class="empty"><div class="empty-icon">◈</div>NO POA&Ms MATCH YOUR FILTERS</td></tr>` :
           rows.map(p=>`<tr>
             <td class="td-mono" style="color:var(--accent);font-weight:700">${p.id}</td>
-            <td class="td-mono"><a href="#" onclick="ctrlFilter={};searchQuery='';showView('controls');setTimeout(()=>editControl('${p.control_id}'),100);return false" style="color:var(--accent-2,#a78bfa)">${p.control_id}</a></td>
+            <td class="td-mono"><a href="#" onclick="ctrlFilter={family:'',status:'',inheritance:'',statusArr:[]};searchQuery='';showView('controls');setTimeout(()=>editControl('${p.control_id}'),100);return false" style="color:var(--accent-2,#a78bfa)">${p.control_id}</a></td>
             <td style="max-width:250px">${p.summary}</td>
             <td style="font-size:12px">${p.source}</td>
             <td>${sevBadge(p.severity)}</td>
@@ -1449,7 +1517,7 @@ function renderEvidence() {
     <div class="card">
       <div class="card-label">◈ Evidence Types</div>
       <div class="card-value" style="color:var(--accent2)">${types.length}</div>
-      <div class="card-sub">${types.slice(0,3).join(' · ')}…</div>
+      <div class="card-sub">${types.slice(0,3).join(' · ')}${types.length > 3 ? '…' : ''}</div>
     </div>
     <div class="card">
       <div class="card-label">◈ Stale (&gt;90d)</div>
@@ -2156,7 +2224,14 @@ function importPOAM(input) {
         const norm = {};
         Object.keys(row).forEach(k => {
           const mapped = COL_MAP[k.toLowerCase().trim()];
-          if (mapped) norm[mapped] = String(row[k]).trim();
+          if (!mapped) return;
+          const val = row[k];
+          // Handle Date objects BEFORE stringifying — SheetJS cellDates:true returns JS Dates
+          if (val instanceof Date) {
+            norm[mapped] = val.toISOString().slice(0, 10);
+          } else {
+            norm[mapped] = String(val).trim();
+          }
         });
 
         // Skip fully empty rows
@@ -2165,14 +2240,17 @@ function importPOAM(input) {
         const missing = REQUIRED.filter(f => !norm[f]);
         if (missing.length) { errors.push(`Row ${idx+2}: missing ${missing.join(', ')}`); return; }
 
-        // Normalize date fields (SheetJS may return Date objects or strings)
+        // Normalize date fields — catch remaining formats (Excel serial, locale strings)
         ['identified','target_close'].forEach(f => {
-          if (norm[f] && norm[f] instanceof Date) {
-            norm[f] = norm[f].toISOString().slice(0,10);
-          } else if (norm[f] && /^\d{5}$/.test(norm[f])) {
-            // Excel serial date
+          if (!norm[f]) return;
+          if (/^\d{5}$/.test(norm[f])) {
+            // Excel serial date number stored as string
             const d = XLSX.SSF.parse_date_code(parseInt(norm[f]));
             norm[f] = `${d.y}-${String(d.m).padStart(2,'0')}-${String(d.d).padStart(2,'0')}`;
+          } else if (!/^\d{4}-\d{2}-\d{2}$/.test(norm[f])) {
+            // Try parsing any other date string and normalise to YYYY-MM-DD
+            const parsed = new Date(norm[f]);
+            if (!isNaN(parsed)) norm[f] = parsed.toISOString().slice(0, 10);
           }
         });
 
@@ -2473,7 +2551,7 @@ function _respondSLA() {
   const open = poams.filter(p => p.status !== 'Closed' && p.target_close);
   const over = open.filter(p => new Date(p.target_close) < today);
   const warn = open.filter(p => { const d = Math.round((new Date(p.target_close)-today)/864e5); return d >= 0 && d <= 14; });
-  let msg = 'FedRAMP POA&M SLA tiers:\n• **Critical:** 30 days\n• **High:** 90 days\n• **Moderate:** 180 days\n• **Low:** 365 days\n\n';
+  let msg = `FedRAMP POA&M SLA tiers:\n• **Critical:** 30 days\n• **High:** 90 days\n• **Moderate:** 180 days\n• **Low:** 365 days\n\n`;
   if (over.length) msg += `⚠ **Overdue (${over.length}):** ${over.map(p=>p.id).join(', ')}\n`;
   if (warn.length) msg += `⚡ **Due within 14 days (${warn.length}):** ${warn.map(p=>p.id).join(', ')}\n`;
   if (!over.length && !warn.length) msg += '✓ All POA&Ms are within SLA windows.';
@@ -2493,6 +2571,7 @@ function _overduePoams() {
   return poams.filter(p => p.status !== 'Closed' && p.target_close && new Date(p.target_close) < today);
 }
 
+// ── Message Rendering ─────────────────────────────────────────────────────────
 function _addUserMsg(text) {
   const msgs = document.getElementById('chat-messages');
   const el = document.createElement('div');
@@ -2508,6 +2587,7 @@ function _addBotMsg(text, id) {
   const el = document.createElement('div');
   el.className = 'chat-msg bot';
   if (id) el.id = id;
+  // Render **bold** and newlines
   const rendered = _esc(text)
     .replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--text)">$1</strong>')
     .replace(/\n/g, '<br>');
