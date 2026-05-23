@@ -83,6 +83,32 @@ nav{
 }
 .btn-nav-cta:hover{opacity:.85;color:#000}
 
+/* ════════ DROPDOWN ════════ */
+.nav-dropdown{position:relative}
+.nav-dropdown-toggle{
+  font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--muted);padding:7px 14px;text-decoration:none;transition:color .2s;
+  cursor:pointer;display:flex;align-items:center;gap:6px;background:none;border:none;
+}
+.nav-dropdown-toggle:hover{color:var(--text)}
+.nav-dropdown-toggle svg{transition:transform .2s}
+.nav-dropdown.open .nav-dropdown-toggle svg{transform:rotate(180deg)}
+.nav-dropdown-toggle:hover,.nav-dropdown.open .nav-dropdown-toggle{color:var(--amber)}
+.nav-dropdown-menu{
+  position:absolute;top:100%;left:0;min-width:340px;
+  background:rgba(8,9,15,0.97);border:1px solid var(--border);
+  backdrop-filter:blur(12px);padding:6px 0;
+  opacity:0;visibility:hidden;transform:translateY(4px);
+  transition:all .15s ease;z-index:300;
+}
+.nav-dropdown.open .nav-dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.nav-dropdown-item{
+  display:block;padding:10px 18px;text-decoration:none;
+  font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;
+  color:var(--muted);transition:all .15s;white-space:nowrap;
+}
+.nav-dropdown-item:hover{background:rgba(232,160,32,0.08);color:var(--amber)}
+
 /* ════════ HERO ════════ */
 .hero{
   position:relative;z-index:1;
@@ -572,6 +598,14 @@ footer{
   TrustNova<span>Ops</span>
 </a>
   <div class="nav-center">
+    <div class="nav-dropdown" id="appsDropdown">
+      <button class="nav-dropdown-toggle" onclick="document.getElementById('appsDropdown').classList.toggle('open')" aria-expanded="false" aria-haspopup="true">
+        Applications <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="nav-dropdown-menu">
+        <a href="/accord" class="nav-dropdown-item">TrustNovaOps ACCORD // AWS Cloud ISSO Tracker</a>
+      </div>
+    </div>
     <a href="/warden" class="nav-link">WARDEN</a>
     <a href="/platform" class="nav-link">Platform</a>
     <a href="#how-it-works" class="nav-link">How It Works</a>
@@ -1254,6 +1288,12 @@ footer{
 </div>
 
 <script>
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+  var dd = document.getElementById('appsDropdown');
+  if (dd && !dd.contains(e.target)) dd.classList.remove('open');
+});
+
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {

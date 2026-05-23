@@ -4,6 +4,7 @@
 /platform               /platform.html  200
 /demo                   /demo.html      200
 /warden                 /warden.html    200
+/accord                 /accord.html    200
 
 # Legal pages (both slug variants)
 /privacy                /  200
