@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ACCORD // CLOUD ISSO — TrustNovaOps</title>
+<title>ACCORD // CLOUD ISSO â TrustNovaOps</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
@@ -24,7 +24,7 @@
     --mono: 'Cascadia Code', 'Courier New', monospace;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; min-height: 100vh; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; min-height: 100vh; overflow-x: hidden; }
 
   /* Layout */
   #app { display: flex; min-height: 100vh; }
@@ -96,7 +96,7 @@
   .card:hover { border-top-color: var(--accent); }
   .card.drillable { cursor: pointer; position: relative; transition: border-top-color .2s, background .15s, transform .15s; }
   .card.drillable:hover { background: rgba(0,180,255,.05); transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,.35); }
-  .card.drillable::after { content: '↗'; position: absolute; top: 10px; right: 12px; font-size: 11px; color: var(--text-muted); opacity: 0; transition: opacity .15s, color .15s; font-family: var(--mono); }
+  .card.drillable::after { content: 'â'; position: absolute; top: 10px; right: 12px; font-size: 11px; color: var(--text-muted); opacity: 0; transition: opacity .15s, color .15s; font-family: var(--mono); }
   .card.drillable:hover::after { opacity: 1; color: var(--accent); }
   .card-label { font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 10px; font-family: var(--mono); font-weight: 700; }
   .card-value { font-size: 30px; font-weight: 800; line-height: 1; font-family: var(--mono); }
@@ -105,14 +105,14 @@
   /* Charts row */
   .charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
   .chart-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; }
-  .chart-card canvas { cursor: pointer; }
+  .chart-card canvas { cursor: pointer; max-width: 100%; touch-action: manipulation; }
   .chart-card-hint { font-size: 9px; color: var(--text-muted); font-family: var(--mono); letter-spacing: .06em; margin-left: auto; opacity: .6; }
   .chart-card h3 {
     font-size: 9px; font-weight: 700; margin-bottom: 14px;
     color: var(--text-muted); text-transform: uppercase; letter-spacing: .12em;
     font-family: var(--mono); display: flex; align-items: center; gap: 6px;
   }
-  .chart-card h3::before { content: '◈'; color: var(--accent); font-size: 10px; }
+  .chart-card h3::before { content: 'â'; color: var(--accent); font-size: 10px; }
   .chart-wrap { position: relative; height: 200px; }
 
   /* Table */
@@ -156,7 +156,7 @@
 
   /* Modal */
   .modal-overlay { position: fixed; inset: 0; background: rgba(0,5,12,.85); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(4px); }
-  .modal { background: var(--surface); border: 1px solid var(--border); border-top: 2px solid var(--accent); border-radius: var(--radius); width: 700px; max-height: 90vh; overflow-y: auto; box-shadow: 0 30px 80px rgba(0,0,0,.7), 0 0 40px rgba(0,180,255,.06); }
+  .modal { background: var(--surface); border: 1px solid var(--border); border-top: 2px solid var(--accent); border-radius: var(--radius); width: min(700px, 96vw); max-height: 90vh; overflow-y: auto; box-shadow: 0 30px 80px rgba(0,0,0,.7), 0 0 40px rgba(0,180,255,.06); }
   .modal-header { padding: 18px 22px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
   .modal-header h2 { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; font-family: var(--mono); }
   .modal-body { padding: 22px; }
@@ -229,8 +229,8 @@
   .days-over { color: var(--red); }
 
   /* Sortable indicator */
-  .sort-asc::after { content: ' ↑'; color: var(--accent); }
-  .sort-desc::after { content: ' ↓'; color: var(--accent); }
+  .sort-asc::after { content: ' â'; color: var(--accent); }
+  .sort-desc::after { content: ' â'; color: var(--accent); }
 
   /* Sidebar footer */
   .sidebar-footer {
@@ -249,16 +249,88 @@
   .topbar-heading { font-size: 14px; font-weight: 800; color: var(--text); font-family: var(--mono); text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
   .topbar-heading span { color: var(--accent); }
 
-  /* Responsive */
-  @media (max-width: 900px) {
+  /* Reusable responsive grid classes */
+  .two-col-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 22px; }
+  .detail-grid  { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+
+  /* âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+     RESPONSIVE â 3-TIER BREAKPOINTS
+     Desktop â¥1025px  |  Tablet 601â1024px  |  Phone â¤600px
+  âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+  @media (max-width: 1024px) {
     .charts-row { grid-template-columns: 1fr; }
-    .form-grid { grid-template-columns: 1fr; }
-    #sidebar { width: 60px; }
+    .form-grid  { grid-template-columns: 1fr; }
+    .two-col-grid { grid-template-columns: 1fr; }
+    #sidebar { width: 64px; }
     .sidebar-logo, .nav-label, .nav-section, .sidebar-footer { display: none; }
-    .nav-item { justify-content: center; padding: 12px; }
+    .nav-item { justify-content: center; padding: 12px 8px; }
+    .modal { width: min(92vw, 640px); }
+    .search-box input { width: 160px; }
+    #chat-panel { width: min(340px, calc(100vw - 90px)); right: 16px; }
+  }
+  @media (max-width: 600px) {
+    #sidebar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      width: 100% !important; height: 58px;
+      flex-direction: row; flex-shrink: 0;
+      border-right: none; border-top: 1px solid var(--border);
+      overflow-x: auto; overflow-y: hidden;
+      z-index: 900; padding: 0;
+      justify-content: space-around; align-items: center;
+    }
+    .sidebar-logo, .nav-section, .sidebar-footer { display: none !important; }
+    .nav-item {
+      flex-direction: column !important; flex: 1;
+      justify-content: center !important; align-items: center !important;
+      padding: 5px 4px !important; gap: 2px !important;
+      border-left: none !important; border-bottom: 2px solid transparent;
+      font-size: 7px !important; min-width: 50px;
+    }
+    .nav-item.active {
+      border-left-color: transparent !important;
+      border-bottom-color: var(--accent);
+      background: rgba(0,180,255,.07);
+    }
+    .nav-label { display: block !important; font-size: 7px !important; letter-spacing: .02em !important; }
+    .nav-icon  { font-size: 16px !important; width: auto !important; }
+    .nav-tag   { display: none !important; }
+    #content { padding: 12px; padding-bottom: 70px; }
+    #topbar { padding: 8px 12px; gap: 8px; }
+    .topbar-crumb { display: none; }
+    .topbar-heading { font-size: 11px; letter-spacing: .03em; }
+    #add-btn { padding: 5px 9px; font-size: 10px; }
+    .search-box { flex: 1; min-width: 0; }
+    .search-box input { width: 100%; min-width: 0; }
+    .cards { grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 14px; }
+    .card { padding: 12px 10px; }
+    .card-value { font-size: 22px; }
+    .card-sub { font-size: 9px; }
+    .card.drillable:hover { transform: none; box-shadow: none; }
+    .charts-row { grid-template-columns: 1fr; gap: 10px; margin-bottom: 14px; }
+    .chart-wrap { height: 155px; }
+    .chart-card { padding: 12px; }
+    .chart-card h3 { flex-wrap: wrap; }
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table { min-width: 560px; }
+    .table-header { padding: 10px 12px; }
+    .table-header h3 { font-size: 10px; }
+    th, td { padding: 7px 10px; font-size: 11px; }
+    .two-col-grid { grid-template-columns: 1fr; gap: 10px; margin-bottom: 14px; }
+    .detail-grid  { grid-template-columns: 1fr; gap: 10px; }
+    .modal-overlay { padding: 4; align-items: flex-end; }
+    .modal {
+      width: 100% !important; max-height: 92dvh;
+      border-radius: 12px 12px 0 0 !important;
+      border-left: none; border-right: none; border-bottom: none;
+    }
+    .modal-body { padding: 14px; }
+    .form-grid { grid-template-columns: 1fr; gap: 10px; }
+    #chat-panel { width: calc(100vw - 16px) !important; right: 8px !important; bottom: 66px !important; height: 440px; }
+    #chat-fab { bottom: 66px !important; right: 16px !important; }
+    #toast { bottom: 66px; right: 12px; left: 12px; text-align: center; }
   }
 
-  /* ── AI Capability Badges ──────────────────────────────────────────────── */
+  /* ââ AI Capability Badges ââââââââââââââââââââââââââââââââââââââââââââââââ */
   .ai-chip {
     display: inline-flex; align-items: center; gap: 3px;
     padding: 2px 7px; border-radius: 10px; font-size: 9px; font-weight: 700;
@@ -267,7 +339,7 @@
     letter-spacing: .05em; text-transform: uppercase; white-space: nowrap;
     cursor: default; vertical-align: middle;
   }
-  .ai-chip::before { content: '⚡'; font-size: 9px; }
+  .ai-chip::before { content: 'â¡'; font-size: 9px; }
   .ai-tip { position: relative; display: inline-block; }
   .ai-tip:hover .ai-tooltip { display: block; }
   .ai-tooltip {
@@ -282,7 +354,7 @@
     border: 5px solid transparent; border-top-color: rgba(232,160,32,0.35);
   }
 
-  /* ── Chatbot Panel ─────────────────────────────────────────────────────── */
+  /* ââ Chatbot Panel âââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
   #chat-fab {
     position: fixed; bottom: 24px; right: 24px; z-index: 1001;
     width: 52px; height: 52px; border-radius: 50%;
@@ -314,7 +386,7 @@
   .chat-header-info { flex: 1; }
   .chat-header-name { font-size: 12px; font-weight: 800; color: var(--text); font-family: var(--mono); text-transform: uppercase; letter-spacing: .06em; }
   .chat-header-status { font-size: 9px; color: var(--green); font-family: var(--mono); letter-spacing: .06em; display: flex; align-items: center; gap: 4px; margin-top: 2px; }
-  .chat-header-status::before { content: '●'; font-size: 7px; }
+  .chat-header-status::before { content: 'â'; font-size: 7px; }
   .chat-close-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 14px; font-family: var(--mono); padding: 4px 6px; line-height: 1; }
   .chat-close-btn:hover { color: var(--accent); }
 
@@ -407,47 +479,41 @@
       </div>
       <hr class="sidebar-divider">
       <div class="sidebar-product">ACCORD <span>//</span> CLOUD ISSO</div>
-      <div class="sidebar-subtitle">AWS Cloud ISSO · ATO Controls<br>&amp; POA&amp;M Evidence Tracker</div>
+      <div class="sidebar-subtitle">AWS Cloud ISSO Â· ATO Controls<br>&amp; POA&amp;M Evidence Tracker</div>
       <div class="sidebar-badge">AGT-06 // COMPLIANCE</div>
     </div>
 
-    <div class="nav-section">◈ ISSO Ops</div>
-    <div class="nav-item active" onclick="showView('dashboard')" id="nav-dashboard">
-      <span class="nav-icon">▣</span>
-      <span class="nav-label">Dashboard</span>
+    <div class="nav-section">â ISSO Ops</div>
+    <div class="nav-section">â ISSO Ops</div>
+    <div class="nav-item" onclick="showView('readme')" id="nav-readme">
+      <span class="nav-icon">â«</span>
+      <span class="nav-label">Guide</span>
       <span class="nav-tag">01</span>
     </div>
-    <div class="nav-item" onclick="showView('controls')" id="nav-controls">
-      <span class="nav-icon">◉</span>
-      <span class="nav-label">Controls</span>
+    <div class="nav-item" onclick="showView('dashboard')" id="nav-dashboard">
+      <span class="nav-icon">â£</span>
+      <span class="nav-label">Dashboard</span>
       <span class="nav-tag">02</span>
     </div>
-    <div class="nav-item" onclick="showView('poam')" id="nav-poam">
-      <span class="nav-icon">◎</span>
-      <span class="nav-label">POA&amp;M</span>
+    <div class="nav-item" onclick="showView('controls')" id="nav-controls">
+      <span class="nav-icon">â</span>
+      <span class="nav-label">Controls</span>
       <span class="nav-tag">03</span>
     </div>
-    <div class="nav-item" onclick="showView('evidence')" id="nav-evidence">
-      <span class="nav-icon">◩</span>
-      <span class="nav-label">Evidence</span>
+    <div class="nav-item" onclick="showView('poam')" id="nav-poam">
+      <span class="nav-icon">â</span>
+      <span class="nav-label">POA&amp;M</span>
       <span class="nav-tag">04</span>
     </div>
+    <div class="nav-item" onclick="showView('evidence')" id="nav-evidence">
+      <span class="nav-icon">â©</span>
+      <span class="nav-label">Evidence</span>
+      <span clas="nav-tag">05</span>
+    </div>
     <div class="nav-item" onclick="showView('reports')" id="nav-reports">
-      <span class="nav-icon">◪</span>
+      <span class="nav-icon">âª</span>
       <span class="nav-label">Reports</span>
-      <span class="nav-tag">05</span>
-    </div>
-
-    <div class="nav-section">◈ Reference</div>
-    <div class="nav-item" onclick="showView('readme')" id="nav-readme">
-      <span class="nav-icon">◫</span>
-      <span class="nav-label">Guide</span>
       <span class="nav-tag">06</span>
-    </div>
-    <div class="nav-item" onclick="showView('reference')" id="nav-reference">
-      <span class="nav-icon">⊞</span>
-      <span class="nav-label">Picklists</span>
-      <span class="nav-tag">07</span>
     </div>
 
     <div class="sidebar-footer">
@@ -466,9 +532,9 @@
         </svg>
         <div class="sidebar-footer-brand">TrustNovaOps.com</div>
       </div>
-      <div class="sidebar-footer-sub">ACCORD v1.0 · AWS Cloud ISSO</div>
+      <div class="sidebar-footer-sub">ACCORD v1.0 Â· AWSCloud ISSO</div>
       <div class="sidebar-footer-tags">
-        <span class="tag-pill">FedRAMP</span>
+        <span class="tag-pill">FedRBMP</span>
         <span class="tag-pill">NIST 800-53</span>
         <span class="tag-pill">RMF/ATO</span>
         <span class="tag-pill">CMMC</span>
@@ -480,12 +546,12 @@
   <div id="main">
     <div id="topbar">
       <div class="topbar-left">
-        <div class="topbar-crumb">TrustNovaOps · ACCORD // AWS Cloud ISSO — ATO Controls &amp; POA&amp;M Evidence Tracker</div>
+        <div class="topbar-crumb">TrustNovaOps Â· ABCORD // AWS Cloud ISSO â ATO Controls &amp; POA&amp;M Evidence Tracker</div>
         <div class="topbar-heading" id="view-title">DASHBOARD</div>
       </div>
       <div class="search-box">
-        <span style="color:var(--text-muted);font-size:12px">◈</span>
-        <input type="text" id="global-search" placeholder="Search controls, IDs, services…" oninput="handleSearch(this.value)">
+        <span style="color:var(--text-muted);font-size:12px">â</span>
+        <input type="text" id="global-search" placeholder="Search controls, IDs, servicesâ¦" oninput="handleSearch(this.value)">
       </div>
       <button class="btn btn-primary" id="add-btn" onclick="openAddModal()" style="display:none">+ Add</button>
     </div>
@@ -498,7 +564,7 @@
   <div class="modal">
     <div class="modal-header">
       <h2 id="modal-title">Edit Control</h2>
-      <button class="close-btn" onclick="closeModal()">✕</button>
+      <button class="close-btn" onclick="closeModal()">â</button>
     </div>
     <div class="modal-body" id="modal-body"></div>
     <div class="modal-footer" id="modal-footer"></div>
@@ -507,8 +573,8 @@
 
 <div id="toast"></div>
 
-<!-- ── ISSO Assistant Chatbot ─────────────────────────────────────────────── -->
-<button id="chat-fab" onclick="toggleChat()" title="ISSO Assistant — AI-Powered">⚡</button>
+<!-- ââ ISSO Assistant Chatbot ââââââââââââââââââââââââââââââââââââââââââââââââ -->
+<button id="chat-fab" onclick="toggleChat()" title="ISSO Assistant â AI-Powered">â¡</button>
 
 <div id="chat-panel" class="hidden">
   <div class="chat-header">
@@ -518,10 +584,10 @@
       <circle cx="256" cy="256" r="13" fill="#e8a020"/>
     </svg>
     <div class="chat-header-info">
-      <div class="chat-header-name">ISSO Assistant</div>
-      <div class="chat-header-status">Online · Contextual AI</div>
+      <div class="chat-header-name">ISSOAssistant</div>
+      <div class="chat-header-status">Online Â· Contextual AI</div>
     </div>
-    <button class="chat-close-btn" onclick="toggleChat()">✕</button>
+    <button class="chat-close-btn" onclick="toggleChat()">â</button>
   </div>
   <div class="chat-messages" id="chat-messages"></div>
   <div class="chat-chips" id="chat-chips">
@@ -533,54 +599,47 @@
   </div>
   <div class="chat-input-row">
     <input class="chat-input-field" id="chat-input" type="text"
-      placeholder="Ask about controls, POA&Ms, ATO…"
+      placeholder="Ask about controls, POA&Ms, ATOâ¦"
       onkeydown="if(event.key==='Enter')sendChat()">
-    <button class="chat-send-btn" onclick="sendChat()">↑</button>
+    <button class="chat-send-btn" onclick="sendChat()">â</button>
   </div>
 </div>
 
 <script>
-// ─── DATA ────────────────────────────────────────────────────────────────────
+// âââ DATA ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 const DEFAULT_CONTROLS = [
-  {id:"AC-2",family:"AC",title:"Account Management",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"IAM, Identity Center",aws_impl:"AWS provides IAM and Identity Center; identity lifecycle APIs",customer_resp:"Define account types, approvals, automated provisioning/deprovisioning",status:"Implemented",evidence:"SSP §AC-2; AuditMgr-Asmt-2026Q2",last_reviewed:"2026-05-01",poam_id:null,notes:null},
-  {id:"AC-2(1)",family:"AC",title:"Automated System Account Management",baseline:"High",inheritance:"Customer",responsible:"Customer",services:"Identity Center, EventBridge, Lambda",aws_impl:"Identity Center SCIM + EventBridge automation pattern",customer_resp:"Implement automated disable on HR offboarding event within 24h",status:"Partially Implemented",evidence:"SSP §AC-2(1)",last_reviewed:"2026-05-01",poam_id:"POAM-0001",notes:"Tied to POAM-0001"},
-  {id:"AC-3",family:"AC",title:"Access Enforcement",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"IAM, SCPs, Resource Policies",aws_impl:"AWS enforces IAM policy evaluation",customer_resp:"Author least-privilege policies; SCP guardrails on root/break-glass",status:"Implemented",evidence:"SSP §AC-3; Config:iam-policy-no-statements-with-admin-access",last_reviewed:"2026-05-01",poam_id:null,notes:null},
-  {id:"AC-6",family:"AC",title:"Least Privilege",baseline:"High",inheritance:"Customer",responsible:"Customer",services:"IAM Access Analyzer, IAM",aws_impl:"Access Analyzer surfaces unused permissions",customer_resp:"Quarterly access reviews; right-size permissions",status:"Implemented",evidence:"SSP §AC-6; Access Analyzer report Q1 2026",last_reviewed:"2026-04-15",poam_id:null,notes:null},
-  {id:"AC-17",family:"AC",title:"Remote Access",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"Systems Manager Session Manager, Client VPN",aws_impl:"SSM session logging to S3+CW",customer_resp:"Disable SSH/RDP; enforce SSM-only sessions",status:"Implemented",evidence:"SSP §AC-17; CloudTrail session logs",last_reviewed:"2026-05-01",poam_id:null,notes:null},
-  {id:"AU-2",family:"AU",title:"Event Logging",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"CloudTrail, CloudWatch Logs, VPC Flow Logs",aws_impl:"AWS records all API events",customer_resp:"Enable org-wide CloudTrail, multi-region, log file validation",status:"Implemented",evidence:"SSP §AU-2; CloudTrail trail-arn:...",last_reviewed:"2026-05-01",poam_id:null,notes:null},
-  {id:"AU-9",family:"AU",title:"Protection of Audit Information",baseline:"High",inheritance:"Customer",responsible:"Customer",services:"S3 Object Lock, KMS, CloudTrail validation",aws_impl:"S3 Object Lock + KMS CMK",customer_resp:"Object Lock enabled w/ retention; cross-account log archive",status:"Implemented",evidence:"SSP §AU-9; bucket-policy.json",last_reviewed:"2026-05-01",poam_id:"POAM-0002",notes:"Closed POAM-0002"},
-  {id:"AU-12",family:"AU",title:"Audit Record Generation",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"CloudTrail, CloudWatch, Config",aws_impl:"Service-level audit generation by AWS",customer_resp:"Configure log destinations and retention",status:"Implemented",evidence:"SSP §AU-12",last_reviewed:"2026-05-01",poam_id:null,notes:null},
+  {id:"AC-2",family:"AC",title:"Account Management",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"IAM, Identity Center",aws_impl:"AWS provides IAM and Identity Center; identity lifecycle APIs",customer_resp:"Define account types, approvals, automated provisioning/deprovisioning",status:"Implemented",evidence:"SSP Â§AC-2; AuditMgr-Asmt-2026Q2",last_reviewed:"2026-05-01",poam_id:null,notes:null},
+  {id:"AC-2(1)",family:"AC",title:"Automated System Account Management",baseline:"High",inheritance:"Customer",responsible:"Customer",services:"Identity Center, EventBridge, Lambda",aws_impl:"Identity Center SCIM + EventBridge automation pattern",customer_resp:"Implement automated disable on HR offboarding event within 24h",status:"Partially Implemented",evidence:"SSP Â§AC-2(1)",last_reviewed:"2026-05-01",poam_id:"POAM-0001",notes:"Tied to POAM-0001"},
+  {id:"AC-3",family:"AC",title:"Access Enforcement",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"IAM, SCPs, Resource Policies",aws_impl:"AWS enforces IAM policy evaluation",customer_resp:"Author least-privilege policies; SCP guardrails on root/break-glass",status:"Implemented",evidence:"SSP Â§AC-3; Config:iam-policy-no-statements-with-admin-access",last_reviewed:"2026-05-01",poam_id:null,notes:null},
+  {id:"AC-6",family:"AC",title:"Least Privilege",baseline:"High",inheritance:"Customer",responsible:"Customer",services:"IAM Access Analyzer, IAM",aws_impl:"Access Analyzer surfaces unused permissions",customer_resp:"Quarterly access reviews; right-size permissions",status:"Implemented",evidence:"SSP Â§AC-6; Access Analyzer report Q1 2026",last_reviewed:"2026-04-15",poam_id:null,notes:null},
+  {id:"AC-17",family:"AC",title:"Remote Access",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"Systems Manager Session Manager, Client VPN",aws_impl:"SSM session logging to S3+CW",customer_resp:"Disable SSH/RDP; enforce SSM-only sessions",status:"Implemented",evidence:"SSP Â§AC-17; CloudTrail session logs",last_reviewed:"2026-05-01",poam_id:null,notes:null},
+  {id:"AU-2",family:"AU",title:"Event Logging",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"CloudTrail, CloudWatch Logs, VPC Flow Logs",aws_impl:"AWS records all API events",customer_resp:"Enable org-wide CloudTrail, multi-region, log file validation",status:"Implemented",evidence:"SSP Â§AU-2; CloudTrail trail-arn:...",last_reviewed:"2026-05-01",poam_id:null,notes:null},
+  {id:"AU-9",family:"AU",title:"Protection of Audit Information",baseline:"High",inheritance:"Customer",responsible:"Customer",services:"S3 Object Lock, KMS, CloudTrail validation",aws_impl:"S3 Object Lock + KMS CMK",customer_resp:"Object Lock enabled w/ retention; cross-account log archive",status:"Implemented",evidence:"SSP Â§AU-9; bucket-policy.json",last_reviewed:"2026-05-01",poam_id:"POAM-0002",notes:"Closed POAM-0002"},
+  {id:"AU-12",family:"AU",title:"Audit Record Generation",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"CloudTrail, CloudWatch, Config",aws_impl:"Service-level audit generation by AWS",customer_resp:"Configure log destinations and retention",status:"Implemented",evidence:"SSP Â§AU-12",last_reviewed:"2026-05-01",poam_id:null,notes:null},
   {id:"CA-7",family:"CA",title:"Continuous Monitoring",baseline:"High",inheritance:"Customer",responsible:"Customer",services:"Security Hub, Config, Audit Manager",aws_impl:"Aggregation services provided by AWS",customer_resp:"Define ConMon strategy, monthly reporting cadence",status:"Implemented",evidence:"ConMon Strategy v1.2",last_reviewed:"2026-04-01",poam_id:null,notes:null},
-  {id:"CM-2",family:"CM",title:"Baseline Configuration",baseline:"High",inheritance:"Customer",responsible:"Customer",services:"Config, CloudFormation, SSM State Manager",aws_impl:"Config records resource state",customer_resp:"Define and maintain baseline; detect drift",status:"Implemented",evidence:"SSP §CM-2; LZA v1.6 baseline",last_reviewed:"2026-05-01",poam_id:null,notes:null},
+  {id:"CM-2",family:"CM",title:"Baseline Configuration",baseline:"High",inheritance:"Customer",responsible:"Customer",services:"Config, CloudFormation, SSM State Manager",aws_impl:"Config records resource state",customer_resp:"Define and maintain baseline; detect drift",status:"Implemented",evidence:"SSP Â§CM-2; LZA v1.6 baseline",last_reviewed:"2026-05-01",poam_id:null,notes:null},
   {id:"CM-6",family:"CM",title:"Configuration Settings",baseline:"High",inheritance:"Customer",responsible:"Customer",services:"SSM, STIG SCAP, ACAS",aws_impl:"SSM patch + state management",customer_resp:"STIG hardening per OS; document deviations",status:"Partially Implemented",evidence:"STIG checklists in S3 evidence bucket",last_reviewed:"2026-05-02",poam_id:"POAM-0004",notes:"4 instances below threshold"},
-  {id:"CM-7",family:"CM",title:"Least Functionality",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"SCPs, SSM, AMI hardening",aws_impl:"SCPs block unused regions/services",customer_resp:"Disable unneeded services on hosts; allowlist software",status:"Implemented",evidence:"SSP §CM-7; SCP-deny-unused-regions",last_reviewed:"2026-05-01",poam_id:null,notes:null},
+  {id:"CM-7",family:"CM",title:"Least Functionality",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"SCPs, SSM, AMI hardening",aws_impl:"SCPs block unused regions/services",customer_resp:"Disable unneeded services on hosts; allowlist software",status:"Implemented",evidence:"SSP Â§CM-7; SCP-deny-unused-regions",last_reviewed:"2026-05-01",poam_id:null,notes:null},
   {id:"CM-8",family:"CM",title:"System Component Inventory",baseline:"High",inheritance:"Customer",responsible:"Customer",services:"Config Aggregator, SSM Inventory",aws_impl:"Continuous resource recording",customer_resp:"Maintain authoritative inventory; reconcile monthly",status:"Implemented",evidence:"Config Aggregator dashboard",last_reviewed:"2026-05-01",poam_id:null,notes:null},
-  {id:"CP-9",family:"CP",title:"System Backup",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"AWS Backup, Vault Lock",aws_impl:"Durable storage of backups",customer_resp:"Define backup plans, retention, restore testing",status:"Implemented",evidence:"SSP §CP-9; Backup vault: arn:...",last_reviewed:"2026-05-01",poam_id:null,notes:null},
+  {id:"CP-9",family:"CP",title:"System Backup",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"AWS Backup, Vault Lock",aws_impl:"Durable storage of backups",customer_resp:"Define backup plans, retention, restore testing",status:"Implemented",evidence:"SSP Â§CP-9; Backup vault: arn:...",last_reviewed:"2026-05-01",poam_id:null,notes:null},
   {id:"CP-10",family:"CP",title:"System Recovery and Reconstitution",baseline:"High",inheritance:"Customer",responsible:"Customer",services:"Elastic Disaster Recovery, CloudFormation",aws_impl:"DR services provided by AWS",customer_resp:"Annual DR test; documented runbooks",status:"Implemented",evidence:"DR Test Report 2026",last_reviewed:"2026-03-15",poam_id:null,notes:null},
-  {id:"IA-2",family:"IA",title:"Identification and Authentication (Users)",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"IAM, Identity Center, IdP federation",aws_impl:"AWS provides federation endpoints",customer_resp:"Enforce PIV/CAC via SAML IdP; MFA on all interactive",status:"Implemented",evidence:"SSP §IA-2; Okta IdP config",last_reviewed:"2026-04-20",poam_id:null,notes:null},
-  {id:"IA-5",family:"IA",title:"Authenticator Management",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"IAM, Identity Center, Secrets Manager",aws_impl:"IAM password/key policies",customer_resp:"Define password policy, key rotation, secret rotation",status:"Implemented",evidence:"SSP §IA-5; password-policy.json",last_reviewed:"2026-04-20",poam_id:null,notes:null},
+  {id:"IA-2",family:"IA",title:"Identification and Authentication (Users)",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"IAM, Identity Center, IdP federation",aws_impl:"AWS provides federation endpoints",customer_resp:"Enforce PIV/CAC via SAML IdP; MFA on all interactive",status:"Implemented",evidence:"SSP Â§IA-2; Okta IdP config",last_reviewed:"2026-04-20",poam_id:null,notes:null},
+  {id:"IA-5",family:"IA",title:"Authenticator Management",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"IAM, Identity Center, Secrets Manager",aws_impl:"IAM password/key policies",customer_resp:"Define password policy, key rotation, secret rotation",status:"Implemented",evidence:"SSP Â§IA-5; password-policy.json",last_reviewed:"2026-04-20",poam_id:null,notes:null},
   {id:"IR-4",family:"IR",title:"Incident Handling",baseline:"High",inheritance:"Customer",responsible:"Customer",services:"GuardDuty, Detective, SSM Incident Manager",aws_impl:"Detection services by AWS",customer_resp:"Define IR playbooks; automate w/ EventBridge",status:"Implemented",evidence:"IRP v2.1; Playbook library",last_reviewed:"2026-02-28",poam_id:null,notes:null},
-  {id:"IR-6",family:"IR",title:"Incident Reporting",baseline:"High",inheritance:"Customer",responsible:"Customer",services:"SNS, Security Hub",aws_impl:"Notification services by AWS",customer_resp:"Report to US-CERT/agency SOC within required SLAs",status:"Implemented",evidence:"SSP §IR-6",last_reviewed:"2026-02-28",poam_id:null,notes:null},
+  {id:"IR-6",family:"IR",title:"Incident Reporting",baseline:"High",inheritance:"Customer",responsible:"Customer",services:"SNS, Security Hub",aws_impl:"Notification services by AWS",customer_resp:"Report to US-CERT/agency SOC within required SLAs",status:"Implemented",evidence:"SSP Â§IR-6",last_reviewed:"2026-02-28",poam_id:null,notes:null},
   {id:"MA-2",family:"MA",title:"Controlled Maintenance",baseline:"High",inheritance:"Fully Inherited",responsible:"AWS",services:"n/a (physical)",aws_impl:"AWS performs all hardware maintenance",customer_resp:"Cite AWS FedRAMP P-ATO",status:"Implemented",evidence:"AWS FedRAMP P-ATO; CRM row MA-2",last_reviewed:"2026-01-01",poam_id:null,notes:null},
   {id:"MP-4",family:"MP",title:"Media Storage",baseline:"High",inheritance:"Fully Inherited",responsible:"AWS",services:"n/a (physical)",aws_impl:"AWS controls all physical media",customer_resp:"Cite AWS FedRAMP P-ATO",status:"Implemented",evidence:"AWS FedRAMP P-ATO; CRM row MP-4",last_reviewed:"2026-01-01",poam_id:null,notes:null},
   {id:"PE-3",family:"PE",title:"Physical Access Control",baseline:"High",inheritance:"Fully Inherited",responsible:"AWS",services:"n/a (physical)",aws_impl:"AWS data center physical security",customer_resp:"Cite AWS FedRAMP P-ATO",status:"Implemented",evidence:"AWS FedRAMP P-ATO; CRM row PE-3",last_reviewed:"2026-01-01",poam_id:null,notes:null},
   {id:"RA-5",family:"RA",title:"Vulnerability Monitoring and Scanning",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"Inspector, ECR scan, ACAS",aws_impl:"Inspector continuous scanning",customer_resp:"Monthly auth scans; close Crit in 30d, High in 90d",status:"Implemented",evidence:"Inspector findings export; ACAS reports",last_reviewed:"2026-05-01",poam_id:null,notes:null},
-  {id:"SC-7",family:"SC",title:"Boundary Protection",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"VPC, Network Firewall, WAF, SGs, NACLs",aws_impl:"Network primitives by AWS",customer_resp:"Design boundary; deny-by-default; egress filtering",status:"Implemented",evidence:"SSP §SC-7; network diagrams",last_reviewed:"2026-05-01",poam_id:null,notes:null},
-  {id:"SC-8",family:"SC",title:"Transmission Confidentiality and Integrity",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"ACM, ELB, CloudFront",aws_impl:"TLS termination services by AWS",customer_resp:"Enforce TLS 1.2+; FIPS endpoints in GovCloud",status:"Implemented",evidence:"SSP §SC-8; ACM cert inventory",last_reviewed:"2026-05-01",poam_id:null,notes:null},
-  {id:"SC-12",family:"SC",title:"Cryptographic Key Establishment and Management",baseline:"High",inheritance:"Customer",responsible:"Customer",services:"KMS, CloudHSM",aws_impl:"KMS multi-tenant HSM (FIPS 140-2 L2); CloudHSM (L3)",customer_resp:"Use customer-managed CMKs; document key policies & rotation",status:"Implemented",evidence:"SSP §SC-12; KMS key inventory",last_reviewed:"2026-05-01",poam_id:null,notes:null},
-  {id:"SC-13",family:"SC",title:"Cryptographic Protection",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"KMS, CloudHSM, ACM",aws_impl:"FIPS-validated modules",customer_resp:"Use FIPS endpoints; document algorithms",status:"Implemented",evidence:"SSP §SC-13",last_reviewed:"2026-05-01",poam_id:null,notes:null},
+  {id:"SC-7",family:"SC",title:"Boundary Protection",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"VPC, Network Firewall, WAF, SGs, NACLs",aws_impl:"Network primitives by AWS",customer_resp:"Design boundary; deny-by-default; egress filtering",status:"Implemented",evidence:"SSP Â§SC-7; network diagrams",last_reviewed:"2026-05-01",poam_id:null,notes:null},
+  {id:"SC-8",family:"SC",title:"Transmission Confidentiality and Integrity",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"ACM, ELB, CloudFront",aws_impl:"TLS termination services by AWS",customer_resp:"Enforce TLS 1.2+; FIPS endpoints in GovCloud",status:"Implemented",evidence:"SSP Â§SC-8; ACM cert inventory",last_reviewed:"2026-05-01",poam_id:null,notes:null},
+  {id:"SC-12",family:"SC",title:"Cryptographic Key Establishment and Management",baseline:"High",inheritance:"Customer",responsible:"Customer",services:"KMS, CloudHSM",aws_impl:"KMS multi-tenant HSM (FIPS 140-2 L2); CloudHSM (L3)",customer_resp:"Use customer-managed CMKs; document key policies & rotation",status:"Implemented",evidence:"SSP Â§SC-12; KMS key inventory",last_reviewed:"2026-05-01",poam_id:null,notes:null},
+  {id:"SC-13",family:"SC",title:"Cryptographic Protection",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"KMS, CloudHSM, ACM",aws_impl:"FIPS-validated modules",customer_resp:"Use FIPS endpoints; document algorithms",status:"Implemented",evidence:"SSP Â§SC-13",last_reviewed:"2026-05-01",poam_id:null,notes:null},
   {id:"SC-28",family:"SC",title:"Protection of Information at Rest",baseline:"High",inheritance:"Customer",responsible:"Customer",services:"KMS, S3, EBS, RDS encryption",aws_impl:"Encryption-at-rest via KMS",customer_resp:"Enable encryption on all data stores; CMK ownership",status:"Implemented",evidence:"Config rule: encrypted-volumes",last_reviewed:"2026-05-01",poam_id:null,notes:null},
-  {id:"SI-2",family:"SI",title:"Flaw Remediation",baseline:"High",inheritance:"Customer",responsible:"Customer",services:"SSM Patch Manager, Inspector",aws_impl:"Patch baselines & automation",customer_resp:"Patch SLAs: Crit 7d, High 30d; document deviations",status:"Implemented",evidence:"SSP §SI-2; Patch Manager dashboards",last_reviewed:"2026-05-01",poam_id:null,notes:null},
-  {id:"SI-4",family:"SI",title:"System Monitoring",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"GuardDuty, Security Hub, CloudWatch, Detective",aws_impl:"Detection services",customer_resp:"Tune findings; route to SOC; document alerting",status:"Implemented",evidence:"SSP §SI-4; Sec Hub findings",last_reviewed:"2026-05-01",poam_id:null,notes:null},
+  {id:"SI-2",family:"SI",title:"Flaw Remediation",baseline:"High",inheritance:"Customer",responsible:"Customer",services:"SSM Patch Manager, Inspector",aws_impl:"Patch baselines & automation",customer_resp:"Patch SLAs: Crit 7d, High 30d; document deviations",status:"Implemented",evidence:"SSP Â§SI-2; Patch Manager dashboards",last_reviewed:"2026-05-01",poam_id:null,notes:null},
+  {id:"SI-4",family:"SI",title:"System Monitoring",baseline:"High",inheritance:"Hybrid / Shared",responsible:"Shared",services:"GuardDuty, Security Hub, CloudWatch, Detective",aws_impl:"Detection services",customer_resp:"Tune findings; route to SOC; document alerting",status:"Implemented",evidence:"SSP Â§SI-4; Sec Hub findings",last_reviewed:"2026-05-01",poam_id:null,notes:null},
   {id:"SI-4(4)",family:"SI",title:"Inbound and Outbound Traffic Monitoring",baseline:"High",inheritance:"Customer",responsible:"Customer",services:"GuardDuty, VPC Flow Logs, Network Firewall",aws_impl:"Traffic mirroring & logs",customer_resp:"Enable across all accounts; SIEM integration",status:"Partially Implemented",evidence:"GuardDuty admin acct",last_reviewed:"2026-04-18",poam_id:"POAM-0003",notes:"2 dev accts not enabled"},
   {id:"SI-7",family:"SI",title:"Software, Firmware, and Information Integrity",baseline:"High",inheritance:"Customer",responsible:"Customer",services:"Signer, ECR image signing, CodeArtifact",aws_impl:"Code signing primitives",customer_resp:"Sign all artifacts; verify in deploy pipeline",status:"Planned",evidence:"Pipeline design doc v0.4",last_reviewed:"2026-05-15",poam_id:null,notes:"Implementation in progress"}
-];
-
-const DEFAULT_POAMS = [
-  {id:"POAM-0001",control_id:"AC-2(1)",summary:"IAM accounts for terminated users not disabled within 24h",source:"SCA-V Q1",severity:"High",identified:"2026-03-12",target_close:"2026-06-10",status:"Open",owner:"Cloud Eng",mitigation:"Automate via Identity Center SCIM",notes:null},
-  {id:"POAM-0002",control_id:"AU-9",summary:"CloudTrail bucket missing Object Lock",source:"Self-assessment",severity:"Critical",identified:"2026-04-01",target_close:"2026-05-01",status:"Closed",owner:"Platform",mitigation:"Enabled Object Lock w/ 7yr retention",notes:"Verified 4/22"},
-  {id:"POAM-0003",control_id:"SI-4(4)",summary:"GuardDuty disabled in 2 dev accounts within boundary",source:"ConMon scan",severity:"Moderate",identified:"2026-04-18",target_close:"2026-07-17",status:"Ongoing",owner:"SecOps",mitigation:"Enabled, monitoring 30d before close",notes:null},
-  {id:"POAM-0004",control_id:"CM-6",summary:"EC2 STIG compliance below 95% on 4 instances",source:"ACAS scan",severity:"High",identified:"2026-05-02",target_close:"2026-08-01",status:"Open",owner:"SysAdmin",mitigation:"Re-run SSM patch baseline, re-scan",notes:null}
 ];
 
 const PICKLISTS = {
@@ -603,13 +662,14 @@ const FAMILY_NAMES = {
   SI:"System & Info Integrity",SR:"Supply Chain Risk Mgmt"
 };
 
-// ─── STATE ───────────────────────────────────────────────────────────────────
+// âââ STATE âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 let controls = [];
 let poams = [];
-let currentView = 'dashboard';
+let currentView = 'readme';
 let searchQuery = '';
 let ctrlFilter = { family: '', status: '', inheritance: '', statusArr: [] };
 let poamFilter = { severity: '', status: '', statusArr: [] };
+let evidFilter = { type: '', family: '', ctrlStatus: '', stale: false, missing: false };
 let ctrlSort = { col: 'id', dir: 'asc' };
 let poamSort = { col: 'id', dir: 'asc' };
 let charts = {};
@@ -638,8 +698,9 @@ function resetData() {
   toast('Data reset to defaults', 'success');
 }
 
-// ─── ROUTING ─────────────────────────────────────────────────────────────────
+// âââ ROUTING âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function showView(v) {
+  if (v === 'reports') reportTab = -1;
   currentView = v;
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   document.getElementById('nav-' + v).classList.add('active');
@@ -652,7 +713,7 @@ function showView(v) {
   document.getElementById('global-search').style.display = noSearch.includes(v) ? 'none' : '';
   render();
 }
-// ─── DRILL-DOWN ──────────────────────────────────────────────────────────────
+// âââ DRILL-DOWN ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 // Navigate from a dashboard tile/chart to a filtered data view
 function drillTo(view, opts) {
   opts = opts || {};
@@ -675,13 +736,13 @@ function drillTo(view, opts) {
 
 function render() {
   document.getElementById('view-title').innerHTML =
-    {dashboard: '<span style="color:var(--accent)">◈</span> DASHBOARD <span style="color:var(--text-muted);font-size:11px">// 01</span>',
-     controls:  '<span style="color:var(--accent)">◈</span> CONTROLS <span style="color:var(--text-muted);font-size:11px">// CRM 02</span>',
-     poam:      '<span style="color:var(--accent)">◈</span> POA&amp;M <span style="color:var(--text-muted);font-size:11px">// REGISTER 03</span>',
-     evidence:  '<span style="color:var(--accent)">◈</span> EVIDENCE VAULT <span style="color:var(--text-muted);font-size:11px">// ARTIFACTS 04</span>',
-     reports:   '<span style="color:var(--accent)">◈</span> REPORTS <span style="color:var(--text-muted);font-size:11px">// ISSO REPORTING 05</span>',
-     readme:    '<span style="color:var(--accent)">◈</span> GUIDE <span style="color:var(--text-muted);font-size:11px">// README 06</span>',
-     reference: '<span style="color:var(--accent)">◈</span> PICKLISTS <span style="color:var(--text-muted);font-size:11px">// REFERENCE 07</span>'}[currentView];
+    {readme:    '<span style="color:var(--accent)">â</span> GUIDE <span style="color:var(--text-muted);font-size:11px">// 01</span>',
+     dashboard: '<span style="color:var(--accent)">â</span> DASHBOARD <span style="color:var(--text-muted);font-size:11px">// 02</span>',
+     controls:  '<span style="color:var(--accent)">â</span> CONTROLS <span style="color:var(--text-muted);font-size:11px">// CRM 03</span>',
+     poam:      '<span style="color:var(--accent)">â</span> POA&amp;M <span style="color:var(--text-muted);font-size:11px">// REGISTER 04</span>',
+     evidence:  '<span style="color:var(--accent)">â</span> EVIDENCE VAULT <span style="color:var(--text-muted);font-size:11px">// ARTIFACTS 05</span>',
+     reports:   '<span style="color:var(--accent)">â</span> REPORTS <span style="color:var(--text-muted);font-size:11px">// ISSO REPORTING 06</span>',
+     reference: '<span style="color:var(--accent)">â</span> PICKLISTS <span style="color:var(--text-muted);font-size:11px">// REFERENCE</span>'}[currentView] || '';
   const c = document.getElementById('content');
   destroyCharts();
   if (currentView === 'dashboard') c.innerHTML = renderDashboard();
@@ -698,7 +759,7 @@ function handleSearch(v) {
   if (currentView !== 'dashboard') render();
 }
 
-// ─── DASHBOARD ───────────────────────────────────────────────────────────────
+// âââ DASHBOARD âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function renderDashboard() {
   const total = controls.length;
   const impl = controls.filter(c => c.status === 'Implemented').length;
@@ -721,33 +782,33 @@ function renderDashboard() {
 
   return `
   <div class="cards">
-    <div class="card drillable" onclick="drillTo('controls')" title="View all controls →">
-      <div class="card-label">◈ Total Controls</div>
+    <div class="card drillable" onclick="drillTo('controls')" title="View all controls â">
+      <div class="card-label">â Total Controls</div>
       <div class="card-value" style="color:var(--accent)">${total}</div>
-      <div class="card-sub">NIST 800-53 Rev5 · High Baseline</div>
+      <div class="card-sub">NIST 800-53 Rev5 Â· High Baseline</div>
     </div>
-    <div class="card drillable" onclick="drillTo('controls',{status:'Implemented'})" title="View implemented controls →">
-      <div class="card-label">◈ Implemented</div>
+    <div class="card drillable" onclick="drillTo('controls',{status:'Implemented'})" title="View implemented controls â">
+      <div class="card-label">â Implemented</div>
       <div class="card-value" style="color:var(--green)">${impl}</div>
       <div class="card-sub">${pct}% ATO posture</div>
     </div>
-    <div class="card drillable" onclick="drillTo('controls',{statusArr:['Partially Implemented','Planned','Not Implemented']})" title="View gap controls (partial + planned + not impl) →">
-      <div class="card-label">◈ Gaps</div>
+    <div class="card drillable" onclick="drillTo('controls',{statusArr:['Partially Implemented','Planned','Not Implemented']})" title="View gap controls (partial + planned + not impl) â">
+      <div class="card-label">â Gaps</div>
       <div class="card-value" style="color:var(--yellow)">${partial + planned + notImpl}</div>
-      <div class="card-sub">${partial} partial · ${planned} planned · ${notImpl} not impl</div>
+      <div class="card-sub">${partial} partial Â· ${planned} planned Â· ${notImpl} not impl</div>
     </div>
-    <div class="card drillable" onclick="drillTo('poam',{statusArr:['Open','Ongoing']})" title="View active POA&Ms (Open + Ongoing) →">
-      <div class="card-label">◈ Open POA&Ms</div>
+    <div class="card drillable" onclick="drillTo('poam',{statusArr:['Open','Ongoing']})" title="View active POA&Ms (Open + Ongoing) â">
+      <div class="card-label">â Open POA&Ms</div>
       <div class="card-value" style="color:var(--red)">${openPoams}</div>
-      <div class="card-sub">${critPoams} critical · ${closedPoams} closed</div>
+      <div class="card-sub">${critPoams} critical Â· ${closedPoams} closed</div>
     </div>
-    <div class="card drillable" onclick="drillTo('controls',{inheritance:'Fully Inherited'})" title="View AWS-inherited controls →">
-      <div class="card-label">◈ AWS Inherited</div>
+    <div class="card drillable" onclick="drillTo('controls',{inheritance:'Fully Inherited'})" title="View AWS-inherited controls â">
+      <div class="card-label">â AWS Inherited</div>
       <div class="card-value" style="color:var(--text-muted)">${inherited}</div>
       <div class="card-sub">FedRAMP P-ATO coverage</div>
     </div>
-    <div class="card drillable" onclick="drillTo('controls',{inheritance:'Customer'})" title="View customer-owned controls →">
-      <div class="card-label">◈ Customer Owned</div>
+    <div class="card drillable" onclick="drillTo('controls',{inheritance:'Customer'})" title="View customer-owned controls â">
+      <div class="card-label">â Customer Owned</div>
       <div class="card-value" style="color:var(--accent2)">${customer}</div>
       <div class="card-sub">${hybrid} hybrid / shared</div>
     </div>
@@ -755,30 +816,30 @@ function renderDashboard() {
 
   <div class="charts-row">
     <div class="chart-card">
-      <h3>Implementation Status <div class="ai-tip" style="display:inline-block;margin-left:6px"><span class="ai-chip">Predictive Analytics</span><div class="ai-tooltip">AI projects ATO readiness trajectory based on POA&M close rates</div></div><span class="chart-card-hint">click slice to drill →</span></h3>
+      <h3>Implementation Status <div class="ai-tip" style="display:inline-block;margin-left:6px"><span class="ai-chip">Predictive Analytics</span><div class="ai-tooltip">AI projects ATO readiness trajectory based on POA&M close rates</div></div><span class="chart-card-hint">click slice to drill â</span></h3>
       <div class="chart-wrap"><canvas id="statusChart"></canvas></div>
     </div>
     <div class="chart-card">
-      <h3>Inheritance Distribution <span class="chart-card-hint">click slice to drill →</span></h3>
+      <h3>Inheritance Distribution <span class="chart-card-hint">click slice to drill â</span></h3>
       <div class="chart-wrap"><canvas id="inheritChart"></canvas></div>
     </div>
   </div>
 
   <div class="charts-row">
     <div class="chart-card">
-      <h3>Controls by Family <div class="ai-tip" style="display:inline-block;margin-left:6px"><span class="ai-chip">Anomaly Detect</span><div class="ai-tooltip">AI flags families with high gap ratios or stale review dates</div></div><span class="chart-card-hint">click bar to drill →</span></h3>
+      <h3>Controls by Family <div class="ai-tip" style="display:inline-block;margin-left:6px"><span class="ai-chip">Anomaly Detect</span><div class="ai-tooltip">AI flags families with high gap ratios or stale review dates</div></div><span class="chart-card-hint">click bar to drill â</span></h3>
       <div class="chart-wrap" style="height:240px"><canvas id="familyChart"></canvas></div>
     </div>
     <div class="chart-card">
-      <h3>POA&M Severity Breakdown <span class="chart-card-hint">click slice to drill →</span></h3>
+      <h3>POA&M Severity Breakdown <span class="chart-card-hint">click slice to drill â</span></h3>
       <div class="chart-wrap"><canvas id="poamChart"></canvas></div>
     </div>
   </div>
 
   <div class="table-wrap">
     <div class="table-header">
-      <h3>◈ Active POA&amp;Ms — Open &amp; Ongoing <div class="ai-tip" style="display:inline-block;margin-left:6px"><span class="ai-chip">SLA Forecast</span><div class="ai-tooltip">AI tracks days-to-close and flags overdue items automatically</div></div></h3>
-      <button class="btn btn-ghost btn-sm" onclick="drillTo('poam',{statusArr:['Open','Ongoing']})">View All →</button>
+      <h3>â Active POA&amp;Ms â Open &amp; Ongoing <div class="ai-tip" style="display:inline-block;margin-left:6px"><span class="ai-chip">SLA Forecast</span><div class="ai-tooltip">AI tracks days-to-close and flags overdue items automatically</div></div></h3>
+      <button class="btn btn-ghost btn-sm" onclick="drillTo('poam',{statusArr:['Open','Ongoing']})">View All â</button>
     </div>
     <table>
       <thead><tr>
@@ -791,10 +852,10 @@ function renderDashboard() {
           <td>${p.summary}</td>
           <td>${sevBadge(p.severity)}</td>
           <td>${p.owner}</td>
-          <td>${p.target_close ? daysUntilClose(p.target_close) : '—'}</td>
+          <td>${p.target_close ? daysUntilClose(p.target_close) : 'â'}</td>
           <td>${poamStatusBadge(p.status)}</td>
         </tr>`).join('')}
-        ${poams.filter(p=>p.status==='Open'||p.status==='Ongoing').length===0?`<tr><td colspan="7" class="empty"><div class="empty-icon">◈</div>NO OPEN POA&Ms — AUTHORIZATION BOUNDARY CLEAN</td></tr>`:''}
+        ${poams.filter(p=>p.status==='Open'||p.status==='Ongoing').length===0?`<tr><td colspan="7" class="empty"><div class="empty-icon">â</div>NO OPEN POA&Ms â AUTHORIZATION BOUNDARY CLEAN</td></tr>`:''}
       </tbody>
     </table>
   </div>`;
@@ -807,7 +868,7 @@ function initCharts() {
   const monoFont = { family: "'Courier New', monospace", size: 10 };
   const legendOpts = { position:'right', labels:{ color:textColor, font:monoFont, boxWidth:10, padding:12 } };
 
-  // Status donut — click drills into controls filtered by that status
+  // Status donut â click drills into controls filtered by that status
   const statusLabels = ['Implemented','Partially Implemented','Planned','Not Implemented','Not Applicable'];
   const statusData = statusLabels.map(s => controls.filter(c=>c.status===s).length);
   charts.status = new Chart(document.getElementById('statusChart'), {
@@ -826,7 +887,7 @@ function initCharts() {
     }
   });
 
-  // Inheritance donut — click drills into controls filtered by inheritance type
+  // Inheritance donut â click drills into controls filtered by inheritance type
   const inhLabels = ['Fully Inherited','Hybrid / Shared','Customer','Common (Org-Provided)','Not Applicable'];
   const inh = inhLabels.map(s => controls.filter(c=>c.inheritance===s).length);
   charts.inherit = new Chart(document.getElementById('inheritChart'), {
@@ -840,12 +901,12 @@ function initCharts() {
       plugins:{ legend:legendOpts },
       onClick(evt, els) {
         if (!els.length) return;
-        drillTo('controls', {inheritance: inhLabels[els[0].index]});
+        drillTo('poam', {inheritance: inhLabels[els[0].index]});
       }
     }
   });
 
-  // Family bar — click drills into controls for that family
+  // Family bar â click drills into controls for that family
   const fams = [...new Set(controls.map(c=>c.family))].sort();
   const famCounts = fams.map(f=>controls.filter(c=>c.family===f).length);
   charts.family = new Chart(document.getElementById('familyChart'), {
@@ -868,7 +929,7 @@ function initCharts() {
     }
   });
 
-  // POA&M severity donut — click drills into POA&Ms filtered by severity
+  // POA&M severity donut â click drills into POA&Ms filtered by severity
   const sevLabels = ['Critical','High','Moderate','Low'];
   const sevCounts = sevLabels.map(s=>poams.filter(p=>p.severity===s).length);
   charts.poam = new Chart(document.getElementById('poamChart'), {
@@ -893,7 +954,7 @@ function destroyCharts() {
   charts = {};
 }
 
-// ─── CONTROLS VIEW ───────────────────────────────────────────────────────────
+// âââ CONTROLS VIEW âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function renderControls() {
   let rows = controls.filter(c => {
     if (ctrlFilter.family && c.family !== ctrlFilter.family) return false;
@@ -910,10 +971,10 @@ function renderControls() {
     return true;
   });
 
-  // Sort — use natural sort for Control IDs so AC-2 < AC-10 < AC-17
+  // Sort â use natural sort for Control IDs so AC-2 < AC-10 < AC-17
   function nistIdKey(id) {
-    // e.g. "AC-2(1)" → ["AC", 2, 1]; "SI-4" → ["SI", 4, 0]
-    const m = id.match(/^([A-Z]+)-(\d+)(?:\((\d+)\))?/i);
+    // e.g. "AC-2(1)" â ["AC", 2, 1]; "SI-4" â ["SI", 4, 0]
+    const m = id.match(/^([A-Z]+)-(\d+)(?:\((\d+)\))?/ii);
     if (!m) return [id, 0, 0];
     return [m[1].toUpperCase(), parseInt(m[2]), parseInt(m[3]||0)];
   }
@@ -935,25 +996,25 @@ function renderControls() {
   return `
   <div class="table-wrap">
     <div class="table-header">
-      <h3>◈ CRM Controls — ${rows.length} of ${controls.length} <div class="ai-tip" style="display:inline-block;margin-left:6px"><span class="ai-chip">Semantic Search</span><div class="ai-tooltip">Search understands control intent, not just keyword matches</div></div></h3>
+      <h3>â CRM Controls â ${rows.length} of ${controls.length} <div class="ai-tip" style="display:inline-block;margin-left:6px"><span class="ai-chip">Semantic Search</span><div class="ai-tooltip">Search understands control intent, not just keyword matches</div></div></h3>
       <select onchange="ctrlFilter.family=this.value;render()">
         <option value="">All Families</option>
-        ${families.map(f=>`<option value="${f}" ${ctrlFilter.family===f?'selected':''}>${f} — ${FAMILY_NAMES[f]||f}</option>`).join('')}
+        ${families.map(f=>`<option value="${f}" ${ctrlFilter.family===f?'selected':''}>${f} â ${FAMILY_NAMES[f]||f}</option>`).join('')}
       </select>
       <select onchange="ctrlFilter.status=this.value;ctrlFilter.statusArr=[];render()">
         <option value="">All Statuses</option>
         ${PICKLISTS.status.map(s=>`<option value="${s}" ${ctrlFilter.status===s?'selected':''}>${s}</option>`).join('')}
-        ${ctrlFilter.statusArr&&ctrlFilter.statusArr.length>0?`<option value="" disabled>── Gap Mode Active ──</option>`:''}
+        ${ctrlFilter.statusArr&&ctrlFilter.statusArr.length>0?`<option value="" disabled>ââ Gap Mode Active ââ</option>`:''}
       </select>
       <select onchange="ctrlFilter.inheritance=this.value;render()">
         <option value="">All Inheritance</option>
         ${PICKLISTS.inheritance.map(s=>`<option value="${s}" ${ctrlFilter.inheritance===s?'selected':''}>${s}</option>`).join('')}
       </select>
       <button class="btn btn-ghost btn-sm" onclick="ctrlFilter={family:'',status:'',inheritance:'',statusArr:[]};render()">Clear</button>
-      <button class="btn btn-ghost btn-sm" onclick="resetData()">↺ Reset</button>
+      <button class="btn btn-ghost btn-sm" onclick="resetData()">âº Reset</button>
     </div>
-    ${ctrlFilter.statusArr&&ctrlFilter.statusArr.length>0?`<div style="padding:6px 18px;background:rgba(245,158,11,.06);border-bottom:1px solid rgba(245,158,11,.18);font-size:10px;font-family:var(--mono);color:var(--yellow);display:flex;align-items:center;gap:10px">◈ DRILL-DOWN — Gap controls: ${ctrlFilter.statusArr.join(' · ')} <span onclick="ctrlFilter={family:'',status:'',inheritance:'',statusArr:[]};render()" style="cursor:pointer;color:var(--text-muted);margin-left:auto;border:1px solid var(--border);padding:1px 7px;border-radius:3px">✕ Clear</span></div>`:''}
-    ${(!ctrlFilter.statusArr||ctrlFilter.statusArr.length===0)&&(ctrlFilter.family||ctrlFilter.status||ctrlFilter.inheritance)?`<div style="padding:6px 18px;background:rgba(0,180,255,.04);border-bottom:1px solid rgba(0,180,255,.12);font-size:10px;font-family:var(--mono);color:var(--accent);display:flex;align-items:center;gap:10px">◈ DRILL-DOWN ACTIVE${ctrlFilter.family?' — Family: '+ctrlFilter.family:''}${ctrlFilter.status?' — Status: '+ctrlFilter.status:''}${ctrlFilter.inheritance?' — Inheritance: '+ctrlFilter.inheritance:''} <span onclick="ctrlFilter={family:'',status:'',inheritance:'',statusArr:[]};render()" style="cursor:pointer;color:var(--text-muted);margin-left:auto;border:1px solid var(--border);padding:1px 7px;border-radius:3px">✕ Clear</span></div>`:''}
+    ${ctrlFilter.statusArr&&ctrlFilter.statusArr.length>0?`<div style="padding:6px 18px;background:rgba(245,158,11,.06);border-bottom:1px solid rgba(245,158,11,.18);font-size:10px;font-family:var(--mono);color:var(--yellow);display:flex;align-items:center;gap:10px">â DRILL-DOWN â Gap controls: ${ctrlFilter.statusArr.join(' Â· ')} <span onclick="ctrlFilter={family:'',status:'',inheritance:'',statusArr:[]};render()" style="cursor:pointer;color:var(--text-muted);margin-left:auto;border:1px solid var(--border);padding:1px 7px;border-radius:3px">â Clear</span></div>`:''}
+    ${(!ctrlFilter.statusArr||ctrlFilter.statusArr.length===0)&&(ctrlFilter.family||ctrlFilter.status||ctrlFilter.inheritance)?`<div style="padding:6px 18px;background:rgba(0,180,255,.04);border-bottom:1px solid rgba(0,180,255,.12);font-size:10px;font-family:var(--mono);color:var(--accent);display:flex;align-items:center;gap:10px">â DRILL-DOWN ACTIVE${ctrlFilter.family?' â Family: '+ctrlFilter.family:''}${ctrlFilter.status?' â Status: '+ctrlFilter.status:''}${ctrlFilter.inheritance?' â Inheritance: '+ctrlFilter.inheritance:''} <span onclick="ctrlFilter={family:'',status:'',inheritance:'',statusArr:[]};render()" style="cursor:pointer;color:var(--text-muted);margin-left:auto;border:1px solid var(--border);padding:1px 7px;border-radius:3px">â Clear</span></div>`:''}
     <div style="overflow-x:auto">
     <table>
       <thead><tr>
@@ -969,7 +1030,7 @@ function renderControls() {
         <th>Actions</th>
       </tr></thead>
       <tbody>
-        ${rows.length === 0 ? `<tr><td colspan="10" class="empty"><div class="empty-icon">◈</div>NO CONTROLS MATCH YOUR FILTERS</td></tr>` :
+        ${rows.length === 0 ? `<tr><td colspan="10" class="empty"><div class="empty-icon">â</div>NO CONTROLS MATCH YOUR FILTERS</td></tr>` :
           rows.map(c=>`<tr>
             <td class="td-mono" style="color:var(--accent);font-weight:700">${c.id}</td>
             <td><span class="badge badge-blue">${c.family}</span></td>
@@ -978,8 +1039,8 @@ function renderControls() {
             <td>${responsibleBadge(c.responsible)}</td>
             <td style="max-width:180px;font-size:11px;color:var(--text-muted)">${c.services}</td>
             <td>${statusBadge(c.status)}</td>
-            <td style="font-size:12px;color:var(--text-muted);white-space:nowrap">${c.last_reviewed||'—'}</td>
-            <td>${c.poam_id ? `<span class="badge badge-red" style="cursor:pointer" onclick="showView('poam')">${c.poam_id}</span>` : '<span style="color:var(--text-muted)">—</span>'}</td>
+            <td style="font-size:12px;color:var(--text-muted);white-space:nowrap">${c.last_reviewed||'â'}</td>
+            <td>${c.poam_id ? `<span class="badge badge-red" style="cursor:pointer" onclick="showView('poam')">${c.poam_id}</span>` : '<span style="color:var(--text-muted)">â</span>'}</td>
             <td style="white-space:nowrap">
               <button class="btn btn-ghost btn-sm" onclick="viewControl('${c.id}')">View</button>
               <button class="btn btn-primary btn-sm" onclick="editControl('${c.id}')">Edit</button>
@@ -997,7 +1058,7 @@ function sortCtrl(col) {
   render();
 }
 
-// ─── POA&M VIEW ──────────────────────────────────────────────────────────────
+// âââ POA&M VIEW ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function renderPOAM() {
   let rows = poams.filter(p => {
     if (poamFilter.severity && p.severity !== poamFilter.severity) return false;
@@ -1022,7 +1083,7 @@ function renderPOAM() {
   return `
   <div class="table-wrap">
     <div class="table-header">
-      <h3>◈ POA&amp;M Register — ${rows.length} of ${poams.length} <div class="ai-tip" style="display:inline-block;margin-left:6px"><span class="ai-chip">Auto-Tag</span><div class="ai-tooltip">AI auto-suggests severity and control linkage from finding text</div></div></h3>
+      <h3>â POA&amp;M Register â ${rows.length} of ${poams.length} <div class="ai-tip" style="display:inline-block;margin-left:6px"><span class="ai-chip">Auto-Tag</span><div class="ai-tooltip">AI auto-suggests severity and control linkage from finding text</div></div></h3>
       <select onchange="poamFilter.severity=this.value;render()">
         <option value="">All Severities</option>
         ${PICKLISTS.poam_severity.map(s=>`<option value="${s}" ${poamFilter.severity===s?'selected':''}>${s}</option>`).join('')}
@@ -1033,12 +1094,12 @@ function renderPOAM() {
       </select>
       <button class="btn btn-ghost btn-sm" onclick="poamFilter={severity:'',status:'',statusArr:[]};render()">Clear</button>
       <div style="margin-left:auto;display:flex;gap:8px;align-items:center">
-        <button class="btn btn-ghost btn-sm" onclick="exportPOAM()" title="Export POA&Ms to Excel">⬇ Export XLSX</button>
-        <label class="btn btn-ghost btn-sm" style="cursor:pointer;margin:0" title="Import POA&Ms from Excel">⬆ Import XLSX<input type="file" id="poam-import-input" accept=".xlsx,.xls" style="display:none" onchange="importPOAM(this)"></label>
+        <button class="btn btn-ghost btn-sm" onclick="exportPOAM()" title="Export POA&Ms to Excel">â¬ Export XLSX</button>
+        <label class="btn btn-ghost btn-sm" style="cursor:pointer;margin:0" title="Import POA&Ms from Excel">â¬ Import XLSX<input type="file" id="poam-import-input" accept=".xlsx,.xls" style="display:none" onchange="importPOAM(this)"></label>
       </div>
     </div>
-    ${poamFilter.statusArr&&poamFilter.statusArr.length>0?`<div style="padding:6px 18px;background:rgba(240,68,85,.06);border-bottom:1px solid rgba(240,68,85,.18);font-size:10px;font-family:var(--mono);color:var(--red);display:flex;align-items:center;gap:10px">◈ DRILL-DOWN ACTIVE — Status: ${poamFilter.statusArr.join(' · ')} <span onclick="poamFilter.statusArr=[];render()" style="cursor:pointer;color:var(--text-muted);margin-left:auto;border:1px solid var(--border);padding:1px 7px;border-radius:3px">✕ Clear</span></div>`:''}
-    ${poamFilter.severity&&(!poamFilter.statusArr||poamFilter.statusArr.length===0)?`<div style="padding:6px 18px;background:rgba(255,107,53,.06);border-bottom:1px solid rgba(255,107,53,.18);font-size:10px;font-family:var(--mono);color:var(--orange);display:flex;align-items:center;gap:10px">◈ DRILL-DOWN ACTIVE — Severity: ${poamFilter.severity} <span onclick="poamFilter.severity='';render()" style="cursor:pointer;color:var(--text-muted);margin-left:auto;border:1px solid var(--border);padding:1px 7px;border-radius:3px">✕ Clear</span></div>`:''}
+    ${poamFilter.statusArr&&poamFilter.statusArr.length>0?`<div style="padding:6px 18px;background:rgba(240,68,85,.06);border-bottom:1px solid rgba(240,68,85,.18);font-size:10px;font-family:var(--mono);color:var(--red);display:flex;align-items:center;gap:10px">â DRILL-DOWN ACTIVE â Status: ${poamFilter.statusArr.join(' Â· ')} <span onclick="poamFilter.statusArr=[];render()" style="cursor:pointer;color:var(--text-muted);margin-left:auto;border:1px solid var(--border);padding:1px 7px;border-radius:3px">â Clear</span></div>`:''}
+    ${poamFilter.severity&&(!poamFilter.statusArr||poamFilter.statusArr.length===0)?`<div style="padding:6px 18px;background:rgba(255,107,53,.06);border-bottom:1px solid rgba(255,107,53,.18);font-size:10px;font-family:var(--mono);color:var(--orange);display:flex;align-items:center;gap:10px">â DRILL-DOWN ACTIVE â Severity: ${poamFilter.severity} <span onclick="poamFilter.severity='';render()" style="cursor:pointer;color:var(--text-muted);margin-left:auto;border:1px solid var(--border);padding:1px 7px;border-radius:3px">â Clear</span></div>`:''}
     <div style="overflow-x:auto">
     <table>
       <thead><tr>
@@ -1054,16 +1115,16 @@ function renderPOAM() {
         <th>Actions</th>
       </tr></thead>
       <tbody>
-        ${rows.length === 0 ? `<tr><td colspan="10" class="empty"><div class="empty-icon">◈</div>NO POA&Ms MATCH YOUR FILTERS</td></tr>` :
+        ${rows.length === 0 ? `<tr><td colspan="10" class="empty"><div class="empty-icon">â</div>NO POA&Ms MATCH YOUR FILTERS</td></tr>` :
           rows.map(p=>`<tr>
             <td class="td-mono" style="color:var(--accent);font-weight:700">${p.id}</td>
             <td class="td-mono"><a href="#" onclick="ctrlFilter={family:'',status:'',inheritance:'',statusArr:[]};searchQuery='';showView('controls');setTimeout(()=>editControl('${p.control_id}'),100);return false" style="color:var(--accent-2,#a78bfa)">${p.control_id}</a></td>
             <td style="max-width:250px">${p.summary}</td>
             <td style="font-size:12px">${p.source}</td>
             <td>${sevBadge(p.severity)}</td>
-            <td style="font-size:12px;color:var(--text-muted);white-space:nowrap">${p.identified||'—'}</td>
-            <td style="white-space:nowrap">${p.target_close ? daysUntilClose(p.target_close) : '—'}</td>
-            <td style="font-size:12px">${p.owner||'—'}</td>
+            <td style="font-size:12px;color:var(--text-muted);white-space:nowrap">${p.identified||'â'}</td>
+            <td style="white-space:nowrap">${p.target_close ? daysUntilClose(p.target_close) : 'â'}</td>
+            <td style="font-size:12px">${p.owner||'â'}</td>
             <td>${poamStatusBadge(p.status)}</td>
             <td style="white-space:nowrap">
               <button class="btn btn-primary btn-sm" onclick="editPOAM('${p.id}')">Edit</button>
@@ -1082,7 +1143,7 @@ function sortPOAM(col) {
   render();
 }
 
-// ─── BADGES ──────────────────────────────────────────────────────────────────
+// âââ BADGES ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function statusBadge(s) {
   const map = {
     'Implemented':'badge-green','Partially Implemented':'badge-yellow',
@@ -1118,7 +1179,7 @@ function daysUntilClose(dateStr) {
   return `<span class="${cls}" style="font-size:12px;white-space:nowrap">${label}</span>`;
 }
 
-// ─── MODALS ──────────────────────────────────────────────────────────────────
+// âââ MODALS ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function openAddModal() {
   if (currentView === 'controls') editControl(null);
   else editPOAM(null);
@@ -1129,17 +1190,17 @@ function viewControl(id) {
   if (!c) return;
   const linkedPoam = c.poam_id ? poams.find(p=>p.id===c.poam_id) : null;
 
-  document.getElementById('modal-title').textContent = `${c.id} — ${c.title}`;
+  document.getElementById('modal-title').textContent = `${c.id} â ${c.title}`;
   document.getElementById('modal-body').innerHTML = `
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+    <div class="detail-grid">
       <div class="detail-field"><div class="detail-label">Control ID</div><div class="detail-value td-mono" style="color:var(--accent);font-weight:700">${c.id}</div></div>
-      <div class="detail-field"><div class="detail-label">Family</div><div class="detail-value">${c.family} — ${FAMILY_NAMES[c.family]||c.family}</div></div>
+      <div class="detail-field"><div class="detail-label">Family</div><div class="detail-value">${c.family} â ${FAMILY_NAMES[c.family]||c.family}</div></div>
       <div class="detail-field"><div class="detail-label">Baseline</div><div class="detail-value">${c.baseline}</div></div>
       <div class="detail-field"><div class="detail-label">Inheritance</div><div class="detail-value">${inheritBadge(c.inheritance)}</div></div>
       <div class="detail-field"><div class="detail-label">Responsible Party</div><div class="detail-value">${responsibleBadge(c.responsible)}</div></div>
       <div class="detail-field"><div class="detail-label">Implementation Status</div><div class="detail-value">${statusBadge(c.status)}</div></div>
-      <div class="detail-field"><div class="detail-label">Last Reviewed</div><div class="detail-value">${c.last_reviewed||'—'}</div></div>
-      <div class="detail-field"><div class="detail-label">POA&M ID</div><div class="detail-value td-mono">${c.poam_id||'—'}</div></div>
+      <div class="detail-field"><div class="detail-label">Last Reviewed</div><div class="detail-value">${c.last_reviewed||'â'}</div></div>
+      <div class="detail-field"><div class="detail-label">POA&M ID</div><div class="detail-value td-mono">${c.poam_id||'â'}</div></div>
     </div>
     <div class="detail-field"><div class="detail-label">AWS Services</div><div class="detail-value" style="color:var(--text-muted)">${c.services}</div></div>
     <div class="section-title">AWS Implementation</div>
@@ -1147,7 +1208,7 @@ function viewControl(id) {
     <div class="section-title">Customer Responsibility</div>
     <div class="detail-value" style="line-height:1.6">${c.customer_resp}</div>
     <div class="section-title">Evidence Location</div>
-    <div class="detail-value td-mono" style="font-size:12px;word-break:break-all">${c.evidence||'—'}</div>
+    <div class="detail-value td-mono" style="font-size:12px;word-break:break-all">${c.evidence||'â'}</div>
     ${c.notes ? `<div class="section-title">Notes</div><div class="detail-value">${c.notes}</div>` : ''}
     ${linkedPoam ? `
     <div class="section-title">Linked POA&M</div>
@@ -1178,7 +1239,7 @@ function editControl(id) {
       <div class="form-group">
         <label>Family *</label>
         <select class="form-select" id="f-family">
-          ${PICKLISTS.family.map(f=>`<option value="${f}" ${(c?.family||''===f)?'selected':''}>${f} — ${FAMILY_NAMES[f]||f}</option>`).join('')}
+          ${PICKLISTS.family.map(f=>`<option value="${f}" ${(c?.family||''===f)?'selected':''}>${f} â ${FAMILY_NAMES[f]||f}</option>`).join('')}
         </select>
       </div>
       <div class="form-group full">
@@ -1223,7 +1284,7 @@ function editControl(id) {
       </div>
       <div class="form-group full">
         <label>Evidence Location (SSP/S3/Audit Mgr)</label>
-        <input type="text" id="f-evidence" value="${c?.evidence||''}" placeholder="SSP §XX; S3 path; Audit Manager assessment">
+        <input type="text" id="f-evidence" value="${c?.evidence||''}" placeholder="SSP Â§XX; S3 path; Audit Manager assessment">
       </div>
       <div class="form-group">
         <label>Last Reviewed</label>
@@ -1240,7 +1301,7 @@ function editControl(id) {
     </div>
   `;
   document.getElementById('modal-footer').innerHTML = `
-    <button class="btn btn-primary" onclick="saveControl(${isNew?'true':'false'})">💾 Save</button>
+    <button class="btn btn-primary" onclick="saveControl(${isNew?'true':'false'})">ð¾ Save</button>
     <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
     ${!isNew?`<button class="btn btn-danger" style="margin-right:auto" onclick="deleteControl('${c.id}')">Delete</button>`:''}
   `;
@@ -1362,7 +1423,7 @@ function editPOAM(id) {
     </div>
   `;
   document.getElementById('modal-footer').innerHTML = `
-    <button class="btn btn-primary" onclick="savePOAM(${isNew?'true':'false'})">💾 Save</button>
+    <button class="btn btn-primary" onclick="savePOAM(${isNew?'true':'false'})">ð¾ Save</button>
     <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
     ${!isNew?`<button class="btn btn-danger" style="margin-right:auto" onclick="deletePOAM('${p.id}')">Delete</button>`:''}
   `;
@@ -1416,20 +1477,20 @@ function closeModal() {
   document.getElementById('modal').style.display = 'none';
 }
 
-// ─── TOAST ───────────────────────────────────────────────────────────────────
+// âââ TOAST âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function toast(msg, type='success') {
   const t = document.getElementById('toast');
-  t.textContent = (type==='success'?'✓ ':'✕ ') + msg;
+  t.textContent = (type==='success'?'â ':'â ') + msg;
   t.className = 'show ' + type;
   setTimeout(() => t.className = '', 3000);
 }
 
-// ─── EVIDENCE VAULT ──────────────────────────────────────────────────────────
-let evidFilter = { type: '', family: '', ctrlStatus: '' };
-let reportTab = 0;
+// âââ EVIDENCE VAULT ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+
+let reportTab = -1;
 
 function detectEvidType(ref) {
-  if (/SSP\s*§/i.test(ref))                           return 'SSP Section';
+  if (/SSP\s*Â§/i.test(ref))                           return 'SSP Section';
   if (/Audit\s*Mgr|AuditMgr|Audit Manager/i.test(ref)) return 'Audit Manager';
   if (/CloudTrail/i.test(ref))                         return 'CloudTrail';
   if (/Config\s*rule|Config:|config rule/i.test(ref))  return 'AWS Config';
@@ -1496,6 +1557,10 @@ function renderEvidence() {
     if (evidFilter.type && e.type !== evidFilter.type) return false;
     if (evidFilter.family && e.family !== evidFilter.family) return false;
     if (evidFilter.ctrlStatus && e.ctrl_status !== evidFilter.ctrlStatus) return false;
+    if (evidFilter.stale) {
+      if (!e.last_verified || (today - new Date(e.last_verified)) <= 90 * 864e5) return false;
+    }
+    if (evidFilter.missing) return false; // missing = no artifact row, handled below
     if (searchQuery) {
       const s = searchQuery;
       return e.ref.toLowerCase().includes(s) || e.control_id.toLowerCase().includes(s) ||
@@ -1503,37 +1568,50 @@ function renderEvidence() {
     }
     return true;
   });
+  // Missing evidence: show controls with no evidence instead of items
+  if (evidFilter.missing) {
+    const noEvidControls = controls.filter(c => !c.evidence || c.evidence.trim() === '' || c.evidence.trim() === 'â');
+    items = noEvidControls.map(ctrl => ({
+      control_id: ctrl.id, control_title: ctrl.title||'â', ref: 'â No evidence linked â',
+      type: 'Missing', family: ctrl.family||'â', ctrl_status: ctrl.status||'â',
+      last_verified: null, status: 'Missing'
+    }));
+  }
 
   const staleAll = allItems.filter(e => !e.last_verified || (today - new Date(e.last_verified)) > 90 * 864e5);
-  const noEvid   = controls.filter(c => !c.evidence || c.evidence.trim() === '' || c.evidence.trim() === '—');
+  const noEvid   = controls.filter(c => !c.evidence || c.evidence.trim() === '' || c.evidence.trim() === 'â');
 
   return `
   <div class="cards" style="margin-bottom:20px">
-    <div class="card">
-      <div class="card-label">◈ Total Artifacts</div>
+    <div class="card drillable" title="Show all evidence artifacts" onclick="evidFilter={type:'',family:'',ctrlStatus:''};render()">
+      <div class="card-label">â Total Artifacts</div>
       <div class="card-value" style="color:var(--accent)">${allItems.length}</div>
       <div class="card-sub">${controls.filter(c=>c.evidence).length} of ${controls.length} controls covered</div>
+      <div class="card-drill">â¸ View all</div>
     </div>
-    <div class="card">
-      <div class="card-label">◈ Evidence Types</div>
+    <div class="card drillable" title="Browse by evidence type" onclick="evidFilter={type:'',family:'',ctrlStatus:''};document.querySelector('select[onchange*=evidFilter\.type]') && (document.querySelector('select[onchange*=evidFilter\.type]').focus());render()">
+      <div class="card-label">â Evidence Types</div>
       <div class="card-value" style="color:var(--accent2)">${types.length}</div>
-      <div class="card-sub">${types.slice(0,3).join(' · ')}${types.length > 3 ? '…' : ''}</div>
+      <div class="card-sub">${types.slice(0,3).join(' Â· ')}${types.length > 3 ? 'â¦' : ''}</div>
+      <div class="card-drill">â¸ Filter by type</div>
     </div>
-    <div class="card">
-      <div class="card-label">◈ Stale (&gt;90d)</div>
+    <div class="card drillable" title="View stale artifacts (not verified in 90+ days)" onclick="evidFilter={type:'',family:'',ctrlStatus:'',stale:true};render()">
+      <div class="card-label">â Stale (&gt;90d)</div>
       <div class="card-value" style="color:${staleAll.length>0?'var(--yellow)':'var(--green)'}">${staleAll.length}</div>
       <div class="card-sub">Not verified in 90+ days</div>
+      <div class="card-drill">â¸ View stale</div>
     </div>
-    <div class="card">
-      <div class="card-label">◈ Missing Evidence</div>
+    <div class="card drillable" title="View controls with no evidence linked" onclick="evidFilter={type:'',family:'',ctrlStatus:'',missing:true};render()">
+      <div class="card-label">â Missing Evidence</div>
       <div class="card-value" style="color:${noEvid.length>0?'var(--red)':'var(--green)'}">${noEvid.length}</div>
       <div class="card-sub">Controls with no artifact linked</div>
+      <div class="card-drill">â¸ Show gaps</div>
     </div>
   </div>
 
   <div class="table-wrap">
     <div class="table-header">
-      <h3>◈ Evidence Inventory — ${items.length} of ${allItems.length}
+      <h3>â Evidence Inventory â ${items.length} of ${allItems.length}
         <div class="ai-tip" style="display:inline-block;margin-left:6px">
           <span class="ai-chip">Entity Extraction</span>
           <div class="ai-tooltip">AI parses evidence strings and classifies artifact types automatically</div>
@@ -1545,7 +1623,7 @@ function renderEvidence() {
       </select>
       <select onchange="evidFilter.family=this.value;render()">
         <option value="">All Families</option>
-        ${families.map(f=>`<option value="${f}" ${evidFilter.family===f?'selected':''}>${f} — ${FAMILY_NAMES[f]||f}</option>`).join('')}
+        ${families.map(f=>`<option value="${f}" ${evidFilter.family===f?'selected':''}>${f} â ${FAMILY_NAMES[f]||f}</option>`).join('')}
       </select>
       <select onchange="evidFilter.ctrlStatus=this.value;render()">
         <option value="">All Statuses</option>
@@ -1567,7 +1645,7 @@ function renderEvidence() {
       </tr></thead>
       <tbody>
         ${items.length === 0
-          ? `<tr><td colspan="8" class="empty"><div class="empty-icon">◈</div>NO EVIDENCE MATCHES YOUR FILTERS</td></tr>`
+          ? `<tr><td colspan="8" class="empty"><div class="empty-icon">â</div>NO EVIDENCE MATCHES YOUR FILTERS</td></tr>`
           : items.map(e => {
               const isStale = !e.last_verified || (today - new Date(e.last_verified)) > 90 * 864e5;
               return `<tr>
@@ -1578,7 +1656,7 @@ function renderEvidence() {
                 <td><span class="badge badge-blue">${e.family}</span></td>
                 <td>${statusBadge(e.ctrl_status)}</td>
                 <td style="font-size:11px;white-space:nowrap;${isStale?'color:var(--yellow)':'color:var(--green)'}">
-                  ${e.last_verified||'—'}${isStale?' ⚠':''}
+                  ${e.last_verified||'â'}${isStale?' â ':''}
                 </td>
                 <td><button class="btn btn-ghost btn-sm" onclick="viewControl('${e.control_id}')">View</button></td>
               </tr>`;
@@ -1591,7 +1669,7 @@ function renderEvidence() {
   ${noEvid.length > 0 ? `
   <div class="table-wrap" style="margin-top:16px">
     <div class="table-header">
-      <h3>◈ Controls Missing Evidence — ${noEvid.length}</h3>
+      <h3>â Controls Missing Evidence â ${noEvid.length}</h3>
     </div>
     <div style="overflow-x:auto">
     <table>
@@ -1602,7 +1680,7 @@ function renderEvidence() {
           <td>${c.title}</td>
           <td><span class="badge badge-blue">${c.family}</span></td>
           <td>${statusBadge(c.status)}</td>
-          <td>${c.poam_id?`<span class="badge badge-red">${c.poam_id}</span>`:'<span style="color:var(--text-muted)">—</span>'}</td>
+          <td>${c.poam_id?`<span class="badge badge-red">${c.poam_id}</span>`:'<span style="color:var(--text-muted)">â</span>'}</td>
           <td><button class="btn btn-primary btn-sm" onclick="editControl('${c.id}')">Add Evidence</button></td>
         </tr>`).join('')}
       </tbody>
@@ -1612,19 +1690,46 @@ function renderEvidence() {
   `;
 }
 
-// ─── REPORTS ─────────────────────────────────────────────────────────────────
+// âââ REPORTS âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function renderReports() {
   const today = new Date(); today.setHours(0,0,0,0);
   const dateStr = today.toISOString().slice(0,10);
 
-  const tabs = ['Executive Summary','POA&M Aging','Control Gap Report','Evidence Coverage'];
+  const reportDefs = [
+    { icon: 'â', title: 'Executive Summary',  desc: 'Full ATO posture snapshot â implementation %, inheritance breakdown, open POA\u0026M counts, and overdue findings.',  tab: 0, color: 'var(--accent)' },
+    { icon: 'â', title: 'POA&M Aging',        desc: 'SLA tracking for every open POA\u0026M. Highlights overdue items, days-open analysis, and severity distribution.',   tab: 1, color: 'var(--red)'    },
+    { icon: 'â', title: 'Control Gap Report', desc: 'Gap analysis by NIST control family. Shows partially implemented and not-implemented controls with evidence gaps.',   tab: 2, color: 'var(--yellow)' },
+    { icon: 'â©', title: 'Evidence Coverage',  desc: 'Artifact inventory breakdown â types present, stale evidence flags, and controls missing linked artifacts.',           tab: 3, color: '#7ab8e8'       },
+  ];
+
   const tabBar = `
     <div style="display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap">
-      ${tabs.map((t,i) => `<button class="btn ${reportTab===i?'btn-primary':'btn-ghost'}"
-        onclick="reportTab=${i};document.getElementById('content').innerHTML=renderReports()">
-        ${t}
+      ${reportDefs.map(r => `<button class="btn ${reportTab===r.tab?'btn-primary':'btn-ghost'}"
+        onclick="reportTab=${r.tab};document.getElementById('content').innerHTML=renderReports()">
+        ${r.icon} ${r.title}
       </button>`).join('')}
     </div>`;
+
+  // Landing â show report tiles if no tab selected yet
+  if (reportTab === -1) {
+    return `
+    <div style="max-width:860px">
+      <div style="margin-bottom:22px">
+        <div style="font-size:10px;font-family:var(--mono);color:#e8a020;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">ISSO Reporting Suite</div>
+        <div style="font-size:13px;color:var(--text-muted)">Select a report to view. All reports are generated live from your Controls and POA&M data.</div>
+      </div>
+      <div class="two-col-grid">
+        ${reportDefs.map(r => `
+        <div class="card drillable" onclick="reportTab=${r.tab};document.getElementById('content').innerHTML=renderReports()"
+             style="border-left:3px solid ${r.color};padding:20px 20px 16px">
+          <div style="font-size:22px;color:${r.color};margin-bottom:8px">${r.icon}</div>
+          <div style="font-size:13px;font-weight:700;font-family:var(--mono);color:var(--text);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">${r.title}</div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.55">${r.desc}</div>
+          <div class="card-drill" style="margin-top:12px">â¸ Open report</div>
+        </div>`).join('')}
+      </div>
+    </div>`;
+  }
 
   if (reportTab === 0) return tabBar + renderReportExecutive(today, dateStr);
   if (reportTab === 1) return tabBar + renderReportPoamAging(today);
@@ -1648,7 +1753,7 @@ function renderReportExecutive(today, dateStr) {
   const highP   = openP.filter(p=>p.severity==='High');
   const overdue = openP.filter(p=>p.target_close && new Date(p.target_close)<today);
   const allItems= parseEvidenceItems();
-  const noEvid  = controls.filter(c=>!c.evidence||c.evidence.trim()===''||c.evidence.trim()==='—').length;
+  const noEvid  = controls.filter(c=>!c.evidence||c.evidence.trim()===''||c.evidence.trim()==='â').length;
 
   // Posture color
   const pctColor = pct >= 90 ? 'var(--green)' : pct >= 70 ? 'var(--yellow)' : 'var(--red)';
@@ -1659,9 +1764,9 @@ function renderReportExecutive(today, dateStr) {
     <!-- Report header -->
     <div style="background:var(--surface);border:1px solid var(--border);border-top:2px solid #e8a020;border-radius:var(--radius);padding:18px 22px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:flex-start">
       <div>
-        <div style="font-size:9px;color:#e8a020;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase">TrustNovaOps · ACCORD // CLOUD ISSO</div>
+        <div style="font-size:9px;color:#e8a020;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase">TrustNovaOps Â· ACCORD // CLOUD ISSO</div>
         <div style="font-size:16px;font-weight:800;font-family:var(--mono);color:var(--text);text-transform:uppercase;margin-top:4px">Executive Summary Report</div>
-        <div style="font-size:12px;color:var(--text-muted);margin-top:2px">ATO Controls &amp; POA&amp;M Status · As of ${dateStr}</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:2px">ATO Controls &amp; POA&amp;M Status Â· As of ${dateStr}</div>
       </div>
       <div style="text-align:right">
         <div style="font-size:36px;font-weight:800;font-family:var(--mono);color:${pctColor}">${pct}%</div>
@@ -1671,22 +1776,22 @@ function renderReportExecutive(today, dateStr) {
 
     <!-- Metric grid -->
     <div class="cards" style="margin-bottom:18px">
-      <div class="card"><div class="card-label">◈ Total Controls</div><div class="card-value" style="color:var(--accent)">${total}</div><div class="card-sub">NIST 800-53 Rev 5 · High</div></div>
-      <div class="card"><div class="card-label">◈ Implemented</div><div class="card-value" style="color:var(--green)">${impl}</div><div class="card-sub">${pct}% of boundary</div></div>
-      <div class="card"><div class="card-label">◈ Gaps</div><div class="card-value" style="color:var(--yellow)">${partial+planned}</div><div class="card-sub">${partial} partial · ${planned} planned</div></div>
-      <div class="card"><div class="card-label">◈ Not Implemented</div><div class="card-value" style="color:var(--red)">${notImpl}</div><div class="card-sub">Requires POA&amp;M or risk accept</div></div>
-      <div class="card"><div class="card-label">◈ Open POA&Ms</div><div class="card-value" style="color:var(--red)">${openP.length}</div><div class="card-sub">${critP.length} critical · ${highP.length} high</div></div>
-      <div class="card"><div class="card-label">◈ Overdue</div><div class="card-value" style="color:${overdue.length>0?'var(--red)':'var(--green)'}">${overdue.length}</div><div class="card-sub">POA&Ms past target close</div></div>
+      <div class="card"><div class="card-label">â Total Controls</div><div class="card-value" style="color:var(--accent)">${total}</div><div class="card-sub">NIST 800-53 Rev 5 Â· High</div></div>
+      <div class="card"><div class="card-label">â Implemented</div><div class="card-value" style="color:var(--green)">${impl}</div><div class="card-sub">${pct}% of boundary</div></div>
+      <div class="card"><div class="card-label">â Gaps</div><div class="card-value" style="color:var(--yellow)">${partial+planned}</div><div class="card-sub">${partial} partial Â· ${planned} planned</div></div>
+      <div class="card"><div class="card-label">â Not Implemented</div><div class="card-value" style="color:var(--red)">${notImpl}</div><div class="card-sub">Requires POA&amp;M or risk accept</div></div>
+      <div class="card"><div class="card-label">â Open POA&Ms</div><div class="card-value" style="color:var(--red)">${openP.length}</div><div class="card-sub">${critP.length} critical Â· ${highP.length} high</div></div>
+      <div class="card"><div class="card-label">â Overdue</div><div class="card-value" style="color:${overdue.length>0?'var(--red)':'var(--green)'}">${overdue.length}</div><div class="card-sub">POA&Ms past target close</div></div>
     </div>
 
     <!-- Inheritance table -->
     <div class="table-wrap" style="margin-bottom:16px">
-      <div class="table-header"><h3>◈ Inheritance Breakdown</h3></div>
+      <div class="table-header"><h3>â Inheritance Breakdown</h3></div>
       <table>
         <thead><tr><th>Category</th><th>Count</th><th>% of Boundary</th><th>Authority</th></tr></thead>
         <tbody>
           <tr><td>Fully Inherited</td><td class="td-mono" style="color:var(--text-muted)">${inh}</td>
-              <td class="td-mono">${Math.round(inh/total*100)}%</td><td style="font-size:12px">AWS FedRAMP P-ATO — cite AWS Artifact</td></tr>
+              <td class="td-mono">${Math.round(inh/total*100)}%</td><td style="font-size:12px">AWS FedRAMP P-ATO â cite AWS Artifact</td></tr>
           <tr><td>Hybrid / Shared</td><td class="td-mono" style="color:var(--accent)">${hybrid}</td>
               <td class="td-mono">${Math.round(hybrid/total*100)}%</td><td style="font-size:12px">Customer implements remaining portion</td></tr>
           <tr><td>Customer Owned</td><td class="td-mono" style="color:var(--accent2)">${cust}</td>
@@ -1697,21 +1802,21 @@ function renderReportExecutive(today, dateStr) {
 
     <!-- Risk summary -->
     <div class="table-wrap" style="margin-bottom:16px">
-      <div class="table-header"><h3>◈ Risk Summary</h3></div>
+      <div class="table-header"><h3>â Risk Summary</h3></div>
       <table>
         <thead><tr><th>Category</th><th>Finding</th><th>Recommended Action</th></tr></thead>
         <tbody>
-          ${critP.length>0 ? `<tr><td>${sevBadge('Critical')}</td><td>${critP.length} open critical POA&M${critP.length>1?'s':''}: ${critP.map(p=>p.id).join(', ')}</td><td style="font-size:12px">Close within 30-day SLA — escalate to AO</td></tr>` : ''}
+          ${critP.length>0 ? `<tr><td>${sevBadge('Critical')}</td><td>${critP.length} open critical POA&M${critP.length>1?'s':''}: ${critP.map(p=>p.id).join(', ')}</td><td style="font-size:12px">Close within 30-day SLA â escalate to AO</td></tr>` : ''}
           ${highP.length>0 ? `<tr><td>${sevBadge('High')}</td><td>${highP.length} open high POA&M${highP.length>1?'s':''}: ${highP.map(p=>p.id).join(', ')}</td><td style="font-size:12px">Close within 90-day SLA</td></tr>` : ''}
           ${overdue.length>0 ? `<tr><td><span class="badge badge-red">OVERDUE</span></td><td>${overdue.length} POA&M${overdue.length>1?'s':''} past target close date</td><td style="font-size:12px">Update milestones and request schedule adjustment</td></tr>` : ''}
           ${noEvid>0 ? `<tr><td><span class="badge badge-orange">EVIDENCE GAP</span></td><td>${noEvid} control${noEvid>1?'s':''} missing evidence artifacts</td><td style="font-size:12px">Link SSP sections, S3 paths, or Audit Manager assessments</td></tr>` : ''}
-          ${critP.length===0&&highP.length===0&&overdue.length===0&&noEvid===0 ? `<tr><td colspan="3" style="text-align:center;color:var(--green);font-family:var(--mono);padding:16px">✓ NO OUTSTANDING RISK ITEMS — BOUNDARY IN GOOD STANDING</td></tr>` : ''}
+          ${critP.length===0&&highP.length===0&&overdue.length===0&&noEvid===0 ? `<tr><td colspan="3" style="text-align:center;color:var(--green);font-family:var(--mono);padding:16px">â NO OUTSTANDING RISK ITEMS â BOUNDARY IN GOOD STANDING</td></tr>` : ''}
         </tbody>
       </table>
     </div>
 
     <div style="font-size:10px;color:var(--text-muted);font-family:var(--mono);text-align:right;margin-top:8px">
-      Generated ${dateStr} · ACCORD v1.0 · TrustNovaOps · FOUO — Not for Public Release
+      Generated ${dateStr} Â· ACCORD v1.0 Â· TrustNovaOps Â· FOUO â Not for Public Release
     </div>
   </div>`;
 }
@@ -1751,7 +1856,7 @@ function renderReportPoamAging(today) {
     </div>
 
     <div class="table-wrap" style="margin-bottom:16px">
-      <div class="table-header"><h3>◈ Open POA&Ms — Aging &amp; SLA Status</h3></div>
+      <div class="table-header"><h3>â Open POA&Ms â Aging &amp; SLA Status</h3></div>
       <div style="overflow-x:auto">
       <table>
         <thead><tr>
@@ -1759,24 +1864,24 @@ function renderReportPoamAging(today) {
           <th>Age (days)</th><th>SLA Limit</th><th>Target Close</th><th>Remaining</th><th>Owner</th><th>Status</th>
         </tr></thead>
         <tbody>
-          ${open.length===0 ? `<tr><td colspan="11" class="empty"><div class="empty-icon">◈</div>NO OPEN POA&Ms</td></tr>` :
+          ${open.length===0 ? `<tr><td colspan="11" class="empty"><div class="empty-icon">â</div>NO OPEN POA&Ms</td></tr>` :
             open.map(p => {
               const age  = ageDays(p.identified);
               const rem  = remainDays(p.target_close);
-              const limit= slaLimit[p.severity] || '—';
+              const limit= slaLimit[p.severity] || 'â';
               const remCls= rem===null?'':rem<0?'days-over':rem<=14?'days-warn':'days-ok';
-              const remStr= rem===null?'—':rem<0?`${Math.abs(rem)}d OVERDUE`:`${rem}d left`;
+              const remStr= rem===null?'â':rem<0?`${Math.abs(rem)}d OVERDUE`:`${rem}d left`;
               return `<tr>
                 <td class="td-mono" style="color:var(--accent);font-weight:700;white-space:nowrap">${p.id}</td>
                 <td class="td-mono" style="white-space:nowrap">${p.control_id}</td>
                 <td style="max-width:200px;font-size:12px">${p.summary}</td>
                 <td>${sevBadge(p.severity)}</td>
-                <td style="font-size:11px">${p.source||'—'}</td>
-                <td class="td-mono" style="text-align:center">${age!==null?age:'—'}</td>
+                <td style="font-size:11px">${p.source||'â'}</td>
+                <td class="td-mono" style="text-align:center">${age!==null?age:'â'}</td>
                 <td class="td-mono" style="text-align:center;color:var(--text-muted)">${limit}d</td>
-                <td style="font-size:11px;white-space:nowrap">${p.target_close||'—'}</td>
+                <td style="font-size:11px;white-space:nowrap">${p.target_close||'â'}</td>
                 <td class="td-mono ${remCls}" style="white-space:nowrap;font-weight:700">${remStr}</td>
-                <td style="font-size:12px">${p.owner||'—'}</td>
+                <td style="font-size:12px">${p.owner||'â'}</td>
                 <td>${poamStatusBadge(p.status)}</td>
               </tr>`;
             }).join('')}
@@ -1786,12 +1891,12 @@ function renderReportPoamAging(today) {
     </div>
 
     <div class="table-wrap">
-      <div class="table-header"><h3>◈ Closed POA&Ms — Resolution Record</h3></div>
+      <div class="table-header"><h3>â Closed POA&Ms â Resolution Record</h3></div>
       <div style="overflow-x:auto">
       <table>
         <thead><tr><th>ID</th><th>Control</th><th>Summary</th><th>Severity</th><th>Identified</th><th>Closed</th><th>Duration</th><th>Owner</th></tr></thead>
         <tbody>
-          ${closed.length===0 ? `<tr><td colspan="8" class="empty"><div class="empty-icon">◈</div>NO CLOSED POA&Ms YET</td></tr>` :
+          ${closed.length===0 ? `<tr><td colspan="8" class="empty"><div class="empty-icon">â</div>NO CLOSED POA&Ms YET</td></tr>` :
             closed.map(p => {
               const age = ageDays(p.identified);
               return `<tr>
@@ -1799,10 +1904,10 @@ function renderReportPoamAging(today) {
                 <td class="td-mono">${p.control_id}</td>
                 <td style="max-width:200px;font-size:12px">${p.summary}</td>
                 <td>${sevBadge(p.severity)}</td>
-                <td style="font-size:11px">${p.identified||'—'}</td>
-                <td style="font-size:11px">${p.target_close||'—'}</td>
-                <td class="td-mono" style="color:var(--text-muted)">${age!==null?age+'d':'—'}</td>
-                <td style="font-size:12px">${p.owner||'—'}</td>
+                <td style="font-size:11px">${p.identified||'â'}</td>
+                <td style="font-size:11px">${p.target_close||'â'}</td>
+                <td class="td-mono" style="color:var(--text-muted)">${age!==null?age+'d':'â'}</td>
+                <td style="font-size:12px">${p.owner||'â'}</td>
               </tr>`;
             }).join('')}
         </tbody>
@@ -1834,7 +1939,7 @@ function renderReportGap() {
     ${Object.keys(byFamily).sort().map(fam => `
     <div class="table-wrap" style="margin-bottom:14px">
       <div class="table-header">
-        <h3>◈ ${fam} — ${FAMILY_NAMES[fam]||fam} <span style="color:var(--text-muted);font-size:10px;font-weight:400">(${byFamily[fam].length} gap${byFamily[fam].length>1?'s':''})</span></h3>
+        <h3>â ${fam} â ${FAMILY_NAMES[fam]||fam} <span style="color:var(--text-muted);font-size:10px;font-weight:400">(${byFamily[fam].length} gap${byFamily[fam].length>1?'s':''})</span></h3>
       </div>
       <div style="overflow-x:auto">
       <table>
@@ -1847,7 +1952,7 @@ function renderReportGap() {
             <td>${statusBadge(c.status)}</td>
             <td>${c.poam_id?`<span class="badge badge-red">${c.poam_id}</span>`:'<span style="color:var(--text-muted);font-size:11px">None</span>'}</td>
             <td>${responsibleBadge(c.responsible)}</td>
-            <td style="max-width:220px;font-size:11px;color:var(--text-muted)">${c.customer_resp||'—'}</td>
+            <td style="max-width:220px;font-size:11px;color:var(--text-muted)">${c.customer_resp||'â'}</td>
             <td style="white-space:nowrap">
               <button class="btn btn-ghost btn-sm" onclick="viewControl('${c.id}')">View</button>
               <button class="btn btn-primary btn-sm" onclick="editControl('${c.id}')">Edit</button>
@@ -1858,7 +1963,7 @@ function renderReportGap() {
       </div>
     </div>`).join('')}
 
-    ${gaps.length===0?`<div class="table-wrap"><div class="empty" style="padding:36px"><div class="empty-icon">◈</div>ALL CONTROLS IMPLEMENTED — BOUNDARY FULLY ADDRESSED</div></div>`:''}
+    ${gaps.length===0?`<div class="table-wrap"><div class="empty" style="padding:36px"><div class="empty-icon">â</div>ALL CONTROLS IMPLEMENTED â BOUNDARY FULLY ADDRESSED</div></div>`:''}
   </div>`;
 }
 
@@ -1868,8 +1973,8 @@ function renderReportEvidence() {
   allItems.forEach(e => { typeCount[e.type] = (typeCount[e.type]||0)+1; });
   const today = new Date(); today.setHours(0,0,0,0);
 
-  const covered = controls.filter(c=>c.evidence&&c.evidence.trim()&&c.evidence.trim()!=='—');
-  const missing = controls.filter(c=>!c.evidence||c.evidence.trim()===''||c.evidence.trim()==='—');
+  const covered = controls.filter(c=>c.evidence&&c.evidence.trim()&&c.evidence.trim()!=='â');
+  const missing = controls.filter(c=>!c.evidence||c.evidence.trim()===''||c.evidence.trim()==='â');
   const stale   = allItems.filter(e=>!e.last_verified||(today-new Date(e.last_verified))>90*864e5);
   const pct     = Math.round(covered.length/controls.length*100);
 
@@ -1889,7 +1994,7 @@ function renderReportEvidence() {
 
     <!-- Type breakdown -->
     <div class="table-wrap" style="margin-bottom:16px">
-      <div class="table-header"><h3>◈ Evidence by Type</h3></div>
+      <div class="table-header"><h3>â Evidence by Type</h3></div>
       <table>
         <thead><tr><th>Evidence Type</th><th>Count</th><th>% of Total</th><th>Example Controls</th></tr></thead>
         <tbody>
@@ -1899,7 +2004,7 @@ function renderReportEvidence() {
               <td><span class="badge ${EVID_TYPE_COLOR[type]||'badge-gray'}">${type}</span></td>
               <td class="td-mono">${cnt}</td>
               <td class="td-mono">${Math.round(cnt/allItems.length*100)}%</td>
-              <td style="font-size:11px;color:var(--text-muted)">${ex.join(', ')}${allItems.filter(e=>e.type===type).length>3?'…':''}</td>
+              <td style="font-size:11px;color:var(--text-muted)">${ex.join(', ')}${allItems.filter(e=>e.type===type).length>3?'â¦':''}</td>
             </tr>`;
           }).join('')}
         </tbody>
@@ -1909,7 +2014,7 @@ function renderReportEvidence() {
     <!-- Stale evidence -->
     ${stale.length > 0 ? `
     <div class="table-wrap" style="margin-bottom:16px">
-      <div class="table-header"><h3>◈ Stale Evidence — Not Verified in 90+ Days (${stale.length})</h3></div>
+      <div class="table-header"><h3>â Stale Evidence â Not Verified in 90+ Days (${stale.length})</h3></div>
       <div style="overflow-x:auto"><table>
         <thead><tr><th>Control</th><th>Artifact</th><th>Type</th><th>Last Verified</th><th>Actions</th></tr></thead>
         <tbody>
@@ -1917,7 +2022,7 @@ function renderReportEvidence() {
             <td class="td-mono" style="color:var(--yellow);font-weight:700">${e.control_id}</td>
             <td style="font-size:11px;max-width:280px;font-family:var(--mono);color:var(--text-muted)">${e.ref}</td>
             <td><span class="badge ${EVID_TYPE_COLOR[e.type]||'badge-gray'}">${e.type}</span></td>
-            <td style="color:var(--yellow);font-size:11px">${e.last_verified||'Never'} ⚠</td>
+            <td style="color:var(--yellow);font-size:11px">${e.last_verified||'Never'} â </td>
             <td><button class="btn btn-primary btn-sm" onclick="editControl('${e.control_id}')">Update</button></td>
           </tr>`).join('')}
         </tbody>
@@ -1927,7 +2032,7 @@ function renderReportEvidence() {
     <!-- Missing -->
     ${missing.length > 0 ? `
     <div class="table-wrap">
-      <div class="table-header"><h3>◈ Controls Without Evidence (${missing.length})</h3></div>
+      <div class="table-header"><h3>â Controls Without Evidence (${missing.length})</h3></div>
       <div style="overflow-x:auto"><table>
         <thead><tr><th>ID</th><th>Title</th><th>Family</th><th>Status</th><th>Inheritance</th><th>Actions</th></tr></thead>
         <tbody>
@@ -1941,15 +2046,15 @@ function renderReportEvidence() {
           </tr>`).join('')}
         </tbody>
       </table></div>
-    </div>` : `<div class="table-wrap"><div class="empty"><div class="empty-icon">◈</div>ALL CONTROLS HAVE EVIDENCE LINKED</div></div>`}
+    </div>` : `<div class="table-wrap"><div class="empty"><div class="empty-icon">â</div>ALL CONTROLS HAVE EVIDENCE LINKED</div></div>`}
   </div>`;
 }
 
-// ─── REFERENCE VIEW ──────────────────────────────────────────────────────────
+// âââ REFERENCE VIEW ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function renderReference() {
   const picklists = [
     { label: 'Inheritance Type', values: ['Fully Inherited','Hybrid / Shared','Customer','Common (Org-Provided)','Not Applicable'],
-      desc: 'Who is responsible for implementing the control — AWS, the customer, or both.' },
+      desc: 'Who is responsible for implementing the control â AWS, the customer, or both.' },
     { label: 'Implementation Status', values: ['Implemented','Partially Implemented','Planned','Not Implemented','Not Applicable'],
       desc: 'Current implementation state. Drives the dashboard posture score.' },
     { label: 'POA&M Severity', values: ['Critical','High','Moderate','Low'],
@@ -1990,11 +2095,11 @@ function renderReference() {
   }
 
   return `
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px">
+  <div class="two-col-grid">
     ${picklists.map(p => `
     <div class="table-wrap">
       <div class="table-header">
-        <h3>◈ ${p.label}</h3>
+        <h3>â ${p.label}</h3>
       </div>
       <div style="padding:10px 18px 4px;font-size:11px;color:var(--text-muted);font-family:var(--mono)">${p.desc}</div>
       <div style="padding:8px 18px 14px;display:flex;flex-wrap:wrap;gap:6px">
@@ -2005,7 +2110,7 @@ function renderReference() {
 
   <div class="table-wrap">
     <div class="table-header">
-      <h3>◈ NIST 800-53 Rev 5 — Control Families</h3>
+      <h3>â NIST 800-53 Rev 5 â Control Families</h3>
       <span style="font-size:10px;color:var(--text-muted);font-family:var(--mono)">${families.length} families</span>
     </div>
     <div style="overflow-x:auto">
@@ -2022,7 +2127,7 @@ function renderReference() {
             <td>${count > 0
               ? `<span style="color:var(--accent);font-family:var(--mono);font-weight:700">${count}</span>
                  <span style="font-size:11px;color:var(--text-muted)"> control${count!==1?'s':''}</span>`
-              : '<span style="color:var(--text-muted);font-size:11px;font-family:var(--mono)">—</span>'}</td>
+              : '<span style="color:var(--text-muted);font-size:11px;font-family:var(--mono)">â</span>'}</td>
           </tr>`;
         }).join('')}
       </tbody>
@@ -2031,10 +2136,10 @@ function renderReference() {
   </div>`;
 }
 
-// ─── README VIEW ──────────────────────────────────────────────────────────────
+// âââ README VIEW ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function renderREADME() {
   const steps = [
-    'Download the AWS FedRAMP package from AWS Artifact (Console → Artifact → Reports → FedRAMP).',
+    'Download the AWS FedRAMP package from AWS Artifact (Console â Artifact â Reports â FedRAMP).',
     'Open the CRM .xlsx inside the package.',
     "Copy control rows from the AWS CRM into the Controls tab. Map AWS columns to this app's fields.",
     "Set <strong>Inheritance Type</strong> and <strong>Implementation Status</strong> for each row using the dropdowns.",
@@ -2044,17 +2149,33 @@ function renderREADME() {
   ];
 
   const tabs = [
-    { icon:'▣', name:'Dashboard',  tag:'01', view:'dashboard', desc:"Auto-calculating posture summary: implementation %, inheritance breakdown, POA&M severity counts. Driven live from your controls and POA&M data." },
-    { icon:'◉', name:'Controls',   tag:'02', view:'controls',  desc:"Main CRM register. One row per NIST 800-53 Rev 5 control. Pre-loaded with a High-baseline sample — replace or extend with your full CRM export from AWS Artifact." },
-    { icon:'◎', name:'POA&M',      tag:'03', view:'poam',      desc:"Plan of Action &amp; Milestones register. Linked to Controls via POA&M ID. Tracks findings, severity, owner, target close date, and mitigation milestones. Export/import via XLSX." },
-    { icon:'◩', name:'Evidence',   tag:'04', view:'evidence',  desc:"Evidence Vault. Auto-parsed artifact inventory derived from your controls. Classifies SSP sections, S3 paths, Audit Manager assessments, CloudTrail logs, and more. Flags stale and missing evidence." },
-    { icon:'◪', name:'Reports',    tag:'05', view:'reports',   desc:"Built-in ISSO reports: Executive Summary, POA&M Aging (with SLA analysis), Control Gap Report by family, and Evidence Coverage breakdown." },
-    { icon:'◫', name:'Guide',      tag:'06', view:'readme',    desc:"This page. Purpose, workflow, and step-by-step instructions for populating the tracker from AWS Artifact CRM exports." },
-    { icon:'⊞', name:'Picklists',  tag:'07', view:'reference', desc:"All dropdown values and NIST 800-53 control family definitions. Reference when setting inheritance, status, or severity values." },
+    { icon:'â£', name:'Dashboard',  tag:'01', view:'dashboard', desc:"Auto-calculating posture summary: implementation %, inheritance breakdown, POA&M severity counts. Driven live from your controls and POA&M data." },
+    { icon:'â', name:'Controls',   tag:'02', view:'controls',  desc:"Main CRM register. One row per NIST 800-53 Rev 5 control. Pre-loaded with a High-baseline sample â replace or extend with your full CRM export from AWS Artifact." },
+    { icon:'â', name:'POA&M',      tag:'03', view:'poam',      desc:"Plan of Action &amp; Milestones register. Linked to Controls via POA&M ID. Tracks findings, severity, owner, target close date, and mitigation milestones. Export/import via XLSX." },
+    { icon:'â©', name:'Evidence',   tag:'04', view:'evidence',  desc:"Evidence Vault. Auto-parsed artifact inventory derived from your controls. Classifies SSP sections, S3 paths, Audit Manager assessments, CloudTrail logs, and more. Flags stale and missing evidence." },
+    { icon:'âª', name:'Reports',    tag:'05', view:'reports',   desc:"Built-in ISSO reports: Executive Summary, POA&M Aging (with SLA analysis), Control Gap Report by family, and Evidence Coverage breakdown." },
+    { icon:'â«', name:'Guide',      tag:'06', view:'readme',    desc:"This page. Purpose, workflow, and step-by-step instructions for populating the tracker from AWS Artifact CRM exports." },
+    { icon:'â', name:'Picklists',  tag:'07', view:'reference', desc:"All dropdown values and NIST 800-53 control family definitions. Reference when setting inheritance, status, or severity values." },
   ];
 
   return `
   <div style="max-width:860px;margin:0 auto">
+
+
+    <!-- Semantic Search Bar -->
+    <div style="margin-bottom:24px">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden">
+        <div style="padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px">
+          <span style="font-size:18px;color:var(--accent);flex-shrink:0">â</span>
+          <input id="guide-search-input" type="text" placeholder="Search controls, POA&Ms, evidenceâ¦ (e.g. AC-2, encryption, stale)"
+            style="flex:1;background:transparent;border:none;outline:none;font-size:14px;color:var(--text);font-family:var(--mono)"
+            oninput="guideSearch(this.value)"
+            onkeydown="if(event.key==='Escape'){this.value='';guideSearch('')}">
+          <span style="font-size:10px;color:var(--text-muted);font-family:var(--mono);flex-shrink:0">ESC to clear</span>
+        </div>
+        <div id="guide-search-results"></div>
+      </div>
+    </div>
 
     <!-- Header card -->
     <div class="table-wrap" style="margin-bottom:22px;border-top:2px solid #e8a020">
@@ -2083,7 +2204,7 @@ function renderREADME() {
           <circle cx="256" cy="256" r="12" fill="#e8a020"/>
         </svg>
         <div>
-          <div style="font-size:9px;font-family:var(--mono);color:#e8a020;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px">TrustNovaOps · ACCORD // CLOUD ISSO</div>
+          <div style="font-size:9px;font-family:var(--mono);color:#e8a020;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px">TrustNovaOps Â· ACCORD // CLOUD ISSO</div>
           <div style="font-size:20px;font-weight:800;font-family:var(--mono);color:var(--text);text-transform:uppercase;letter-spacing:.03em;margin-bottom:6px">AWS FedRAMP CRM Tracker</div>
           <div style="font-size:13px;color:var(--text-muted);line-height:1.6">Customer Responsibility Matrix tracking application for AWS-hosted ATO boundaries.<br>Track every NIST 800-53 Rev 5 control: who owns it, implementation status, evidence location, and any linked POA&amp;M.</div>
           <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
@@ -2098,8 +2219,8 @@ function renderREADME() {
     </div>
 
     <!-- Module index -->
-    <div class="section-title" style="margin-top:0">◈ Application Modules</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px">
+    <div class="section-title" style="margin-top:0">â Application Modules</div>
+    <div class="two-col-grid">
       ${tabs.map(t => `
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;display:flex;gap:12px;align-items:flex-start;cursor:pointer"
            onclick="showView('${t.view}')">
@@ -2115,7 +2236,7 @@ function renderREADME() {
     </div>
 
     <!-- How to populate -->
-    <div class="section-title">◈ How to Populate — Step by Step</div>
+    <div class="section-title">â How to Populate â Step by Step</div>
     <div class="table-wrap" style="margin-bottom:22px">
       ${steps.map((s, i) => `
       <div style="display:flex;gap:16px;align-items:flex-start;padding:14px 20px;${i < steps.length-1 ? 'border-bottom:1px solid rgba(22,32,48,.8)' : ''}">
@@ -2129,14 +2250,92 @@ function renderREADME() {
 
     <!-- Notes -->
     <div style="background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.2);border-left:3px solid #e8a020;border-radius:var(--radius);padding:14px 18px;font-size:12px;color:var(--text-muted);line-height:1.7;font-family:var(--mono)">
-      <strong style="color:#e8a020;display:block;margin-bottom:4px;font-size:10px;letter-spacing:.08em;text-transform:uppercase">◈ Note</strong>
-      All edits are saved automatically to browser localStorage. Use the <strong style="color:var(--text)">Export XLSX</strong> button on the POA&amp;M page to back up your data, and <strong style="color:var(--text)">Import XLSX</strong> to restore or bulk-load records. Use the <strong style="color:var(--text)">↺ Reset</strong> button on the Controls page to restore the original sample data.
+      <strong style="color:#e8a020;display:block;margin-bottom:4px;font-size:10px;letter-spacing:.08em;text-transform:uppercase">â Note</strong>
+      All edits are saved automatically to browser localStorage. Use the <strong style="color:var(--text)">Export XLSX</strong> button on the POA&amp;M page to back up your data, and <strong style="color:var(--text)">Import XLSX</strong> to restore or bulk-load records. Use the <strong style="color:var(--text)">âº Reset</strong> button on the Controls page to restore the original sample data.
+    </div>
+
+    <!-- âââ Picklists & Reference âââââââââââââââââââââââââââââââââââââââ -->
+    <div class="section-title" style="margin-top:28px">â Reference â Picklists &amp; Control Families</div>
+    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+      <button class="btn btn-ghost btn-sm" onclick="document.querySelectorAll('.guide-picklist').forEach(el=>el.style.display='block');document.querySelectorAll('.guide-picklist-toggle').forEach(b=>b.textContent='â¾')">Expand All</button>
+      <button class="btn btn-ghost btn-sm" onclick="document.querySelectorAll('.guide-picklist').forEach(el=>el.style.display='none');document.querySelectorAll('.guide-picklist-toggle').forEach(b=>b.textContent='â¸')">Collapse All</button>
+    </div>
+    <div class="two-col-grid" style="margin-bottom:16px">
+      ${[
+        { label: 'Inheritance Type', values: ['Fully Inherited','Hybrid / Shared','Customer','Common (Org-Provided)','Not Applicable'],
+          desc: 'Who is responsible for implementing the control â AWS, the customer, or both.' },
+        { label: 'Implementation Status', values: ['Implemented','Partially Implemented','Planned','Not Implemented','Not Applicable'],
+          desc: 'Current implementation state. Drives the dashboard posture score.' },
+        { label: 'POA&M Severity', values: ['Critical','High','Moderate','Low'],
+          desc: 'Risk severity of the finding. Drives SLA timelines (Critical: 30d, High: 90d).' },
+        { label: 'POA&M Status', values: ['Open','Ongoing','Risk Accepted','Closed'],
+          desc: 'Lifecycle status of the POA&M item.' },
+        { label: 'Baseline', values: ['Low','Moderate','High','IL2','IL4','IL5','IL6'],
+          desc: 'NIST 800-53 impact level or DoD IL baseline for the control.' },
+        { label: 'Responsible Party', values: ['AWS','Customer','Shared','Common Control Provider'],
+          desc: 'Entity accountable for the control implementation.' },
+      ].map((p, pi) => {
+        const bCls = (list, val) => {
+          if (list==='POA&M Severity') return {Critical:'badge-red',High:'badge-orange',Moderate:'badge-yellow',Low:'badge-green'}[val]||'badge-gray';
+          if (list==='Implementation Status') return {Implemented:'badge-green','Partially Implemented':'badge-yellow',Planned:'badge-blue','Not Implemented':'badge-red','Not Applicable':'badge-gray'}[val]||'badge-gray';
+          if (list==='Inheritance Type') return {'Fully Inherited':'badge-gray','Hybrid / Shared':'badge-blue',Customer:'badge-purple','Common (Org-Provided)':'badge-green','Not Applicable':'badge-gray'}[val]||'badge-gray';
+          if (list==='POA&M Status') return {Open:'badge-red',Ongoing:'badge-orange','Risk Accepted':'badge-yellow',Closed:'badge-green'}[val]||'badge-gray';
+          return 'badge-gray';
+        };
+        return `
+        <div class="table-wrap">
+          <div class="table-header" style="cursor:pointer" onclick="const b=this.nextElementSibling,t=this.querySelector('.guide-picklist-toggle');b.style.display=b.style.display==='none'?'block':'none';t.textContent=b.style.display==='none'?'â¸':'â¾'">
+            <h3>â ${p.label}</h3>
+            <span class="guide-picklist-toggle" style="color:var(--accent);font-family:var(--mono);font-size:14px">â¾</span>
+          </div>
+          <div class="guide-picklist">
+            <div style="padding:8px 18px 4px;font-size:11px;color:var(--text-muted);font-family:var(--mono)">${p.desc}</div>
+            <div style="padding:8px 18px 14px;display:flex;flex-wrap:wrap;gap:6px">
+              ${p.values.map(v=>`<span class="badge ${bCls(p.label,v)}">${v}</span>`).join('')}
+            </div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+
+    <!-- NIST Control Families -->
+    <div class="table-wrap" style="margin-bottom:24px">
+      <div class="table-header" style="cursor:pointer" onclick="const b=this.nextElementSibling,t=this.querySelector('.guide-picklist-toggle');b.style.display=b.style.display==='none'?'block':'none';t.textContent=b.style.display==='none'?'â¸':'â¾'">
+        <h3>â NIST 800-53 Rev 5 â Control Families</h3>
+        <span class="guide-picklist-toggle" style="color:var(--accent);font-family:var(--mono);font-size:14px">â¾</span>
+      </div>
+      <div class="guide-picklist">
+        <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>Family</th><th>Full Name</th><th>Controls in Tracker</th></tr></thead>
+          <tbody>
+            ${[['AC','Access Control'],['AT','Awareness and Training'],['AU','Audit and Accountability'],
+               ['CA','Assessment, Authorization, and Monitoring'],['CM','Configuration Management'],
+               ['CP','Contingency Planning'],['IA','Identification and Authentication'],
+               ['IR','Incident Response'],['MA','Maintenance'],['MP','Media Protection'],
+               ['PE','Physical and Environmental Protection'],['PL','Planning'],
+               ['PM','Program Management'],['PS','Personnel Security'],
+               ['PT','PII Processing and Transparency'],['RA','Risk Assessment'],
+               ['SA','System and Services Acquisition'],['SC','System and Communications Protection'],
+               ['SI','System and Information Integrity'],['SR','Supply Chain Risk Management']
+            ].map(([code,name]) => {
+              const cnt = controls.filter(c=>c.family===code).length;
+              return `<tr>
+                <td><span class="badge badge-blue td-mono" style="cursor:pointer" onclick="ctrlFilter={family:'${code}',status:'',inheritance:'',statusArr:[]};showView('controls')" title="Filter to ${code}">${code}</span></td>
+                <td>${name}</td>
+                <td>${cnt>0?`<span style="color:var(--accent);font-family:var(--mono);font-weight:700">${cnt}</span> <span style="font-size:11px;color:var(--text-muted)">control${cnt!==1?'s':''}</span>`:'<span style="color:var(--text-muted);font-size:11px;font-family:var(--mono)">â</span>'}</td>
+              </tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+        </div>
+      </div>
     </div>
 
   </div>`;
 }
 
-// ─── XLS EXPORT ──────────────────────────────────────────────────────────────
+// âââ XLS EXPORT ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function exportPOAM() {
   const HEADERS = ['POA&M ID','Control ID','Finding Summary','Source','Severity',
     'Identified Date','Target Close Date','Status','Owner','Mitigation / Milestone','Notes'];
@@ -2151,7 +2350,7 @@ function exportPOAM() {
   const colWidths = [12,12,45,20,12,14,16,12,14,40,30];
   ws['!cols'] = colWidths.map(w => ({wch: w}));
 
-  // Style header row (bold + background — basic xlsx styling via cell metadata)
+  // Style header row (bold + background â basic xlsx styling via cell metadata)
   const range = XLSX.utils.decode_range(ws['!ref']);
   for (let C = range.s.c; C <= range.e.c; C++) {
     const addr = XLSX.utils.encode_cell({r: 0, c: C});
@@ -2183,7 +2382,7 @@ function exportPOAM() {
   toast('Exported ' + poams.length + ' POA&Ms to Excel', 'success');
 }
 
-// ─── XLS IMPORT ──────────────────────────────────────────────────────────────
+// âââ XLS IMPORT ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function importPOAM(input) {
   const file = input.files[0];
   if (!file) return;
@@ -2201,7 +2400,7 @@ function importPOAM(input) {
 
       if (!raw.length) { toast('Sheet is empty or unreadable', 'error'); return; }
 
-      // Normalize header keys — map common variations to internal field names
+      // Normalize header keys â map common variations to internal field names
       const COL_MAP = {
         'poam id':'id','poam_id':'id','id':'id',
         'control id':'control_id','control_id':'control_id','control':'control_id',
@@ -2226,7 +2425,7 @@ function importPOAM(input) {
           const mapped = COL_MAP[k.toLowerCase().trim()];
           if (!mapped) return;
           const val = row[k];
-          // Handle Date objects BEFORE stringifying — SheetJS cellDates:true returns JS Dates
+          // Handle Date objects BEFORE stringifying â SheetJS cellDates:true returns JS Dates
           if (val instanceof Date) {
             norm[mapped] = val.toISOString().slice(0, 10);
           } else {
@@ -2240,7 +2439,7 @@ function importPOAM(input) {
         const missing = REQUIRED.filter(f => !norm[f]);
         if (missing.length) { errors.push(`Row ${idx+2}: missing ${missing.join(', ')}`); return; }
 
-        // Normalize date fields — catch remaining formats (Excel serial, locale strings)
+        // Normalize date fields â catch remaining formats (Excel serial, locale strings)
         ['identified','target_close'].forEach(f => {
           if (!norm[f]) return;
           if (/^\d{5}$/.test(norm[f])) {
@@ -2256,10 +2455,10 @@ function importPOAM(input) {
 
         // Validate picklist values (warn but don't reject)
         if (norm.severity && !PICKLISTS.poam_severity.includes(norm.severity)) {
-          errors.push(`Row ${idx+2}: unknown severity "${norm.severity}" — accepted as-is`);
+          errors.push(`Row ${idx+2}: unknown severity "${norm.severity}" â accepted as-is`);
         }
         if (norm.status && !PICKLISTS.poam_status.includes(norm.status)) {
-          errors.push(`Row ${idx+2}: unknown status "${norm.status}" — accepted as-is`);
+          errors.push(`Row ${idx+2}: unknown status "${norm.status}" â accepted as-is`);
         }
 
         imported.push({
@@ -2291,12 +2490,12 @@ function importPOAM(input) {
 }
 
 function showImportResult(imported, errors, blockMsg) {
-  document.getElementById('modal-title').textContent = '⬆ Import POA&Ms — Preview';
+  document.getElementById('modal-title').textContent = 'â¬ Import POA&Ms â Preview';
   document.getElementById('modal-body').innerHTML = `
     ${blockMsg ? `<div style="background:rgba(239,68,68,.12);border:1px solid var(--red);border-radius:var(--radius);padding:12px 16px;margin-bottom:16px;color:#fca5a5">${blockMsg}</div>` : ''}
     ${errors.length ? `
       <div style="background:rgba(234,179,8,.1);border:1px solid var(--yellow);border-radius:var(--radius);padding:12px 16px;margin-bottom:16px">
-        <div style="font-weight:700;color:var(--yellow);margin-bottom:6px">⚠ ${errors.length} warning${errors.length>1?'s':''}</div>
+        <div style="font-weight:700;color:var(--yellow);margin-bottom:6px">â  ${errors.length} warning${errors.length>1?'s':''}</div>
         ${errors.map(e=>`<div style="font-size:12px;color:var(--text-muted);margin-top:2px">${e}</div>`).join('')}
       </div>` : ''}
     ${imported.length ? `
@@ -2333,7 +2532,7 @@ function showImportResult(imported, errors, blockMsg) {
       </div>` : ''}
   `;
   document.getElementById('modal-footer').innerHTML = imported.length ? `
-    <button class="btn btn-primary" onclick="confirmImport(${JSON.stringify(imported).replace(/</g,'&lt;')})">✓ Confirm Import</button>
+    <button class="btn btn-primary" onclick="confirmImport(${JSON.stringify(imported).replace(/</g,'&lt;')})">â Confirm Import</button>
     <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
   ` : `<button class="btn btn-ghost" onclick="closeModal()">Close</button>`;
   document.getElementById('modal').style.display = 'flex';
@@ -2357,9 +2556,9 @@ function confirmImport(imported) {
   toast(`Imported ${imported.length} POA&Ms (${mode})`, 'success');
 }
 
-// ─── ISSO ASSISTANT — AI-POWERED CHATBOT ─────────────────────────────────────
-// Capabilities used: Intent Detection · Contextual Retrieval · Predictive SLA ·
-//   Anomaly Detection · Recommendation Engine · Conversational AI
+// âââ ISSO ASSISTANT â AI-POWERED CHATBOT âââââââââââââââââââââââââââââââââââââ
+// Capabilities used: Intent Detection Â· Contextual Retrieval Â· Predictive SLA Â·
+//   Anomaly Detection Â· Recommendation Engine Â· Conversational AI
 // Behavior rules: (1) Clear & concise (2) Clarify when needed (3) Professional
 //   (4) No unsafe advice (5) Say "I don't know" vs guess (6) Use live data
 //   (7) Stay relevant to ISSO/compliance domain
@@ -2379,8 +2578,8 @@ function _botGreet() {
   const pct = Math.round(impl / controls.length * 100);
   const openPoams = poams.filter(p => p.status !== 'Closed').length;
   const overdue = _overduePoams();
-  const warnStr = overdue.length ? `\n\n⚠ ${overdue.length} POA&M${overdue.length>1?'s':''} past target close date — use "Overdue items?" to review.` : '';
-  _addBotMsg(`ISSO Assistant online.\n\nCurrent posture: **${pct}%** implemented (${impl}/${controls.length} controls) · **${openPoams}** open POA&M${openPoams!==1?'s':''}.${warnStr}\n\nAsk me about controls, findings, ATO status, SLA deadlines, or compliance guidance.`);
+  const warnStr = overdue.length ? `\n\nâ  ${overdue.length} POA&M${overdue.length>1?'s':''} past target close date â use "Overdue items?" to review.` : '';
+  _addBotMsg(`ISSO Assistant online.\n\nCurrent posture: **${pct}%** implemented (${impl}/${controls.length} controls) Â· **${openPoams}** open POA&M${openPoams!==1?'s':''}.${warnStr}\n\nAsk me about controls, findings, ATO status, SLA deadlines, or compliance guidance.`);
 }
 
 function chatChip(text) {
@@ -2395,9 +2594,9 @@ function sendChat() {
   _addUserMsg(text);
   input.value = '';
 
-  // Typing delay — feels more natural
+  // Typing delay â feels more natural
   const typingId = 'typing-' + Date.now();
-  _addBotMsg('…', typingId);
+  _addBotMsg('â¦', typingId);
   setTimeout(() => {
     const el = document.getElementById(typingId);
     if (el) el.closest('.chat-msg').remove();
@@ -2405,31 +2604,31 @@ function sendChat() {
   }, 350 + Math.random() * 250);
 }
 
-// ── Intent Detection Engine ───────────────────────────────────────────────────
+// ââ Intent Detection Engine âââââââââââââââââââââââââââââââââââââââââââââââââââ
 function _respond(raw) {
   const q = raw.toLowerCase().trim();
 
-  // ── Control ID lookup (e.g. "what is AC-2" / "show SI-4(4)")
+  // ââ Control ID lookup (e.g. "what is AC-2" / "show SI-4(4)")
   const ctrlMatch = q.match(/\b([a-z]{2}-\d+(?:\(\d+\))?)\b/i);
   if (ctrlMatch) return _respondControl(ctrlMatch[1].toUpperCase());
 
-  // ── Open POA&Ms
+  // ââ Open POA&Ms
   if (/open|ongoing|active|unresolved/.test(q) && /poam|finding|item/.test(q)) return _respondOpenPoams();
 
-  // ── Overdue
+  // ââ Overdue
   if (/overdue|past due|late|missed/.test(q)) return _respondOverdue();
 
-  // ── Critical findings
+  // ââ Critical findings
   if (/critical/.test(q) && /poam|finding|severity/.test(q)) {
     const crits = poams.filter(p => p.severity === 'Critical' && p.status !== 'Closed');
     if (!crits.length) return 'No critical-severity POA&Ms are open. Authorization boundary is clean at that tier.';
-    return crits.length + ` critical open:\n` + crits.map(p => `• **${p.id}** — ${p.summary.substring(0,60)}… (Owner: ${p.owner})`).join('\n');
+    return crits.length + ` critical open:\n` + crits.map(p => `â¢ **${p.id}** â ${p.summary.substring(0,60)}â¦ (Owner: ${p.owner})`).join('\n');
   }
 
-  // ── ATO posture / implementation %
+  // ââ ATO posture / implementation %
   if (/posture|ato|percent|implementation|status|readiness/.test(q) && !/control id|what is/.test(q)) return _respondPosture();
 
-  // ── Gaps / partial / not implemented
+  // ââ Gaps / partial / not implemented
   if (/gap|partial|not implement|planned/.test(q)) {
     const partial = controls.filter(c => c.status === 'Partially Implemented');
     const planned = controls.filter(c => c.status === 'Planned');
@@ -2442,74 +2641,74 @@ function _respond(raw) {
     return msg;
   }
 
-  // ── SLA / deadlines
+  // ââ SLA / deadlines
   if (/sla|deadline|target|due date|close date/.test(q)) return _respondSLA();
 
-  // ── AWS inherited / FedRAMP P-ATO
+  // ââ AWS inherited / FedRAMP P-ATO
   if (/inherited|aws inherit|fedramp p-ato|fully inherited|p-ato/.test(q)) {
     const inh = controls.filter(c => c.inheritance === 'Fully Inherited');
-    return `**${inh.length}** controls are fully inherited from AWS's FedRAMP P-ATO — cite AWS Artifact rather than implementing them directly.\n\nExamples: ${inh.slice(0,4).map(c=>c.id).join(', ')}.\n\nFor hybrid controls, you must document the customer-side implementation separately.`;
+    return `**${inh.length}** controls are fully inherited from AWS's FedRAMP P-ATO â cite AWS Artifact rather than implementing them directly.\n\nExamples: ${inh.slice(0,4).map(c=>c.id).join(', ')}.\n\nFor hybrid controls, you must document the customer-side implementation separately.`;
   }
 
-  // ── Customer responsibility
+  // ââ Customer responsibility
   if (/customer|my responsibility|i own|we own|who owns/.test(q)) {
     const cust = controls.filter(c => c.inheritance === 'Customer');
     const hybrid = controls.filter(c => c.inheritance === 'Hybrid / Shared');
     return `You own **${cust.length}** controls outright (Customer) and share **${hybrid.length}** more (Hybrid/Shared).\n\nFor Customer controls, full implementation evidence is required in your SSP. For Hybrid, document only the customer-side portion.`;
   }
 
-  // ── Control family query (e.g. "AC controls" or "tell me about AU family")
+  // ââ Control family query (e.g. "AC controls" or "tell me about AU family")
   const famMatch = q.match(/\b(AC|AT|AU|CA|CM|CP|IA|IR|MA|MP|PE|PL|PM|PS|PT|RA|SA|SC|SI|SR)\b/i);
   if (famMatch) return _respondFamily(famMatch[1].toUpperCase());
 
-  // ── Count queries
+  // ââ Count queries
   if (/how many|count|total|number of/.test(q)) return _respondCounts(q);
 
-  // ── Export / Import
-  if (/export|download|xlsx|excel/.test(q)) return 'To export POA&Ms: go to the **POA&M** view → click **⬇ Export XLSX**.\n\nTo import: click **⬆ Import XLSX**, select your file, and choose Merge or Replace from the preview before committing.';
+  // ââ Export / Import
+  if (/export|download|xlsx|excel/.test(q)) return 'To export POA&Ms: go to the **POA&M** view â click **â¬ Export XLSX**.\n\nTo import: click **â¬ Import XLSX**, select your file, and choose Merge or Replace from the preview before committing.';
 
-  // ── Guide / help / getting started
+  // ââ Guide / help / getting started
   if (/guide|how to|help|get start|setup|populate|step/.test(q)) {
     return 'Quick-start workflow:\n1. Download AWS FedRAMP CRM from **AWS Artifact**\n2. Load controls into **Controls** (02)\n3. Set Inheritance + Implementation Status per control\n4. Link evidence: SSP section, S3 path, or Audit Manager ID\n5. Open POA&Ms for any unimplemented or failing controls\n6. Refresh monthly during ConMon cycle\n\nSee **Guide** (04) for the full step-by-step.';
   }
 
-  // ── Reset / restore
-  if (/reset|restore|default|sample/.test(q)) return 'To restore defaults: **Controls** view → **↺ Reset** button. This wipes all edits — export your POA&Ms first if you have live data.';
+  // ââ Reset / restore
+  if (/reset|restore|default|sample/.test(q)) return 'To restore defaults: **Controls** view â **âº Reset** button. This wipes all edits â export your POA&Ms first if you have live data.';
 
-  // ── Stale / overdue reviews
+  // ââ Stale / overdue reviews
   if (/stale|old|review|last review|not reviewed/.test(q)) {
     const cutoff = new Date(); cutoff.setDate(cutoff.getDate() - 90);
     const stale = controls.filter(c => c.last_reviewed && new Date(c.last_reviewed) < cutoff);
     if (!stale.length) return 'All controls have been reviewed within the last 90 days.';
-    return `**${stale.length}** control${stale.length>1?'s':''} not reviewed in 90+ days:\n` + stale.slice(0,6).map(c=>`• ${c.id} — ${c.title} (reviewed ${c.last_reviewed})`).join('\n') + (stale.length > 6 ? `\n…and ${stale.length-6} more.` : '');
+    return `**${stale.length}** control${stale.length>1?'s':''} not reviewed in 90+ days:\n` + stale.slice(0,6).map(c=>`â¢ ${c.id} â ${c.title} (reviewed ${c.last_reviewed})`).join('\n') + (stale.length > 6 ? `\nâ¦and ${stale.length-6} more.` : '');
   }
 
-  // ── Rule 5: say "I don't know" instead of guessing
-  return `I don't have a specific answer for that.\n\nYou can:\n• Use the **search bar** to look up controls or POA&M IDs\n• Browse **Controls** (02) or **POA&M** (03) directly\n• Check the **Guide** (04) for workflow questions\n\nTry asking about a specific control ID (e.g. "What is AC-17?"), posture, open POA&Ms, or SLA status.`;
+  // ââ Rule 5: say "I don't know" instead of guessing
+  return `I don't have a specific answer for that.\n\nYou can:\nâ¢ Use the **search bar** to look up controls or POA&M IDs\nâ¢ Browse **Controls** (02) or **POA&M** (03) directly\nâ¢ Check the **Guide** (04) for workflow questions\n\nTry asking about a specific control ID (e.g. "What is AC-17?"), posture, open POA&Ms, or SLA status.`;
 }
 
-// ── Response Builders ─────────────────────────────────────────────────────────
+// ââ Response Builders âââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function _respondOpenPoams() {
   const open = poams.filter(p => p.status === 'Open' || p.status === 'Ongoing');
-  if (!open.length) return '✓ No open POA&Ms. Authorization boundary is currently clean.';
+  if (!open.length) return 'â No open POA&Ms. Authorization boundary is currently clean.';
   const crit = open.filter(p => p.severity === 'Critical').length;
   const high = open.filter(p => p.severity === 'High').length;
-  let msg = `**${open.length}** open POA&M${open.length>1?'s':''} (${crit} critical · ${high} high):\n\n`;
+  let msg = `**${open.length}** open POA&M${open.length>1?'s':''} (${crit} critical Â· ${high} high):\n\n`;
   msg += open.map(p => {
     const days = p.target_close ? Math.round((new Date(p.target_close)-new Date())/(864e5)) : null;
-    const due = days === null ? '' : days < 0 ? ` ⚠ ${Math.abs(days)}d OVERDUE` : ` · ${days}d left`;
-    return `• **${p.id}** [${p.severity}] ${p.summary.substring(0,55)}…${due}`;
+    const due = days === null ? '' : days < 0 ? ` â  ${Math.abs(days)}d OVERDUE` : ` Â· ${days}d left`;
+    return `â¢ **${p.id}** [${p.severity}] ${p.summary.substring(0,55)}â¦${due}`;
   }).join('\n');
   return msg;
 }
 
 function _respondOverdue() {
   const over = _overduePoams();
-  if (!over.length) return '✓ No POA&Ms are past their target close date.';
-  let msg = `**${over.length}** overdue POA&M${over.length>1?'s':''} — immediate action required:\n\n`;
+  if (!over.length) return 'â No POA&Ms are past their target close date.';
+  let msg = `**${over.length}** overdue POA&M${over.length>1?'s':''} â immediate action required:\n\n`;
   msg += over.map(p => {
     const d = Math.abs(Math.round((new Date(p.target_close)-new Date())/(864e5)));
-    return `• **${p.id}** [${p.severity}] ${d}d overdue — Owner: ${p.owner}. ${p.summary.substring(0,50)}…`;
+    return `â¢ **${p.id}** [${p.severity}] ${d}d overdue â Owner: ${p.owner}. ${p.summary.substring(0,50)}â¦`;
   }).join('\n');
   msg += '\n\nFedRAMP requires documented milestone updates and schedule adjustment requests for overdue items.';
   return msg;
@@ -2524,16 +2723,16 @@ function _respondPosture() {
   const pct   = Math.round(impl / total * 100);
   const open  = poams.filter(p => p.status !== 'Closed').length;
   const inh   = controls.filter(c => c.inheritance === 'Fully Inherited').length;
-  return `ATO posture snapshot:\n• **${pct}%** fully implemented (${impl}/${total})\n• ${part} partially implemented\n• ${plan} planned\n• ${notI} not implemented\n• ${inh} fully inherited from AWS P-ATO\n• **${open}** open POA&M${open!==1?'s':''}\n\nFedRAMP High requires every control to be implemented, inherited, or covered by an active POA&M with accepted risk.`;
+  return `ATO posture snapshot:\nâ¢ **${pct}%** fully implemented (${impl}/${total})\nâ¢ ${part} partially implemented\nâ¢ ${plan} planned\nâ¢ ${notI} not implemented\nâ¢ ${inh} fully inherited from AWS P-ATO\nâ¢ **${open}** open POA&M${open!==1?'s':''}\n\nFedRAMP High requires every control to be implemented, inherited, or covered by an active POA&M with accepted risk.`;
 }
 
 function _respondControl(id) {
   const c = controls.find(x => x.id.toUpperCase() === id.toUpperCase());
-  if (!c) return `**${id}** is not in the tracker. It may be out of scope or not yet loaded.\n\nUse **Controls** (02) → **+ Add Control** to add it, or check the Guide for how to import from AWS Artifact.`;
+  if (!c) return `**${id}** is not in the tracker. It may be out of scope or not yet loaded.\n\nUse **Controls** (02) â **+ Add Control** to add it, or check the Guide for how to import from AWS Artifact.`;
   const lp = c.poam_id ? poams.find(p => p.id === c.poam_id) : null;
-  let msg = `**${c.id} — ${c.title}**\n\nFamily: ${c.family} (${FAMILY_NAMES[c.family]||c.family})\nBaseline: ${c.baseline} · Status: ${c.status}\nInheritance: ${c.inheritance} · Owner: ${c.responsible}\nServices: ${c.services}\n\n**AWS provides:** ${c.aws_impl}\n\n**Customer must:** ${c.customer_resp}`;
+  let msg = `**${c.id} â ${c.title}**\n\nFamily: ${c.family} (${FAMILY_NAMES[c.family]||c.family})\nBaseline: ${c.baseline} Â· Status: ${c.status}\nInheritance: ${c.inheritance} Â· Owner: ${c.responsible}\nServices: ${c.services}\n\n**AWS provides:** ${c.aws_impl}\n\n**Customer must:** ${c.customer_resp}`;
   if (c.evidence) msg += `\n\n**Evidence:** ${c.evidence}`;
-  if (lp) msg += `\n\n⚠ **Linked POA&M:** ${lp.id} [${lp.severity}] — ${lp.status}`;
+  if (lp) msg += `\n\nâ  **Linked POA&M:** ${lp.id} [${lp.severity}] â ${lp.status}`;
   return msg;
 }
 
@@ -2543,7 +2742,7 @@ function _respondFamily(code) {
   if (!fc.length) return `No ${code} (${name}) controls are in the tracker yet.`;
   const impl = fc.filter(c => c.status === 'Implemented').length;
   const pct = Math.round(impl / fc.length * 100);
-  return `**${code} — ${name}** · ${fc.length} controls · ${pct}% implemented\n\n` + fc.map(c => `• ${c.id} — ${c.title} [${c.status}]`).join('\n');
+  return `**${code} â ${name}** Â· ${fc.length} controls Â· ${pct}% implemented\n\n` + fc.map(c => `â¢ ${c.id} â ${c.title} [${c.status}]`).join('\n');
 }
 
 function _respondSLA() {
@@ -2551,17 +2750,17 @@ function _respondSLA() {
   const open = poams.filter(p => p.status !== 'Closed' && p.target_close);
   const over = open.filter(p => new Date(p.target_close) < today);
   const warn = open.filter(p => { const d = Math.round((new Date(p.target_close)-today)/864e5); return d >= 0 && d <= 14; });
-  let msg = `FedRAMP POA&M SLA tiers:\n• **Critical:** 30 days\n• **High:** 90 days\n• **Moderate:** 180 days\n• **Low:** 365 days\n\n`;
-  if (over.length) msg += `⚠ **Overdue (${over.length}):** ${over.map(p=>p.id).join(', ')}\n`;
-  if (warn.length) msg += `⚡ **Due within 14 days (${warn.length}):** ${warn.map(p=>p.id).join(', ')}\n`;
-  if (!over.length && !warn.length) msg += '✓ All POA&Ms are within SLA windows.';
+  let msg = `FedRAMP POA&M SLA tiers:\nâ¢ **Critical:** 30 days\nâ¢ **High:** 90 days\nâ¢ **Moderate:** 180 days\nâ¢ **Low:** 365 days\n\n`;
+  if (over.length) msg += `â  **Overdue (${over.length}):** ${over.map(p=>p.id).join(', ')}\n`;
+  if (warn.length) msg += `â¡ **Due within 14 days (${warn.length}):** ${warn.map(p=>p.id).join(', ')}\n`;
+  if (!over.length && !warn.length) msg += 'â All POA&Ms are within SLA windows.';
   return msg;
 }
 
 function _respondCounts(q) {
   if (/poam|finding/.test(q)) {
     const open = poams.filter(p => p.status !== 'Closed').length;
-    return `POA&M totals:\n• Total: ${poams.length}\n• Open/Ongoing: ${open}\n• Closed: ${poams.length - open}`;
+    return `POA&M totals:\nâ¢ Total: ${poams.length}\nâ¢ Open/Ongoing: ${open}\nâ¢ Closed: ${poams.length - open}`;
   }
   return _respondPosture();
 }
@@ -2571,7 +2770,7 @@ function _overduePoams() {
   return poams.filter(p => p.status !== 'Closed' && p.target_close && new Date(p.target_close) < today);
 }
 
-// ── Message Rendering ─────────────────────────────────────────────────────────
+// ââ Message Rendering âââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function _addUserMsg(text) {
   const msgs = document.getElementById('chat-messages');
   const el = document.createElement('div');
@@ -2591,7 +2790,7 @@ function _addBotMsg(text, id) {
   const rendered = _esc(text)
     .replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--text)">$1</strong>')
     .replace(/\n/g, '<br>');
-  el.innerHTML = `<div class="chat-bubble">${rendered}</div><div class="chat-meta">ISSO Assistant · ACCORD</div>`;
+  el.innerHTML = `<div class="chat-bubble">${rendered}</div><div class="chat-meta">ISSO Assistant Â· ACCORD</div>`;
   msgs.appendChild(el);
   msgs.scrollTop = msgs.scrollHeight;
   chatHistory.push({ role: 'bot', text });
@@ -2601,7 +2800,95 @@ function _esc(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-// ─── INIT ────────────────────────────────────────────────────────────────────
+
+// âââ GUIDE SEMANTIC SEARCH ââââââââââââââââââââââââââââââââââââââââââââââââââââ
+let _guideSearchTimer = null;
+function guideSearch(query) {
+  clearTimeout(_guideSearchTimer);
+  _guideSearchTimer = setTimeout(() => _runGuideSearch(query), 220);
+}
+function _runGuideSearch(query) {
+  const q = query.trim().toLowerCase();
+  const resultsEl = document.getElementById('guide-search-results');
+  if (!resultsEl) return;
+  if (!q) { resultsEl.innerHTML = ''; return; }
+
+  // Search controls
+  const ctrlHits = controls.filter(c =>
+    c.id.toLowerCase().includes(q) ||
+    (c.title||'').toLowerCase().includes(q) ||
+    (c.family||'').toLowerCase().includes(q) ||
+    (c.status||'').toLowerCase().includes(q) ||
+    (c.notes||'').toLowerCase().includes(q) ||
+    (c.evidence||'').toLowerCase().includes(q)
+  ).slice(0, 8);
+
+  // Search POA&Ms
+  const poamHits = poams.filter(p =>
+    (p.id||'').toLowerCase().includes(q) ||
+    (p.title||'').toLowerCase().includes(q) ||
+    (p.description||'').toLowerCase().includes(q) ||
+    (p.severity||'').toLowerCase().includes(q) ||
+    (p.status||'').toLowerCase().includes(q)
+  ).slice(0, 6);
+
+  // Search evidence
+  const evidHits = parseEvidenceItems().filter(e =>
+    e.control_id.toLowerCase().includes(q) ||
+    e.ref.toLowerCase().includes(q) ||
+    e.type.toLowerCase().includes(q) ||
+    (e.control_title||'').toLowerCase().includes(q)
+  ).slice(0, 6);
+
+  const total = ctrlHits.length + poamHits.length + evidHits.length;
+
+  if (total === 0) {
+    resultsEl.innerHTML = `<div style="padding:18px 20px;color:var(--text-muted);font-family:var(--mono);font-size:12px">No results for <em>"${_esc(query)}"</em></div>`;
+    return;
+  }
+
+  let html = `<div style="padding:10px 18px 4px;font-size:10px;color:var(--text-muted);font-family:var(--mono);letter-spacing:.06em">${total} RESULT${total!==1?'S':''} FOR "${_esc(query.toUpperCase())}"</div>`;
+
+  if (ctrlHits.length) {
+    html += `<div style="padding:6px 18px 4px;font-size:10px;font-family:var(--mono);color:var(--accent);letter-spacing:.08em;text-transform:uppercase">Controls (${ctrlHits.length})</div>`;
+    html += ctrlHits.map(c => `
+    <div onclick="ctrlFilter={};searchQuery='${_esc(c.id)}';showView('controls');"
+         style="padding:9px 18px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;align-items:center;gap:10px"
+         onmouseover="this.style.background='var(--surface-hover)'" onmouseout="this.style.background=''">
+      <span class="badge badge-blue td-mono" style="flex-shrink:0">${_esc(c.id)}</span>
+      <span style="font-size:12px;color:var(--text);flex:1">${_esc(c.title||'â')}</span>
+      <span class="badge ${c.status==='Implemented'?'badge-green':c.status==='Partially Implemented'?'badge-yellow':c.status==='Planned'?'badge-blue':'badge-red'}" style="flex-shrink:0;font-size:10px">${_esc(c.status||'â')}</span>
+    </div>`).join('');
+  }
+
+  if (poamHits.length) {
+    html += `<div style="padding:6px 18px 4px;font-size:10px;font-family:var(--mono);color:var(--accent2);letter-spacing:.08em;text-transform:uppercase">POA&Ms (${poamHits.length})</div>`;
+    html += poamHits.map(p => `
+    <div onclick="poamFilter={};searchQuery='${_esc(p.id)}';showView('poam');"
+         style="padding:9px 18px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;align-items:center;gap:10px"
+         onmouseover="this.style.background='var(--surface-hover)'" onmouseout="this.style.background=''">
+      <span class="badge badge-orange td-mono" style="flex-shrink:0">${_esc(p.id||'â')}</span>
+      <span style="font-size:12px;color:var(--text);flex:1">${_esc(p.title||'â')}</span>
+      <span class="badge ${p.severity==='Critical'?'badge-red':p.severity==='High'?'badge-orange':p.severity==='Moderate'?'badge-yellow':'badge-green'}" style="flex-shrink:0;font-size:10px">${_esc(p.severity||'â')}</span>
+    </div>`).join('');
+  }
+
+  if (evidHits.length) {
+    html += `<div style="padding:6px 18px 4px;font-size:10px;font-family:var(--mono);color:#7ab8e8;letter-spacing:.08em;text-transform:uppercase">Evidence (${evidHits.length})</div>`;
+    html += evidHits.map(e => `
+    <div onclick="evidFilter={type:'${_esc(e.type)}'};showView('evidence');"
+         style="padding:9px 18px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;align-items:center;gap:10px"
+         onmouseover="this.style.background='var(--surface-hover)'" onmouseout="this.style.background=''">
+      <span class="badge badge-gray td-mono" style="flex-shrink:0">${_esc(e.control_id)}</span>
+      <span style="font-size:12px;color:var(--text);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${_esc(e.ref)}</span>
+      <span class="badge badge-blue" style="flex-shrink:0;font-size:10px">${_esc(e.type)}</span>
+    </div>`).join('');
+  }
+
+  resultsEl.innerHTML = html;
+}
+
+// âââ INIT ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 load();
 render();
 </script>
