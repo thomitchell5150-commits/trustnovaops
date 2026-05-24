@@ -23,6 +23,15 @@
         .logo{display:flex;align-items:center;gap:0.75rem;text-decoration:none;justify-content:center;margin-bottom:3rem}
         .logo-mark{font-family:var(--display);font-size:1.8rem;letter-spacing:2px;color:var(--amber)}
         .logo-dot{color:var(--muted)}
+        *:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+        @media(max-width:480px){
+          .content{padding:1.5rem}
+          .error-code{font-size:6rem}
+          h1{font-size:1.2rem}
+          p{font-size:0.9rem}
+          .terminal-hint{padding:0.75rem 1rem;font-size:0.7rem}
+          .btn{padding:0.75rem 1.5rem;font-size:0.85rem}
+        }
     </style>
 </head>
 <body>

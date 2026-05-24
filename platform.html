@@ -28,6 +28,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 ::-webkit-scrollbar{width:4px;height:4px}
 ::-webkit-scrollbar-thumb{background:var(--bd);border-radius:2px}
 ::-webkit-scrollbar-track{background:transparent}
+*:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
 
 /* ═══ APP SHELL ═══ */
 .app{display:grid;grid-template-rows:auto auto 1fr;height:100vh;overflow:hidden}
@@ -70,7 +71,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 .tb-logo-dot{width:7px;height:7px;border-radius:50%;background:var(--amber);animation:pulse 2.5s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 .tb-logo span{color:var(--text);opacity:.3}
-.tab-nav{display:flex;flex:1;height:100%}
+.tab-nav{display:flex;flex:1;height:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tab{
   font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
   color:var(--muted);padding:0 18px;display:flex;align-items:center;gap:8px;
@@ -448,6 +449,30 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
   .cmmc-domains-grid{grid-template-columns:repeat(2,1fr)}
   .gate-check{grid-template-columns:32px 1fr auto}
   .gate-check .gc-detail,.gate-check .gc-score{display:none}
+  .tab svg{display:none}
+  .tab{padding:0 14px;font-size:9px;letter-spacing:1px}
+  .tb-clock{display:none}
+  #tbTitle{display:none}
+}
+
+@media(max-width:600px){
+  .demo-banner{flex-direction:column;gap:8px;padding:7px 16px}
+  .demo-banner .db-left{flex-wrap:wrap}
+  .demo-banner .db-text{font-size:9px;white-space:normal}
+  .topbar{padding:0 12px;height:auto;min-height:48px;flex-wrap:wrap;gap:0}
+  .tb-logo{font-size:16px;padding-right:12px;margin-right:6px}
+  #tbTitle{display:none}
+  .tab-nav{order:3;width:100%;border-top:1px solid var(--bd);height:40px;flex-shrink:0}
+  .tab{padding:0 12px;font-size:9px;min-width:0}
+  .tab svg{display:none}
+  .tb-right{gap:6px;padding-left:8px}
+  .tb-clock{display:none}
+  .tb-status span{display:none}
+  .stat-row{grid-template-columns:1fr}
+  .view{padding:16px}
+  .ev-item{grid-template-columns:52px 40px 1fr;gap:6px}
+  .gate-check{grid-template-columns:24px 1fr auto}
+  .gate-check .gc-name{font-size:13px}
 }
 
 /* ─── INTERACTIVE STAT CARDS ─── */
@@ -663,38 +688,38 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
     TrustNova<span>Ops</span>
   </div>
   <div id="tbTitle" style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:0 18px 0 10px;border-right:1px solid var(--bd);margin-right:4px;white-space:nowrap;flex-shrink:0">COMMAND CENTER</div>
-  <div class="tab-nav">
-    <div class="tab active" data-view="dashboard">
+  <div class="tab-nav" role="tablist">
+    <div class="tab active" role="tab" data-view="dashboard">
       <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect width="4" height="4" fill="currentColor" opacity=".7"/><rect x="7" y="0" width="4" height="4" fill="currentColor" opacity=".7"/><rect x="0" y="7" width="4" height="4" fill="currentColor" opacity=".7"/><rect x="7" y="7" width="4" height="4" fill="currentColor" opacity=".7"/></svg>
       Command Center
     </div>
-    <div class="tab" data-view="pipeline">
+    <div class="tab" role="tab" data-view="pipeline">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="1" y="4" width="10" height="4" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="3" cy="6" r="1.2" fill="currentColor"/></svg>
       Pipeline Gate
       <span class="tab-badge" onclick="event.stopPropagation();switchTab('pipeline');setTimeout(showBlockedBuildsAlert,80)" title="4 blocked builds — click to view" style="cursor:pointer">4</span>
     </div>
-    <div class="tab" data-view="warden">
+    <div class="tab" role="tab" data-view="warden">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 .5L11.5 3v4C11.5 9.8 9 12 6 12.5 3 12 .5 9.8.5 7V3L6 .5z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
       WARDEN // DLP
       <span class="tab-badge amber" onclick="event.stopPropagation();switchTab('warden');setTimeout(()=>filterWardenSev('critical'),80)" title="23 DLP findings — click to filter critical" style="cursor:pointer">23</span>
     </div>
-    <div class="tab" data-view="agents">
+    <div class="tab" role="tab" data-view="agents">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="4" r="2.5" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M1 11c0-2.8 2.2-5 5-5s5 2.2 5 5" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>
       Agent Fleet
     </div>
-    <div class="tab" data-view="ato">
+    <div class="tab" role="tab" data-view="ato">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5.5" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M4 6l1.5 1.5L8.5 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
       Agent 007 ATO
     </div>
-    <div class="tab" data-view="cmmc">
+    <div class="tab" role="tab" data-view="cmmc">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polyline points="1,8 4,5 7,7 11,2" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round"/></svg>
       CMMC Controls
     </div>
-    <div class="tab" data-view="evidence">
+    <div class="tab" role="tab" data-view="evidence">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="2" y="1" width="8" height="10" rx="1" stroke="currentColor" stroke-width="1.2" fill="none"/><line x1="4" y1="4" x2="8" y2="4" stroke="currentColor" stroke-width="1.1"/><line x1="4" y1="6.5" x2="8" y2="6.5" stroke="currentColor" stroke-width="1.1"/><line x1="4" y1="9" x2="6" y2="9" stroke="currentColor" stroke-width="1.1"/></svg>
       Evidence Vault
     </div>
-    <div class="tab" data-view="exec">
+    <div class="tab" role="tab" data-view="exec">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="1" y="7" width="2" height="4" fill="currentColor" opacity=".7"/><rect x="5" y="4" width="2" height="7" fill="currentColor" opacity=".7"/><rect x="9" y="1" width="2" height="10" fill="currentColor" opacity=".7"/></svg>
       Exec Dashboard
     </div>
@@ -713,7 +738,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 </div>
 
 <!-- ═══════════════ VIEW: COMMAND CENTER ═══════════════ -->
-<div class="content">
+<div class="content" role="main">
 <div id="v-dashboard" class="view active">
 
   <!-- ── STAT CARDS (all navigate) ── -->

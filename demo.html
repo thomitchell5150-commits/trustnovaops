@@ -26,6 +26,9 @@
   --display:'Bebas Neue',sans-serif;
 }
 html{scroll-behavior:smooth}
+.skip-link{position:absolute;top:-100px;left:16px;background:var(--amber);color:#000;padding:12px 24px;font-family:var(--mono);font-size:12px;letter-spacing:1px;text-transform:uppercase;z-index:9999;text-decoration:none;transition:top .2s}
+.skip-link:focus{top:8px}
+*:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
 body{
   background:var(--bg);color:var(--text);
   font-family:var(--sans);font-size:16px;line-height:1.6;
@@ -312,17 +315,30 @@ footer{
   .f-row{grid-template-columns:1fr}
   .f-check-grid{grid-template-columns:repeat(2,1fr)}
   .stat-row{gap:24px}
+  .form-card{padding:36px 28px}
   footer{padding:28px 24px}
 }
 @media(max-width:480px){
   .f-check-grid{grid-template-columns:1fr 1fr}
   .agent-badges{display:none}
+  .nav-right-group{gap:8px}
+  .nav-dropdown-toggle{padding:6px 8px;font-size:9px}
+  .nav-back{font-size:10px}
+  .stat-row{flex-direction:column;gap:16px}
+  .social-proof{margin-top:32px;padding-top:24px}
+}
+@media(max-width:360px){
+  nav{padding:0 16px}
+  .page{padding:36px 16px 60px}
+  .form-card{padding:28px 20px}
+  .page-h1{font-size:42px}
 }
 </style>
 </head>
 <body>
+<a href="#demo-form" class="skip-link">Skip to demo form</a>
 
-<nav>
+<nav aria-label="Main navigation">
   <a href="/" class="nav-logo" style="display:flex;align-items:center;gap:10px">
     <svg width="26" height="26" viewBox="0 0 52 52" fill="none" style="flex-shrink:0"><polygon points="26,3 45,14 45,38 26,49 7,38 7,14" fill="none" stroke="#e8a020" stroke-width="1.8" opacity=".5"/><line x1="26" y1="26" x2="37" y2="20" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="37" y2="32" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="38" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="32" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="20" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="14" stroke="#e8a020" stroke-width="1" opacity=".38"/><circle cx="37" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="37" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="38" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="14" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="26" r="4" fill="#e8a020"/></svg>
     TrustNova<span>Ops</span>
@@ -401,7 +417,7 @@ footer{
   </div>
 
   <!-- RIGHT: FORM -->
-  <div class="form-card">
+  <div class="form-card" id="demo-form" role="form" aria-label="Request a demo">
     <div id="formWrap">
       <div class="form-card-title">BOOK YOUR SESSION</div>
       <div class="form-card-sub">
