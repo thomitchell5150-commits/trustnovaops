@@ -434,20 +434,37 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 .sp-pct{font-family:var(--mono);font-size:11px;color:var(--amber)}
 
 /* ═══ RESPONSIVE ═══ */
+/* ═══ FOCUS STYLES ═══ */
+a:focus-visible,.tab:focus-visible,.btn:focus-visible,
+.stat:focus-visible,.db-cta:focus-visible,.db-link:focus-visible{
+  outline:2px solid var(--amber);outline-offset:2px;
+}
 @media(max-width:1100px){
   .stat-row{grid-template-columns:repeat(3,1fr)}
   .ato-layout{grid-template-columns:1fr}
   .cmmc-domains-grid{grid-template-columns:repeat(4,1fr)}
   .exec-grid{grid-template-columns:1fr 1fr}
+  .tab-nav{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tb-right{display:none}
 }
 @media(max-width:800px){
   .demo-banner .db-right{display:none}
+  .demo-banner .db-text{font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .row2,.row3,.row35{grid-template-columns:1fr}
   .stat-row{grid-template-columns:repeat(2,1fr)}
   .detail-panel{width:100%}
   .cmmc-domains-grid{grid-template-columns:repeat(2,1fr)}
   .gate-check{grid-template-columns:32px 1fr auto}
   .gate-check .gc-detail,.gate-check .gc-score{display:none}
+  .topbar{padding:0 12px;height:auto;min-height:52px;flex-wrap:wrap;gap:8px;padding-top:8px;padding-bottom:8px}
+  .tb-logo{padding-right:12px;margin-right:4px;font-size:16px}
+  .tab{padding:0 10px;font-size:9px}
+}
+@media(max-width:500px){
+  .stat-row{grid-template-columns:1fr}
+  .demo-banner{padding:6px 12px}
+  .demo-banner .db-left{gap:8px}
+  .tab{padding:0 8px;font-size:8px;letter-spacing:1px}
 }
 
 /* ─── INTERACTIVE STAT CARDS ─── */

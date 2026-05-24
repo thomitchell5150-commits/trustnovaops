@@ -558,10 +558,64 @@ footer{
   color:var(--muted);border:1px solid var(--border);padding:3px 8px;opacity:.6;
 }
 
+/* ════════ MOBILE NAV ════════ */
+.mobile-toggle{
+  display:none;background:none;border:1px solid var(--border2);
+  color:var(--text-dim);padding:8px;cursor:pointer;
+  width:40px;height:40px;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.mobile-toggle svg{display:block}
+.mobile-toggle:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.mobile-menu{
+  display:none;position:fixed;top:60px;left:0;right:0;bottom:0;
+  background:rgba(8,9,15,0.98);z-index:199;
+  flex-direction:column;padding:24px;overflow-y:auto;
+  backdrop-filter:blur(12px);
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a,.mobile-menu button{
+  font-family:var(--mono);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--text-dim);padding:16px 0;border-bottom:1px solid var(--border);
+  text-decoration:none;display:block;background:none;border-left:none;border-right:none;
+  border-top:none;cursor:pointer;text-align:left;width:100%;transition:color .2s;
+}
+.mobile-menu a:hover,.mobile-menu button:hover{color:var(--amber)}
+.mobile-menu .mobile-cta{
+  margin-top:24px;background:var(--amber);color:#000;
+  text-align:center;padding:16px;font-weight:500;border:none;
+  clip-path:polygon(0 0,calc(100%-10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100%-10px));
+}
+
+/* ════════ SKIP NAV ════════ */
+.skip-link{
+  position:absolute;top:-100%;left:16px;
+  background:var(--amber);color:#000;padding:12px 24px;
+  font-family:var(--mono);font-size:12px;letter-spacing:1px;text-transform:uppercase;
+  z-index:9999;text-decoration:none;font-weight:600;
+}
+.skip-link:focus{top:8px}
+
+/* ════════ FOCUS STYLES ════════ */
+a:focus-visible,.btn-primary:focus-visible,.btn-secondary:focus-visible,
+.btn-nav-ghost:focus-visible,.btn-nav-cta:focus-visible,
+.nav-link:focus-visible,.nav-dropdown-toggle:focus-visible{
+  outline:2px solid var(--amber);outline-offset:2px;
+}
+
+/* ════════ VS TABLE RESPONSIVE ════════ */
+.vs-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:52px}
+.vs-table-wrap .vs-table{margin-top:0}
+
+/* ════════ EVIDENCE FLOW RESPONSIVE ════════ */
+.ef-steps{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:8px}
+
 /* ════════ RESPONSIVE ════════ */
 @media(max-width:1024px){
   nav{padding:0 24px}
   .nav-center{display:none}
+  .mobile-toggle{display:flex}
+  .nav-right{display:none}
   .hero{padding:72px 24px 64px}
   .section{padding:64px 24px}
   .trust-strip{padding:16px 24px}
@@ -586,24 +640,39 @@ footer{
   .pipeline-flow{grid-template-columns:repeat(2,1fr)}
   .ws-grid{grid-template-columns:1fr}
   footer{grid-template-columns:1fr}
+  .hero-proof{gap:20px}
+  .proof-divider{display:none}
+  .hero-proof{flex-direction:column;align-items:flex-start}
+  .trust-strip{flex-direction:column;gap:12px;align-items:flex-start}
+  .trust-label{border-right:none;padding-right:0;margin-right:0;border-bottom:1px solid var(--border);padding-bottom:8px;width:100%}
+  .trust-items{gap:12px 20px}
+  .cta-band{text-align:center;justify-content:center}
+  .cta-btns{justify-content:center}
+  .agent-card[style*="grid-column:span 2"]{grid-column:span 1}
+  .agent-card .ac-caps[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important}
+  .footer-compliance{justify-content:center}
+  .footer-bottom{justify-content:center;text-align:center}
+  .vs-table th,.vs-table td{padding:10px 12px;font-size:12px}
 }
 </style>
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 <!-- ════════════ NAV ════════════ -->
-<nav>
+<nav role="navigation" aria-label="Main navigation">
 <a href="/" class="nav-logo">
-  <svg width="28" height="28" viewBox="0 0 52 52" fill="none" style="flex-shrink:0"><polygon points="26,3 45,14 45,38 26,49 7,38 7,14" fill="none" stroke="#e8a020" stroke-width="1.8" opacity=".5"/><line x1="26" y1="26" x2="37" y2="20" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="37" y2="32" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="38" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="32" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="20" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="14" stroke="#e8a020" stroke-width="1" opacity=".38"/><circle cx="37" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="37" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="38" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="14" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="26" r="4" fill="#e8a020"/></svg>
+  <svg width="28" height="28" viewBox="0 0 52 52" fill="none" style="flex-shrink:0" aria-hidden="true"><polygon points="26,3 45,14 45,38 26,49 7,38 7,14" fill="none" stroke="#e8a020" stroke-width="1.8" opacity=".5"/><line x1="26" y1="26" x2="37" y2="20" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="37" y2="32" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="38" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="32" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="20" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="14" stroke="#e8a020" stroke-width="1" opacity=".38"/><circle cx="37" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="37" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="38" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="14" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="26" r="4" fill="#e8a020"/></svg>
   TrustNova<span>Ops</span>
 </a>
   <div class="nav-center">
     <div class="nav-dropdown" id="appsDropdown">
       <button class="nav-dropdown-toggle" onclick="document.getElementById('appsDropdown').classList.toggle('open')" aria-expanded="false" aria-haspopup="true">
-        Applications <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Applications <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <div class="nav-dropdown-menu">
-        <a href="/accord" class="nav-dropdown-item">TrustNovaOps ACCORD // AWS Cloud ISSO Tracker</a>
+      <div class="nav-dropdown-menu" role="menu">
+        <a href="/accord" class="nav-dropdown-item" role="menuitem">TrustNovaOps ACCORD // AWS Cloud ISSO Tracker</a>
       </div>
     </div>
     <a href="/warden" class="nav-link">WARDEN</a>
@@ -616,10 +685,25 @@ footer{
     <a href="/platform" class="btn-nav-ghost">See Demo</a>
     <a href="/demo" class="btn-nav-cta">Request Demo</a>
   </div>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu" aria-expanded="false">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
 </nav>
 
+<!-- ════════════ MOBILE MENU ════════════ -->
+<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+  <a href="/accord">ACCORD // ISSO Tracker</a>
+  <a href="/warden">WARDEN</a>
+  <a href="/platform">Platform</a>
+  <a href="#how-it-works" class="mobile-menu-link">How It Works</a>
+  <a href="#compliance" class="mobile-menu-link">Compliance</a>
+  <a href="#personas" class="mobile-menu-link">Who It's For</a>
+  <a href="/platform">See Demo</a>
+  <a href="/demo" class="mobile-cta">Request Demo</a>
+</div>
+
 <!-- ════════════ HERO ════════════ -->
-<div class="z1" style="position:relative">
+<div class="z1" style="position:relative" id="main-content">
 <div class="hero">
   <div class="hero-glow"></div>
   <div class="hero-eyebrow">Agentic DevSecOps Control Tower</div>
@@ -961,35 +1045,35 @@ footer{
   <div class="hitl-layout">
     <div class="hitl-flow">
       <div class="hitl-step">
-        <div class="hitl-icon">🔍</div>
+        <div class="hitl-icon"><span aria-hidden="true">🔍</span></div>
         <div>
           <div class="hitl-title">Agent detects a risk and assembles context</div>
           <div class="hitl-text">Before routing anything to a human, the agent pre-assembles every relevant data point: risk score, data lineage, user history, policy match, CMMC control reference, and ranked remediation options.</div>
         </div>
       </div>
       <div class="hitl-step">
-        <div class="hitl-icon amber">⚡</div>
+        <div class="hitl-icon amber"><span aria-hidden="true">⚡</span></div>
         <div>
           <div class="hitl-title">Autonomous action for known threat patterns</div>
           <div class="hitl-text">For pre-approved playbooks — USB lockdown, PR block, secret rotation — agents act immediately. No ticket needed. No wait. Sub-90ms response for defined threat signatures.</div>
         </div>
       </div>
       <div class="hitl-step">
-        <div class="hitl-icon amber">👤</div>
+        <div class="hitl-icon amber"><span aria-hidden="true">👤</span></div>
         <div>
           <div class="hitl-title">Human approval for ambiguous or high-impact events</div>
           <div class="hitl-text">Anything outside known patterns, above a risk threshold, or touching sensitive data routes to a named analyst with everything they need to decide already assembled. One click: approve, modify, or reject.</div>
         </div>
       </div>
       <div class="hitl-step">
-        <div class="hitl-icon">📋</div>
+        <div class="hitl-icon"><span aria-hidden="true">📋</span></div>
         <div>
           <div class="hitl-title">Every decision is evidence</div>
           <div class="hitl-text">Whether the agent acted autonomously or a human approved the action, the event is logged with full context, timestamp, policy reference, and outcome. The audit trail is continuous — not assembled at audit time.</div>
         </div>
       </div>
       <div class="hitl-step">
-        <div class="hitl-icon">🔒</div>
+        <div class="hitl-icon"><span aria-hidden="true">🔒</span></div>
         <div>
           <div class="hitl-title">Humans can override — and that override is tracked too</div>
           <div class="hitl-text">Overrides are legitimate actions in a real security program. TrustNovaOps doesn't fight them — it captures them. An override with a documented rationale is still an audit-ready evidence item.</div>
@@ -1159,6 +1243,7 @@ footer{
   <h2 class="section-h2">NOT ANOTHER POINT SOLUTION.<br>AN <em>OPERATIONS LAYER.</em></h2>
   <p class="section-desc">Point solutions scan, alert, and wait. TrustNovaOps reasons, coordinates, acts, and documents — across your entire stack, through a single platform, with humans appropriately in the loop.</p>
 
+  <div class="vs-table-wrap" role="region" aria-label="Comparison table" tabindex="0">
   <table class="vs-table">
     <thead>
       <tr>
@@ -1210,6 +1295,7 @@ footer{
       </tr>
     </tbody>
   </table>
+  </div>
 </div>
 </div>
 
@@ -1288,11 +1374,44 @@ footer{
 </div>
 
 <script>
-// Close dropdown when clicking outside
+// Mobile menu toggle
+(function(){
+  var toggle = document.getElementById('mobileToggle');
+  var menu = document.getElementById('mobileMenu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', function() {
+      var isOpen = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen);
+      toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    menu.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        menu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open menu');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+})();
+
+// Close dropdown when clicking outside and update aria-expanded
 document.addEventListener('click', function(e) {
   var dd = document.getElementById('appsDropdown');
-  if (dd && !dd.contains(e.target)) dd.classList.remove('open');
+  if (dd && !dd.contains(e.target)) {
+    dd.classList.remove('open');
+    var btn = dd.querySelector('.nav-dropdown-toggle');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+  }
 });
+var ddToggle = document.querySelector('#appsDropdown .nav-dropdown-toggle');
+if (ddToggle) {
+  ddToggle.addEventListener('click', function() {
+    var expanded = this.getAttribute('aria-expanded') === 'true';
+    this.setAttribute('aria-expanded', !expanded);
+  });
+}
 
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(a => {
