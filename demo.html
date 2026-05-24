@@ -305,6 +305,22 @@ footer{
 .footer-link:hover{color:var(--amber)}
 .footer-copy{font-family:var(--mono);font-size:11px;color:var(--muted);opacity:0.4}
 
+/* SKIP NAV */
+.skip-link{
+  position:absolute;top:-100%;left:16px;
+  background:var(--amber);color:#000;padding:12px 24px;
+  font-family:var(--mono);font-size:12px;letter-spacing:1px;text-transform:uppercase;
+  z-index:9999;text-decoration:none;font-weight:600;
+}
+.skip-link:focus{top:8px}
+
+/* FOCUS STYLES */
+a:focus-visible,.f-input:focus-visible,.f-select:focus-visible,
+.f-textarea:focus-visible,.f-submit:focus-visible,.f-check:focus-within,
+.nav-dropdown-toggle:focus-visible,.nav-back:focus-visible{
+  outline:2px solid var(--amber);outline-offset:2px;
+}
+
 @media(max-width:860px){
   nav{padding:0 24px}
   .page{grid-template-columns:1fr;padding:48px 24px 72px;gap:52px}
@@ -313,34 +329,46 @@ footer{
   .f-check-grid{grid-template-columns:repeat(2,1fr)}
   .stat-row{gap:24px}
   footer{padding:28px 24px}
+  .form-card{padding:32px 24px}
 }
 @media(max-width:480px){
+  nav{padding:0 16px;height:50px}
+  .page{padding:32px 16px 56px;gap:36px}
+  .page-h1{font-size:42px}
   .f-check-grid{grid-template-columns:1fr 1fr}
   .agent-badges{display:none}
+  .form-card{padding:28px 20px}
+  .stat-row{flex-direction:column;gap:16px}
+  footer{padding:20px 16px;flex-direction:column;align-items:flex-start;gap:16px}
+  .nav-right-group{gap:8px}
+  .nav-back{font-size:10px}
+  .nav-dropdown-toggle{font-size:10px;padding:6px 8px}
 }
 </style>
 </head>
 <body>
 
-<nav>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<nav role="navigation" aria-label="Main navigation">
   <a href="/" class="nav-logo" style="display:flex;align-items:center;gap:10px">
-    <svg width="26" height="26" viewBox="0 0 52 52" fill="none" style="flex-shrink:0"><polygon points="26,3 45,14 45,38 26,49 7,38 7,14" fill="none" stroke="#e8a020" stroke-width="1.8" opacity=".5"/><line x1="26" y1="26" x2="37" y2="20" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="37" y2="32" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="38" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="32" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="20" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="14" stroke="#e8a020" stroke-width="1" opacity=".38"/><circle cx="37" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="37" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="38" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="14" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="26" r="4" fill="#e8a020"/></svg>
+    <svg width="26" height="26" viewBox="0 0 52 52" fill="none" style="flex-shrink:0" aria-hidden="true"><polygon points="26,3 45,14 45,38 26,49 7,38 7,14" fill="none" stroke="#e8a020" stroke-width="1.8" opacity=".5"/><line x1="26" y1="26" x2="37" y2="20" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="37" y2="32" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="38" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="32" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="20" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="14" stroke="#e8a020" stroke-width="1" opacity=".38"/><circle cx="37" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="37" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="38" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="14" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="26" r="4" fill="#e8a020"/></svg>
     TrustNova<span>Ops</span>
   </a>
   <div class="nav-right-group">
     <div class="nav-dropdown" id="appsDropdown">
       <button class="nav-dropdown-toggle" onclick="document.getElementById('appsDropdown').classList.toggle('open')" aria-expanded="false" aria-haspopup="true">
-        Applications <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Applications <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <div class="nav-dropdown-menu">
-        <a href="/accord" class="nav-dropdown-item">TrustNovaOps ACCORD // AWS Cloud ISSO Tracker</a>
+      <div class="nav-dropdown-menu" role="menu">
+        <a href="/accord" class="nav-dropdown-item" role="menuitem">TrustNovaOps ACCORD // AWS Cloud ISSO Tracker</a>
       </div>
     </div>
     <a href="/" class="nav-back">Back to site</a>
   </div>
 </nav>
 
-<main class="page">
+<main class="page" id="main-content">
 
   <!-- LEFT: PITCH -->
   <div class="left-col">
@@ -537,11 +565,22 @@ footer{
 </footer>
 
 <script>
-// Close dropdown when clicking outside
+// Close dropdown when clicking outside and update aria-expanded
 document.addEventListener('click', function(e) {
   var dd = document.getElementById('appsDropdown');
-  if (dd && !dd.contains(e.target)) dd.classList.remove('open');
+  if (dd && !dd.contains(e.target)) {
+    dd.classList.remove('open');
+    var btn = dd.querySelector('.nav-dropdown-toggle');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+  }
 });
+var ddToggle = document.querySelector('#appsDropdown .nav-dropdown-toggle');
+if (ddToggle) {
+  ddToggle.addEventListener('click', function() {
+    var expanded = this.getAttribute('aria-expanded') === 'true';
+    this.setAttribute('aria-expanded', !expanded);
+  });
+}
 
 // Validate helpers
 function required(id, errId) {

@@ -442,9 +442,53 @@ footer{
 }
 .toc-dot:hover,.toc-dot.active{background:var(--amber);transform:scale(1.5)}
 
+/* ════════ MOBILE NAV ════════ */
+.mobile-toggle{
+  display:none;background:none;border:1px solid var(--border2);
+  color:var(--text-dim);padding:8px;cursor:pointer;
+  width:40px;height:40px;align-items:center;justify-content:center;flex-shrink:0;
+}
+.mobile-toggle svg{display:block}
+.mobile-toggle:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.mobile-menu{
+  display:none;position:fixed;top:56px;left:0;right:0;bottom:0;
+  background:rgba(8,9,15,0.98);z-index:199;
+  flex-direction:column;padding:24px;overflow-y:auto;
+  backdrop-filter:blur(12px);
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{
+  font-family:var(--mono);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--text-dim);padding:16px 0;border-bottom:1px solid var(--border);
+  text-decoration:none;display:block;transition:color .2s;
+}
+.mobile-menu a:hover{color:var(--amber)}
+.mobile-menu .mobile-cta{
+  margin-top:24px;background:var(--amber);color:#000;
+  text-align:center;padding:16px;font-weight:500;border:none;
+  clip-path:polygon(0 0,calc(100%-10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100%-10px));
+}
+
+/* ════════ SKIP NAV ════════ */
+.skip-link{
+  position:absolute;top:-100%;left:16px;
+  background:var(--amber);color:#000;padding:12px 24px;
+  font-family:var(--mono);font-size:12px;letter-spacing:1px;text-transform:uppercase;
+  z-index:9999;text-decoration:none;font-weight:600;
+}
+.skip-link:focus{top:8px}
+
+/* ════════ FOCUS STYLES ════════ */
+a:focus-visible,.nav-pill:focus-visible,.nav-link:focus-visible,
+.nav-dropdown-toggle:focus-visible{
+  outline:2px solid var(--amber);outline-offset:2px;
+}
+
 @media(max-width:1100px){.toc{display:none}}
 @media(max-width:960px){
   nav{padding:0 24px}
+  .nav-links{display:none}
+  .mobile-toggle{display:flex}
   .agent-banner{padding:10px 24px}
   .hero{grid-template-columns:1fr;padding:56px 24px 48px;gap:40px}
   .hero-card{display:none}
@@ -469,10 +513,13 @@ footer{
   .workflow-grid{grid-template-columns:repeat(2,1fr)}
   .arch-node.central{grid-column:span 2}
   .compliance-strip{grid-template-columns:repeat(2,1fr)}
+  .diff-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
 }
 </style>
 </head>
 <body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- TOC DOTS -->
 <nav class="toc" aria-hidden="true">
@@ -489,18 +536,18 @@ footer{
 </nav>
 
 <!-- NAV -->
-<nav>
+<nav role="navigation" aria-label="Main navigation">
   <a href="/" class="nav-logo" style="display:flex;align-items:center;gap:10px">
-    <svg width="26" height="26" viewBox="0 0 52 52" fill="none" style="flex-shrink:0"><polygon points="26,3 45,14 45,38 26,49 7,38 7,14" fill="none" stroke="#e8a020" stroke-width="1.8" opacity=".5"/><line x1="26" y1="26" x2="37" y2="20" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="37" y2="32" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="38" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="32" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="20" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="14" stroke="#e8a020" stroke-width="1" opacity=".38"/><circle cx="37" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="37" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="38" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="14" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="26" r="4" fill="#e8a020"/></svg>
+    <svg width="26" height="26" viewBox="0 0 52 52" fill="none" style="flex-shrink:0" aria-hidden="true"><polygon points="26,3 45,14 45,38 26,49 7,38 7,14" fill="none" stroke="#e8a020" stroke-width="1.8" opacity=".5"/><line x1="26" y1="26" x2="37" y2="20" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="37" y2="32" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="38" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="32" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="20" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="14" stroke="#e8a020" stroke-width="1" opacity=".38"/><circle cx="37" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="37" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="38" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="14" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="26" r="4" fill="#e8a020"/></svg>
     TrustNova<span>Ops</span>
   </a>
   <div class="nav-links">
     <div class="nav-dropdown" id="appsDropdown">
       <button class="nav-dropdown-toggle" onclick="document.getElementById('appsDropdown').classList.toggle('open')" aria-expanded="false" aria-haspopup="true">
-        Applications <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Applications <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <div class="nav-dropdown-menu">
-        <a href="/accord" class="nav-dropdown-item">TrustNovaOps ACCORD // AWS Cloud ISSO Tracker</a>
+      <div class="nav-dropdown-menu" role="menu">
+        <a href="/accord" class="nav-dropdown-item" role="menuitem">TrustNovaOps ACCORD // AWS Cloud ISSO Tracker</a>
       </div>
     </div>
     <a href="#mission" class="nav-link">Mission</a>
@@ -510,7 +557,21 @@ footer{
     <a href="#architecture" class="nav-link">Architecture</a>
     <a href="#demo" class="nav-pill">Request Demo</a>
   </div>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu" aria-expanded="false">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+  <a href="/accord">ACCORD // ISSO Tracker</a>
+  <a href="#mission" class="mobile-menu-link">Mission</a>
+  <a href="#capabilities" class="mobile-menu-link">Capabilities</a>
+  <a href="#workflow" class="mobile-menu-link">Workflow</a>
+  <a href="#usecases" class="mobile-menu-link">Use Cases</a>
+  <a href="#architecture" class="mobile-menu-link">Architecture</a>
+  <a href="#demo" class="mobile-cta">Request Demo</a>
+</div>
 
 <!-- AGENT BANNER -->
 <div class="agent-banner">
@@ -520,7 +581,7 @@ footer{
 
 <!-- ═══════════════════ SECTION 1: AGENT NAME ═══════════════════ -->
 <div id="agent-name" class="z1">
-<div class="hero">
+<div class="hero" id="main-content">
   <div>
     <div class="hero-eyebrow">Section 01 — Agent Name</div>
     <h1 class="hero-h1">WARDEN<span class="accent">.</span></h1>
@@ -1251,10 +1312,36 @@ footer{
 </footer>
 
 <script>
+// Mobile menu toggle
+(function(){
+  var toggle = document.getElementById('mobileToggle');
+  var menu = document.getElementById('mobileMenu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', function() {
+      var isOpen = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen);
+      toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    menu.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        menu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open menu');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+})();
+
 // Close dropdown when clicking outside
 document.addEventListener('click', function(e) {
   var dd = document.getElementById('appsDropdown');
-  if (dd && !dd.contains(e.target)) dd.classList.remove('open');
+  if (dd && !dd.contains(e.target)) {
+    dd.classList.remove('open');
+    var btn = dd.querySelector('.nav-dropdown-toggle');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+  }
 });
 
 // TOC active state
