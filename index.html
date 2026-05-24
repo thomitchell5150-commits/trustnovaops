@@ -33,6 +33,9 @@
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden}
+.skip-link{position:absolute;top:-100px;left:16px;background:var(--amber);color:#000;padding:12px 24px;font-family:var(--mono);font-size:12px;letter-spacing:1px;text-transform:uppercase;z-index:9999;text-decoration:none;transition:top .2s}
+.skip-link:focus{top:8px}
+*:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
 
 /* GRID TEXTURE */
 body::before{
@@ -558,10 +561,22 @@ footer{
   color:var(--muted);border:1px solid var(--border);padding:3px 8px;opacity:.6;
 }
 
+/* ════════ MOBILE NAV ════════ */
+.nav-toggle{display:none;background:none;border:1px solid var(--border2);color:var(--text-dim);width:40px;height:40px;cursor:pointer;align-items:center;justify-content:center;flex-shrink:0}
+.nav-toggle svg{display:block}
+.mobile-menu{display:none;position:fixed;inset:0;top:60px;z-index:199;background:rgba(8,9,15,0.98);backdrop-filter:blur(12px);padding:24px;flex-direction:column;gap:4px;overflow-y:auto}
+.mobile-menu.open{display:flex}
+.mobile-menu .nav-link{font-family:var(--mono);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:14px 0;text-decoration:none;border-bottom:1px solid var(--border);display:block}
+.mobile-menu .nav-link:hover{color:var(--amber)}
+.mobile-menu .mobile-menu-btns{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.mobile-menu .mobile-menu-btns a{text-align:center;padding:14px 24px}
+
 /* ════════ RESPONSIVE ════════ */
 @media(max-width:1024px){
   nav{padding:0 24px}
   .nav-center{display:none}
+  .nav-toggle{display:flex}
+  .nav-right{display:none}
   .hero{padding:72px 24px 64px}
   .section{padding:64px 24px}
   .trust-strip{padding:16px 24px}
@@ -586,13 +601,23 @@ footer{
   .pipeline-flow{grid-template-columns:repeat(2,1fr)}
   .ws-grid{grid-template-columns:1fr}
   footer{grid-template-columns:1fr}
+  .hero-proof{flex-direction:column;gap:20px;align-items:flex-start}
+  .proof-divider{display:none}
+  .trust-strip{flex-direction:column;gap:12px;padding:16px 24px}
+  .trust-label{border-right:none;padding-right:0;margin-right:0;border-bottom:1px solid var(--border);padding-bottom:12px;margin-bottom:0}
+  .trust-items{gap:16px}
+  .metrics-grid{grid-template-columns:1fr}
+  .hero-btns{flex-direction:column}
+  .hero-btns a{text-align:center}
+  .footer-compliance{flex-wrap:wrap}
 }
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- ════════════ NAV ════════════ -->
-<nav>
+<nav aria-label="Main navigation">
 <a href="/" class="nav-logo">
   <svg width="28" height="28" viewBox="0 0 52 52" fill="none" style="flex-shrink:0"><polygon points="26,3 45,14 45,38 26,49 7,38 7,14" fill="none" stroke="#e8a020" stroke-width="1.8" opacity=".5"/><line x1="26" y1="26" x2="37" y2="20" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="37" y2="32" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="38" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="32" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="20" stroke="#e8a020" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="14" stroke="#e8a020" stroke-width="1" opacity=".38"/><circle cx="37" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="37" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="38" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="32" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="15" cy="20" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="14" r="2.2" fill="#e8a020" opacity=".75"/><circle cx="26" cy="26" r="4" fill="#e8a020"/></svg>
   TrustNova<span>Ops</span>
@@ -616,10 +641,25 @@ footer{
     <a href="/platform" class="btn-nav-ghost">See Demo</a>
     <a href="/demo" class="btn-nav-cta">Request Demo</a>
   </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><line x1="3" y1="5" x2="17" y2="5" stroke="currentColor" stroke-width="1.5"/><line x1="3" y1="10" x2="17" y2="10" stroke="currentColor" stroke-width="1.5"/><line x1="3" y1="15" x2="17" y2="15" stroke="currentColor" stroke-width="1.5"/></svg>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+  <a href="/warden" class="nav-link">WARDEN</a>
+  <a href="/platform" class="nav-link">Platform</a>
+  <a href="/accord" class="nav-link">ACCORD</a>
+  <a href="#how-it-works" class="nav-link">How It Works</a>
+  <a href="#compliance" class="nav-link">Compliance</a>
+  <a href="#personas" class="nav-link">Who It's For</a>
+  <div class="mobile-menu-btns">
+    <a href="/platform" class="btn-secondary">See Demo</a>
+    <a href="/demo" class="btn-primary">Request Demo</a>
+  </div>
+</div>
 
 <!-- ════════════ HERO ════════════ -->
-<div class="z1" style="position:relative">
+<div class="z1" id="main-content" role="main" style="position:relative">
 <div class="hero">
   <div class="hero-glow"></div>
   <div class="hero-eyebrow">Agentic DevSecOps Control Tower</div>
@@ -1340,6 +1380,25 @@ const heroObs = new IntersectionObserver(entries => {
 }, {threshold:.5});
 const hero = document.querySelector('.hero-proof');
 if (hero) heroObs.observe(hero);
+
+// Mobile nav toggle
+(function(){
+  var btn = document.getElementById('navToggle');
+  var menu = document.getElementById('mobileMenu');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+      document.body.style.overflow = '';
+    });
+  });
+})();
 </script>
 </body>
 </html>

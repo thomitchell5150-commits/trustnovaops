@@ -24,6 +24,7 @@
     --mono: 'Cascadia Code', 'Courier New', monospace;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  *:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; min-height: 100vh; }
 
   /* Layout */
@@ -116,7 +117,7 @@
   .chart-wrap { position: relative; height: 200px; }
 
   /* Table */
-  .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; overflow-x: auto; }
   .table-header { padding: 12px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
   .table-header h3 {
     font-size: 11px; font-weight: 700; flex: 1; letter-spacing: .08em;
@@ -257,6 +258,39 @@
     .sidebar-logo, .nav-label, .nav-section, .sidebar-footer { display: none; }
     .nav-item { justify-content: center; padding: 12px; }
   }
+  @media (max-width: 640px) {
+    #app { flex-direction: column; }
+    #sidebar {
+      width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border);
+      flex-direction: row; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    }
+    .sidebar-logo { display: none; }
+    .nav-section { display: none; }
+    .nav-item {
+      padding: 10px 14px; border-left: none; border-bottom: 2px solid transparent;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .nav-item.active { border-left: none; border-bottom-color: var(--accent); }
+    .nav-label { display: none; }
+    .nav-tag { display: none; }
+    #topbar { padding: 10px 16px; flex-wrap: wrap; gap: 8px; }
+    #topbar h2 { font-size: 11px; }
+    .search-box input { width: 120px; }
+    #content { padding: 16px; }
+    .cards { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .charts-row { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    table { display: block; overflow-x: auto; }
+    .modal { width: calc(100vw - 40px); max-width: none; }
+    #chat-panel { width: calc(100vw - 32px); right: 16px; bottom: 80px; height: 70vh; }
+    #chat-fab { bottom: 16px; right: 16px; }
+    .table-header { flex-wrap: wrap; gap: 8px; }
+  }
+  @media (max-width: 400px) {
+    .cards { grid-template-columns: 1fr; }
+    .card-value { font-size: 24px; }
+    #content { padding: 12px; }
+  }
 
   /* ── AI Capability Badges ──────────────────────────────────────────────── */
   .ai-chip {
@@ -367,7 +401,7 @@
 <body>
 <div id="app">
   <!-- Sidebar -->
-  <nav id="sidebar">
+  <nav id="sidebar" role="navigation">
     <div class="sidebar-logo">
       <!-- TrustNovaOps Logo Mark (amber hexagonal network) -->
       <div class="tno-logo-wrap">
@@ -477,7 +511,7 @@
   </nav>
 
   <!-- Main -->
-  <div id="main">
+  <div id="main" role="main">
     <div id="topbar">
       <div class="topbar-left">
         <div class="topbar-crumb">TrustNovaOps · ACCORD // AWS Cloud ISSO — ATO Controls &amp; POA&amp;M Evidence Tracker</div>
