@@ -24,7 +24,7 @@
     --mono: 'Cascadia Code', 'Courier New', monospace;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; min-height: 100vh; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; min-height: 100vh; overflow-x: hidden; }
 
   /* Layout */
   #app { display: flex; min-height: 100vh; }
@@ -105,7 +105,7 @@
   /* Charts row */
   .charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
   .chart-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; }
-  .chart-card canvas { cursor: pointer; }
+  .chart-card canvas { cursor: pointer; max-width: 100%; touch-action: manipulation; }
   .chart-card-hint { font-size: 9px; color: var(--text-muted); font-family: var(--mono); letter-spacing: .06em; margin-left: auto; opacity: .6; }
   .chart-card h3 {
     font-size: 9px; font-weight: 700; margin-bottom: 14px;
@@ -156,7 +156,7 @@
 
   /* Modal */
   .modal-overlay { position: fixed; inset: 0; background: rgba(0,5,12,.85); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(4px); }
-  .modal { background: var(--surface); border: 1px solid var(--border); border-top: 2px solid var(--accent); border-radius: var(--radius); width: 700px; max-height: 90vh; overflow-y: auto; box-shadow: 0 30px 80px rgba(0,0,0,.7), 0 0 40px rgba(0,180,255,.06); }
+  .modal { background: var(--surface); border: 1px solid var(--border); border-top: 2px solid var(--accent); border-radius: var(--radius); width: min(700px, 96vw); max-height: 90vh; overflow-y: auto; box-shadow: 0 30px 80px rgba(0,0,0,.7), 0 0 40px rgba(0,180,255,.06); }
   .modal-header { padding: 18px 22px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
   .modal-header h2 { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; font-family: var(--mono); }
   .modal-body { padding: 22px; }
@@ -249,13 +249,85 @@
   .topbar-heading { font-size: 14px; font-weight: 800; color: var(--text); font-family: var(--mono); text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
   .topbar-heading span { color: var(--accent); }
 
-  /* Responsive */
-  @media (max-width: 900px) {
+  /* Reusable responsive grid classes */
+  .two-col-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 22px; }
+  .detail-grid  { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+
+  /* ═══════════════════════════════════════════════════════════════
+     RESPONSIVE — 3-TIER BREAKPOINTS
+     Desktop ≥1025px  |  Tablet 601–1024px  |  Phone ≤600px
+  ═══════════════════════════════════════════════════════════════ */
+  @media (max-width: 1024px) {
     .charts-row { grid-template-columns: 1fr; }
-    .form-grid { grid-template-columns: 1fr; }
-    #sidebar { width: 60px; }
+    .form-grid  { grid-template-columns: 1fr; }
+    .two-col-grid { grid-template-columns: 1fr; }
+    #sidebar { width: 64px; }
     .sidebar-logo, .nav-label, .nav-section, .sidebar-footer { display: none; }
-    .nav-item { justify-content: center; padding: 12px; }
+    .nav-item { justify-content: center; padding: 12px 8px; }
+    .modal { width: min(92vw, 640px); }
+    .search-box input { width: 160px; }
+    #chat-panel { width: min(340px, calc(100vw - 90px)); right: 16px; }
+  }
+  @media (max-width: 600px) {
+    #sidebar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      width: 100% !important; height: 58px;
+      flex-direction: row; flex-shrink: 0;
+      border-right: none; border-top: 1px solid var(--border);
+      overflow-x: auto; overflow-y: hidden;
+      z-index: 900; padding: 0;
+      justify-content: space-around; align-items: center;
+    }
+    .sidebar-logo, .nav-section, .sidebar-footer { display: none !important; }
+    .nav-item {
+      flex-direction: column !important; flex: 1;
+      justify-content: center !important; align-items: center !important;
+      padding: 5px 4px !important; gap: 2px !important;
+      border-left: none !important; border-bottom: 2px solid transparent;
+      font-size: 7px !important; min-width: 50px;
+    }
+    .nav-item.active {
+      border-left-color: transparent !important;
+      border-bottom-color: var(--accent);
+      background: rgba(0,180,255,.07);
+    }
+    .nav-label { display: block !important; font-size: 7px !important; letter-spacing: .02em !important; }
+    .nav-icon  { font-size: 16px !important; width: auto !important; }
+    .nav-tag   { display: none !important; }
+    #content { padding: 12px; padding-bottom: 70px; }
+    #topbar { padding: 8px 12px; gap: 8px; }
+    .topbar-crumb { display: none; }
+    .topbar-heading { font-size: 11px; letter-spacing: .03em; }
+    #add-btn { padding: 5px 9px; font-size: 10px; }
+    .search-box { flex: 1; min-width: 0; }
+    .search-box input { width: 100%; min-width: 0; }
+    .cards { grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 14px; }
+    .card { padding: 12px 10px; }
+    .card-value { font-size: 22px; }
+    .card-sub { font-size: 9px; }
+    .card.drillable:hover { transform: none; box-shadow: none; }
+    .charts-row { grid-template-columns: 1fr; gap: 10px; margin-bottom: 14px; }
+    .chart-wrap { height: 155px; }
+    .chart-card { padding: 12px; }
+    .chart-card h3 { flex-wrap: wrap; }
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table { min-width: 560px; }
+    .table-header { padding: 10px 12px; }
+    .table-header h3 { font-size: 10px; }
+    th, td { padding: 7px 10px; font-size: 11px; }
+    .two-col-grid { grid-template-columns: 1fr; gap: 10px; margin-bottom: 14px; }
+    .detail-grid  { grid-template-columns: 1fr; gap: 10px; }
+    .modal-overlay { padding: 0; align-items: flex-end; }
+    .modal {
+      width: 100% !important; max-height: 92dvh;
+      border-radius: 12px 12px 0 0 !important;
+      border-left: none; border-right: none; border-bottom: none;
+    }
+    .modal-body { padding: 14px; }
+    .form-grid { grid-template-columns: 1fr; gap: 10px; }
+    #chat-panel { width: calc(100vw - 16px) !important; right: 8px !important; bottom: 66px !important; height: 440px; }
+    #chat-fab { bottom: 66px !important; right: 16px !important; }
+    #toast { bottom: 66px; right: 12px; left: 12px; text-align: center; }
   }
 
   /* ── AI Capability Badges ──────────────────────────────────────────────── */
@@ -412,42 +484,36 @@
     </div>
 
     <div class="nav-section">◈ ISSO Ops</div>
-    <div class="nav-item active" onclick="showView('dashboard')" id="nav-dashboard">
+    <div class="nav-section">◈ ISSO Ops</div>
+    <div class="nav-item" onclick="showView('readme')" id="nav-readme">
+      <span class="nav-icon">◫</span>
+      <span class="nav-label">Guide</span>
+      <span class="nav-tag">01</span>
+    </div>
+    <div class="nav-item" onclick="showView('dashboard')" id="nav-dashboard">
       <span class="nav-icon">▣</span>
       <span class="nav-label">Dashboard</span>
-      <span class="nav-tag">01</span>
+      <span class="nav-tag">02</span>
     </div>
     <div class="nav-item" onclick="showView('controls')" id="nav-controls">
       <span class="nav-icon">◉</span>
       <span class="nav-label">Controls</span>
-      <span class="nav-tag">02</span>
+      <span class="nav-tag">03</span>
     </div>
     <div class="nav-item" onclick="showView('poam')" id="nav-poam">
       <span class="nav-icon">◎</span>
       <span class="nav-label">POA&amp;M</span>
-      <span class="nav-tag">03</span>
+      <span class="nav-tag">04</span>
     </div>
     <div class="nav-item" onclick="showView('evidence')" id="nav-evidence">
       <span class="nav-icon">◩</span>
       <span class="nav-label">Evidence</span>
-      <span class="nav-tag">04</span>
+      <span class="nav-tag">05</span>
     </div>
     <div class="nav-item" onclick="showView('reports')" id="nav-reports">
       <span class="nav-icon">◪</span>
       <span class="nav-label">Reports</span>
-      <span class="nav-tag">05</span>
-    </div>
-
-    <div class="nav-section">◈ Reference</div>
-    <div class="nav-item" onclick="showView('readme')" id="nav-readme">
-      <span class="nav-icon">◫</span>
-      <span class="nav-label">Guide</span>
       <span class="nav-tag">06</span>
-    </div>
-    <div class="nav-item" onclick="showView('reference')" id="nav-reference">
-      <span class="nav-icon">⊞</span>
-      <span class="nav-label">Picklists</span>
-      <span class="nav-tag">07</span>
     </div>
 
     <div class="sidebar-footer">
@@ -606,10 +672,11 @@ const FAMILY_NAMES = {
 // ─── STATE ───────────────────────────────────────────────────────────────────
 let controls = [];
 let poams = [];
-let currentView = 'dashboard';
+let currentView = 'readme';
 let searchQuery = '';
 let ctrlFilter = { family: '', status: '', inheritance: '', statusArr: [] };
 let poamFilter = { severity: '', status: '', statusArr: [] };
+let evidFilter = { type: '', family: '', ctrlStatus: '', stale: false, missing: false };
 let ctrlSort = { col: 'id', dir: 'asc' };
 let poamSort = { col: 'id', dir: 'asc' };
 let charts = {};
@@ -640,6 +707,7 @@ function resetData() {
 
 // ─── ROUTING ─────────────────────────────────────────────────────────────────
 function showView(v) {
+  if (v === 'reports') reportTab = -1;
   currentView = v;
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   document.getElementById('nav-' + v).classList.add('active');
@@ -675,13 +743,13 @@ function drillTo(view, opts) {
 
 function render() {
   document.getElementById('view-title').innerHTML =
-    {dashboard: '<span style="color:var(--accent)">◈</span> DASHBOARD <span style="color:var(--text-muted);font-size:11px">// 01</span>',
-     controls:  '<span style="color:var(--accent)">◈</span> CONTROLS <span style="color:var(--text-muted);font-size:11px">// CRM 02</span>',
-     poam:      '<span style="color:var(--accent)">◈</span> POA&amp;M <span style="color:var(--text-muted);font-size:11px">// REGISTER 03</span>',
-     evidence:  '<span style="color:var(--accent)">◈</span> EVIDENCE VAULT <span style="color:var(--text-muted);font-size:11px">// ARTIFACTS 04</span>',
-     reports:   '<span style="color:var(--accent)">◈</span> REPORTS <span style="color:var(--text-muted);font-size:11px">// ISSO REPORTING 05</span>',
-     readme:    '<span style="color:var(--accent)">◈</span> GUIDE <span style="color:var(--text-muted);font-size:11px">// README 06</span>',
-     reference: '<span style="color:var(--accent)">◈</span> PICKLISTS <span style="color:var(--text-muted);font-size:11px">// REFERENCE 07</span>'}[currentView];
+    {readme:    '<span style="color:var(--accent)">◈</span> GUIDE <span style="color:var(--text-muted);font-size:11px">// 01</span>',
+     dashboard: '<span style="color:var(--accent)">◈</span> DASHBOARD <span style="color:var(--text-muted);font-size:11px">// 02</span>',
+     controls:  '<span style="color:var(--accent)">◈</span> CONTROLS <span style="color:var(--text-muted);font-size:11px">// CRM 03</span>',
+     poam:      '<span style="color:var(--accent)">◈</span> POA&amp;M <span style="color:var(--text-muted);font-size:11px">// REGISTER 04</span>',
+     evidence:  '<span style="color:var(--accent)">◈</span> EVIDENCE VAULT <span style="color:var(--text-muted);font-size:11px">// ARTIFACTS 05</span>',
+     reports:   '<span style="color:var(--accent)">◈</span> REPORTS <span style="color:var(--text-muted);font-size:11px">// ISSO REPORTING 06</span>',
+     reference: '<span style="color:var(--accent)">◈</span> PICKLISTS <span style="color:var(--text-muted);font-size:11px">// REFERENCE</span>'}[currentView] || '';
   const c = document.getElementById('content');
   destroyCharts();
   if (currentView === 'dashboard') c.innerHTML = renderDashboard();
@@ -1131,7 +1199,7 @@ function viewControl(id) {
 
   document.getElementById('modal-title').textContent = `${c.id} — ${c.title}`;
   document.getElementById('modal-body').innerHTML = `
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+    <div class="detail-grid">
       <div class="detail-field"><div class="detail-label">Control ID</div><div class="detail-value td-mono" style="color:var(--accent);font-weight:700">${c.id}</div></div>
       <div class="detail-field"><div class="detail-label">Family</div><div class="detail-value">${c.family} — ${FAMILY_NAMES[c.family]||c.family}</div></div>
       <div class="detail-field"><div class="detail-label">Baseline</div><div class="detail-value">${c.baseline}</div></div>
@@ -1425,8 +1493,8 @@ function toast(msg, type='success') {
 }
 
 // ─── EVIDENCE VAULT ──────────────────────────────────────────────────────────
-let evidFilter = { type: '', family: '', ctrlStatus: '' };
-let reportTab = 0;
+
+let reportTab = -1;
 
 function detectEvidType(ref) {
   if (/SSP\s*§/i.test(ref))                           return 'SSP Section';
@@ -1496,6 +1564,10 @@ function renderEvidence() {
     if (evidFilter.type && e.type !== evidFilter.type) return false;
     if (evidFilter.family && e.family !== evidFilter.family) return false;
     if (evidFilter.ctrlStatus && e.ctrl_status !== evidFilter.ctrlStatus) return false;
+    if (evidFilter.stale) {
+      if (!e.last_verified || (today - new Date(e.last_verified)) <= 90 * 864e5) return false;
+    }
+    if (evidFilter.missing) return false; // missing = no artifact row, handled below
     if (searchQuery) {
       const s = searchQuery;
       return e.ref.toLowerCase().includes(s) || e.control_id.toLowerCase().includes(s) ||
@@ -1503,31 +1575,44 @@ function renderEvidence() {
     }
     return true;
   });
+  // Missing evidence: show controls with no evidence instead of items
+  if (evidFilter.missing) {
+    const noEvidControls = controls.filter(c => !c.evidence || c.evidence.trim() === '' || c.evidence.trim() === '—');
+    items = noEvidControls.map(ctrl => ({
+      control_id: ctrl.id, control_title: ctrl.title||'—', ref: '— No evidence linked —',
+      type: 'Missing', family: ctrl.family||'—', ctrl_status: ctrl.status||'—',
+      last_verified: null, status: 'Missing'
+    }));
+  }
 
   const staleAll = allItems.filter(e => !e.last_verified || (today - new Date(e.last_verified)) > 90 * 864e5);
   const noEvid   = controls.filter(c => !c.evidence || c.evidence.trim() === '' || c.evidence.trim() === '—');
 
   return `
   <div class="cards" style="margin-bottom:20px">
-    <div class="card">
+    <div class="card drillable" title="Show all evidence artifacts" onclick="evidFilter={type:'',family:'',ctrlStatus:''};render()">
       <div class="card-label">◈ Total Artifacts</div>
       <div class="card-value" style="color:var(--accent)">${allItems.length}</div>
       <div class="card-sub">${controls.filter(c=>c.evidence).length} of ${controls.length} controls covered</div>
+      <div class="card-drill">▸ View all</div>
     </div>
-    <div class="card">
+    <div class="card drillable" title="Browse by evidence type" onclick="evidFilter={type:'',family:'',ctrlStatus:''};document.querySelector('select[onchange*=evidFilter\.type]') && (document.querySelector('select[onchange*=evidFilter\.type]').focus());render()">
       <div class="card-label">◈ Evidence Types</div>
       <div class="card-value" style="color:var(--accent2)">${types.length}</div>
       <div class="card-sub">${types.slice(0,3).join(' · ')}${types.length > 3 ? '…' : ''}</div>
+      <div class="card-drill">▸ Filter by type</div>
     </div>
-    <div class="card">
+    <div class="card drillable" title="View stale artifacts (not verified in 90+ days)" onclick="evidFilter={type:'',family:'',ctrlStatus:'',stale:true};render()">
       <div class="card-label">◈ Stale (&gt;90d)</div>
       <div class="card-value" style="color:${staleAll.length>0?'var(--yellow)':'var(--green)'}">${staleAll.length}</div>
       <div class="card-sub">Not verified in 90+ days</div>
+      <div class="card-drill">▸ View stale</div>
     </div>
-    <div class="card">
+    <div class="card drillable" title="View controls with no evidence linked" onclick="evidFilter={type:'',family:'',ctrlStatus:'',missing:true};render()">
       <div class="card-label">◈ Missing Evidence</div>
       <div class="card-value" style="color:${noEvid.length>0?'var(--red)':'var(--green)'}">${noEvid.length}</div>
       <div class="card-sub">Controls with no artifact linked</div>
+      <div class="card-drill">▸ Show gaps</div>
     </div>
   </div>
 
@@ -1617,14 +1702,41 @@ function renderReports() {
   const today = new Date(); today.setHours(0,0,0,0);
   const dateStr = today.toISOString().slice(0,10);
 
-  const tabs = ['Executive Summary','POA&M Aging','Control Gap Report','Evidence Coverage'];
+  const reportDefs = [
+    { icon: '◈', title: 'Executive Summary',  desc: 'Full ATO posture snapshot — implementation %, inheritance breakdown, open POA\u0026M counts, and overdue findings.',  tab: 0, color: 'var(--accent)' },
+    { icon: '◎', title: 'POA&M Aging',        desc: 'SLA tracking for every open POA\u0026M. Highlights overdue items, days-open analysis, and severity distribution.',   tab: 1, color: 'var(--red)'    },
+    { icon: '◉', title: 'Control Gap Report', desc: 'Gap analysis by NIST control family. Shows partially implemented and not-implemented controls with evidence gaps.',   tab: 2, color: 'var(--yellow)' },
+    { icon: '◩', title: 'Evidence Coverage',  desc: 'Artifact inventory breakdown — types present, stale evidence flags, and controls missing linked artifacts.',           tab: 3, color: '#7ab8e8'       },
+  ];
+
   const tabBar = `
     <div style="display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap">
-      ${tabs.map((t,i) => `<button class="btn ${reportTab===i?'btn-primary':'btn-ghost'}"
-        onclick="reportTab=${i};document.getElementById('content').innerHTML=renderReports()">
-        ${t}
+      ${reportDefs.map(r => `<button class="btn ${reportTab===r.tab?'btn-primary':'btn-ghost'}"
+        onclick="reportTab=${r.tab};document.getElementById('content').innerHTML=renderReports()">
+        ${r.icon} ${r.title}
       </button>`).join('')}
     </div>`;
+
+  // Landing — show report tiles if no tab selected yet
+  if (reportTab === -1) {
+    return `
+    <div style="max-width:860px">
+      <div style="margin-bottom:22px">
+        <div style="font-size:10px;font-family:var(--mono);color:#e8a020;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">ISSO Reporting Suite</div>
+        <div style="font-size:13px;color:var(--text-muted)">Select a report to view. All reports are generated live from your Controls and POA&M data.</div>
+      </div>
+      <div class="two-col-grid">
+        ${reportDefs.map(r => `
+        <div class="card drillable" onclick="reportTab=${r.tab};document.getElementById('content').innerHTML=renderReports()"
+             style="border-left:3px solid ${r.color};padding:20px 20px 16px">
+          <div style="font-size:22px;color:${r.color};margin-bottom:8px">${r.icon}</div>
+          <div style="font-size:13px;font-weight:700;font-family:var(--mono);color:var(--text);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">${r.title}</div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.55">${r.desc}</div>
+          <div class="card-drill" style="margin-top:12px">▸ Open report</div>
+        </div>`).join('')}
+      </div>
+    </div>`;
+  }
 
   if (reportTab === 0) return tabBar + renderReportExecutive(today, dateStr);
   if (reportTab === 1) return tabBar + renderReportPoamAging(today);
@@ -1990,7 +2102,7 @@ function renderReference() {
   }
 
   return `
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px">
+  <div class="two-col-grid">
     ${picklists.map(p => `
     <div class="table-wrap">
       <div class="table-header">
@@ -2056,6 +2168,22 @@ function renderREADME() {
   return `
   <div style="max-width:860px;margin:0 auto">
 
+
+    <!-- Semantic Search Bar -->
+    <div style="margin-bottom:24px">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden">
+        <div style="padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px">
+          <span style="font-size:18px;color:var(--accent);flex-shrink:0">⌕</span>
+          <input id="guide-search-input" type="text" placeholder="Search controls, POA&Ms, evidence… (e.g. AC-2, encryption, stale)"
+            style="flex:1;background:transparent;border:none;outline:none;font-size:14px;color:var(--text);font-family:var(--mono)"
+            oninput="guideSearch(this.value)"
+            onkeydown="if(event.key==='Escape'){this.value='';guideSearch('')}">
+          <span style="font-size:10px;color:var(--text-muted);font-family:var(--mono);flex-shrink:0">ESC to clear</span>
+        </div>
+        <div id="guide-search-results"></div>
+      </div>
+    </div>
+
     <!-- Header card -->
     <div class="table-wrap" style="margin-bottom:22px;border-top:2px solid #e8a020">
       <div style="padding:24px 28px;display:flex;align-items:flex-start;gap:20px">
@@ -2099,7 +2227,7 @@ function renderREADME() {
 
     <!-- Module index -->
     <div class="section-title" style="margin-top:0">◈ Application Modules</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px">
+    <div class="two-col-grid">
       ${tabs.map(t => `
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;display:flex;gap:12px;align-items:flex-start;cursor:pointer"
            onclick="showView('${t.view}')">
@@ -2131,6 +2259,84 @@ function renderREADME() {
     <div style="background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.2);border-left:3px solid #e8a020;border-radius:var(--radius);padding:14px 18px;font-size:12px;color:var(--text-muted);line-height:1.7;font-family:var(--mono)">
       <strong style="color:#e8a020;display:block;margin-bottom:4px;font-size:10px;letter-spacing:.08em;text-transform:uppercase">◈ Note</strong>
       All edits are saved automatically to browser localStorage. Use the <strong style="color:var(--text)">Export XLSX</strong> button on the POA&amp;M page to back up your data, and <strong style="color:var(--text)">Import XLSX</strong> to restore or bulk-load records. Use the <strong style="color:var(--text)">↺ Reset</strong> button on the Controls page to restore the original sample data.
+    </div>
+
+    <!-- ═══ Picklists & Reference ═══════════════════════════════════════ -->
+    <div class="section-title" style="margin-top:28px">◈ Reference — Picklists &amp; Control Families</div>
+    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+      <button class="btn btn-ghost btn-sm" onclick="document.querySelectorAll('.guide-picklist').forEach(el=>el.style.display='block');document.querySelectorAll('.guide-picklist-toggle').forEach(b=>b.textContent='▾')">Expand All</button>
+      <button class="btn btn-ghost btn-sm" onclick="document.querySelectorAll('.guide-picklist').forEach(el=>el.style.display='none');document.querySelectorAll('.guide-picklist-toggle').forEach(b=>b.textContent='▸')">Collapse All</button>
+    </div>
+    <div class="two-col-grid" style="margin-bottom:16px">
+      ${[
+        { label: 'Inheritance Type', values: ['Fully Inherited','Hybrid / Shared','Customer','Common (Org-Provided)','Not Applicable'],
+          desc: 'Who is responsible for implementing the control — AWS, the customer, or both.' },
+        { label: 'Implementation Status', values: ['Implemented','Partially Implemented','Planned','Not Implemented','Not Applicable'],
+          desc: 'Current implementation state. Drives the dashboard posture score.' },
+        { label: 'POA&M Severity', values: ['Critical','High','Moderate','Low'],
+          desc: 'Risk severity of the finding. Drives SLA timelines (Critical: 30d, High: 90d).' },
+        { label: 'POA&M Status', values: ['Open','Ongoing','Risk Accepted','Closed'],
+          desc: 'Lifecycle status of the POA&M item.' },
+        { label: 'Baseline', values: ['Low','Moderate','High','IL2','IL4','IL5','IL6'],
+          desc: 'NIST 800-53 impact level or DoD IL baseline for the control.' },
+        { label: 'Responsible Party', values: ['AWS','Customer','Shared','Common Control Provider'],
+          desc: 'Entity accountable for the control implementation.' },
+      ].map((p, pi) => {
+        const bCls = (list, val) => {
+          if (list==='POA&M Severity') return {Critical:'badge-red',High:'badge-orange',Moderate:'badge-yellow',Low:'badge-green'}[val]||'badge-gray';
+          if (list==='Implementation Status') return {Implemented:'badge-green','Partially Implemented':'badge-yellow',Planned:'badge-blue','Not Implemented':'badge-red','Not Applicable':'badge-gray'}[val]||'badge-gray';
+          if (list==='Inheritance Type') return {'Fully Inherited':'badge-gray','Hybrid / Shared':'badge-blue',Customer:'badge-purple','Common (Org-Provided)':'badge-green','Not Applicable':'badge-gray'}[val]||'badge-gray';
+          if (list==='POA&M Status') return {Open:'badge-red',Ongoing:'badge-orange','Risk Accepted':'badge-yellow',Closed:'badge-green'}[val]||'badge-gray';
+          return 'badge-gray';
+        };
+        return `
+        <div class="table-wrap">
+          <div class="table-header" style="cursor:pointer" onclick="const b=this.nextElementSibling,t=this.querySelector('.guide-picklist-toggle');b.style.display=b.style.display==='none'?'block':'none';t.textContent=b.style.display==='none'?'▸':'▾'">
+            <h3>◈ ${p.label}</h3>
+            <span class="guide-picklist-toggle" style="color:var(--accent);font-family:var(--mono);font-size:14px">▾</span>
+          </div>
+          <div class="guide-picklist">
+            <div style="padding:8px 18px 4px;font-size:11px;color:var(--text-muted);font-family:var(--mono)">${p.desc}</div>
+            <div style="padding:8px 18px 14px;display:flex;flex-wrap:wrap;gap:6px">
+              ${p.values.map(v=>`<span class="badge ${bCls(p.label,v)}">${v}</span>`).join('')}
+            </div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+
+    <!-- NIST Control Families -->
+    <div class="table-wrap" style="margin-bottom:24px">
+      <div class="table-header" style="cursor:pointer" onclick="const b=this.nextElementSibling,t=this.querySelector('.guide-picklist-toggle');b.style.display=b.style.display==='none'?'block':'none';t.textContent=b.style.display==='none'?'▸':'▾'">
+        <h3>◈ NIST 800-53 Rev 5 — Control Families</h3>
+        <span class="guide-picklist-toggle" style="color:var(--accent);font-family:var(--mono);font-size:14px">▾</span>
+      </div>
+      <div class="guide-picklist">
+        <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>Family</th><th>Full Name</th><th>Controls in Tracker</th></tr></thead>
+          <tbody>
+            ${[['AC','Access Control'],['AT','Awareness and Training'],['AU','Audit and Accountability'],
+               ['CA','Assessment, Authorization, and Monitoring'],['CM','Configuration Management'],
+               ['CP','Contingency Planning'],['IA','Identification and Authentication'],
+               ['IR','Incident Response'],['MA','Maintenance'],['MP','Media Protection'],
+               ['PE','Physical and Environmental Protection'],['PL','Planning'],
+               ['PM','Program Management'],['PS','Personnel Security'],
+               ['PT','PII Processing and Transparency'],['RA','Risk Assessment'],
+               ['SA','System and Services Acquisition'],['SC','System and Communications Protection'],
+               ['SI','System and Information Integrity'],['SR','Supply Chain Risk Management']
+            ].map(([code,name]) => {
+              const cnt = controls.filter(c=>c.family===code).length;
+              return `<tr>
+                <td><span class="badge badge-blue td-mono" style="cursor:pointer" onclick="ctrlFilter={family:'${code}',status:'',inheritance:'',statusArr:[]};showView('controls')" title="Filter to ${code}">${code}</span></td>
+                <td>${name}</td>
+                <td>${cnt>0?`<span style="color:var(--accent);font-family:var(--mono);font-weight:700">${cnt}</span> <span style="font-size:11px;color:var(--text-muted)">control${cnt!==1?'s':''}</span>`:'<span style="color:var(--text-muted);font-size:11px;font-family:var(--mono)">—</span>'}</td>
+              </tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+        </div>
+      </div>
     </div>
 
   </div>`;
@@ -2599,6 +2805,94 @@ function _addBotMsg(text, id) {
 
 function _esc(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+
+// ─── GUIDE SEMANTIC SEARCH ────────────────────────────────────────────────────
+let _guideSearchTimer = null;
+function guideSearch(query) {
+  clearTimeout(_guideSearchTimer);
+  _guideSearchTimer = setTimeout(() => _runGuideSearch(query), 220);
+}
+function _runGuideSearch(query) {
+  const q = query.trim().toLowerCase();
+  const resultsEl = document.getElementById('guide-search-results');
+  if (!resultsEl) return;
+  if (!q) { resultsEl.innerHTML = ''; return; }
+
+  // Search controls
+  const ctrlHits = controls.filter(c =>
+    c.id.toLowerCase().includes(q) ||
+    (c.title||'').toLowerCase().includes(q) ||
+    (c.family||'').toLowerCase().includes(q) ||
+    (c.status||'').toLowerCase().includes(q) ||
+    (c.notes||'').toLowerCase().includes(q) ||
+    (c.evidence||'').toLowerCase().includes(q)
+  ).slice(0, 8);
+
+  // Search POA&Ms
+  const poamHits = poams.filter(p =>
+    (p.id||'').toLowerCase().includes(q) ||
+    (p.title||'').toLowerCase().includes(q) ||
+    (p.description||'').toLowerCase().includes(q) ||
+    (p.severity||'').toLowerCase().includes(q) ||
+    (p.status||'').toLowerCase().includes(q)
+  ).slice(0, 6);
+
+  // Search evidence
+  const evidHits = parseEvidenceItems().filter(e =>
+    e.control_id.toLowerCase().includes(q) ||
+    e.ref.toLowerCase().includes(q) ||
+    e.type.toLowerCase().includes(q) ||
+    (e.control_title||'').toLowerCase().includes(q)
+  ).slice(0, 6);
+
+  const total = ctrlHits.length + poamHits.length + evidHits.length;
+
+  if (total === 0) {
+    resultsEl.innerHTML = `<div style="padding:18px 20px;color:var(--text-muted);font-family:var(--mono);font-size:12px">No results for <em>"${_esc(query)}"</em></div>`;
+    return;
+  }
+
+  let html = `<div style="padding:10px 18px 4px;font-size:10px;color:var(--text-muted);font-family:var(--mono);letter-spacing:.06em">${total} RESULT${total!==1?'S':''} FOR "${_esc(query.toUpperCase())}"</div>`;
+
+  if (ctrlHits.length) {
+    html += `<div style="padding:6px 18px 4px;font-size:10px;font-family:var(--mono);color:var(--accent);letter-spacing:.08em;text-transform:uppercase">Controls (${ctrlHits.length})</div>`;
+    html += ctrlHits.map(c => `
+    <div onclick="ctrlFilter={};searchQuery='${_esc(c.id)}';showView('controls');"
+         style="padding:9px 18px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;align-items:center;gap:10px"
+         onmouseover="this.style.background='var(--surface-hover)'" onmouseout="this.style.background=''">
+      <span class="badge badge-blue td-mono" style="flex-shrink:0">${_esc(c.id)}</span>
+      <span style="font-size:12px;color:var(--text);flex:1">${_esc(c.title||'—')}</span>
+      <span class="badge ${c.status==='Implemented'?'badge-green':c.status==='Partially Implemented'?'badge-yellow':c.status==='Planned'?'badge-blue':'badge-red'}" style="flex-shrink:0;font-size:10px">${_esc(c.status||'—')}</span>
+    </div>`).join('');
+  }
+
+  if (poamHits.length) {
+    html += `<div style="padding:6px 18px 4px;font-size:10px;font-family:var(--mono);color:var(--accent2);letter-spacing:.08em;text-transform:uppercase">POA&Ms (${poamHits.length})</div>`;
+    html += poamHits.map(p => `
+    <div onclick="poamFilter={};searchQuery='${_esc(p.id)}';showView('poam');"
+         style="padding:9px 18px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;align-items:center;gap:10px"
+         onmouseover="this.style.background='var(--surface-hover)'" onmouseout="this.style.background=''">
+      <span class="badge badge-orange td-mono" style="flex-shrink:0">${_esc(p.id||'—')}</span>
+      <span style="font-size:12px;color:var(--text);flex:1">${_esc(p.title||'—')}</span>
+      <span class="badge ${p.severity==='Critical'?'badge-red':p.severity==='High'?'badge-orange':p.severity==='Moderate'?'badge-yellow':'badge-green'}" style="flex-shrink:0;font-size:10px">${_esc(p.severity||'—')}</span>
+    </div>`).join('');
+  }
+
+  if (evidHits.length) {
+    html += `<div style="padding:6px 18px 4px;font-size:10px;font-family:var(--mono);color:#7ab8e8;letter-spacing:.08em;text-transform:uppercase">Evidence (${evidHits.length})</div>`;
+    html += evidHits.map(e => `
+    <div onclick="evidFilter={type:'${_esc(e.type)}'};showView('evidence');"
+         style="padding:9px 18px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;align-items:center;gap:10px"
+         onmouseover="this.style.background='var(--surface-hover)'" onmouseout="this.style.background=''">
+      <span class="badge badge-gray td-mono" style="flex-shrink:0">${_esc(e.control_id)}</span>
+      <span style="font-size:12px;color:var(--text);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${_esc(e.ref)}</span>
+      <span class="badge badge-blue" style="flex-shrink:0;font-size:10px">${_esc(e.type)}</span>
+    </div>`).join('');
+  }
+
+  resultsEl.innerHTML = html;
 }
 
 // ─── INIT ────────────────────────────────────────────────────────────────────
