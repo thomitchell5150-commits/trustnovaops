@@ -345,15 +345,16 @@
   .ai-tip { position: relative; display: inline-block; }
   .ai-tip:hover .ai-tooltip { display: block; }
   .ai-tooltip {
-    display: none; position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%);
-    background: var(--surface); border: 1px solid rgba(232,160,32,0.35); border-radius: 4px;
-    padding: 6px 10px; font-size: 11px; color: var(--text-muted); white-space: nowrap;
-    z-index: 200; margin-bottom: 4px; font-family: var(--mono);
-    box-shadow: 0 4px 16px rgba(0,0,0,.6);
+    display: none; position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+    background: var(--surface); border: 1px solid rgba(232,160,32,0.45); border-radius: 6px;
+    padding: 10px 14px; font-size: 11px; color: var(--text); white-space: nowrap;
+    z-index: 9999; font-family: var(--mono); min-width: 220px;
+    box-shadow: 0 6px 24px rgba(0,0,0,.7), 0 0 0 1px rgba(232,160,32,.1);
+    line-height: 1.7;
   }
-  .ai-tooltip::after {
-    content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
-    border: 5px solid transparent; border-top-color: rgba(232,160,32,0.35);
+  .ai-tooltip::before {
+    content: ''; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+    border: 6px solid transparent; border-bottom-color: rgba(232,160,32,0.45);
   }
 
   /* ── Chatbot Panel ─────────────────────────────────────────────────────── */
@@ -778,6 +779,132 @@ function handleSearch(v) {
 }
 
 // ─── DASHBOARD ───────────────────────────────────────────────────────────────
+// ─── SLA FORECAST ENGINE ────────────────────────────────────────────────────
+// Computes live SLA risk from open POA&M data and returns chip + tooltip HTML
+function _slaForecastChip() {
+  const today = new Date();
+  const SLA   = { Critical:30, High:90, Moderate:180, Low:365 };
+  const open  = poams.filter(p => p.status === 'Open' || p.status === 'Ongoing');
+
+  if (!open.length) {
+    return `<span class="ai-tip" style="display:inline-block;margin-left:6px">
+      <span class="ai-chip" style="border-color:rgba(0,214,143,.4);color:var(--green)">⚡ SLA Forecast: All Clear</span>
+      <div class="ai-tooltip">
+        <div style="color:var(--green);font-weight:700;margin-bottom:4px">✓ No open POA&amp;Ms</div>
+        <div style="color:var(--text-muted)">Authorization boundary is clean.</div>
+      </div>
+    </span>`;
+  }
+
+  const breached = [], critical7 = [], atRisk = [];
+  open.forEach(p => {
+    const slaLimit = SLA[p.severity] || 180;
+    const opened   = p.date_identified ? new Date(p.date_identified) : null;
+    const target   = p.target_close    ? new Date(p.target_close)    : null;
+    const daysOpen = opened ? Math.floor((today - opened) / 864e5)   : null;
+    const daysLeft = target ? Math.floor((target - today) / 864e5)   : null;
+    const overSLA  = daysOpen !== null && daysOpen > slaLimit;
+    const nearClose = daysLeft !== null && daysLeft >= 0 && daysLeft <= 7;
+
+    if (overSLA || (daysLeft !== null && daysLeft < 0)) {
+      breached.push({ p, daysOpen, daysLeft });
+    } else if (nearClose || (p.severity === 'Critical' && daysLeft !== null && daysLeft <= 14)) {
+      critical7.push({ p, daysOpen, daysLeft });
+    } else {
+      atRisk.push({ p, daysOpen, daysLeft });
+    }
+  });
+
+  // Determine overall risk tier
+  let tierColor, tierLabel, tierIcon;
+  if (breached.length > 0) {
+    tierColor = 'var(--red)'; tierLabel = `${breached.length} SLA Breach${breached.length>1?'es':''}`; tierIcon = '⚠';
+  } else if (critical7.length > 0) {
+    tierColor = 'var(--orange)'; tierLabel = `${critical7.length} Due ≤7d`; tierIcon = '⚡';
+  } else if (atRisk.length > 0) {
+    tierColor = 'var(--yellow)'; tierLabel = `${open.length} Active`; tierIcon = '◈';
+  } else {
+    tierColor = 'var(--green)'; tierLabel = 'On Track'; tierIcon = '✓';
+  }
+
+  // Build tooltip rows — show top 5 items with SLA detail
+  const topItems = [...breached, ...critical7, ...atRisk].slice(0, 5);
+  const rows = topItems.map(({ p, daysOpen, daysLeft }) => {
+    const slaLimit = SLA[p.severity] || 180;
+    let statusStr, statusColor;
+    if (daysLeft !== null && daysLeft < 0) {
+      statusStr = `${Math.abs(daysLeft)}d overdue`; statusColor = 'var(--red)';
+    } else if (daysLeft !== null) {
+      statusStr = `${daysLeft}d left`; statusColor = daysLeft <= 7 ? 'var(--orange)' : 'var(--yellow)';
+    } else if (daysOpen !== null) {
+      const rem = slaLimit - daysOpen;
+      statusStr = rem > 0 ? `${rem}d SLA remaining` : `${Math.abs(rem)}d over SLA`;
+      statusColor = rem > 0 ? 'var(--yellow)' : 'var(--red)';
+    } else {
+      statusStr = 'No date'; statusColor = 'var(--text-muted)';
+    }
+    const sev = p.severity === 'Critical' ? '🔴' : p.severity === 'High' ? '🟠' : p.severity === 'Moderate' ? '🟡' : '🟢';
+    return `<div style="display:flex;justify-content:space-between;gap:16px;padding:2px 0">
+      <span>${sev} <strong>${_esc(p.id)}</strong> — ${_esc(p.control_id)}</span>
+      <span style="color:${statusColor};font-weight:700">${statusStr}</span>
+    </div>`;
+  }).join('');
+
+  const moreCount = open.length > 5 ? `<div style="color:var(--text-muted);margin-top:4px">+ ${open.length - 5} more items</div>` : '';
+  const slaRef = `<div style="margin-top:8px;padding-top:6px;border-top:1px solid var(--border);color:var(--text-muted);font-size:10px">SLA: Crit 30d · High 90d · Mod 180d · Low 365d</div>`;
+
+  return `<span class="ai-tip" style="display:inline-block;margin-left:6px">
+    <span class="ai-chip" style="border-color:rgba(${tierColor==='var(--red)'?'240,68,85':'232,160,32'},.35);color:${tierColor}">${tierIcon} SLA Forecast: ${tierLabel}</span>
+    <div class="ai-tooltip" style="min-width:300px">
+      <div style="color:${tierColor};font-weight:700;margin-bottom:6px;font-size:12px">${tierIcon} ${tierLabel} — ${open.length} open POA&amp;M${open.length!==1?'s':''}</div>
+      ${rows}${moreCount}${slaRef}
+    </div>
+  </span>`;
+}
+
+// ─── SLA ALERT BAR (injected below table-header when breaches exist) ──────────
+function _slaAlertBar() {
+  const today = new Date();
+  const SLA   = { Critical:30, High:90, Moderate:180, Low:365 };
+  const open  = poams.filter(p => p.status === 'Open' || p.status === 'Ongoing');
+  if (!open.length) return '';
+
+  const breached = open.filter(p => {
+    const target = p.target_close ? new Date(p.target_close) : null;
+    const opened = p.date_identified ? new Date(p.date_identified) : null;
+    const daysLeft = target ? Math.floor((target - today) / 864e5) : null;
+    const daysOpen = opened ? Math.floor((today - opened) / 864e5) : null;
+    const slaLimit = SLA[p.severity] || 180;
+    return (daysLeft !== null && daysLeft < 0) || (daysOpen !== null && daysOpen > slaLimit);
+  });
+
+  const imminent = open.filter(p => {
+    const target = p.target_close ? new Date(p.target_close) : null;
+    const daysLeft = target ? Math.floor((target - today) / 864e5) : null;
+    return daysLeft !== null && daysLeft >= 0 && daysLeft <= 7;
+  });
+
+  if (!breached.length && !imminent.length) return '';
+
+  const msg = breached.length
+    ? `${breached.length} POA&M${breached.length>1?'s':''} past SLA deadline${imminent.length ? ` · ${imminent.length} due within 7 days` : ''} — AO notification may be required`
+    : `${imminent.length} POA&M${imminent.length>1?'s':''} closing within 7 days`;
+
+  const color  = breached.length ? 'var(--red)' : 'var(--orange)';
+  const bg     = breached.length ? 'rgba(240,68,85,.08)' : 'rgba(255,107,53,.08)';
+  const border = breached.length ? 'rgba(240,68,85,.25)' : 'rgba(255,107,53,.25)';
+
+  return `<div style="padding:7px 18px;background:${bg};border-bottom:1px solid ${border};
+    font-family:var(--mono);font-size:11px;color:${color};display:flex;align-items:center;gap:8px">
+    <span style="font-size:14px">${breached.length ? '⚠' : '⏱'}</span>
+    <span>${msg}</span>
+    <span onclick="drillTo('poam',{statusArr:['Open','Ongoing']})"
+      style="margin-left:auto;cursor:pointer;text-decoration:underline;color:${color};opacity:.8">
+      View all →
+    </span>
+  </div>`;
+}
+
 function renderDashboard() {
   const total = controls.length;
   const impl = controls.filter(c => c.status === 'Implemented').length;
@@ -856,9 +983,10 @@ function renderDashboard() {
 
   <div class="table-wrap">
     <div class="table-header">
-      <h3>◈ Active POA&amp;Ms — Open &amp; Ongoing <div class="ai-tip" style="display:inline-block;margin-left:6px"><span class="ai-chip">SLA Forecast</span><div class="ai-tooltip">AI tracks days-to-close and flags overdue items automatically</div></div></h3>
+      <h3>◈ Active POA&amp;Ms — Open &amp; Ongoing ${_slaForecastChip()}</h3>
       <button class="btn btn-ghost btn-sm" onclick="drillTo('poam',{statusArr:['Open','Ongoing']})">View All →</button>
     </div>
+    ${_slaAlertBar()}
     <table>
       <thead><tr>
         <th>ID</th><th>Control</th><th>Summary</th><th>Severity</th><th>Owner</th><th>Target Close</th><th>Status</th>
