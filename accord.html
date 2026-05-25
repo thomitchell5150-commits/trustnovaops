@@ -24,7 +24,7 @@
     --mono: 'Cascadia Code', 'Courier New', monospace;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; min-height: 100vh; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; min-height: 100vh; overflow-x: hidden; }
 
   /* Layout */
   #app { display: flex; min-height: 100vh; }
@@ -75,9 +75,8 @@
   #topbar h2 { font-size: 13px; font-weight: 700; flex: 1; letter-spacing: .08em; text-transform: uppercase; font-family: var(--mono); color: var(--text-muted); }
   .topbar-module { font-size: 15px; font-weight: 800; color: var(--text); letter-spacing: .04em; text-transform: uppercase; margin-right: 4px; }
   .topbar-sep { color: var(--accent); margin: 0 4px; font-family: var(--mono); }
-  .search-box { display: flex; align-items: center; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 6px 12px; gap: 8px; transition: border-color .2s, box-shadow .2s; }
-  .search-box:focus-within { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(0,180,255,.15); }
-  .search-box input { background: none; border: none; outline: none; color: var(--text); font-size: 12px; width: 280px; font-family: var(--mono); }
+  .search-box { display: flex; align-items: center; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 6px 12px; gap: 8px; }
+  .search-box input { background: none; border: none; outline: none; color: var(--text); font-size: 12px; width: 220px; font-family: var(--mono); }
   .search-box input::placeholder { color: var(--text-muted); }
   .btn { padding: 7px 14px; border-radius: var(--radius); font-size: 11px; font-weight: 700; cursor: pointer; border: none; transition: all .15s; letter-spacing: .06em; text-transform: uppercase; font-family: var(--mono); }
   .btn-primary { background: var(--accent); color: #000; }
@@ -102,11 +101,13 @@
   .card-label { font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 10px; font-family: var(--mono); font-weight: 700; }
   .card-value { font-size: 30px; font-weight: 800; line-height: 1; font-family: var(--mono); }
   .card-sub { font-size: 10px; color: var(--text-muted); margin-top: 5px; font-family: var(--mono); }
+  .card-drill { font-size: 9px; color: var(--accent); margin-top: 8px; font-family: var(--mono); letter-spacing: .06em; opacity: 0; transition: opacity .15s; }
+  .card.drillable:hover .card-drill { opacity: 1; }
 
   /* Charts row */
   .charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
   .chart-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; }
-  .chart-card canvas { cursor: pointer; }
+  .chart-card canvas { cursor: pointer; max-width: 100%; touch-action: manipulation; }
   .chart-card-hint { font-size: 9px; color: var(--text-muted); font-family: var(--mono); letter-spacing: .06em; margin-left: auto; opacity: .6; }
   .chart-card h3 {
     font-size: 9px; font-weight: 700; margin-bottom: 14px;
@@ -135,8 +136,6 @@
   td { padding: 9px 14px; border-bottom: 1px solid rgba(22,32,48,.8); font-size: 12px; }
   tr:last-child td { border-bottom: none; }
   tr:hover td { background: rgba(0,180,255,.03); }
-  tr[style*="cursor:pointer"]:hover td { background: rgba(0,180,255,.07); }
-  tr[style*="cursor:pointer"] td { transition: background .15s; }
   .td-mono { font-family: var(--mono); font-size: 11px; }
 
   /* Badges */
@@ -159,7 +158,7 @@
 
   /* Modal */
   .modal-overlay { position: fixed; inset: 0; background: rgba(0,5,12,.85); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(4px); }
-  .modal { background: var(--surface); border: 1px solid var(--border); border-top: 2px solid var(--accent); border-radius: var(--radius); width: 700px; max-height: 90vh; overflow-y: auto; box-shadow: 0 30px 80px rgba(0,0,0,.7), 0 0 40px rgba(0,180,255,.06); }
+  .modal { background: var(--surface); border: 1px solid var(--border); border-top: 2px solid var(--accent); border-radius: var(--radius); width: min(700px, 96vw); max-height: 90vh; overflow-y: auto; box-shadow: 0 30px 80px rgba(0,0,0,.7), 0 0 40px rgba(0,180,255,.06); }
   .modal-header { padding: 18px 22px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
   .modal-header h2 { font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; font-family: var(--mono); }
   .modal-body { padding: 22px; }
@@ -252,13 +251,85 @@
   .topbar-heading { font-size: 14px; font-weight: 800; color: var(--text); font-family: var(--mono); text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
   .topbar-heading span { color: var(--accent); }
 
-  /* Responsive */
-  @media (max-width: 900px) {
+  /* Reusable responsive grid classes */
+  .two-col-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 22px; }
+  .detail-grid  { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+
+  /* ═══════════════════════════════════════════════════════════════
+     RESPONSIVE — 3-TIER BREAKPOINTS
+     Desktop ≥1025px  |  Tablet 601–1024px  |  Phone ≤600px
+  ═══════════════════════════════════════════════════════════════ */
+  @media (max-width: 1024px) {
     .charts-row { grid-template-columns: 1fr; }
-    .form-grid { grid-template-columns: 1fr; }
-    #sidebar { width: 60px; }
+    .form-grid  { grid-template-columns: 1fr; }
+    .two-col-grid { grid-template-columns: 1fr; }
+    #sidebar { width: 64px; }
     .sidebar-logo, .nav-label, .nav-section, .sidebar-footer { display: none; }
-    .nav-item { justify-content: center; padding: 12px; }
+    .nav-item { justify-content: center; padding: 12px 8px; }
+    .modal { width: min(92vw, 640px); }
+    .search-box input { width: 160px; }
+    #chat-panel { width: min(340px, calc(100vw - 90px)); right: 16px; }
+  }
+  @media (max-width: 600px) {
+    #sidebar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      width: 100% !important; height: 58px;
+      flex-direction: row; flex-shrink: 0;
+      border-right: none; border-top: 1px solid var(--border);
+      overflow-x: auto; overflow-y: hidden;
+      z-index: 900; padding: 0;
+      justify-content: space-around; align-items: center;
+    }
+    .sidebar-logo, .nav-section, .sidebar-footer { display: none !important; }
+    .nav-item {
+      flex-direction: column !important; flex: 1;
+      justify-content: center !important; align-items: center !important;
+      padding: 5px 4px !important; gap: 2px !important;
+      border-left: none !important; border-bottom: 2px solid transparent;
+      font-size: 7px !important; min-width: 50px;
+    }
+    .nav-item.active {
+      border-left-color: transparent !important;
+      border-bottom-color: var(--accent);
+      background: rgba(0,180,255,.07);
+    }
+    .nav-label { display: block !important; font-size: 7px !important; letter-spacing: .02em !important; }
+    .nav-icon  { font-size: 16px !important; width: auto !important; }
+    .nav-tag   { display: none !important; }
+    #content { padding: 12px; padding-bottom: 70px; }
+    #topbar { padding: 8px 12px; gap: 8px; }
+    .topbar-crumb { display: none; }
+    .topbar-heading { font-size: 11px; letter-spacing: .03em; }
+    #add-btn { padding: 5px 9px; font-size: 10px; }
+    .search-box { flex: 1; min-width: 0; }
+    .search-box input { width: 100%; min-width: 0; }
+    .cards { grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 14px; }
+    .card { padding: 12px 10px; }
+    .card-value { font-size: 22px; }
+    .card-sub { font-size: 9px; }
+    .card.drillable:hover { transform: none; box-shadow: none; }
+    .charts-row { grid-template-columns: 1fr; gap: 10px; margin-bottom: 14px; }
+    .chart-wrap { height: 155px; }
+    .chart-card { padding: 12px; }
+    .chart-card h3 { flex-wrap: wrap; }
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table { min-width: 560px; }
+    .table-header { padding: 10px 12px; }
+    .table-header h3 { font-size: 10px; }
+    th, td { padding: 7px 10px; font-size: 11px; }
+    .two-col-grid { grid-template-columns: 1fr; gap: 10px; margin-bottom: 14px; }
+    .detail-grid  { grid-template-columns: 1fr; gap: 10px; }
+    .modal-overlay { padding: 0; align-items: flex-end; }
+    .modal {
+      width: 100% !important; max-height: 92dvh;
+      border-radius: 12px 12px 0 0 !important;
+      border-left: none; border-right: none; border-bottom: none;
+    }
+    .modal-body { padding: 14px; }
+    .form-grid { grid-template-columns: 1fr; gap: 10px; }
+    #chat-panel { width: calc(100vw - 16px) !important; right: 8px !important; bottom: 66px !important; height: 440px; }
+    #chat-fab { bottom: 66px !important; right: 16px !important; }
+    #toast { bottom: 66px; right: 12px; left: 12px; text-align: center; }
   }
 
   /* ── AI Capability Badges ──────────────────────────────────────────────── */
@@ -415,36 +486,34 @@
     </div>
 
     <div class="nav-section">◈ ISSO Ops</div>
+    <div class="nav-item" onclick="showView('readme')" id="nav-readme">
+      <span class="nav-icon">◫</span>
+      <span class="nav-label">Guide</span>
+      <span class="nav-tag">01</span>
+    </div>
     <div class="nav-item" onclick="showView('dashboard')" id="nav-dashboard">
       <span class="nav-icon">▣</span>
       <span class="nav-label">Dashboard</span>
-      <span class="nav-tag">01</span>
+      <span class="nav-tag">02</span>
     </div>
     <div class="nav-item" onclick="showView('controls')" id="nav-controls">
       <span class="nav-icon">◉</span>
       <span class="nav-label">Controls</span>
-      <span class="nav-tag">02</span>
+      <span class="nav-tag">03</span>
     </div>
     <div class="nav-item" onclick="showView('poam')" id="nav-poam">
       <span class="nav-icon">◎</span>
       <span class="nav-label">POA&amp;M</span>
-      <span class="nav-tag">03</span>
+      <span class="nav-tag">04</span>
     </div>
     <div class="nav-item" onclick="showView('evidence')" id="nav-evidence">
       <span class="nav-icon">◩</span>
       <span class="nav-label">Evidence</span>
-      <span class="nav-tag">04</span>
+      <span class="nav-tag">05</span>
     </div>
     <div class="nav-item" onclick="showView('reports')" id="nav-reports">
       <span class="nav-icon">◪</span>
       <span class="nav-label">Reports</span>
-      <span class="nav-tag">05</span>
-    </div>
-
-    <div class="nav-section">◈ Reference</div>
-    <div class="nav-item active" onclick="showView('readme')" id="nav-readme">
-      <span class="nav-icon">◫</span>
-      <span class="nav-label">Guide</span>
       <span class="nav-tag">06</span>
     </div>
 
@@ -483,7 +552,7 @@
       </div>
       <div class="search-box">
         <span style="color:var(--text-muted);font-size:12px">◈</span>
-        <input type="text" id="global-search" placeholder="Search controls, evidence, reports, IDs, services…" oninput="handleSearch(this.value)">
+        <input type="text" id="global-search" placeholder="Search controls, IDs, services…" oninput="handleSearch(this.value)">
       </div>
       <button class="btn btn-primary" id="add-btn" onclick="openAddModal()" style="display:none">+ Add</button>
     </div>
@@ -608,6 +677,7 @@ let currentView = 'readme';
 let searchQuery = '';
 let ctrlFilter = { family: '', status: '', inheritance: '', statusArr: [] };
 let poamFilter = { severity: '', status: '', statusArr: [] };
+let evidFilter = { type: '', family: '', ctrlStatus: '', stale: false, missing: false };
 let ctrlSort = { col: 'id', dir: 'asc' };
 let poamSort = { col: 'id', dir: 'asc' };
 let charts = {};
@@ -638,25 +708,22 @@ function resetData() {
 
 // ─── ROUTING ─────────────────────────────────────────────────────────────────
 function showView(v) {
-  if (v === 'reference') { v = 'readme'; picklistOpen = true; }
+  if (v === 'reports') reportTab = -1;
   currentView = v;
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  const navEl = document.getElementById('nav-' + v);
-  if (navEl) navEl.classList.add('active');
+  const _navEl = document.getElementById('nav-' + v);
+  if (_navEl) _navEl.classList.add('active');
   document.getElementById('global-search').value = '';
   searchQuery = '';
   const addBtn = document.getElementById('add-btn');
   addBtn.style.display = (v === 'controls' || v === 'poam') ? '' : 'none';
   addBtn.textContent = v === 'controls' ? '+ Add Control' : '+ Add POA&M';
-  const noSearch = [];
+  const noSearch = ['reference','reports'];
   document.getElementById('global-search').style.display = noSearch.includes(v) ? 'none' : '';
+  document.getElementById('global-search').placeholder = v === 'readme'
+    ? 'Search controls, POA\u0026Ms, evidence\u2026'
+    : 'Search controls, IDs, services\u2026';
   render();
-  if (v === 'readme' && picklistOpen) {
-    const panel = document.getElementById('picklist-panel');
-    const icon = document.getElementById('picklist-toggle-icon');
-    if (panel) { panel.style.display = 'block'; }
-    if (icon) { icon.style.transform = 'rotate(180deg)'; }
-  }
 }
 // ─── DRILL-DOWN ──────────────────────────────────────────────────────────────
 // Navigate from a dashboard tile/chart to a filtered data view
@@ -681,12 +748,13 @@ function drillTo(view, opts) {
 
 function render() {
   document.getElementById('view-title').innerHTML =
-    {dashboard: '<span style="color:var(--accent)">◈</span> DASHBOARD <span style="color:var(--text-muted);font-size:11px">// 01</span>',
-     controls:  '<span style="color:var(--accent)">◈</span> CONTROLS <span style="color:var(--text-muted);font-size:11px">// CRM 02</span>',
-     poam:      '<span style="color:var(--accent)">◈</span> POA&amp;M <span style="color:var(--text-muted);font-size:11px">// REGISTER 03</span>',
-     evidence:  '<span style="color:var(--accent)">◈</span> EVIDENCE VAULT <span style="color:var(--text-muted);font-size:11px">// ARTIFACTS 04</span>',
-     reports:   '<span style="color:var(--accent)">◈</span> REPORTS <span style="color:var(--text-muted);font-size:11px">// ISSO REPORTING 05</span>',
-     readme:    '<span style="color:var(--accent)">◈</span> GUIDE <span style="color:var(--text-muted);font-size:11px">// README 06</span>'}[currentView];
+    {readme:    '<span style="color:var(--accent)">◈</span> GUIDE <span style="color:var(--text-muted);font-size:11px">// 01</span>',
+     dashboard: '<span style="color:var(--accent)">◈</span> DASHBOARD <span style="color:var(--text-muted);font-size:11px">// 02</span>',
+     controls:  '<span style="color:var(--accent)">◈</span> CONTROLS <span style="color:var(--text-muted);font-size:11px">// CRM 03</span>',
+     poam:      '<span style="color:var(--accent)">◈</span> POA&amp;M <span style="color:var(--text-muted);font-size:11px">// REGISTER 04</span>',
+     evidence:  '<span style="color:var(--accent)">◈</span> EVIDENCE VAULT <span style="color:var(--text-muted);font-size:11px">// ARTIFACTS 05</span>',
+     reports:   '<span style="color:var(--accent)">◈</span> REPORTS <span style="color:var(--text-muted);font-size:11px">// ISSO REPORTING 06</span>',
+     reference: '<span style="color:var(--accent)">◈</span> PICKLISTS <span style="color:var(--text-muted);font-size:11px">// REFERENCE</span>'}[currentView] || '';
   const c = document.getElementById('content');
   destroyCharts();
   if (currentView === 'dashboard') c.innerHTML = renderDashboard();
@@ -694,105 +762,19 @@ function render() {
   else if (currentView === 'poam') c.innerHTML = renderPOAM();
   else if (currentView === 'evidence') c.innerHTML = renderEvidence();
   else if (currentView === 'reports') c.innerHTML = renderReports();
+  else if (currentView === 'reference') c.innerHTML = renderReference();
   else if (currentView === 'readme') c.innerHTML = renderREADME();
   if (currentView === 'dashboard') initCharts();
-  if (currentView === 'evidence' && evidDrillMode === 'missing') {
-    const el = document.getElementById('evid-missing-section');
-    if (el) el.scrollIntoView({behavior:'smooth',block:'start'});
-  }
 }
 function handleSearch(v) {
   searchQuery = v.toLowerCase();
-  render();
-}
-
-function heroSearchNavigate(q) {
-  searchQuery = q.toLowerCase();
-  document.getElementById('global-search').value = q;
-  const lq = searchQuery;
-  const inControls = controls.some(c => [c.id,c.title,c.services,c.notes,c.evidence].join(' ').toLowerCase().includes(lq));
-  const inPoam = poams.some(p => [p.id,p.summary,p.control_id,p.owner,p.mitigation].join(' ').toLowerCase().includes(lq));
-  if (inControls) showView('controls');
-  else if (inPoam) showView('poam');
-  else showView('controls');
-}
-
-function heroSearchGo(view) {
-  const q = document.getElementById('hero-search')?.value || '';
-  if (q.trim()) {
-    searchQuery = q.toLowerCase();
-    document.getElementById('global-search').value = q;
+  if (currentView === 'readme') {
+    const gi = document.getElementById('guide-search-input');
+    if (gi && gi.value !== v) gi.value = v;
+    guideSearch(v);
+    return;
   }
-  showView(view);
-}
-
-let picklistOpen = false;
-function togglePicklistPanel() {
-  picklistOpen = !picklistOpen;
-  const panel = document.getElementById('picklist-panel');
-  const icon = document.getElementById('picklist-toggle-icon');
-  if (panel) panel.style.display = picklistOpen ? 'block' : 'none';
-  if (icon) icon.style.transform = picklistOpen ? 'rotate(180deg)' : 'rotate(0deg)';
-}
-
-function renderPicklistEmbed() {
-  const picklists = [
-    { label: 'Inheritance Type', values: ['Fully Inherited','Hybrid / Shared','Customer','Common (Org-Provided)','Not Applicable'],
-      desc: 'Who is responsible for implementing the control.' },
-    { label: 'Implementation Status', values: ['Implemented','Partially Implemented','Planned','Not Implemented','Not Applicable'],
-      desc: 'Current implementation state.' },
-    { label: 'POA&M Severity', values: ['Critical','High','Moderate','Low'],
-      desc: 'Risk severity of the finding.' },
-    { label: 'POA&M Status', values: ['Open','Ongoing','Risk Accepted','Closed'],
-      desc: 'Lifecycle status of the POA&M item.' },
-    { label: 'Baseline', values: ['Low','Moderate','High','IL2','IL4','IL5','IL6'],
-      desc: 'NIST 800-53 impact level or DoD IL baseline.' },
-    { label: 'Responsible Party', values: ['AWS','Customer','Shared','Common Control Provider'],
-      desc: 'Entity accountable for the control.' },
-  ];
-  const sevColors = { Critical:'badge-red', High:'badge-orange', Moderate:'badge-yellow', Low:'badge-green' };
-  const statusColors = { Implemented:'badge-green','Partially Implemented':'badge-yellow', Planned:'badge-blue','Not Implemented':'badge-red','Not Applicable':'badge-gray' };
-  const inhColors = { 'Fully Inherited':'badge-gray','Hybrid / Shared':'badge-blue','Customer':'badge-purple','Common (Org-Provided)':'badge-green','Not Applicable':'badge-gray' };
-  function badgeFor(list, val) {
-    if (list === 'POA&M Severity') return '<span class="badge '+(sevColors[val]||'badge-gray')+'">'+val+'</span>';
-    if (list === 'Implementation Status') return '<span class="badge '+(statusColors[val]||'badge-gray')+'">'+val+'</span>';
-    if (list === 'Inheritance Type') return '<span class="badge '+(inhColors[val]||'badge-gray')+'">'+val+'</span>';
-    if (list === 'POA&M Status') { const m = {Open:'badge-red',Ongoing:'badge-orange','Risk Accepted':'badge-yellow',Closed:'badge-green'}; return '<span class="badge '+(m[val]||'badge-gray')+'">'+val+'</span>'; }
-    return '<span class="badge badge-gray">'+val+'</span>';
-  }
-  const families = [
-    ['AC','Access Control'],['AT','Awareness and Training'],['AU','Audit and Accountability'],
-    ['CA','Assessment, Authorization, and Monitoring'],['CM','Configuration Management'],
-    ['CP','Contingency Planning'],['IA','Identification and Authentication'],
-    ['IR','Incident Response'],['MA','Maintenance'],['MP','Media Protection'],
-    ['PE','Physical and Environmental Protection'],['PL','Planning'],
-    ['PM','Program Management'],['PS','Personnel Security'],
-    ['PT','PII Processing and Transparency'],['RA','Risk Assessment'],
-    ['SA','System and Services Acquisition'],['SC','System and Communications Protection'],
-    ['SI','System and Information Integrity'],['SR','Supply Chain Risk Management'],
-  ];
-  let html = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">';
-  picklists.forEach(function(p) {
-    html += '<div class="table-wrap"><div class="table-header"><h3>'+p.label+'</h3></div>';
-    html += '<div style="padding:8px 18px 4px;font-size:11px;color:var(--text-muted);font-family:var(--mono)">'+p.desc+'</div>';
-    html += '<div style="padding:6px 18px 12px;display:flex;flex-wrap:wrap;gap:6px">';
-    p.values.forEach(function(v) { html += badgeFor(p.label, v); });
-    html += '</div></div>';
-  });
-  html += '</div>';
-  html += '<div class="table-wrap"><div class="table-header"><h3>◈ NIST 800-53 Rev 5 — Control Families</h3>';
-  html += '<span style="font-size:10px;color:var(--text-muted);font-family:var(--mono)">'+families.length+' families</span></div>';
-  html += '<div style="overflow-x:auto"><table><thead><tr><th>Family</th><th>Full Name</th><th>Controls in Tracker</th></tr></thead><tbody>';
-  families.forEach(function(f) {
-    var code = f[0], name = f[1];
-    var count = controls.filter(function(c){return c.family===code}).length;
-    html += '<tr><td><span class="badge badge-blue td-mono">'+code+'</span></td><td>'+name+'</td><td>';
-    if (count > 0) html += '<span style="color:var(--accent);font-family:var(--mono);font-weight:700">'+count+'</span> <span style="font-size:11px;color:var(--text-muted)">control'+(count!==1?'s':'')+'</span>';
-    else html += '<span style="color:var(--text-muted);font-size:11px;font-family:var(--mono)">—</span>';
-    html += '</td></tr>';
-  });
-  html += '</tbody></table></div></div>';
-  return html;
+  if (currentView !== 'dashboard') render();
 }
 
 // ─── DASHBOARD ───────────────────────────────────────────────────────────────
@@ -1078,8 +1060,8 @@ function renderControls() {
             <td style="font-size:12px;color:var(--text-muted);white-space:nowrap">${c.last_reviewed||'—'}</td>
             <td>${c.poam_id ? `<span class="badge badge-red" style="cursor:pointer" onclick="showView('poam')">${c.poam_id}</span>` : '<span style="color:var(--text-muted)">—</span>'}</td>
             <td style="white-space:nowrap">
-              <button class="btn btn-ghost btn-sm" onclick="viewControl('${c.id}')">View</button>
-              <button class="btn btn-primary btn-sm" onclick="editControl('${c.id}')">Edit</button>
+              <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();viewControl('${c.id}')">↗ Source</button>
+              <button class="btn btn-primary btn-sm" onclick="event.stopPropagation();editControl('${c.id}')">Edit</button>
             </td>
           </tr>`).join('')}
       </tbody>
@@ -1228,7 +1210,7 @@ function viewControl(id) {
 
   document.getElementById('modal-title').textContent = `${c.id} — ${c.title}`;
   document.getElementById('modal-body').innerHTML = `
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+    <div class="detail-grid">
       <div class="detail-field"><div class="detail-label">Control ID</div><div class="detail-value td-mono" style="color:var(--accent);font-weight:700">${c.id}</div></div>
       <div class="detail-field"><div class="detail-label">Family</div><div class="detail-value">${c.family} — ${FAMILY_NAMES[c.family]||c.family}</div></div>
       <div class="detail-field"><div class="detail-label">Baseline</div><div class="detail-value">${c.baseline}</div></div>
@@ -1522,31 +1504,8 @@ function toast(msg, type='success') {
 }
 
 // ─── EVIDENCE VAULT ──────────────────────────────────────────────────────────
-let evidFilter = { type: '', family: '', ctrlStatus: '' };
-let evidDrillMode = '';
-let reportTab = 0;
 
-function evidDrillType() {
-  evidDrillMode = '';
-  const items = parseEvidenceItems();
-  const typeCount = {};
-  items.forEach(e => { typeCount[e.type] = (typeCount[e.type]||0)+1; });
-  const topType = Object.entries(typeCount).sort((a,b)=>b[1]-a[1])[0];
-  if (topType) { evidFilter = {type:topType[0],family:'',ctrlStatus:''}; }
-  render();
-}
-
-function evidDrillStale() {
-  evidDrillMode = 'stale';
-  evidFilter = {type:'',family:'',ctrlStatus:''};
-  render();
-}
-
-function evidDrillMissing() {
-  evidDrillMode = 'missing';
-  evidFilter = {type:'',family:'',ctrlStatus:''};
-  render();
-}
+let reportTab = -1;
 
 function detectEvidType(ref) {
   if (/SSP\s*§/i.test(ref))                           return 'SSP Section';
@@ -1611,15 +1570,15 @@ function renderEvidence() {
   const types = Object.keys(typeCount).sort();
   const families = [...new Set(controls.map(c=>c.family))].sort();
 
-  // Apply filters + search + drill mode
+  // Apply filters + search
   let items = allItems.filter(e => {
     if (evidFilter.type && e.type !== evidFilter.type) return false;
     if (evidFilter.family && e.family !== evidFilter.family) return false;
     if (evidFilter.ctrlStatus && e.ctrl_status !== evidFilter.ctrlStatus) return false;
-    if (evidDrillMode === 'stale') {
-      const isStale = !e.last_verified || (today - new Date(e.last_verified)) > 90 * 864e5;
-      if (!isStale) return false;
+    if (evidFilter.stale) {
+      if (!e.last_verified || (today - new Date(e.last_verified)) <= 90 * 864e5) return false;
     }
+    if (evidFilter.missing) return false; // missing = no artifact row, handled below
     if (searchQuery) {
       const s = searchQuery;
       return e.ref.toLowerCase().includes(s) || e.control_id.toLowerCase().includes(s) ||
@@ -1627,55 +1586,68 @@ function renderEvidence() {
     }
     return true;
   });
+  // Missing evidence: show controls with no evidence instead of items
+  if (evidFilter.missing) {
+    const noEvidControls = controls.filter(c => !c.evidence || c.evidence.trim() === '' || c.evidence.trim() === '—');
+    items = noEvidControls.map(ctrl => ({
+      control_id: ctrl.id, control_title: ctrl.title||'—', ref: '— No evidence linked —',
+      type: 'Missing', family: ctrl.family||'—', ctrl_status: ctrl.status||'—',
+      last_verified: null, status: 'Missing'
+    }));
+  }
 
   const staleAll = allItems.filter(e => !e.last_verified || (today - new Date(e.last_verified)) > 90 * 864e5);
   const noEvid   = controls.filter(c => !c.evidence || c.evidence.trim() === '' || c.evidence.trim() === '—');
 
   return `
   <div class="cards" style="margin-bottom:20px">
-    <div class="card drillable" onclick="evidFilter={type:'',family:'',ctrlStatus:''};render()" title="View all evidence artifacts →">
+    <div class="card drillable" title="Show all evidence artifacts" onclick="evidFilter={type:'',family:'',ctrlStatus:''};render()">
       <div class="card-label">◈ Total Artifacts</div>
       <div class="card-value" style="color:var(--accent)">${allItems.length}</div>
       <div class="card-sub">${controls.filter(c=>c.evidence).length} of ${controls.length} controls covered</div>
+      <div class="card-drill">▸ View all</div>
     </div>
-    <div class="card drillable" onclick="evidDrillType()" title="View evidence by type →">
+    <div class="card drillable" title="Browse by evidence type" onclick="evidFilter={type:'',family:'',ctrlStatus:''};document.querySelector('select[onchange*=evidFilter\.type]') && (document.querySelector('select[onchange*=evidFilter\.type]').focus());render()">
       <div class="card-label">◈ Evidence Types</div>
       <div class="card-value" style="color:var(--accent2)">${types.length}</div>
       <div class="card-sub">${types.slice(0,3).join(' · ')}${types.length > 3 ? '…' : ''}</div>
+      <div class="card-drill">▸ Filter by type</div>
     </div>
-    <div class="card drillable" onclick="evidDrillStale()" title="View stale evidence (>90 days) →">
+    <div class="card drillable" title="View stale artifacts — click any row to open source control" onclick="evidFilter={type:'',family:'',ctrlStatus:'',stale:true};render()">
       <div class="card-label">◈ Stale (&gt;90d)</div>
       <div class="card-value" style="color:${staleAll.length>0?'var(--yellow)':'var(--green)'}">${staleAll.length}</div>
       <div class="card-sub">Not verified in 90+ days</div>
+      <div class="card-drill">▸ View stale</div>
     </div>
-    <div class="card drillable" onclick="evidDrillMissing()" title="View controls with no evidence →">
+    <div class="card drillable" title="View controls with no evidence linked" onclick="evidFilter={type:'',family:'',ctrlStatus:'',missing:true};render()">
       <div class="card-label">◈ Missing Evidence</div>
       <div class="card-value" style="color:${noEvid.length>0?'var(--red)':'var(--green)'}">${noEvid.length}</div>
       <div class="card-sub">Controls with no artifact linked</div>
+      <div class="card-drill">▸ Show gaps</div>
     </div>
   </div>
 
   <div class="table-wrap">
     <div class="table-header">
-      <h3>◈ Evidence Inventory — ${items.length} of ${allItems.length}${evidDrillMode==='stale'?' <span style="color:var(--yellow);font-weight:400;font-size:10px">(Showing stale only)</span>':''}${evidDrillMode==='missing'?' <span style="color:var(--red);font-weight:400;font-size:10px">(Scroll below for missing)</span>':''}
+      <h3>◈ Evidence Inventory — ${items.length} of ${allItems.length}
         <div class="ai-tip" style="display:inline-block;margin-left:6px">
           <span class="ai-chip">Entity Extraction</span>
           <div class="ai-tooltip">AI parses evidence strings and classifies artifact types automatically</div>
         </div>
       </h3>
-      <select onchange="evidDrillMode='';evidFilter.type=this.value;render()">
+      <select onchange="evidFilter.type=this.value;render()">
         <option value="">All Types</option>
         ${types.map(t=>`<option value="${t}" ${evidFilter.type===t?'selected':''}>${t} (${typeCount[t]})</option>`).join('')}
       </select>
-      <select onchange="evidDrillMode='';evidFilter.family=this.value;render()">
+      <select onchange="evidFilter.family=this.value;render()">
         <option value="">All Families</option>
         ${families.map(f=>`<option value="${f}" ${evidFilter.family===f?'selected':''}>${f} — ${FAMILY_NAMES[f]||f}</option>`).join('')}
       </select>
-      <select onchange="evidDrillMode='';evidFilter.ctrlStatus=this.value;render()">
+      <select onchange="evidFilter.ctrlStatus=this.value;render()">
         <option value="">All Statuses</option>
         ${PICKLISTS.status.map(s=>`<option value="${s}" ${evidFilter.ctrlStatus===s?'selected':''}>${s}</option>`).join('')}
       </select>
-      <button class="btn btn-ghost btn-sm" onclick="evidDrillMode='';evidFilter={type:'',family:'',ctrlStatus:''};render()">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="evidFilter={type:'',family:'',ctrlStatus:''};render()">Clear</button>
     </div>
     <div style="overflow-x:auto">
     <table>
@@ -1694,7 +1666,7 @@ function renderEvidence() {
           ? `<tr><td colspan="8" class="empty"><div class="empty-icon">◈</div>NO EVIDENCE MATCHES YOUR FILTERS</td></tr>`
           : items.map(e => {
               const isStale = !e.last_verified || (today - new Date(e.last_verified)) > 90 * 864e5;
-              return `<tr>
+              return `<tr style="cursor:pointer" onclick="viewControl('${e.control_id}')" title="View source control: ${e.control_id}">
                 <td class="td-mono" style="color:var(--accent);font-weight:700;white-space:nowrap">${e.control_id}</td>
                 <td style="max-width:160px;font-size:12px">${e.control_title}</td>
                 <td style="max-width:280px;font-size:11px;font-family:var(--mono);word-break:break-all;color:var(--text-muted)">${e.ref}</td>
@@ -1704,7 +1676,7 @@ function renderEvidence() {
                 <td style="font-size:11px;white-space:nowrap;${isStale?'color:var(--yellow)':'color:var(--green)'}">
                   ${e.last_verified||'—'}${isStale?' ⚠':''}
                 </td>
-                <td><button class="btn btn-ghost btn-sm" onclick="viewControl('${e.control_id}')">View</button></td>
+                <td><button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();viewControl('${e.control_id}')">↗ Source</button></td>
               </tr>`;
             }).join('')}
       </tbody>
@@ -1713,7 +1685,7 @@ function renderEvidence() {
   </div>
 
   ${noEvid.length > 0 ? `
-  <div id="evid-missing-section" class="table-wrap" style="margin-top:16px">
+  <div class="table-wrap" style="margin-top:16px">
     <div class="table-header">
       <h3>◈ Controls Missing Evidence — ${noEvid.length}</h3>
     </div>
@@ -1741,14 +1713,41 @@ function renderReports() {
   const today = new Date(); today.setHours(0,0,0,0);
   const dateStr = today.toISOString().slice(0,10);
 
-  const tabs = ['Executive Summary','POA&M Aging','Control Gap Report','Evidence Coverage'];
+  const reportDefs = [
+    { icon: '◈', title: 'Executive Summary',  desc: 'Full ATO posture snapshot — implementation %, inheritance breakdown, open POA\u0026M counts, and overdue findings.',  tab: 0, color: 'var(--accent)' },
+    { icon: '◎', title: 'POA&M Aging',        desc: 'SLA tracking for every open POA\u0026M. Highlights overdue items, days-open analysis, and severity distribution.',   tab: 1, color: 'var(--red)'    },
+    { icon: '◉', title: 'Control Gap Report', desc: 'Gap analysis by NIST control family. Shows partially implemented and not-implemented controls with evidence gaps.',   tab: 2, color: 'var(--yellow)' },
+    { icon: '◩', title: 'Evidence Coverage',  desc: 'Artifact inventory breakdown — types present, stale evidence flags, and controls missing linked artifacts.',           tab: 3, color: '#7ab8e8'       },
+  ];
+
   const tabBar = `
     <div style="display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap">
-      ${tabs.map((t,i) => `<button class="btn ${reportTab===i?'btn-primary':'btn-ghost'}"
-        onclick="reportTab=${i};document.getElementById('content').innerHTML=renderReports()">
-        ${t}
+      ${reportDefs.map(r => `<button class="btn ${reportTab===r.tab?'btn-primary':'btn-ghost'}"
+        onclick="reportTab=${r.tab};document.getElementById('content').innerHTML=renderReports()">
+        ${r.icon} ${r.title}
       </button>`).join('')}
     </div>`;
+
+  // Landing — show report tiles if no tab selected yet
+  if (reportTab === -1) {
+    return `
+    <div style="max-width:860px">
+      <div style="margin-bottom:22px">
+        <div style="font-size:10px;font-family:var(--mono);color:#e8a020;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">ISSO Reporting Suite</div>
+        <div style="font-size:13px;color:var(--text-muted)">Select a report to view. All reports are generated live from your Controls and POA&M data.</div>
+      </div>
+      <div class="two-col-grid">
+        ${reportDefs.map(r => `
+        <div class="card drillable" onclick="reportTab=${r.tab};document.getElementById('content').innerHTML=renderReports()"
+             style="border-left:3px solid ${r.color};padding:20px 20px 16px">
+          <div style="font-size:22px;color:${r.color};margin-bottom:8px">${r.icon}</div>
+          <div style="font-size:13px;font-weight:700;font-family:var(--mono);color:var(--text);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">${r.title}</div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.55">${r.desc}</div>
+          <div class="card-drill" style="margin-top:12px">▸ Open report &nbsp;↗</div>
+        </div>`).join('')}
+      </div>
+    </div>`;
+  }
 
   if (reportTab === 0) return tabBar + renderReportExecutive(today, dateStr);
   if (reportTab === 1) return tabBar + renderReportPoamAging(today);
@@ -1795,12 +1794,12 @@ function renderReportExecutive(today, dateStr) {
 
     <!-- Metric grid -->
     <div class="cards" style="margin-bottom:18px">
-      <div class="card drillable" onclick="drillTo('controls')" title="View all controls →"><div class="card-label">◈ Total Controls</div><div class="card-value" style="color:var(--accent)">${total}</div><div class="card-sub">NIST 800-53 Rev 5 · High</div></div>
-      <div class="card drillable" onclick="drillTo('controls',{status:'Implemented'})" title="View implemented controls →"><div class="card-label">◈ Implemented</div><div class="card-value" style="color:var(--green)">${impl}</div><div class="card-sub">${pct}% of boundary</div></div>
-      <div class="card drillable" onclick="drillTo('controls',{statusArr:['Partially Implemented','Planned']})" title="View gap controls →"><div class="card-label">◈ Gaps</div><div class="card-value" style="color:var(--yellow)">${partial+planned}</div><div class="card-sub">${partial} partial · ${planned} planned</div></div>
-      <div class="card drillable" onclick="drillTo('controls',{status:'Not Implemented'})" title="View not-implemented controls →"><div class="card-label">◈ Not Implemented</div><div class="card-value" style="color:var(--red)">${notImpl}</div><div class="card-sub">Requires POA&amp;M or risk accept</div></div>
-      <div class="card drillable" onclick="drillTo('poam',{statusArr:['Open','Ongoing']})" title="View open POA&Ms →"><div class="card-label">◈ Open POA&Ms</div><div class="card-value" style="color:var(--red)">${openP.length}</div><div class="card-sub">${critP.length} critical · ${highP.length} high</div></div>
-      <div class="card drillable" onclick="drillTo('poam',{statusArr:['Open','Ongoing']})" title="View overdue POA&Ms →"><div class="card-label">◈ Overdue</div><div class="card-value" style="color:${overdue.length>0?'var(--red)':'var(--green)'}">${overdue.length}</div><div class="card-sub">POA&Ms past target close</div></div>
+      <div class="card"><div class="card-label">◈ Total Controls</div><div class="card-value" style="color:var(--accent)">${total}</div><div class="card-sub">NIST 800-53 Rev 5 · High</div></div>
+      <div class="card"><div class="card-label">◈ Implemented</div><div class="card-value" style="color:var(--green)">${impl}</div><div class="card-sub">${pct}% of boundary</div></div>
+      <div class="card drillable" onclick="drillTo('controls',{statusArr:['Partially Implemented','Planned']})" title="View gap controls →"><div class="card-label">◈ Gaps</div><div class="card-value" style="color:var(--yellow)">${partial+planned}</div><div class="card-sub">${partial} partial · ${planned} planned</div><div class="card-drill">▸ Drill into gaps</div></div>
+      <div class="card drillable" onclick="drillTo('controls',{status:'Not Implemented'})" title="View not-implemented controls →"><div class="card-label">◈ Not Implemented</div><div class="card-value" style="color:var(--red)">${notImpl}</div><div class="card-sub">Requires POA&amp;M or risk accept</div><div class="card-drill">▸ View controls</div></div>
+      <div class="card drillable" onclick="drillTo('poam',{statusArr:['Open','Ongoing']})" title="View open POA&Ms →"><div class="card-label">◈ Open POA&Ms</div><div class="card-value" style="color:var(--red)">${openP.length}</div><div class="card-sub">${critP.length} critical · ${highP.length} high</div><div class="card-drill">▸ View in register</div></div>
+      <div class="card drillable" onclick="drillTo('poam',{statusArr:['Open','Ongoing']})" title="View overdue POA&Ms →"><div class="card-label">◈ Overdue</div><div class="card-value" style="color:${overdue.length>0?'var(--red)':'var(--green)'}">${overdue.length}</div><div class="card-sub">POA&Ms past target close</div><div class="card-drill">▸ Open POA&M register</div></div>
     </div>
 
     <!-- Inheritance table -->
@@ -1809,11 +1808,11 @@ function renderReportExecutive(today, dateStr) {
       <table>
         <thead><tr><th>Category</th><th>Count</th><th>% of Boundary</th><th>Authority</th></tr></thead>
         <tbody>
-          <tr style="cursor:pointer" onclick="drillTo('controls',{inheritance:'Fully Inherited'})" title="View fully inherited controls →"><td>Fully Inherited</td><td class="td-mono" style="color:var(--text-muted)">${inh}</td>
+          <tr><td>Fully Inherited</td><td class="td-mono" style="color:var(--text-muted)">${inh}</td>
               <td class="td-mono">${Math.round(inh/total*100)}%</td><td style="font-size:12px">AWS FedRAMP P-ATO — cite AWS Artifact</td></tr>
-          <tr style="cursor:pointer" onclick="drillTo('controls',{inheritance:'Hybrid / Shared'})" title="View hybrid/shared controls →"><td>Hybrid / Shared</td><td class="td-mono" style="color:var(--accent)">${hybrid}</td>
+          <tr><td>Hybrid / Shared</td><td class="td-mono" style="color:var(--accent)">${hybrid}</td>
               <td class="td-mono">${Math.round(hybrid/total*100)}%</td><td style="font-size:12px">Customer implements remaining portion</td></tr>
-          <tr style="cursor:pointer" onclick="drillTo('controls',{inheritance:'Customer'})" title="View customer-owned controls →"><td>Customer Owned</td><td class="td-mono" style="color:var(--accent2)">${cust}</td>
+          <tr><td>Customer Owned</td><td class="td-mono" style="color:var(--accent2)">${cust}</td>
               <td class="td-mono">${Math.round(cust/total*100)}%</td><td style="font-size:12px">Full implementation &amp; evidence required</td></tr>
         </tbody>
       </table>
@@ -1825,10 +1824,10 @@ function renderReportExecutive(today, dateStr) {
       <table>
         <thead><tr><th>Category</th><th>Finding</th><th>Recommended Action</th></tr></thead>
         <tbody>
-          ${critP.length>0 ? `<tr style="cursor:pointer" onclick="drillTo('poam',{severity:'Critical'})" title="View critical POA&Ms →"><td>${sevBadge('Critical')}</td><td>${critP.length} open critical POA&M${critP.length>1?'s':''}: ${critP.map(p=>p.id).join(', ')}</td><td style="font-size:12px">Close within 30-day SLA — escalate to AO</td></tr>` : ''}
-          ${highP.length>0 ? `<tr style="cursor:pointer" onclick="drillTo('poam',{severity:'High'})" title="View high-severity POA&Ms →"><td>${sevBadge('High')}</td><td>${highP.length} open high POA&M${highP.length>1?'s':''}: ${highP.map(p=>p.id).join(', ')}</td><td style="font-size:12px">Close within 90-day SLA</td></tr>` : ''}
-          ${overdue.length>0 ? `<tr style="cursor:pointer" onclick="drillTo('poam',{statusArr:['Open','Ongoing']})" title="View overdue POA&Ms →"><td><span class="badge badge-red">OVERDUE</span></td><td>${overdue.length} POA&M${overdue.length>1?'s':''} past target close date</td><td style="font-size:12px">Update milestones and request schedule adjustment</td></tr>` : ''}
-          ${noEvid>0 ? `<tr style="cursor:pointer" onclick="evidDrillMissing();showView('evidence')" title="View controls missing evidence →"><td><span class="badge badge-orange">EVIDENCE GAP</span></td><td>${noEvid} control${noEvid>1?'s':''} missing evidence artifacts</td><td style="font-size:12px">Link SSP sections, S3 paths, or Audit Manager assessments</td></tr>` : ''}
+          ${critP.length>0 ? `<tr><td>${sevBadge('Critical')}</td><td>${critP.length} open critical POA&M${critP.length>1?'s':''}: ${critP.map(p=>p.id).join(', ')}</td><td style="font-size:12px">Close within 30-day SLA — escalate to AO</td></tr>` : ''}
+          ${highP.length>0 ? `<tr><td>${sevBadge('High')}</td><td>${highP.length} open high POA&M${highP.length>1?'s':''}: ${highP.map(p=>p.id).join(', ')}</td><td style="font-size:12px">Close within 90-day SLA</td></tr>` : ''}
+          ${overdue.length>0 ? `<tr><td><span class="badge badge-red">OVERDUE</span></td><td>${overdue.length} POA&M${overdue.length>1?'s':''} past target close date</td><td style="font-size:12px">Update milestones and request schedule adjustment</td></tr>` : ''}
+          ${noEvid>0 ? `<tr><td><span class="badge badge-orange">EVIDENCE GAP</span></td><td>${noEvid} control${noEvid>1?'s':''} missing evidence artifacts</td><td style="font-size:12px">Link SSP sections, S3 paths, or Audit Manager assessments</td></tr>` : ''}
           ${critP.length===0&&highP.length===0&&overdue.length===0&&noEvid===0 ? `<tr><td colspan="3" style="text-align:center;color:var(--green);font-family:var(--mono);padding:16px">✓ NO OUTSTANDING RISK ITEMS — BOUNDARY IN GOOD STANDING</td></tr>` : ''}
         </tbody>
       </table>
@@ -1868,9 +1867,9 @@ function renderReportPoamAging(today) {
         <div style="font-size:14px;font-weight:800;font-family:var(--mono);color:var(--text);text-transform:uppercase">POA&amp;M Aging Report</div>
       </div>
       <div style="display:flex;gap:16px;font-family:var(--mono)">
-        <div style="text-align:center;cursor:pointer" onclick="drillTo('poam',{statusArr:['Open','Ongoing']})" title="View open POA&Ms →"><div style="font-size:22px;font-weight:800;color:var(--red)">${open.length}</div><div style="font-size:9px;color:var(--text-muted)">OPEN</div></div>
-        <div style="text-align:center;cursor:pointer" onclick="drillTo('poam',{statusArr:['Open','Ongoing']})" title="View overdue POA&Ms →"><div style="font-size:22px;font-weight:800;color:var(--orange)">${overdue.length}</div><div style="font-size:9px;color:var(--text-muted)">OVERDUE</div></div>
-        <div style="text-align:center;cursor:pointer" onclick="drillTo('poam',{status:'Closed'})" title="View closed POA&Ms →"><div style="font-size:22px;font-weight:800;color:var(--green)">${closed.length}</div><div style="font-size:9px;color:var(--text-muted)">CLOSED</div></div>
+        <div style="text-align:center;cursor:pointer" onclick="drillTo('poam',{statusArr:['Open','Ongoing']})" title="View open POA&Ms"><div style="font-size:22px;font-weight:800;color:var(--red)">${open.length}</div><div style="font-size:9px;color:var(--text-muted)">OPEN ↗</div></div>
+        <div style="text-align:center;cursor:pointer" onclick="drillTo('poam',{statusArr:['Open','Ongoing']})" title="View overdue POA&Ms"><div style="font-size:22px;font-weight:800;color:var(--orange)">${overdue.length}</div><div style="font-size:9px;color:var(--text-muted)">OVERDUE ↗</div></div>
+        <div style="text-align:center;cursor:pointer" onclick="drillTo('poam',{status:'Closed'})" title="View closed POA&Ms"><div style="font-size:22px;font-weight:800;color:var(--green)">${closed.length}</div><div style="font-size:9px;color:var(--text-muted)">CLOSED ↗</div></div>
       </div>
     </div>
 
@@ -1890,9 +1889,9 @@ function renderReportPoamAging(today) {
               const limit= slaLimit[p.severity] || '—';
               const remCls= rem===null?'':rem<0?'days-over':rem<=14?'days-warn':'days-ok';
               const remStr= rem===null?'—':rem<0?`${Math.abs(rem)}d OVERDUE`:`${rem}d left`;
-              return `<tr>
+              return `<tr style="cursor:pointer" onclick="drillTo('poam',{severity:'${p.severity}'})" title="Drill to ${p.severity} POA&Ms in register">
                 <td class="td-mono" style="color:var(--accent);font-weight:700;white-space:nowrap">${p.id}</td>
-                <td class="td-mono" style="white-space:nowrap">${p.control_id}</td>
+                <td class="td-mono" style="white-space:nowrap"><a href="#" onclick="event.stopPropagation();ctrlFilter={};searchQuery='';showView('controls');setTimeout(()=>editControl('${p.control_id}'),100);return false" style="color:var(--accent2)">${p.control_id}</a></td>
                 <td style="max-width:200px;font-size:12px">${p.summary}</td>
                 <td>${sevBadge(p.severity)}</td>
                 <td style="font-size:11px">${p.source||'—'}</td>
@@ -1949,9 +1948,9 @@ function renderReportGap() {
         <div style="font-size:14px;font-weight:800;font-family:var(--mono);color:var(--text);text-transform:uppercase">Control Gap Report</div>
         <div style="font-size:12px;color:var(--text-muted)">All non-fully-implemented controls requiring action or documentation</div>
       </div>
-      <div style="font-family:var(--mono);text-align:center;cursor:pointer" onclick="drillTo('controls',{statusArr:['Partially Implemented','Planned','Not Implemented']})" title="View gap controls →">
+      <div style="font-family:var(--mono);text-align:center;cursor:pointer" onclick="drillTo('controls',{statusArr:['Partially Implemented','Planned','Not Implemented']})" title="Drill to gap controls in CRM">
         <div style="font-size:28px;font-weight:800;color:var(--yellow)">${gaps.length}</div>
-        <div style="font-size:9px;color:var(--text-muted)">GAPS IDENTIFIED</div>
+        <div style="font-size:9px;color:var(--text-muted)">GAPS — CLICK TO DRILL ↗</div>
       </div>
     </div>
 
@@ -1964,7 +1963,7 @@ function renderReportGap() {
       <table>
         <thead><tr><th>ID</th><th>Title</th><th>Inheritance</th><th>Status</th><th>POA&M</th><th>Owner</th><th>Customer Responsibility</th><th>Actions</th></tr></thead>
         <tbody>
-          ${byFamily[fam].map(c=>`<tr>
+          ${byFamily[fam].map(c=>`<tr style="cursor:pointer" onclick="viewControl('${c.id}')" title="View source control: ${c.id}">
             <td class="td-mono" style="color:var(--yellow);font-weight:700;white-space:nowrap">${c.id}</td>
             <td style="max-width:160px">${c.title}</td>
             <td>${inheritBadge(c.inheritance)}</td>
@@ -1973,8 +1972,8 @@ function renderReportGap() {
             <td>${responsibleBadge(c.responsible)}</td>
             <td style="max-width:220px;font-size:11px;color:var(--text-muted)">${c.customer_resp||'—'}</td>
             <td style="white-space:nowrap">
-              <button class="btn btn-ghost btn-sm" onclick="viewControl('${c.id}')">View</button>
-              <button class="btn btn-primary btn-sm" onclick="editControl('${c.id}')">Edit</button>
+              <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();viewControl('${c.id}')">&#x2197; Source</button>
+              <button class="btn btn-primary btn-sm" onclick="event.stopPropagation();editControl('${c.id}')">Edit</button>
             </td>
           </tr>`).join('')}
         </tbody>
@@ -2005,9 +2004,9 @@ function renderReportEvidence() {
         <div style="font-size:14px;font-weight:800;font-family:var(--mono);color:var(--text);text-transform:uppercase">Evidence Coverage Report</div>
       </div>
       <div style="display:flex;gap:16px;font-family:var(--mono)">
-        <div style="text-align:center;cursor:pointer" onclick="evidDrillMode='';evidFilter={type:'',family:'',ctrlStatus:''};showView('evidence')" title="View all evidence →"><div style="font-size:22px;font-weight:800;color:var(--green)">${covered.length}</div><div style="font-size:9px;color:var(--text-muted)">COVERED</div></div>
-        <div style="text-align:center;cursor:pointer" onclick="evidDrillMissing();showView('evidence')" title="View controls missing evidence →"><div style="font-size:22px;font-weight:800;color:var(--red)">${missing.length}</div><div style="font-size:9px;color:var(--text-muted)">MISSING</div></div>
-        <div style="text-align:center;cursor:pointer" onclick="evidDrillMode='';evidFilter={type:'',family:'',ctrlStatus:''};showView('evidence')" title="View evidence vault →"><div style="font-size:22px;font-weight:800;color:${pct>=90?'var(--green)':pct>=70?'var(--yellow)':'var(--red)'}">${pct}%</div><div style="font-size:9px;color:var(--text-muted)">COVERAGE</div></div>
+        <div style="text-align:center"><div style="font-size:22px;font-weight:800;color:var(--green)">${covered.length}</div><div style="font-size:9px;color:var(--text-muted)">COVERED</div></div>
+        <div style="text-align:center"><div style="font-size:22px;font-weight:800;color:var(--red)">${missing.length}</div><div style="font-size:9px;color:var(--text-muted)">MISSING</div></div>
+        <div style="text-align:center"><div style="font-size:22px;font-weight:800;color:${pct>=90?'var(--green)':pct>=70?'var(--yellow)':'var(--red)'}">${pct}%</div><div style="font-size:9px;color:var(--text-muted)">COVERAGE</div></div>
       </div>
     </div>
 
@@ -2019,7 +2018,7 @@ function renderReportEvidence() {
         <tbody>
           ${Object.entries(typeCount).sort((a,b)=>b[1]-a[1]).map(([type,cnt])=>{
             const ex = allItems.filter(e=>e.type===type).slice(0,3).map(e=>e.control_id);
-            return `<tr style="cursor:pointer" onclick="evidDrillMode='';evidFilter={type:'${type.replace(/'/g,"\\'")}',family:'',ctrlStatus:''};showView('evidence')" title="View ${type} evidence →">
+            return `<tr>
               <td><span class="badge ${EVID_TYPE_COLOR[type]||'badge-gray'}">${type}</span></td>
               <td class="td-mono">${cnt}</td>
               <td class="td-mono">${Math.round(cnt/allItems.length*100)}%</td>
@@ -2114,7 +2113,7 @@ function renderReference() {
   }
 
   return `
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px">
+  <div class="two-col-grid">
     ${picklists.map(p => `
     <div class="table-wrap">
       <div class="table-header">
@@ -2174,10 +2173,27 @@ function renderREADME() {
     { icon:'◩', name:'Evidence',   tag:'04', view:'evidence',  desc:"Evidence Vault. Auto-parsed artifact inventory derived from your controls. Classifies SSP sections, S3 paths, Audit Manager assessments, CloudTrail logs, and more. Flags stale and missing evidence." },
     { icon:'◪', name:'Reports',    tag:'05', view:'reports',   desc:"Built-in ISSO reports: Executive Summary, POA&M Aging (with SLA analysis), Control Gap Report by family, and Evidence Coverage breakdown." },
     { icon:'◫', name:'Guide',      tag:'06', view:'readme',    desc:"This page. Purpose, workflow, and step-by-step instructions for populating the tracker from AWS Artifact CRM exports." },
+    { icon:'⊞', name:'Picklists',  tag:'07', view:'reference', desc:"All dropdown values and NIST 800-53 control family definitions. Reference when setting inheritance, status, or severity values." },
   ];
 
   return `
   <div style="max-width:860px;margin:0 auto">
+
+
+    <!-- Semantic Search Bar -->
+    <div style="margin-bottom:24px">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden">
+        <div style="padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px">
+          <span style="font-size:18px;color:var(--accent);flex-shrink:0">⌕</span>
+          <input id="guide-search-input" type="text" placeholder="Search controls, POA&Ms, evidence… (e.g. AC-2, encryption, stale)"
+            style="flex:1;background:transparent;border:none;outline:none;font-size:14px;color:var(--text);font-family:var(--mono)"
+            oninput="guideSearch(this.value)"
+            onkeydown="if(event.key==='Escape'){this.value='';guideSearch('')}">
+          <span style="font-size:10px;color:var(--text-muted);font-family:var(--mono);flex-shrink:0">ESC to clear</span>
+        </div>
+        <div id="guide-search-results"></div>
+      </div>
+    </div>
 
     <!-- Header card -->
     <div class="table-wrap" style="margin-bottom:22px;border-top:2px solid #e8a020">
@@ -2220,40 +2236,9 @@ function renderREADME() {
       </div>
     </div>
 
-    <!-- Hero Search -->
-    <div style="margin-bottom:22px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 28px;position:relative;overflow:hidden">
-      <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,180,255,0.04),rgba(232,160,32,0.04));pointer-events:none"></div>
-      <div style="position:relative;z-index:1">
-        <div style="font-size:9px;font-family:var(--mono);color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px">◈ Semantic Search</div>
-        <div style="display:flex;align-items:center;gap:12px">
-          <div style="flex:1;display:flex;align-items:center;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:10px 16px;gap:10px;transition:border-color .2s,box-shadow .2s"
-               onfocuswithin="this.style.borderColor='var(--accent)';this.style.boxShadow='0 0 0 3px rgba(0,180,255,.15)'"
-               id="hero-search-wrap">
-            <span style="font-size:16px;color:var(--text-muted)">◈</span>
-            <input type="text" id="hero-search" placeholder="Search controls, evidence, reports, IDs, services, families…"
-              style="background:none;border:none;outline:none;color:var(--text);font-size:14px;width:100%;font-family:var(--mono)"
-              oninput="document.getElementById('global-search').value=this.value;handleSearch(this.value)"
-              onkeydown="if(event.key==='Enter'&&this.value.trim()){heroSearchNavigate(this.value)}"
-              onfocus="this.parentElement.style.borderColor='var(--accent)';this.parentElement.style.boxShadow='0 0 0 3px rgba(0,180,255,.15)'"
-              onblur="this.parentElement.style.borderColor='var(--border)';this.parentElement.style.boxShadow='none'">
-          </div>
-        </div>
-        <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
-          <span style="font-size:10px;color:var(--text-muted);font-family:var(--mono);padding:3px 8px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all .15s"
-                onclick="heroSearchGo('controls')" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-muted)'">Controls</span>
-          <span style="font-size:10px;color:var(--text-muted);font-family:var(--mono);padding:3px 8px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all .15s"
-                onclick="heroSearchGo('poam')" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-muted)'">POA&amp;M</span>
-          <span style="font-size:10px;color:var(--text-muted);font-family:var(--mono);padding:3px 8px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all .15s"
-                onclick="heroSearchGo('evidence')" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-muted)'">Evidence</span>
-          <span style="font-size:10px;color:var(--text-muted);font-family:var(--mono);padding:3px 8px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all .15s"
-                onclick="heroSearchGo('reports')" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-muted)'">Reports</span>
-        </div>
-      </div>
-    </div>
-
     <!-- Module index -->
     <div class="section-title" style="margin-top:0">◈ Application Modules</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px">
+    <div class="two-col-grid">
       ${tabs.map(t => `
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;display:flex;gap:12px;align-items:flex-start;cursor:pointer"
            onclick="showView('${t.view}')">
@@ -2287,14 +2272,82 @@ function renderREADME() {
       All edits are saved automatically to browser localStorage. Use the <strong style="color:var(--text)">Export XLSX</strong> button on the POA&amp;M page to back up your data, and <strong style="color:var(--text)">Import XLSX</strong> to restore or bulk-load records. Use the <strong style="color:var(--text)">↺ Reset</strong> button on the Controls page to restore the original sample data.
     </div>
 
-    <!-- Embedded Picklists Reference -->
-    <div class="section-title" style="margin-top:22px;display:flex;align-items:center;gap:8px;cursor:pointer" onclick="togglePicklistPanel()">
-      <span>◈ Picklists &amp; Reference Data</span>
-      <span id="picklist-toggle-icon" style="font-size:10px;color:var(--accent);transition:transform .2s;transform:rotate(0deg)">▼</span>
-      <span style="font-size:9px;color:var(--text-muted);font-family:var(--mono);letter-spacing:.06em;margin-left:auto;font-weight:400">Dropdown values &amp; NIST 800-53 families</span>
+    <!-- ═══ Picklists & Reference ═══════════════════════════════════════ -->
+    <div class="section-title" style="margin-top:28px">◈ Reference — Picklists &amp; Control Families</div>
+    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+      <button class="btn btn-ghost btn-sm" onclick="document.querySelectorAll('.guide-picklist').forEach(el=>el.style.display='block');document.querySelectorAll('.guide-picklist-toggle').forEach(b=>b.textContent='▾')">Expand All</button>
+      <button class="btn btn-ghost btn-sm" onclick="document.querySelectorAll('.guide-picklist').forEach(el=>el.style.display='none');document.querySelectorAll('.guide-picklist-toggle').forEach(b=>b.textContent='▸')">Collapse All</button>
     </div>
-    <div id="picklist-panel" style="display:none">
-      ${renderPicklistEmbed()}
+    <div class="two-col-grid" style="margin-bottom:16px">
+      ${[
+        { label: 'Inheritance Type', values: ['Fully Inherited','Hybrid / Shared','Customer','Common (Org-Provided)','Not Applicable'],
+          desc: 'Who is responsible for implementing the control — AWS, the customer, or both.' },
+        { label: 'Implementation Status', values: ['Implemented','Partially Implemented','Planned','Not Implemented','Not Applicable'],
+          desc: 'Current implementation state. Drives the dashboard posture score.' },
+        { label: 'POA&M Severity', values: ['Critical','High','Moderate','Low'],
+          desc: 'Risk severity of the finding. Drives SLA timelines (Critical: 30d, High: 90d).' },
+        { label: 'POA&M Status', values: ['Open','Ongoing','Risk Accepted','Closed'],
+          desc: 'Lifecycle status of the POA&M item.' },
+        { label: 'Baseline', values: ['Low','Moderate','High','IL2','IL4','IL5','IL6'],
+          desc: 'NIST 800-53 impact level or DoD IL baseline for the control.' },
+        { label: 'Responsible Party', values: ['AWS','Customer','Shared','Common Control Provider'],
+          desc: 'Entity accountable for the control implementation.' },
+      ].map((p, pi) => {
+        const bCls = (list, val) => {
+          if (list==='POA&M Severity') return {Critical:'badge-red',High:'badge-orange',Moderate:'badge-yellow',Low:'badge-green'}[val]||'badge-gray';
+          if (list==='Implementation Status') return {Implemented:'badge-green','Partially Implemented':'badge-yellow',Planned:'badge-blue','Not Implemented':'badge-red','Not Applicable':'badge-gray'}[val]||'badge-gray';
+          if (list==='Inheritance Type') return {'Fully Inherited':'badge-gray','Hybrid / Shared':'badge-blue',Customer:'badge-purple','Common (Org-Provided)':'badge-green','Not Applicable':'badge-gray'}[val]||'badge-gray';
+          if (list==='POA&M Status') return {Open:'badge-red',Ongoing:'badge-orange','Risk Accepted':'badge-yellow',Closed:'badge-green'}[val]||'badge-gray';
+          return 'badge-gray';
+        };
+        return `
+        <div class="table-wrap">
+          <div class="table-header" style="cursor:pointer" onclick="const b=this.nextElementSibling,t=this.querySelector('.guide-picklist-toggle');b.style.display=b.style.display==='none'?'block':'none';t.textContent=b.style.display==='none'?'▸':'▾'">
+            <h3>◈ ${p.label}</h3>
+            <span class="guide-picklist-toggle" style="color:var(--accent);font-family:var(--mono);font-size:14px">▾</span>
+          </div>
+          <div class="guide-picklist">
+            <div style="padding:8px 18px 4px;font-size:11px;color:var(--text-muted);font-family:var(--mono)">${p.desc}</div>
+            <div style="padding:8px 18px 14px;display:flex;flex-wrap:wrap;gap:6px">
+              ${p.values.map(v=>`<span class="badge ${bCls(p.label,v)}">${v}</span>`).join('')}
+            </div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+
+    <!-- NIST Control Families -->
+    <div class="table-wrap" style="margin-bottom:24px">
+      <div class="table-header" style="cursor:pointer" onclick="const b=this.nextElementSibling,t=this.querySelector('.guide-picklist-toggle');b.style.display=b.style.display==='none'?'block':'none';t.textContent=b.style.display==='none'?'▸':'▾'">
+        <h3>◈ NIST 800-53 Rev 5 — Control Families</h3>
+        <span class="guide-picklist-toggle" style="color:var(--accent);font-family:var(--mono);font-size:14px">▾</span>
+      </div>
+      <div class="guide-picklist">
+        <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>Family</th><th>Full Name</th><th>Controls in Tracker</th></tr></thead>
+          <tbody>
+            ${[['AC','Access Control'],['AT','Awareness and Training'],['AU','Audit and Accountability'],
+               ['CA','Assessment, Authorization, and Monitoring'],['CM','Configuration Management'],
+               ['CP','Contingency Planning'],['IA','Identification and Authentication'],
+               ['IR','Incident Response'],['MA','Maintenance'],['MP','Media Protection'],
+               ['PE','Physical and Environmental Protection'],['PL','Planning'],
+               ['PM','Program Management'],['PS','Personnel Security'],
+               ['PT','PII Processing and Transparency'],['RA','Risk Assessment'],
+               ['SA','System and Services Acquisition'],['SC','System and Communications Protection'],
+               ['SI','System and Information Integrity'],['SR','Supply Chain Risk Management']
+            ].map(([code,name]) => {
+              const cnt = controls.filter(c=>c.family===code).length;
+              return `<tr>
+                <td><span class="badge badge-blue td-mono" style="cursor:pointer" onclick="ctrlFilter={family:'${code}',status:'',inheritance:'',statusArr:[]};showView('controls')" title="Filter to ${code}">${code}</span></td>
+                <td>${name}</td>
+                <td>${cnt>0?`<span style="color:var(--accent);font-family:var(--mono);font-weight:700">${cnt}</span> <span style="font-size:11px;color:var(--text-muted)">control${cnt!==1?'s':''}</span>`:'<span style="color:var(--text-muted);font-size:11px;font-family:var(--mono)">—</span>'}</td>
+              </tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+        </div>
+      </div>
     </div>
 
   </div>`;
@@ -2763,6 +2816,348 @@ function _addBotMsg(text, id) {
 
 function _esc(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+
+// ─── GUIDE SEMANTIC SEARCH ────────────────────────────────────────────────────
+// ─── SEMANTIC SEARCH ENGINE ─────────────────────────────────────────────────
+// Synonym expansion map — NIST/CMMC/FedRAMP compliance vocabulary
+const SEARCH_SYNONYMS = {
+  // Authentication & Identity
+  'password':       ['authenticator','credential','passcode','passphrase','ia-5','ia5'],
+  'mfa':            ['multi-factor','multifactor','two-factor','2fa','ia-2','ia2','authenticat'],
+  'sso':            ['single sign','federat','ia-8','ia8'],
+  'account':        ['user account','identity','ac-2','ac2','account management','provisioning'],
+  'privilege':      ['privileged','admin','least privilege','ac-6','ac6','elevated'],
+  'role':           ['rbac','access control','ac-2','ac6','permission','least privilege'],
+  'session':        ['timeout','lock','ac-11','ac-12','inactivity'],
+  // Encryption & Crypto
+  'encryption':     ['cryptograph','encrypt','cipher','tls','ssl','fips','ac-17','sc-8','sc-28','key management'],
+  'crypto':         ['cryptograph','encrypt','cipher','tls','fips','key'],
+  'tls':            ['ssl','encrypt','sc-8','transit','cryptograph'],
+  'fips':           ['cryptograph','federal information','sc-28','encrypt'],
+  // Network & Boundary
+  'firewall':       ['boundary','sc-7','sc7','network protection','perimeter','packet filter'],
+  'vpn':            ['remote access','ac-17','ac17','tunnel','cryptograph','encrypt'],
+  'remote':         ['remote access','vpn','ac-17','telework','offsite'],
+  'network':        ['sc-','boundary','communication','firewall','perimeter','dmz'],
+  // Audit & Monitoring
+  'logging':        ['audit','log','siem','au-','event','record','accountability'],
+  'monitoring':     ['audit','si-4','si4','siem','detect','alert','continuous','watch'],
+  'audit':          ['au-','log','review','accountability','trail','record'],
+  'siem':           ['log','monitoring','audit','si-4','event'],
+  // Vulnerability & Risk
+  'vulnerability':  ['ra-5','ra5','scan','patch','cve','finding','flaw','weakness','remediat','si-2'],
+  'patching':       ['patch management','si-2','si2','update','remediat','flaw'],
+  'scan':           ['vulnerability','ra-5','nessus','finding'],
+  'risk':           ['ra-','risk assessment','risk management','impact','likelihood'],
+  // Incident Response
+  'incident':       ['ir-','incident response','breach','event response','playbook'],
+  'breach':         ['incident','ir-','data loss','unauthorized','compromise'],
+  'response':       ['ir-','incident','playbook','containment','eradication'],
+  // Backup & Continuity
+  'backup':         ['contingency','cp-','recovery','restore','bcp','bcdr','snapshot'],
+  'disaster':       ['contingency','cp-','recovery','bcp','bcdr','rto','rpo'],
+  'recovery':       ['cp-','backup','restore','contingency','bcdr','rto'],
+  'continuity':     ['cp-','bcp','bcdr','contingency','availability'],
+  // Training & Awareness
+  'training':       ['at-','awareness','security awareness','education','phishing'],
+  'awareness':      ['at-','training','education','phishing','user'],
+  // Configuration & Hardening
+  'hardening':      ['configuration','baseline','cm-','benchmark','stig','cis'],
+  'configuration':  ['cm-','baseline','stig','hardening','change management','ccm'],
+  'baseline':       ['cm-2','stig','benchmark','configuration','hardening'],
+  'change management': ['cm-3','cm3','change control','ccb','configuration'],
+  // Supply Chain
+  'vendor':         ['supply chain','sr-','third party','third-party','acquisition','contractor'],
+  'supply chain':   ['sr-','vendor','acquisition','sa-','third party'],
+  'contractor':     ['vendor','sr-','supply chain','sa-12','acquisition'],
+  // Data Protection
+  'data protection':['sc-','mp-','pii','sensitive','classification','dlp'],
+  'pii':            ['personally identifiable','privacy','pt-','data protection','sensitive'],
+  'classification': ['data','sensitivity','sc-','marking','label'],
+  'media':          ['mp-','removable','sanitiz','usb','destroy','disposal'],
+  // Physical
+  'physical':       ['pe-','physical access','facility','badge','visitor','tailgat'],
+  // Personnel
+  'personnel':      ['ps-','insider','employee','user agreement','screening','termination'],
+  'termination':    ['ps-4','ps4','offboard','revoke','access removal'],
+  // System Integrity
+  'malware':        ['antivirus','av','si-3','si3','endpoint','edr','malicious'],
+  'antivirus':      ['malware','si-3','endpoint','edr'],
+  'integrity':      ['si-','hash','checksum','tamper','file integrity'],
+  // POA&M specific
+  'open':           ['active','ongoing','not closed','unresolved'],
+  'overdue':        ['past due','expired','late','missed deadline'],
+  'critical':       ['high','severity','priority','urgent'],
+  'remediation':    ['fix','remediat','mitigat','resolve','correct'],
+};
+
+// NIST family → searchable concept map (bi-directional)
+const FAMILY_MAP = {
+  'AC': ['access control','account','privilege','remote','separation','least privilege','session','role'],
+  'AT': ['training','awareness','education','personnel','phishing'],
+  'AU': ['audit','log','monitoring','accountability','review','siem','trail'],
+  'CA': ['assessment','authorization','poam','continuous monitoring','ato','accredit'],
+  'CM': ['configuration','baseline','hardening','stig','change management','inventory','ccm'],
+  'CP': ['contingency','backup','recovery','bcdr','disaster','rto','rpo','restore'],
+  'IA': ['identity','authentication','mfa','password','credential','authenticator','account','user account','ia-2','ia-5'],
+  'IR': ['incident','breach','response','event','playbook'],
+  'MA': ['maintenance','patch','update','preventive'],
+  'MP': ['media','removable','sanitiz','usb','destroy','disposal'],
+  'PE': ['physical','facility','environmental','badge','visitor'],
+  'PL': ['planning','system security plan','ssp','rules of behavior'],
+  'PM': ['program management','risk management','strategy','governance'],
+  'PS': ['personnel','insider','employee','termination','screening','offboard'],
+  'RA': ['risk','vulnerability','assessment','scan','threat','impact'],
+  'SA': ['acquisition','vendor','supply chain','developer','secure coding'],
+  'SC': ['network','boundary','firewall','encryption','communication','crypto','tls'],
+  'SI': ['integrity','malware','antivirus','patch','flaw','monitoring','edr','vulnerability','remediat','si-2','si-3','si-4'],
+  'SR': ['supply chain','vendor','third party','acquisition'],
+};
+
+// Expand query tokens using synonym and family maps
+function _expandQuery(rawQuery) {
+  const tokens = rawQuery.toLowerCase().split(/[\s,;]+/).filter(t => t.length > 1);
+  const expanded = new Set(tokens);
+
+  for (const token of tokens) {
+    // Direct key match in synonyms
+    for (const [key, vals] of Object.entries(SEARCH_SYNONYMS)) {
+      const keyLo = key.toLowerCase();
+      if (keyLo === token || keyLo.includes(token) || token.includes(keyLo)) {
+        expanded.add(keyLo);
+        vals.forEach(v => expanded.add(v.toLowerCase()));
+      } else if (vals.some(v => {
+        const vl = v.toLowerCase();
+        return vl === token || vl.includes(token) || token.includes(vl);
+      })) {
+        expanded.add(keyLo);
+        vals.forEach(v => expanded.add(v.toLowerCase()));
+      }
+    }
+    // Family map match
+    for (const [fam, kws] of Object.entries(FAMILY_MAP)) {
+      const famLo = fam.toLowerCase();
+      if (famLo === token || kws.some(k => {
+        const kl = k.toLowerCase();
+        return kl === token || kl.includes(token) || token.includes(kl);
+      })) {
+        expanded.add(famLo);
+        kws.forEach(k => expanded.add(k.toLowerCase()));
+      }
+    }
+  }
+  return Array.from(expanded);
+}
+
+// Field-weighted scoring for a control
+function _scoreControl(c, terms) {
+  let score = 0;
+  const id    = (c.id||'').toLowerCase();
+  const title = (c.title||'').toLowerCase();
+  const fam   = (c.family||'').toLowerCase();
+  const stat  = (c.status||'').toLowerCase();
+  const notes = (c.notes||'').toLowerCase();
+  const evid  = (c.evidence||'').toLowerCase();
+
+  for (const t of terms) {
+    if (!t || t.length < 2) continue;
+    if (id === t)               score += 20;
+    else if (id.startsWith(t)) score += 15;
+    else if (id.includes(t))   score += 10;
+    if (title.includes(t))     score += 8;
+    if (fam.includes(t))       score += 5;
+    if (stat.includes(t))      score += 3;
+    if (notes.includes(t))     score += 2;
+    if (evid.includes(t))      score += 1;
+  }
+  return score;
+}
+
+// Field-weighted scoring for a POA&M
+function _scorePOAM(p, terms) {
+  let score = 0;
+  const id    = (p.id||'').toLowerCase();
+  const ctrl  = (p.control_id||'').toLowerCase();
+  const title = ((p.title||'') + ' ' + (p.summary||'')).toLowerCase();
+  const desc  = (p.description||'').toLowerCase();
+  const sev   = (p.severity||'').toLowerCase();
+  const stat  = (p.status||'').toLowerCase();
+
+  for (const t of terms) {
+    if (!t || t.length < 2) continue;
+    if (id === t)              score += 20;
+    else if (id.includes(t))  score += 10;
+    if (ctrl.includes(t))     score += 9;
+    if (title.includes(t))    score += 7;
+    if (desc.includes(t))     score += 3;
+    if (sev.includes(t))      score += 4;
+    if (stat.includes(t))     score += 3;
+  }
+  return score;
+}
+
+// Field-weighted scoring for evidence
+function _scoreEvidence(e, terms) {
+  let score = 0;
+  const ctrl  = (e.control_id||'').toLowerCase();
+  const ref   = (e.ref||'').toLowerCase();
+  const type  = (e.type||'').toLowerCase();
+  const ctitl = (e.control_title||'').toLowerCase();
+
+  for (const t of terms) {
+    if (!t || t.length < 2) continue;
+    if (ctrl.includes(t))   score += 10;
+    if (ctitl.includes(t)) score += 7;
+    if (ref.includes(t))   score += 5;
+    if (type.includes(t))  score += 3;
+  }
+  return score;
+}
+
+// Highlight matched original tokens in result text (safe HTML)
+function _hl(text, originalTokens) {
+  let t = _esc(String(text));
+  const sorted = [...originalTokens].filter(tok => tok.length > 1).sort((a,b) => b.length - a.length);
+  for (const tok of sorted) {
+    try {
+      const esc = tok.replace(/[-[\]{}()*+?.,^$|#]/g, function(c){ return '\\' + c; });
+      const re  = new RegExp(esc, 'gi');
+      t = t.replace(re, function(m){ return '<mark style="background:var(--accent);color:var(--bg);padding:0 2px;border-radius:2px;font-weight:700">' + m + '</mark>'; });
+    } catch(e) { /* skip malformed pattern */ }
+  }
+  return t;
+}
+
+// Inline relevance bar SVG
+function _scoreBar(score, maxScore) {
+  const pct = maxScore > 0 ? Math.min(100, Math.round((score / maxScore) * 100)) : 0;
+  const color = pct >= 70 ? 'var(--green)' : pct >= 35 ? 'var(--yellow)' : 'var(--text-muted)';
+  return `<span title="Relevance ${pct}%" style="display:inline-flex;align-items:center;width:32px;height:5px;background:var(--border);border-radius:3px;flex-shrink:0;overflow:hidden">
+    <span style="display:block;width:${pct}%;height:100%;background:${color};border-radius:3px;transition:width .2s"></span>
+  </span>`;
+}
+
+let _guideSearchTimer = null;
+function guideSearch(query) {
+  clearTimeout(_guideSearchTimer);
+  _guideSearchTimer = setTimeout(() => _runGuideSearch(query), 220);
+}
+
+function _runGuideSearch(query) {
+  const q = query.trim();
+  const resultsEl = document.getElementById('guide-search-results');
+  if (!resultsEl) return;
+  if (!q) { resultsEl.innerHTML = ''; return; }
+
+  // Show loading pulse while scoring
+  resultsEl.innerHTML = `<div style="padding:14px 20px;font-family:var(--mono);font-size:11px;color:var(--text-muted)">⟳ Searching…</div>`;
+
+  // Expand query semantically
+  const originalTokens = q.toLowerCase().split(/[\s,;]+/).filter(t => t.length > 1);
+  const expandedTerms  = _expandQuery(q);
+  const isSemantic = expandedTerms.length > originalTokens.length;
+
+  const MIN_SCORE = 1;
+
+  // Score + rank each corpus
+  const ctrlScored = controls
+    .map(c => ({ item: c, score: _scoreControl(c, expandedTerms) }))
+    .filter(x => x.score >= MIN_SCORE)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 8);
+
+  const poamScored = poams
+    .map(p => ({ item: p, score: _scorePOAM(p, expandedTerms) }))
+    .filter(x => x.score >= MIN_SCORE)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 6);
+
+  const evidScored = parseEvidenceItems()
+    .map(e => ({ item: e, score: _scoreEvidence(e, expandedTerms) }))
+    .filter(x => x.score >= MIN_SCORE)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 6);
+
+  const total    = ctrlScored.length + poamScored.length + evidScored.length;
+  const maxScore = Math.max(
+    ctrlScored[0]?.score  || 0,
+    poamScored[0]?.score  || 0,
+    evidScored[0]?.score  || 0,
+  );
+
+  // ── Zero-results state ───────────────────────────────────────────────────
+  if (total === 0) {
+    resultsEl.innerHTML = `
+      <div style="padding:24px 20px;text-align:center;font-family:var(--mono)">
+        <div style="font-size:22px;margin-bottom:10px;opacity:.4">⊘</div>
+        <div style="font-size:12px;color:var(--text-muted)">No results for <em>"${_esc(q)}"</em></div>
+        <div style="font-size:10px;color:var(--text-muted);margin-top:8px;line-height:1.6">
+          Try a control ID <span style="color:var(--accent)">AC-2</span>,
+          family name <span style="color:var(--accent)">Authentication</span>,
+          or concept <span style="color:var(--accent)">encryption · backup · incident</span>
+        </div>
+      </div>`;
+    return;
+  }
+
+  // ── Header ───────────────────────────────────────────────────────────────
+  const semBadge = isSemantic
+    ? `<span style="font-size:9px;background:var(--accent);color:var(--bg);padding:2px 6px;border-radius:3px;font-family:var(--mono);margin-left:6px;vertical-align:middle">SEMANTIC</span>`
+    : '';
+  const expInfo = isSemantic
+    ? `<div style="padding:2px 18px 6px;font-size:9px;color:var(--text-muted);font-family:var(--mono)">Expanded to: ${expandedTerms.slice(0,10).join(' · ')}${expandedTerms.length>10?' …':''}</div>`
+    : '';
+
+  let html = `
+  <div style="padding:10px 18px 2px;font-size:10px;color:var(--text-muted);font-family:var(--mono);letter-spacing:.06em;display:flex;align-items:center;flex-wrap:wrap;gap:4px">
+    <span>${total} RESULT${total!==1?'S':''} — <em style="color:var(--text)">"${_esc(q)}"</em></span>${semBadge}
+  </div>${expInfo}`;
+
+  // ── Controls section ──────────────────────────────────────────────────────
+  if (ctrlScored.length) {
+    html += `<div style="padding:6px 18px 3px;font-size:10px;font-family:var(--mono);color:var(--accent);letter-spacing:.08em">CONTROLS (${ctrlScored.length})</div>`;
+    html += ctrlScored.map(({item: c, score}) => `
+    <div onclick="ctrlFilter={};searchQuery='${_esc(c.id)}';showView('controls');"
+         style="padding:9px 18px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;align-items:center;gap:10px"
+         onmouseover="this.style.background='var(--surface-hover)'" onmouseout="this.style.background=''">
+      <span class="badge badge-blue td-mono" style="flex-shrink:0">${_esc(c.id)}</span>
+      <span style="font-size:12px;color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${_hl(c.title||'—', originalTokens)}</span>
+      <span class="badge ${c.status==='Implemented'?'badge-green':c.status==='Partially Implemented'?'badge-yellow':c.status==='Planned'?'badge-blue':'badge-red'}" style="flex-shrink:0;font-size:10px">${_esc(c.status||'—')}</span>
+      ${_scoreBar(score, maxScore)}
+    </div>`).join('');
+  }
+
+  // ── POA&Ms section ────────────────────────────────────────────────────────
+  if (poamScored.length) {
+    html += `<div style="padding:6px 18px 3px;font-size:10px;font-family:var(--mono);color:var(--accent2);letter-spacing:.08em">POA&Ms (${poamScored.length})</div>`;
+    html += poamScored.map(({item: p, score}) => `
+    <div onclick="poamFilter={};searchQuery='${_esc(p.id)}';showView('poam');"
+         style="padding:9px 18px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;align-items:center;gap:10px"
+         onmouseover="this.style.background='var(--surface-hover)'" onmouseout="this.style.background=''">
+      <span class="badge badge-orange td-mono" style="flex-shrink:0">${_esc(p.id||'—')}</span>
+      <span style="font-size:12px;color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${_hl(p.title||'—', originalTokens)}</span>
+      <span class="badge ${p.severity==='Critical'?'badge-red':p.severity==='High'?'badge-orange':p.severity==='Moderate'?'badge-yellow':'badge-green'}" style="flex-shrink:0;font-size:10px">${_esc(p.severity||'—')}</span>
+      ${_scoreBar(score, maxScore)}
+    </div>`).join('');
+  }
+
+  // ── Evidence section ──────────────────────────────────────────────────────
+  if (evidScored.length) {
+    html += `<div style="padding:6px 18px 3px;font-size:10px;font-family:var(--mono);color:#7ab8e8;letter-spacing:.08em">EVIDENCE (${evidScored.length})</div>`;
+    html += evidScored.map(({item: e, score}) => `
+    <div onclick="evidFilter={type:'${_esc(e.type)}'};showView('evidence');"
+         style="padding:9px 18px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;align-items:center;gap:10px"
+         onmouseover="this.style.background='var(--surface-hover)'" onmouseout="this.style.background=''">
+      <span class="badge badge-gray td-mono" style="flex-shrink:0">${_esc(e.control_id)}</span>
+      <span style="font-size:12px;color:var(--text);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${_hl(e.ref||'—', originalTokens)}</span>
+      <span class="badge badge-blue" style="flex-shrink:0;font-size:10px">${_esc(e.type)}</span>
+      ${_scoreBar(score, maxScore)}
+    </div>`).join('');
+  }
+
+  resultsEl.innerHTML = html;
 }
 
 // ─── INIT ────────────────────────────────────────────────────────────────────
