@@ -1,24 +1,29 @@
-# TrustNovaOps
+# TrustNovaOps Netlify Site
 
-AI-Powered CMMC 2.0 Compliance & DevSecOps Automation for defense contractors.
+This is a static, Netlify-ready website.
 
-## Deployment
+## Deploy
 
-Static site deployed via Netlify. Push to `main` to trigger a deploy.
+### Option 1: Netlify Drop
+1. Unzip the package.
+2. Drag the entire folder into Netlify Drop.
+3. Connect the custom domain `trustnovaops.com`.
 
-## Structure
+### Option 2: Git deployment
+1. Commit all files to a Git repository.
+2. Connect the repository to Netlify.
+3. Build command: leave blank.
+4. Publish directory: `.`
 
-```
-├── index.html        # Main application (single-page)
-├── 404.html          # Branded 404 page
-├── _redirects        # Netlify route handling
-├── netlify.toml      # Build config, headers, redirects
-├── robots.txt        # Crawler directives
-├── sitemap.xml       # SEO sitemap
-└── .gitignore
-```
+## Netlify Forms
 
-## Links
+The strategy-session form uses Netlify Forms. Once deployed, submissions will appear in the Netlify dashboard under Forms.
 
-- **Live site:** https://www.trustnovaops.com
-- **Netlify dashboard:** https://app.netlify.com/projects/trustnovaops
+## Files
+
+- `index.html` — website
+- `styles.css` — responsive styling
+- `script.js` — navigation and reveal interactions
+- `netlify.toml` — deployment configuration and security headers
+- `robots.txt` — crawler rules
+- `sitemap.xml` — basic sitemap
