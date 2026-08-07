@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Interactive TrustNovaOps CMMC Level 2 compliance control-tower simulation — continuous evidence and human-approved remediation mapped to NIST 800-171.">
+  <title>CMMC Compliance Control Tower Demo | TrustNovaOps</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/demo-v5.css">
+</head>
+<body class="v4 demo-page">
+<header><div class="container nav"><a class="brand" href="../index.html"><span class="brandmark">TN</span><span><b>TrustNovaOps</b><small>Agentic Operations Control Tower</small></span></a><button type="button" class="menu" aria-label="Toggle navigation">☰</button><nav class="navlinks"><a href="../platform.html">Platform</a><a class="active" href="../experience-center.html">AI Experience Center</a><a href="../solutions.html">Solutions</a><a href="../trust-center.html">Governance</a><a class="navcta" href="../contact.html">Strategic Conversation</a></nav></div></header>
+<main>
+  <section class="demo-intro"><div class="container"><div><span class="eyebrow"><i class="live-dot"></i>Interactive product simulation</span><h1>CMMC Compliance Control Tower</h1><p class="lead">Choose a CMMC Level 2 finding and watch governed agents map live signals to NIST 800-171 practices, assemble assessment-ready evidence, and route consequential remediation to a human approver.</p></div><div class="demo-note"><b>Prototype experience</b><span>Illustrative data · No production systems connected</span></div></div></section>
+
+  <section class="container" style="margin-bottom:22px"><div class="command-card">
+    <div class="command-head"><span>CMMC Level 2 · NIST SP 800-171</span><b><i class="live-dot"></i>Assessment posture · Live</b></div>
+    <div class="posture"><div class="score-ring"><strong id="cmmcReady">79%</strong><small>Level 2 ready</small></div><div><h3>Assessment-ready</h3><p><span id="cmmcMet">99 / 110</span> practices met · <span id="cmmcFindings">3</span> open findings · one remediation awaits approval.</p></div></div>
+    <div class="signal-list">
+      <div class="signal"><span>AC · Access Control<small>Enforced</small></span><div><i style="width:88%"></i></div><b>88</b></div>
+      <div class="signal"><span>AU · Audit &amp; Accountability<small>Current</small></span><div><i style="width:84%"></i></div><b>84</b></div>
+      <div class="signal"><span>CM · Configuration Mgmt<small>Baseline held</small></span><div><i style="width:84%"></i></div><b>84</b></div>
+      <div class="signal" data-fam="SC"><span>SC · System &amp; Comms Protection<small id="scNote">1 finding</small></span><div><i id="scBar" style="width:71%"></i></div><b id="scVal">71</b></div>
+    </div>
+    <div class="approval-alert"><span>!</span><div><b>Approval gate triggered</b><small>FIPS-validated cryptography · Production</small></div><strong>Review below ↓</strong></div>
+  </div></section>
+
+  <section class="container tower-shell" data-cmmc-tower>
+    <aside class="scenario-panel" aria-label="Finding selector"><span class="panel-label">Choose a finding</span>
+      <button type="button" class="scenario active" data-scenario="fips"><i>01</i><span><b>FIPS crypto gap</b><small>SC.L2-3.13.11</small></span><em>High</em></button>
+      <button type="button" class="scenario" data-scenario="vuln"><i>02</i><span><b>Scan window exceeded</b><small>RA.L2-3.11.2</small></span><em>Med</em></button>
+      <button type="button" class="scenario" data-scenario="audit"><i>03</i><span><b>Log retention short</b><small>AU.L2-3.3.1</small></span><em>Med</em></button>
+      <div class="scenario-meta"><span>Assessment</span><b>Level 2</b><span>Policy mode</span><b>Enforced</b><span>Agent authority</span><b>Bounded</b></div>
+    </aside>
+    <div class="agent-run">
+      <div class="incident-head"><div><small id="incidentId">SC.L2-3.13.11 · Production service</small><h2 id="incidentTitle">Container missing FIPS-validated cryptography</h2></div><strong id="riskScore">High finding</strong></div>
+      <div class="agent-list">
+        <button type="button" class="agent-step done"><i>✓</i><span><b>Boundary Mapper</b><small>Resolved CUI boundary and in-scope assets</small></span><em>VERIFIED</em></button>
+        <button type="button" class="agent-step done"><i>✓</i><span><b>Control Mapper</b><small>Mapped signals to NIST 800-171 practices</small></span><em>VERIFIED</em></button>
+        <button type="button" class="agent-step done"><i>✓</i><span><b>Evidence Collector</b><small>Bundled 18 artifacts with policy and timestamps</small></span><em>VERIFIED</em></button>
+        <button type="button" class="agent-step done"><i>✓</i><span><b>CUI / DLP Watch</b><small>Confirmed no CUI spillage in remediation path</small></span><em>VERIFIED</em></button>
+        <button type="button" class="agent-step waiting"><i>5</i><span><b>Remediation Planner</b><small>Prepared controlled fix and rollback workflow</small></span><em>AWAITING</em></button>
+      </div>
+      <button type="button" class="replay" data-replay>↻ Replay agent analysis</button>
+    </div>
+    <aside class="decision-gate" aria-label="Decision gate">
+      <span class="panel-label">Decision gate</span><h3 id="gateTitle">Human approval required</h3>
+      <div class="decision-metrics"><div><span>Confidence</span><b id="mConf">94%</b></div><div><span>Scope</span><b>CMMC L2</b></div><div><span>Rollback</span><b>Validated</b></div><div><span>Evidence</span><b id="mEvid">7 artifacts</b></div></div>
+      <div class="rationale"><b>Agent rationale</b><p id="rationaleText">The FIPS 140-3 baseline requires validated cryptographic modules for CUI in transit. Remediation swaps to a validated image; policy requires an ISSO approver before production write authority is granted.</p></div>
+      <div class="policy-cite"><span>Practice cited</span><b id="policyText">SC.L2-3.13.11 · Cryptographic Protection</b></div>
+      <button type="button" class="approve-action" data-approve>Approve controlled remediation</button>
+      <button type="button" class="reject-action" data-reject>Defer and assign control owner</button>
+      <div class="audit-result hidden" data-audit><strong>✓ Evidence captured</strong><span>Approver, policy, control objective, rationale, timestamp, and SPRS impact added to the assessment package.</span></div>
+    </aside>
+  </section>
+  <section class="container evidence-band"><div><span>Assessment package</span><b>System Security Plan · Control objective · Evidence artifact · POA&amp;M entry · Policy decision · Human approval · SPRS score</b></div><a href="../contact.html">Start a CMMC readiness conversation →</a></section>
+</main>
+<footer class="footer"><div class="container copyright">© <span data-year></span> TrustNovaOps · Interactive prototype experience · Illustrative data, not a formal assessment</div></footer>
+<script src="../assets/demo-v5.js"></script>
+</body></html>
+

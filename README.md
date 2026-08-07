@@ -1,22 +1,43 @@
-# TrustNovaOps
+# TrustNovaOps v7 — Secure AI Factory™
 
-AI-Powered CMMC 2.0 Compliance & DevSecOps Automation for defense contractors.
+V7 preserves the Secure AI Factory site and restores the stronger v5 AI Experience Center.
 
-## Deployment
+## Restored experiences
 
-Static site deployed via Netlify. Push to `main` to trigger a deploy.
+- NOVA Control Tower
+- CMMC Compliance Control Tower
+- AI Readiness Assessment
+- Modernization ROI Estimator
+- Platform Blueprint Builder
+- Agent Orchestration
+- AI Decision Gate
+- Evidence-Grounded Copilot
+
+The Center and demo routes use dedicated `demo-v5.css` and `demo-v5.js` assets, isolating the proven demo system from the main site.
+
+## Netlify
+
+Deploy the contents at the site root. The included `netlify.toml` publishes the root and applies baseline security headers.
 
 ## Structure
 
 ```
-├── index.html        # Main application (single-page)
-├── 404.html          # Branded 404 page
-├── _redirects        # Netlify route handling
-├── netlify.toml      # Build config, headers, redirects
-├── robots.txt        # Crawler directives
-├── sitemap.xml       # SEO sitemap
-└── .gitignore
+├── index.html                 # Secure AI Factory home
+├── ai-factory.html            # Factory lifecycle, solutions, platform, and
+├── solutions.html             #   company pages (flat, at the site root)
+├── experience-center.html     # Hub for the interactive demos
+├── demos/                     # Eight scenario-based demo experiences
+├── assets/                    # styles.css + app.js (site), demo-v5.* (demos)
+├── 404.html                   # Branded not-found page
+├── _redirects                 # Clean URLs plus legacy route handling
+├── netlify.toml               # Publish config, security headers, caching
+├── robots.txt / sitemap.xml   # SEO
+└── warden.html, accord.html, demo.html   # Retained pages from the prior site
 ```
+
+## Deployment
+
+Static site deployed via Netlify. Push to `main` to trigger a deploy.
 
 ## Links
 

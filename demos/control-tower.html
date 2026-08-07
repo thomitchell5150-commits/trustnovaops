@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Interactive TrustNovaOps agentic DevSecOps control-tower simulation.">
+  <title>NOVA Control Tower Demo | TrustNovaOps</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/demo-v5.css">
+</head>
+<body class="v4 demo-page">
+<header><div class="container nav"><a class="brand" href="../index.html"><span class="brandmark">TN</span><span><b>TrustNovaOps</b><small>Agentic Operations Control Tower</small></span></a><button type="button" class="menu" aria-label="Toggle navigation">☰</button><nav class="navlinks"><a href="../platform.html">Platform</a><a class="active" href="../experience-center.html">AI Experience Center</a><a href="../trust-center.html">Governance</a><a class="navcta" href="../contact.html">Strategic Conversation</a></nav></div></header>
+<main>
+  <section class="demo-intro"><div class="container"><div><span class="eyebrow"><i class="live-dot"></i>Interactive product simulation</span><h1>NOVA Control Tower</h1><p class="lead">Choose an operational risk and watch governed agents collect evidence, apply policy, and route consequential action to a human decision-maker.</p></div><div class="demo-note"><b>Prototype experience</b><span>Illustrative data · No production systems connected</span></div></div></section>
+  <section class="container tower-shell" data-control-tower>
+    <aside class="scenario-panel" aria-label="Scenario selector"><span class="panel-label">Choose a scenario</span>
+      <button type="button" class="scenario active" data-scenario="cve"><i>01</i><span><b>Critical CVE</b><small>Production container</small></span><em>87</em></button>
+      <button type="button" class="scenario" data-scenario="secret"><i>02</i><span><b>Secret exposure</b><small>Deployment telemetry</small></span><em>72</em></button>
+      <button type="button" class="scenario" data-scenario="evidence"><i>03</i><span><b>Evidence gap</b><small>ATO control package</small></span><em>48</em></button>
+      <div class="scenario-meta"><span>Environment</span><b>Production</b><span>Policy mode</span><b>Enforced</b><span>Agent authority</span><b>Bounded</b></div>
+    </aside>
+    <div class="agent-run">
+      <div class="incident-head"><div><small id="incidentId">INC-2048 · Production release</small><h2 id="incidentTitle">Critical dependency exposure</h2></div><strong id="riskScore">87 risk</strong></div>
+      <div class="agent-list">
+        <button type="button" class="agent-step done"><i>✓</i><span><b>Build Guardian</b><small>Verified SBOM and signed artifact provenance</small></span><em>VERIFIED</em></button>
+        <button type="button" class="agent-step done"><i>✓</i><span><b>Container Sentinel</b><small>Flagged vulnerable base image and exposure path</small></span><em>VERIFIED</em></button>
+        <button type="button" class="agent-step done"><i>✓</i><span><b>Evidence Mapper</b><small>Mapped 23 artifacts to 11 controls</small></span><em>VERIFIED</em></button>
+        <button type="button" class="agent-step done"><i>✓</i><span><b>DLP Watch</b><small>Confirmed no restricted data in remediation path</small></span><em>VERIFIED</em></button>
+        <button type="button" class="agent-step waiting"><i>5</i><span><b>Remediation Planner</b><small>Prepared controlled patch and rollback workflow</small></span><em>AWAITING</em></button>
+      </div>
+      <button type="button" class="replay" data-replay>↻ Replay agent analysis</button>
+    </div>
+    <aside class="decision-gate" aria-label="Decision gate">
+      <span class="panel-label">Decision gate</span><h3 id="gateTitle">Human approval required</h3>
+      <div class="decision-metrics"><div><span>Confidence</span><b>94%</b></div><div><span>Blast radius</span><b>Production</b></div><div><span>Rollback</span><b>Validated</b></div><div><span>Evidence</span><b>7 artifacts</b></div></div>
+      <div class="rationale"><b>Agent rationale</b><p id="rationaleText">Patch is verified in staging. Policy requires a release owner before production write authority is granted.</p></div>
+      <div class="policy-cite"><span>Policy cited</span><b id="policyText">OPS-17 · Production Change Authority</b></div>
+      <button type="button" class="approve-action" data-approve>Approve controlled remediation</button>
+      <button type="button" class="reject-action" data-reject>Reject and assign owner</button>
+      <div class="audit-result hidden" data-audit><strong>✓ Decision recorded</strong><span>Approval, evidence, policy, rationale, and timestamp added to the audit trail.</span></div>
+    </aside>
+  </section>
+  <section class="container evidence-band"><div><span>Evidence package</span><b>SBOM · CVE record · Image signature · Test result · Rollback plan · Policy decision · Human approval</b></div><a href="../contact.html">Discuss this pattern →</a></section>
+</main>
+<footer class="footer"><div class="container copyright">© <span data-year></span> TrustNovaOps · Interactive prototype experience</div></footer>
+<script src="../assets/demo-v5.js"></script>
+</body></html>
+

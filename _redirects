@@ -1,35 +1,55 @@
-# TrustNovaOps — Netlify Redirect Rules
+# TrustNovaOps v7 — Netlify Redirect Rules
 
-# New pages (explicit rewrites for clean URLs)
-/platform               /platform.html  200
-/demo                   /demo.html      200
-/warden                 /warden.html    200
-/accord                 /accord.html    200
+# ---------------------------------------------------------------------------
+# Clean URLs for the Secure AI Factory site (rewrites keep the pretty path)
+# ---------------------------------------------------------------------------
+/ai-factory             /ai-factory.html            200
+/solutions              /solutions.html             200
+/platform               /platform.html              200
+/experience-center      /experience-center.html     200
+/mission-assurance-ai   /mission-assurance-ai.html  200
+/maturity-model         /maturity-model.html        200
+/assessment             /assessment.html            200
+/trust-center           /trust-center.html          200
+/resources              /resources.html             200
+/case-studies           /case-studies.html          200
+/industries             /industries.html            200
+/insights               /insights.html              200
+/partners               /partners.html              200
+/company                /company.html               200
+/contact                /contact.html               200
+/licensing              /licensing.html             200
+/roadmap                /roadmap.html               200
+/studio                 /studio.html                200
 
-# Legal pages (both slug variants)
-/privacy                /  200
-/privacy-policy         /  200
-/terms                  /  200
-/terms-of-service       /  200
-/security               /  200
-/compliance             /  200
+# Experience Center demos
+/demos/:slug            /demos/:slug.html           200
 
-# Company pages
-/about                  /  200
-/about-us               /  200
-/careers                /  200
-/contact                /  200
-/contact-us             /  200
+# ---------------------------------------------------------------------------
+# Legacy routes from the previous site
+# These pages are retained so existing inbound links keep resolving.
+# ---------------------------------------------------------------------------
+/warden                 /warden.html                200
+/accord                 /accord.html                200
+/demo                   /demo.html                  200
 
-# Platform / product pages (legacy routes)
-/agent-007              /  200
-/launch-agent           /  200
-/pricing                /  200
-/docs                   /  200
-/documentation          /  200
-/api                    /  200
-/blog                   /  200
-/status                 /  200
+/about                  /company.html               301
+/about-us               /company.html               301
+/careers                /company.html               301
+/contact-us             /contact.html               301
+/agent-007              /platform.html              301
+/launch-agent           /platform.html              301
+/pricing                /licensing.html             301
+/security               /trust-center.html          301
+/compliance             /trust-center.html          301
+/privacy                /trust-center.html          301
+/privacy-policy         /trust-center.html          301
+/terms                  /trust-center.html          301
+/terms-of-service       /trust-center.html          301
+/docs                   /resources.html             301
+/documentation          /resources.html             301
+/api                    /resources.html             301
+/blog                   /insights.html              301
+/status                 /trust-center.html          301
 
-# Catch-all: serve index.html for any unmatched route (SPA fallback)
-/*                      /index.html  200
+# Unmatched routes fall through to the branded 404.html page.
