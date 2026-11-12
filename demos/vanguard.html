@@ -1,0 +1,341 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="VANGUARD — TrustNovaOps' agentic Principal Penetration Tester and Red Team Lead. Plan authorized engagements, triage evidence, score CVSS, and map findings to CMMC 2.0 / NIST SP 800-171."><title>VANGUARD Red Team Lead Demo | TrustNovaOps</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="../assets/demo-v5.css">
+<style>
+.vg-shell{display:grid;grid-template-columns:290px 1fr 320px;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#08121f;min-height:640px}
+.vg-pane{display:flex;flex-direction:column;min-width:0}
+.vg-pane+.vg-pane{border-left:1px solid var(--line)}
+.vg-head{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:16px 20px;border-bottom:1px solid var(--line)}
+.vg-head .panel-label{margin:0}
+.vg-body{padding:18px 20px;overflow-y:auto;flex:1}
+.vg-body label{font-size:.72rem;font-weight:700;color:var(--muted);margin-bottom:12px}
+.vg-body input,.vg-body select,.vg-body textarea{font-size:.82rem;padding:9px 11px}
+.vg-attest{display:flex!important;grid-template-columns:none;gap:10px;align-items:flex-start;padding:11px;border:1px solid rgba(231,201,121,.25);background:rgba(231,201,121,.06);border-radius:11px;font-weight:500!important;color:#d9e2ee!important;line-height:1.5}
+.vg-attest input{width:auto;margin-top:3px;accent-color:var(--cyan)}
+.vg-btn{width:100%;padding:11px;border-radius:10px;font-weight:800;font-size:.78rem;cursor:pointer;border:0;background:linear-gradient(135deg,var(--cyan),#8dbdff);color:#041018}
+.vg-btn:disabled{opacity:.4;cursor:not-allowed}
+.vg-link{border:0;background:transparent;color:var(--cyan);font-size:.72rem;font-weight:700;cursor:pointer;padding:0}
+.vg-chip{font-size:.65rem;font-weight:800;padding:4px 9px;border-radius:999px;color:var(--gold);background:rgba(231,201,121,.1)}
+.vg-chip.ok{color:var(--ok);background:rgba(114,224,160,.1)}
+.vg-chat{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:16px;max-height:560px}
+.vg-msg .who{font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;color:var(--cyan)}
+.vg-msg.user .who{color:var(--gold)}
+.vg-msg.user .body{white-space:pre-wrap;word-break:break-word;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.03);font-size:.88rem}
+.vg-msg.assistant .body{border-left:2px solid rgba(102,232,213,.4);padding-left:14px;font-size:.88rem;color:#dbe4ef}
+.body h1,.body h2,.body h3,.body h4{font-size:1.05rem;letter-spacing:-.01em;margin:14px 0 6px}
+.body p{margin:6px 0}.body ul,.body ol{margin:6px 0 6px 20px;padding:0}.body li{margin:3px 0}
+.body code{font-size:.78rem;background:rgba(255,255,255,.06);padding:1px 5px;border-radius:5px}
+.body pre{background:#050b14;border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto}
+.body pre code{background:none;padding:0}
+.body table{display:block;overflow-x:auto;font-size:.76rem;margin:8px 0}
+.body th,.body td{padding:7px 9px;border:1px solid var(--line);vertical-align:top}
+.vg-tool{display:inline-block;white-space:pre-line;font-size:.7rem;color:var(--blue);background:rgba(114,167,255,.07);border:1px dashed rgba(114,167,255,.35);border-radius:8px;padding:5px 10px;margin:8px 0}
+.vg-err{color:var(--danger);font-size:.78rem;margin-top:8px}
+.vg-cursor{display:inline-block;width:7px;height:14px;background:var(--cyan);vertical-align:middle;animation:vgb 1s infinite;margin-left:2px}
+@keyframes vgb{50%{opacity:.15}}
+.vg-composer{border-top:1px solid var(--line);padding:14px;display:grid;gap:10px}
+.vg-quick{display:flex;flex-wrap:wrap;gap:6px}
+.vg-quick button{border:1px solid var(--line);background:rgba(255,255,255,.025);color:var(--text);border-radius:999px;padding:6px 11px;font-size:.72rem;cursor:pointer}
+.vg-quick button:hover:not(:disabled){border-color:rgba(102,232,213,.42);color:var(--cyan)}
+.vg-quick button:disabled{opacity:.35;cursor:not-allowed}
+.vg-row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.vg-row .vg-btn{width:auto;padding:11px 22px}
+.vg-hint{font-size:.68rem;color:var(--muted)}
+.vg-empty{font-size:.76rem;color:var(--muted);border:1px dashed var(--line);border-radius:11px;padding:13px;line-height:1.6}
+.vg-sec{margin-bottom:24px}
+.vg-sec-t{display:flex;justify-content:space-between;font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.vg-phase{border:1px solid var(--line);border-radius:11px;padding:11px 12px;margin-bottom:8px;background:rgba(255,255,255,.015)}
+.vg-phase-h{display:flex;justify-content:space-between;gap:8px;font-size:.8rem;font-weight:700}
+.vg-phase ul{margin:6px 0 0 16px;padding:0;font-size:.72rem;color:var(--muted)}
+.vg-ps{font-size:.58rem;font-weight:800;text-transform:uppercase;padding:2px 7px;border-radius:999px;color:var(--blue);background:rgba(114,167,255,.1);white-space:nowrap;height:fit-content}
+.vg-ps.in-progress{color:var(--gold);background:rgba(231,201,121,.1)}.vg-ps.complete{color:var(--ok);background:rgba(114,224,160,.1)}.vg-ps.blocked{color:var(--danger);background:rgba(255,139,139,.1)}
+.vg-meta{font-size:.65rem;color:var(--muted);margin-top:5px}
+.vg-sevbar{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-bottom:12px}
+.vg-sevbar div{text-align:center;font-size:.55rem;color:var(--muted);padding:6px 0;border:1px solid var(--line);border-radius:8px}
+.vg-sevbar b{display:block;font-family:"Space Grotesk";font-size:1.05rem;color:var(--text)}
+.vg-finding{border:1px solid var(--line);border-left:3px solid var(--sev);border-radius:11px;padding:11px 12px;margin-bottom:8px;cursor:pointer;background:rgba(255,255,255,.015)}
+.vg-finding-h{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;font-size:.8rem;font-weight:700;line-height:1.4}
+.vg-sev{font-size:.56rem;font-weight:800;text-transform:uppercase;padding:2px 7px;border-radius:999px;color:#041018;background:var(--sev);white-space:nowrap}
+.vg-finding-d{display:none;font-size:.72rem;color:#cbd6e3;line-height:1.55;margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
+.vg-finding.open .vg-finding-d{display:block}
+.vg-finding-d b{display:block;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:7px}
+@media(max-width:1100px){.vg-shell{grid-template-columns:1fr}.vg-pane+.vg-pane{border-left:0;border-top:1px solid var(--line)}.vg-chat{min-height:360px}}
+</style></head>
+<body class="v4 demo-page"><header><div class="container nav"><a class='brand' href='/'><span class="brandmark">TN</span><span><b>TrustNovaOps</b><small>Intelligence Platform Company</small></span></a><button class="menu" aria-label="Toggle navigation">☰</button><nav class="navlinks"><a href='/platform'>Platform</a><a href='/studio'>Studio</a><a class='active' href='/experience-center'>AI Experience Center</a><a href='/solutions'>Solutions</a><a href='/resources'>Resources</a><a href='/company'>Company</a><a class='navcta' href='/contact'>Strategic Conversation</a></nav></div></header>
+<main>
+<section class="demo-intro"><div class="container"><div><span class="eyebrow"><i class="live-dot"></i>Live agentic AI · AGT-08</span><h1>VANGUARD Red Team Lead</h1><p class="lead">Work with an AI agent that thinks like a principal penetration tester. VANGUARD scopes authorized engagements, triages evidence, chains attack paths, scores CVSS v3.1, and maps every finding to CMMC 2.0 / NIST SP 800-171 and MITRE ATT&amp;CK.</p></div><div class="demo-note"><b>Live AI · Advisory only</b><span>Authorized scope only · Never touches live systems · Redact secrets and CUI before pasting</span></div></div></section>
+
+<section class="container" style="margin-bottom:22px"><div class="metric-row">
+<div class="metric"><strong>4</strong><span>Agent tools: CVSS calculator, control mapper, findings board, planner</span></div>
+<div class="metric"><strong>110</strong><span>NIST SP 800-171 practices in the CMMC Level 2 mapping scope</span></div>
+<div class="metric"><strong>8</strong><span>Engagement types, from external perimeter to purple team</span></div>
+<div class="metric"><strong>ROE</strong><span>Signed authorization attested before every engagement</span></div>
+</div></section>
+
+<section class="container vg-shell" id="console">
+  <aside class="vg-pane">
+    <div class="vg-head"><span class="panel-label">Engagement setup</span><span class="vg-chip" id="engStatus">Not authorized</span></div>
+    <div class="vg-body">
+      <button type="button" class="vg-link" id="sampleBtn" style="margin-bottom:14px">↳ Load sample engagement</button>
+      <form id="engForm" autocomplete="off">
+        <label>Client / organization<input type="text" id="org" maxlength="200" placeholder="e.g. Acme Defense Systems"></label>
+        <label>Engagement type<select id="etype">
+          <option value="redteam">Objective-based red team</option>
+          <option value="internal">Internal / assumed breach</option>
+          <option value="external">External perimeter</option>
+          <option value="webapp">Web application &amp; API</option>
+          <option value="cloud">Cloud (AWS / Azure / GCP)</option>
+          <option value="ad">Active Directory / identity</option>
+          <option value="purple">Purple team exercise</option>
+          <option value="social">Social engineering</option>
+        </select></label>
+        <label>Authorized scope<textarea id="scope" rows="4" maxlength="2000" placeholder="In-scope ranges, domains, apps, cloud accounts, exclusions…"></textarea></label>
+        <label>Environment notes<textarea id="envnotes" rows="3" maxlength="2000" placeholder="Stack, EDR, identity provider, crown jewels, test windows…"></textarea></label>
+        <label>Compliance drivers<input type="text" id="compliance" maxlength="300" value="CMMC 2.0 Level 2 / NIST SP 800-171"></label>
+        <label class="vg-attest"><input type="checkbox" id="roe"><span>I confirm a <b>signed rules of engagement / statement of work</b> authorizes testing of this scope.</span></label>
+        <button type="submit" class="vg-btn" style="margin-top:14px">Authorize engagement</button>
+      </form>
+    </div>
+  </aside>
+
+  <div class="vg-pane">
+    <div class="vg-head"><span class="panel-label">Red team lead · VANGUARD</span><button type="button" class="vg-link" id="resetBtn">Reset</button></div>
+    <div class="vg-chat" id="chat" aria-live="polite">
+      <div class="vg-msg assistant"><div class="who">VANGUARD</div><div class="body"><p>I'm VANGUARD, your red team lead. Authorize an engagement on the left, or load the sample, and I'll build the plan, triage your evidence, chain attack paths, and draft the report.</p></div></div>
+    </div>
+    <div class="vg-composer">
+      <div class="vg-quick" id="quick">
+        <button data-p="Build the full phased engagement plan for this scope: objectives, crown jewels, phases with durations, ATT&CK coverage, deconfliction and stop conditions. Publish it to the engagement board.">Build plan</button>
+        <button data-p="Create a threat-informed adversary emulation plan for an actor that realistically targets this client, technique by technique with ATT&CK IDs, and the detection opportunities for each step.">Emulation plan</button>
+        <button data-fill="1" data-p="Triage this evidence from our authorized test like a principal: separate noise from real risk, validate exploitability, score with CVSS, map controls, and record each real finding.&#10;&#10;EVIDENCE:&#10;">Triage evidence</button>
+        <button data-p="Based on the findings so far, chain them into the most likely end-to-end attack path to the crown jewels and explain the business impact.">Attack path</button>
+        <button data-p="Write the purple-team detection package for the techniques in this engagement: telemetry sources, and example Sigma rules plus KQL for each.">Detections</button>
+        <button data-p="Write the executive summary and 30/60/90-day remediation roadmap for this engagement, with findings mapped to NIST SP 800-171 / CMMC L2 practices for the POA&M.">Exec report</button>
+      </div>
+      <textarea id="input" rows="3" placeholder="Authorize the engagement to start…" disabled maxlength="16000"></textarea>
+      <div class="vg-row"><span class="vg-hint">Enter to send · Shift+Enter for a new line</span><button type="button" class="vg-btn" id="sendBtn" disabled>Send</button></div>
+    </div>
+  </div>
+
+  <aside class="vg-pane">
+    <div class="vg-head"><span class="panel-label">Engagement board</span><button type="button" class="vg-link" id="exportBtn">Export ↓</button></div>
+    <div class="vg-body">
+      <div class="vg-sec"><div class="vg-sec-t"><span>Engagement plan</span></div><div id="planBox"></div></div>
+      <div class="vg-sec"><div class="vg-sec-t"><span>Findings</span><span id="fCount">0</span></div><div class="vg-sevbar" id="sevBar"></div><div id="findingsBox"></div></div>
+    </div>
+  </aside>
+</section>
+
+<section class="container"><div class="evidence-band"><div><span>Guardrails</span><b>Authorization first · Out-of-scope targets stop the agent · Advises, never executes · No malware, novel exploits or EDR evasion</b></div><a href='/experience-center'>← Back to Experience Center</a></div></section>
+</main>
+<footer class="footer"><div class="container footer-grid"><div><div class="brand"><span class="brandmark">TN</span><span><b>TrustNovaOps</b><small>Engineering Intelligent Enterprises</small></span></div><p class="muted small">A platform, product, and engineering company for governed AI modernization.</p></div><div><b>Platform</b><a href='/platform'>NOVA Platform</a><a href='/studio'>NOVA Studio</a><a href='/experience-center'>Experience Center</a></div><div><b>Company</b><a href='/company'>About</a><a href='/roadmap'>Roadmap</a><a href='/trust-center'>Trust Center</a></div><div><b>Engage</b><a href='/licensing'>Licensing & Partnerships</a><a href='/contact'>Strategic Conversation</a><a href='/resources'>Resources</a></div></div><div class="container" style="margin-top:28px;color:var(--muted);font-size:.82rem">© <span data-year></span> TrustNovaOps. Product concepts and roadmap items are identified by availability status.</div></footer>
+<script src="../assets/demo-v5.js"></script>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var chat = $('chat'), input = $('input'), sendBtn = $('sendBtn');
+  var quickBtns = document.querySelectorAll('#quick button');
+  var state = { engagement:null, messages:[], findings:[], plan:null, busy:false };
+  var SEV = { Critical:'#ff8b8b', High:'#ffb37a', Medium:'#e7c979', Low:'#72a7ff', Informational:'#8fa1b6' };
+
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function inline(s){ return s.replace(/`([^`]+)`/g,'<code>$1</code>').replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>').replace(/(^|[^*])\*([^*\s][^*]*)\*/g,'$1<em>$2</em>'); }
+  function md(src){
+    var lines = esc(src).split('\n'), out = [], i = 0;
+    while (i < lines.length){
+      var l = lines[i];
+      if (/^```/.test(l)){ var code=[]; i++; while (i<lines.length && !/^```/.test(lines[i])) code.push(lines[i++]); i++; out.push('<pre><code>'+code.join('\n')+'</code></pre>'); continue; }
+      var h = l.match(/^(#{1,4})\s+(.*)/); if (h){ out.push('<h'+h[1].length+'>'+inline(h[2])+'</h'+h[1].length+'>'); i++; continue; }
+      if (/^\s*\|.*\|\s*$/.test(l) && i+1<lines.length && /^\s*\|[\s:\-|]+\|\s*$/.test(lines[i+1])){
+        var row=function(r,t){ return '<tr>'+r.trim().replace(/^\||\|$/g,'').split('|').map(function(c){ return '<'+t+'>'+inline(c.trim())+'</'+t+'>'; }).join('')+'</tr>'; };
+        var tb='<table><thead>'+row(l,'th')+'</thead><tbody>'; i+=2;
+        while (i<lines.length && /^\s*\|.*\|\s*$/.test(lines[i])) tb+=row(lines[i++],'td');
+        out.push(tb+'</tbody></table>'); continue;
+      }
+      if (/^\s*[-*]\s+/.test(l)){ var ul=[]; while (i<lines.length && /^\s*[-*]\s+/.test(lines[i])) ul.push('<li>'+inline(lines[i++].replace(/^\s*[-*]\s+/,''))+'</li>'); out.push('<ul>'+ul.join('')+'</ul>'); continue; }
+      if (/^\s*\d+[.)]\s+/.test(l)){ var ol=[]; while (i<lines.length && /^\s*\d+[.)]\s+/.test(lines[i])) ol.push('<li>'+inline(lines[i++].replace(/^\s*\d+[.)]\s+/,''))+'</li>'); out.push('<ol>'+ol.join('')+'</ol>'); continue; }
+      if (/^\s*(---|\*\*\*)\s*$/.test(l)){ out.push('<hr style="border:0;border-top:1px solid var(--line)">'); i++; continue; }
+      if (!l.trim()){ i++; continue; }
+      var para=[l]; i++;
+      while (i<lines.length && lines[i].trim() && !/^(#{1,4}\s|```|\s*[-*]\s|\s*\d+[.)]\s|\s*\|)/.test(lines[i])) para.push(lines[i++]);
+      out.push('<p>'+inline(para.join('<br>'))+'</p>');
+    }
+    return out.join('');
+  }
+
+  function addMsg(role, html){
+    var d = document.createElement('div'); d.className = 'vg-msg ' + role;
+    d.innerHTML = '<div class="who">'+(role==='user'?'Operator':'VANGUARD')+'</div><div class="body"></div>';
+    d.querySelector('.body').innerHTML = html; chat.appendChild(d); chat.scrollTop = chat.scrollHeight;
+    return d.querySelector('.body');
+  }
+  function setBusy(b){
+    state.busy = b; var ready = !!state.engagement && !b;
+    input.disabled = !state.engagement || b; sendBtn.disabled = !ready;
+    quickBtns.forEach(function(q){ q.disabled = !ready; });
+    sendBtn.textContent = b ? 'Working…' : 'Send';
+  }
+  function setStatus(text, ok){ $('engStatus').textContent = text; $('engStatus').classList.toggle('ok', !!ok); }
+
+  $('sampleBtn').addEventListener('click', function(){
+    $('org').value = 'Acme Defense Systems';
+    $('etype').value = 'internal';
+    $('scope').value = 'Internal corporate network 10.10.0.0/16 and AD domain acme.local. CUI enclave 10.20.0.0/24 is in scope for read-only validation. Excluded: OT/manufacturing VLAN 10.99.0.0/16, production ERP database writes, any denial-of-service.';
+    $('envnotes').value = 'Windows Server 2019/2022 AD, Microsoft Defender for Endpoint, Entra ID hybrid join, Palo Alto perimeter. Crown jewels: CUI file shares and engineering drawings. Testing window Mon–Fri 08:00–18:00 ET.';
+    $('roe').checked = true;
+    if (state.engagement){ state.engagement = null; setStatus('Re-authorize'); setBusy(false); }
+  });
+
+  $('engForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var org = $('org').value.trim(), scope = $('scope').value.trim();
+    if (!org || !scope){ alert('Client organization and authorized scope are required.'); return; }
+    if (!$('roe').checked){ alert('Confirm written authorization (signed ROE / SOW) before VANGUARD can support this engagement.'); return; }
+    state.engagement = { org:org, type:$('etype').value, scope:scope, environment:$('envnotes').value.trim(), compliance:$('compliance').value.trim(), roe_attested:true };
+    setStatus('Authorized', true);
+    input.placeholder = 'Ask VANGUARD, or pick a quick action above…';
+    setBusy(false);
+    var hint = '';
+    if (/Acme Defense/.test(org)) hint = '\n\nTry **Triage evidence** with something like: *Responder captured NTLMv2 hashes for 3 users via LLMNR poisoning; one cracked (svc_backup), which is a member of Backup Operators.*';
+    addMsg('assistant', md('Engagement authorized for **'+org+'**. Scope is locked to what you defined, and I\'ll flag anything outside it.\n\nI\'d usually start with **Build plan** so we agree on objectives and crown jewels before touching evidence.'+hint));
+    input.focus();
+  });
+  ['org','etype','scope','envnotes','compliance','roe'].forEach(function(id){
+    $(id).addEventListener('input', function(){ if (state.engagement){ state.engagement = null; setStatus('Re-authorize'); setBusy(false); } });
+  });
+
+  function renderPlan(){
+    var p = state.plan, box = $('planBox');
+    if (!p || !p.phases || !p.phases.length){ box.innerHTML = '<div class="vg-empty">No plan yet. Ask VANGUARD to <em>Build plan</em>.</div>'; return; }
+    var html = p.objective ? '<p class="vg-meta" style="margin:0 0 10px;font-size:.74rem;color:#cbd6e3"><b style="color:var(--cyan)">Objective</b> · '+esc(p.objective)+'</p>' : '';
+    p.phases.forEach(function(ph){
+      html += '<div class="vg-phase"><div class="vg-phase-h"><span>'+esc(ph.name)+(ph.duration?' <span class="vg-meta" style="font-weight:400">· '+esc(ph.duration)+'</span>':'')+'</span><span class="vg-ps '+esc(ph.status||'')+'">'+esc(ph.status||'planned')+'</span></div>';
+      if (ph.objectives && ph.objectives.length) html += '<ul>'+ph.objectives.map(function(o){ return '<li>'+esc(o)+'</li>'; }).join('')+'</ul>';
+      if (ph.attack_techniques && ph.attack_techniques.length) html += '<div class="vg-meta">'+ph.attack_techniques.map(esc).join(' · ')+'</div>';
+      html += '</div>';
+    });
+    box.innerHTML = html;
+  }
+  function renderFindings(){
+    var fs = state.findings, box = $('findingsBox'); $('fCount').textContent = fs.length;
+    var counts = { Critical:0, High:0, Medium:0, Low:0, Informational:0 };
+    fs.forEach(function(f){ counts[f.severity] = (counts[f.severity]||0) + 1; });
+    $('sevBar').innerHTML = Object.keys(counts).map(function(s){ return '<div style="border-top:2px solid '+SEV[s]+'"><b>'+counts[s]+'</b>'+(s==='Informational'?'Info':s)+'</div>'; }).join('');
+    if (!fs.length){ box.innerHTML = '<div class="vg-empty">Findings VANGUARD records from your evidence appear here, with calculated CVSS scores and control mappings.</div>'; return; }
+    var order = { Critical:0, High:1, Medium:2, Low:3, Informational:4 };
+    box.innerHTML = fs.slice().sort(function(a,b){ return (order[a.severity]||5)-(order[b.severity]||5) || (b.cvss_score||0)-(a.cvss_score||0); }).map(function(f){
+      var d = '';
+      if (f.affected_assets) d += '<b>Affected</b>'+esc(f.affected_assets);
+      if (f.cvss_vector) d += '<b>CVSS v3.1</b><code>'+esc(f.cvss_vector)+'</code>';
+      if (f.attack_path) d += '<b>Attack path</b>'+esc(f.attack_path);
+      if (f.business_impact) d += '<b>Business impact</b>'+esc(f.business_impact);
+      if (f.remediation) d += '<b>Remediation</b>'+esc(f.remediation);
+      if (f.attack_techniques && f.attack_techniques.length) d += '<b>ATT&amp;CK</b>'+f.attack_techniques.map(esc).join(' · ');
+      if (f.controls && f.controls.length) d += '<b>Controls</b>'+f.controls.map(esc).join('<br>');
+      return '<div class="vg-finding" style="--sev:'+(SEV[f.severity]||'#8fa1b6')+'"><div class="vg-finding-h"><span>'+esc(f.title)+'</span><span class="vg-sev">'+esc(f.severity)+'</span></div><div class="vg-meta">'+esc(f.id||'')+(f.cvss_score!=null?' · CVSS '+esc(f.cvss_score):'')+'</div><div class="vg-finding-d">'+d+'</div></div>';
+    }).join('');
+  }
+  $('findingsBox').addEventListener('click', function(e){ var f = e.target.closest('.vg-finding'); if (f) f.classList.toggle('open'); });
+  renderPlan(); renderFindings();
+
+  var TOOL_LABEL = { calculate_cvss:'Calculating CVSS v3.1', map_controls:'Mapping CMMC / 800-171 controls', record_finding:'Recording finding', update_engagement_plan:'Publishing engagement plan' };
+
+  async function send(text){
+    text = (text||'').trim();
+    if (!text || state.busy || !state.engagement) return;
+    addMsg('user', esc(text)); state.messages.push({ role:'user', content:text });
+    input.value = ''; setBusy(true);
+    var body = addMsg('assistant', '<span class="vg-cursor"></span>');
+    var segments = [''], tools = [], full = '';
+    function paint(done){
+      var html = '';
+      segments.forEach(function(seg, i){ html += md(seg); if (tools[i]) html += '<div class="vg-tool">⚙ '+esc(tools[i])+'</div>'; });
+      body.innerHTML = html + (done ? '' : '<span class="vg-cursor"></span>'); chat.scrollTop = chat.scrollHeight;
+    }
+    try {
+      var res = await fetch('/api/vanguard', { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ engagement:state.engagement, messages:state.messages }) });
+      if (!res.ok){
+        var msg = 'Request failed ('+res.status+').';
+        try { var j = await res.json(); if (j.error) msg = j.error; } catch(_){}
+        if (res.status === 429) msg = 'Rate limit reached. Wait a minute and try again.';
+        throw new Error(msg);
+      }
+      var reader = res.body.getReader(), dec = new TextDecoder(), buf = '', errMsg = null;
+      while (true){
+        var r = await reader.read(); if (r.done) break;
+        buf += dec.decode(r.value, { stream:true });
+        var lines = buf.split('\n'); buf = lines.pop();
+        lines.forEach(function(line){
+          if (!line.trim()) return;
+          var ev; try { ev = JSON.parse(line); } catch(_){ return; }
+          if (ev.type === 'text'){ segments[segments.length-1] += ev.text; full += ev.text; }
+          else if (ev.type === 'tool'){
+            var label = TOOL_LABEL[ev.name] || ev.name, inp = ev.input || {};
+            if (ev.name === 'calculate_cvss' && inp.vector) label += ' — '+inp.vector;
+            if (ev.name === 'map_controls' && inp.category) label += ' — '+inp.category;
+            if (ev.name === 'record_finding' && inp.title) label += ' — '+inp.title;
+            var k = segments.length-1; tools[k] = (tools[k] ? tools[k]+'\n⚙ ' : '') + label;
+          }
+          else if (ev.type === 'step'){ segments.push(''); if (full && !/\n$/.test(full)) full += '\n\n'; }
+          else if (ev.type === 'finding'){
+            var f = ev.finding, idx = state.findings.findIndex(function(x){ return x.id && x.id === f.id; });
+            if (idx >= 0) state.findings[idx] = f; else state.findings.push(f);
+            renderFindings();
+            full += '\n[Recorded finding '+(f.id||'')+': '+f.title+' — '+f.severity+(f.cvss_score!=null?', CVSS '+f.cvss_score:'')+']\n';
+          }
+          else if (ev.type === 'plan'){ state.plan = ev.plan; renderPlan(); full += '\n[Published engagement plan: '+(ev.plan.phases||[]).map(function(p){ return p.name; }).join(' → ')+']\n'; }
+          else if (ev.type === 'error' || ev.type === 'refusal'){ errMsg = ev.error; }
+        });
+        paint(false);
+      }
+      paint(true);
+      if (errMsg) body.insertAdjacentHTML('beforeend', '<div class="vg-err">'+esc(errMsg)+'</div>');
+      if (full.trim()) state.messages.push({ role:'assistant', content:full.trim() }); else state.messages.pop();
+    } catch (err) {
+      paint(true);
+      body.insertAdjacentHTML('beforeend', '<div class="vg-err">'+esc(err.message || 'Something went wrong.')+'</div>');
+      state.messages.pop();
+    } finally { setBusy(false); input.focus(); }
+  }
+
+  sendBtn.addEventListener('click', function(){ send(input.value); });
+  input.addEventListener('keydown', function(e){ if (e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); send(input.value); } });
+  quickBtns.forEach(function(q){
+    q.addEventListener('click', function(){
+      var p = q.getAttribute('data-p');
+      if (q.hasAttribute('data-fill')){ input.value = p; input.focus(); input.setSelectionRange(p.length, p.length); }
+      else send(p);
+    });
+  });
+  $('resetBtn').addEventListener('click', function(){
+    if (state.busy || !confirm('Clear the conversation, plan and findings?')) return;
+    state.messages = []; state.findings = []; state.plan = null;
+    chat.innerHTML = ''; renderFindings(); renderPlan();
+    addMsg('assistant', md(state.engagement ? 'Board cleared. The engagement is still authorized. What\'s next?' : 'Board cleared. Authorize an engagement to begin.'));
+  });
+  $('exportBtn').addEventListener('click', function(){
+    var e = state.engagement || {};
+    var out = '# VANGUARD Engagement Export\n\n**Client:** '+(e.org||'-')+'  \n**Type:** '+(e.type||'-')+'  \n**Scope:** '+(e.scope||'-')+'\n\n';
+    if (state.plan){
+      out += '## Engagement Plan\n\n'+(state.plan.objective?'**Objective:** '+state.plan.objective+'\n\n':'');
+      state.plan.phases.forEach(function(p,i){ out += '### '+(i+1)+'. '+p.name+' ('+(p.status||'planned')+')\n'+(p.objectives||[]).map(function(o){ return '- '+o; }).join('\n')+'\n\n'; });
+    }
+    out += '## Findings\n\n'; if (!state.findings.length) out += '_None recorded._\n';
+    state.findings.forEach(function(f){
+      out += '### '+(f.id||'')+' — '+f.title+' ['+f.severity+(f.cvss_score!=null?', CVSS '+f.cvss_score:'')+']\n';
+      if (f.cvss_vector) out += '- **Vector:** `'+f.cvss_vector+'`\n';
+      if (f.affected_assets) out += '- **Affected:** '+f.affected_assets+'\n';
+      if (f.attack_path) out += '- **Attack path:** '+f.attack_path+'\n';
+      if (f.business_impact) out += '- **Business impact:** '+f.business_impact+'\n';
+      if (f.remediation) out += '- **Remediation:** '+f.remediation+'\n';
+      if (f.attack_techniques && f.attack_techniques.length) out += '- **ATT&CK:** '+f.attack_techniques.join(', ')+'\n';
+      if (f.controls && f.controls.length) out += '- **Controls:** '+f.controls.join('; ')+'\n';
+      out += '\n';
+    });
+    out += '## Transcript\n\n'+state.messages.map(function(m){ return '**'+(m.role==='user'?'Operator':'VANGUARD')+':**\n\n'+m.content; }).join('\n\n---\n\n')+'\n';
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([out], { type:'text/markdown' }));
+    a.download = 'vanguard-'+(e.org||'engagement').toLowerCase().replace(/[^a-z0-9]+/g,'-')+'.md';
+    a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+  });
+})();
+</script>
+</body></html>
