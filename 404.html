@@ -5,25 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page Not Found | TrustNovaOps</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Crect width='52' height='52' fill='%2307090e'/%3E%3Cpolygon points='26,3 45,14 45,38 26,49 7,38 7,14' fill='none' stroke='%23e8a020' stroke-width='2.5' opacity='.55'/%3E%3Ccircle cx='26' cy='26' r='5.5' fill='%23e8a020'/%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Crect width='52' height='52' fill='%23050b14'/%3E%3Cpolygon points='26,3 45,14 45,38 26,49 7,38 7,14' fill='none' stroke='%2366e8d5' stroke-width='2.5' opacity='.55'/%3E%3Ccircle cx='26' cy='26' r='5.5' fill='%2366e8d5'/%3E%3C/svg%3E">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
-        :root{--bg:#08090f;--surface:#0e1220;--border:#1e2030;--amber:#e8a020;--text:#ccd4e8;--muted:#4a5870;--mono:'IBM Plex Mono',monospace;--sans:'IBM Plex Sans',sans-serif;--display:'Bebas Neue',sans-serif}
+        :root{--bg:#050b14;--surface:#0b1523;--border:#1a2b40;--amber:#66e8d5;--text:#e4ebf4;--muted:#8fa1b6;--mono:'IBM Plex Mono',monospace;--sans:'Inter',sans-serif;--display:'Space Grotesk',sans-serif}
         body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
         body::before{content:'';position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:0.28}
         .content{position:relative;z-index:1;text-align:center;padding:2rem;max-width:560px}
-        .error-code{font-family:var(--display);font-size:10rem;line-height:1;color:var(--amber);margin-bottom:1rem;letter-spacing:4px}
+        .error-code{font-family:var(--display);font-weight:700;font-size:10rem;line-height:1;color:var(--amber);margin-bottom:1rem;letter-spacing:-.03em}
         h1{font-family:var(--sans);font-size:1.5rem;font-weight:500;margin-bottom:0.75rem}
         p{color:var(--muted);font-size:1rem;line-height:1.7;margin-bottom:2rem}
         .terminal-hint{font-family:var(--mono);font-size:0.8rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:1rem 1.5rem;margin-bottom:2rem;text-align:left;display:inline-block}
-        .terminal-hint .prompt{color:var(--amber)}.terminal-hint .cmd{color:var(--text)}.terminal-hint .output{color:#d94040}
-        .btn{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.875rem 1.75rem;font-family:var(--sans);font-size:0.9rem;font-weight:500;text-decoration:none;border-radius:6px;border:none;cursor:pointer;transition:all 0.2s ease;background:var(--amber);color:#08090f}
-        .btn:hover{transform:translateY(-2px);box-shadow:0 4px 24px rgba(232,160,32,0.3)}
+        .terminal-hint .prompt{color:var(--amber)}.terminal-hint .cmd{color:var(--text)}.terminal-hint .output{color:#ff8b8b}
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;padding:0.875rem 1.75rem;font-family:var(--sans);font-size:0.9rem;font-weight:500;text-decoration:none;border-radius:6px;border:none;cursor:pointer;transition:all 0.2s ease;background:var(--amber);color:#050b14}
+        .btn:hover{transform:translateY(-2px);box-shadow:0 4px 24px rgba(102,232,213,0.3)}
         .logo{display:flex;align-items:center;gap:0.75rem;text-decoration:none;justify-content:center;margin-bottom:3rem}
-        .logo-mark{font-family:var(--display);font-size:1.8rem;letter-spacing:2px;color:var(--amber)}
+        .logo-mark{font-family:var(--display);font-weight:700;font-size:1.8rem;letter-spacing:-.03em;color:var(--amber)}
         .logo-dot{color:var(--muted)}
     </style>
+<style id="vanguard-theme">
+body{background:radial-gradient(circle at 10% 4%,rgba(114,167,255,.14),transparent 28%),radial-gradient(circle at 88% 10%,rgba(102,232,213,.1),transparent 24%),var(--bg)!important;background-attachment:fixed!important}
+h1,h2,h3,h4{letter-spacing:-.02em}
+::selection{background:rgba(102,232,213,.3);color:#fff}
+</style>
 </head>
 <body>
     <div class="content">
