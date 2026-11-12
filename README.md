@@ -1,21 +1,24 @@
 # TrustNovaOps
 
-AI-Powered CMMC 2.0 Compliance & DevSecOps Automation for defense contractors.
+TrustNovaOps Secure AI Factory™ (V7): trusted, governed AI for regulated enterprises.
 
 ## Deployment
 
-Static site deployed via Netlify. Push to `main` to trigger a deploy.
+Static site plus one Netlify Function, deployed via Netlify. Push to `main` to trigger a deploy.
 
 ## Structure
 
 ```
-├── index.html        # Main application (single-page)
-├── 404.html          # Branded 404 page
-├── _redirects        # Netlify route handling
-├── netlify.toml      # Build config, headers, redirects
-├── robots.txt        # Crawler directives
-├── sitemap.xml       # SEO sitemap
-└── .gitignore
+├── index.html               # V7 homepage (Secure AI Factory)
+├── *.html                   # V7 pages (ai-factory, solutions, platform, experience-center, …)
+├── demos/                   # Experience Center demos (cmmc, control-tower, copilot, vanguard, …)
+├── assets/                  # Shared CSS / JS (styles.css + app.js, demo-v5.css + demo-v5.js)
+├── netlify/functions/
+│   └── vanguard.mjs         # VANGUARD red team lead agent API (/api/vanguard, Netlify AI Gateway)
+├── 404.html                 # Branded 404 page
+├── netlify.toml             # Build config and headers
+├── robots.txt / sitemap.xml
+└── package.json             # Function dependencies
 ```
 
 ## Links

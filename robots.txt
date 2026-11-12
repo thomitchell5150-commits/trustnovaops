@@ -1,5 +1,3 @@
 User-agent: *
 Allow: /
-Disallow:
-
-Sitemap: https://www.trustnovaops.com/sitemap.xml
+Sitemap: https://trustnovaops.com/sitemap.xml
