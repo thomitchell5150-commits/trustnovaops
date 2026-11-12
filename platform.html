@@ -23,14 +23,13 @@
   --sans:'Inter',sans-serif;
   --disp:'Space Grotesk',sans-serif;
 }
-html,body{height:100%;overflow:hidden}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px}
 ::-webkit-scrollbar{width:4px;height:4px}
 ::-webkit-scrollbar-thumb{background:var(--bd);border-radius:2px}
 ::-webkit-scrollbar-track{background:transparent}
 
 /* ═══ APP SHELL ═══ */
-.app{display:grid;grid-template-rows:auto auto 1fr;height:100vh;overflow:hidden}
+.app{width:min(1400px,calc(100% - 38px));margin:0 auto 70px;border:1px solid rgba(174,205,230,.13);border-radius:20px;background:#08121f;box-shadow:0 30px 80px rgba(0,0,0,.35)}
 
 /* ═══ DEMO BANNER ═══ */
 .demo-banner{
@@ -59,8 +58,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 /* ═══ TOPBAR ═══ */
 .topbar{
   background:var(--sf);border-bottom:1px solid var(--bd);
-  display:flex;align-items:center;padding:0 24px;gap:0;height:52px;
-  flex-shrink:0;
+  display:flex;align-items:center;padding:0 24px;gap:0;height:56px;
+  flex-shrink:0;position:sticky;top:76px;z-index:40;border-radius:20px 20px 0 0;
 }
 .tb-logo{
   font-family:var(--disp);font-weight:700;font-size:20px;letter-spacing:-.03em;color:var(--amber);
@@ -90,7 +89,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 .status-dot{width:6px;height:6px;border-radius:50%;animation:pulse 2s infinite}
 
 /* ═══ MAIN CONTENT ═══ */
-.content{overflow-y:auto;display:flex;flex-direction:column}
+.content{display:flex;flex-direction:column;min-height:70vh}
 .view{display:none;flex-direction:column;gap:20px;padding:24px;flex:1}
 .view.active{display:flex}
 
@@ -640,33 +639,48 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 /* ─── AGENT FLEET GRID ─── */
 #agentsGrid > div:hover { background:var(--s2) !important; }
 </style>
+<link rel="stylesheet" href="/assets/site-chrome.css">
 <style id="vanguard-theme">
 body{background:radial-gradient(circle at 10% 4%,rgba(114,167,255,.14),transparent 28%),radial-gradient(circle at 88% 10%,rgba(102,232,213,.1),transparent 24%),var(--bg)!important;background-attachment:fixed!important}
 h1,h2,h3,h4{letter-spacing:-.02em}
 ::selection{background:rgba(102,232,213,.3);color:#fff}
+.tab-nav{overflow-x:auto;scrollbar-width:none}.tab-nav::-webkit-scrollbar{display:none}
+.card,.stat{border-radius:14px}
+#tbTitle{display:none!important}
+.site-footer p{margin:14px 0 0}
+.topbar .tab{padding:0 12px;letter-spacing:1px}
+.tb-clock{display:none}
+@media(max-width:1500px){.tb-status{display:none}}
+@media(max-width:900px){.app{width:calc(100% - 20px)}.tb-right{display:none}.topbar{padding:0 10px}}
 </style>
 </head>
 <body>
-<div class="app">
-
-<!-- ═══ DEMO BANNER ═══ -->
-<div class="demo-banner">
-  <div class="db-left">
-    <div class="db-pill">Live Demo</div>
-    <div class="db-text"><strong style="color:var(--amber)">Apex Defense Systems</strong> &nbsp;·&nbsp; 847 endpoints &nbsp;·&nbsp; CMMC L2 assessment: Q2 2026 &nbsp;·&nbsp; C3PAO: SecureVault Assessment Group</div>
+<header class="site-header"><div class="container nav">
+  <a class="brand" href="/"><span class="brandmark">TN</span><span><b>TrustNovaOps</b><small>Secure AI Factory™</small></span></a>
+  <button class="menu" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+  <nav class="navlinks" aria-label="Primary">
+    <a href="/#factory">AI Factory</a>
+    <a href="/#solutions">Solutions</a>
+    <a href="/platform" class="active" aria-current="page">Platform</a>
+    <a href="/#experience">Experience Center</a>
+    <a href="/#assurance">Mission Assurance</a>
+    <a class="navcta" href="/demo">Book assessment ↗</a>
+  </nav>
+</div></header>
+<main id="main">
+<section class="page-intro"><div class="container">
+  <div>
+    <p class="eyebrow">Platform · Live demo</p>
+    <h1>NOVA <span class="gradient-text">Platform</span></h1>
+    <p class="lead">The Secure AI Factory™ command center: governed agents, pipeline gates, data-loss prevention, CMMC controls and audit-ready evidence in one operating view.</p>
+    <div class="intro-actions"><a class="go" href="/demo">Book an AI Factory Assessment ↗</a><a class="alt" href="/#experience">More demos →</a></div>
   </div>
-  <div class="db-right">
-    <a href="https://www.trustnovaops.com" class="db-link" target="_blank">← Back to trustnovaops.com</a>
-    <a href="https://www.trustnovaops.com/#pricing" class="db-cta" target="_blank">Start Free Trial</a>
-  </div>
-</div>
+  <div class="demo-note"><b>Demo environment</b><span><strong style="color:#f5f8fc">Apex Defense Systems</strong> · 847 endpoints · CMMC L2 assessment Q2 2026 · C3PAO: SecureVault Assessment Group. All data is simulated.</span></div>
+</div></section>
+<div class="app" aria-label="NOVA Platform demo dashboard">
 
 <!-- ═══ TOPBAR ═══ -->
 <div class="topbar">
-<div class="tb-logo">
-    <svg width="26" height="26" viewBox="0 0 52 52" fill="none" style="flex-shrink:0"><polygon points="26,3 45,14 45,38 26,49 7,38 7,14" fill="none" stroke="#66e8d5" stroke-width="1.8" opacity=".5"/><line x1="26" y1="26" x2="37" y2="20" stroke="#66e8d5" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="37" y2="32" stroke="#66e8d5" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="38" stroke="#66e8d5" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="32" stroke="#66e8d5" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="15" y2="20" stroke="#66e8d5" stroke-width="1" opacity=".38"/><line x1="26" y1="26" x2="26" y2="14" stroke="#66e8d5" stroke-width="1" opacity=".38"/><circle cx="37" cy="20" r="2.2" fill="#66e8d5" opacity=".75"/><circle cx="37" cy="32" r="2.2" fill="#66e8d5" opacity=".75"/><circle cx="26" cy="38" r="2.2" fill="#66e8d5" opacity=".75"/><circle cx="15" cy="32" r="2.2" fill="#66e8d5" opacity=".75"/><circle cx="15" cy="20" r="2.2" fill="#66e8d5" opacity=".75"/><circle cx="26" cy="14" r="2.2" fill="#66e8d5" opacity=".75"/><circle cx="26" cy="26" r="4" fill="#66e8d5"/></svg>
-    TrustNova<span>Ops</span>
-  </div>
   <div id="tbTitle" style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:0 18px 0 10px;border-right:1px solid var(--bd);margin-right:4px;white-space:nowrap;flex-shrink:0">COMMAND CENTER</div>
   <div class="tab-nav">
     <div class="tab active" data-view="dashboard">
@@ -1181,6 +1195,13 @@ USER root</div>
 
 </div><!-- end .content -->
 </div><!-- end .app -->
+</main>
+<footer class="footer site-footer"><div class="container footer-grid">
+  <div><div class="brand"><span class="brandmark">TN</span><span><b>TrustNovaOps</b><small>Secure AI Factory™</small></span></div><p class="muted small">Engineering Trusted AI for Regulated Enterprises</p><p class="footer-tag">SECURE • GOVERN • DEPLOY • SCALE</p></div>
+  <div><b>Explore</b><a href="/#factory">AI Factory</a><a href="/#solutions">Solutions</a><a href="/platform">Platform</a><a href="/#experience">Experience Center</a></div>
+  <div><b>Demos</b><a href="/platform">NOVA Platform</a><a href="/accord">ACCORD Cloud ISSO</a><a href="/warden">WARDEN DLP</a><a href="/demo">Request a demo</a></div>
+  <div><b>Company</b><a href="/security">Security</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/contact">Contact</a></div>
+</div><div class="container copyright">© <span data-year></span> TrustNovaOps. All rights reserved. Trusted systems. Measurable outcomes.</div></footer>
 
 
 <!-- ═══════════════ NOTIFICATION DRAWER ═══════════════ -->
@@ -1487,6 +1508,16 @@ const PIPELINE_FAILURES = [
   {id:'INC-4195',sev:'high',agent:'Pipeline Orchestrator',title:'Terraform port 22 open to 0.0.0.0/0',repo:'AWS-GOVCLOUD-VPC',branch:'infra/patch-sg',policy:'SC.1.175',action:'Restrict security group ingress',color:'var(--yel)'},
   {id:'INC-4190',sev:'medium',agent:'Pipeline Orchestrator',title:'Dependency confusion in requirements.txt',repo:'f35-logistics-api',branch:'feature/api-refactor',policy:'SR.3.169',action:'Remove from PyPI · use internal registry',color:'#60b0ff'},
 ];
+
+const FINDINGS_DATA = [
+  {id:'FND-4421',agent:'Agent 002',finding:'SQL injection vulnerability in /api/users endpoint',ctrl:'SI.3.218',sev:'critical',status:'open',detail:{vector:'Source Code',file:'src/api/users.py:147',remediation:'Parameterize all DB queries — see OWASP top-10 guidance',timeline:[{t:'14:03',txt:'Code Auditor: SQL injection pattern detected in commit a3f9b'},{t:'14:03',txt:'PR #847 blocked — pre-merge gate triggered'},{t:'14:04',txt:'Developer notified via Slack and GitHub comment'},{t:'14:04',txt:'ACCORD: SI.3.218 evidence gap flagged'}]}},
+  {id:'FND-4420',agent:'WARDEN',finding:'AWS secret key hardcoded in frontend-app repo',ctrl:'CM.3.068',sev:'critical',status:'open',detail:{vector:'Repository',file:'config/env.defaults.js:23',remediation:'Rotate key immediately. Use AWS Secrets Manager.',timeline:[{t:'13:42',txt:'WARDEN: hardcoded AWS_SECRET_ACCESS_KEY in commit a3f9b21'},{t:'13:42',txt:'PR blocked — pre-merge gate triggered'},{t:'13:43',txt:'Key rotation playbook queued — human approval required'},{t:'13:43',txt:'Dev team notified'}]}},
+  {id:'FND-4419',agent:'WARDEN',finding:'SSN pattern in outbound email attachment',ctrl:'SC.3.177',sev:'high',status:'investigating',detail:{vector:'Email',file:'patient_data_Q1.xlsx',remediation:'Quarantine file. Conduct data handling review for user.',timeline:[{t:'14:08',txt:'VAULT: SSN ×4 in Outlook draft attachment'},{t:'14:08',txt:'Email quarantined — not sent'},{t:'14:08',txt:'HIPAA §164.312 evidence logged'},{t:'14:09',txt:'Manager notified — awaiting review'}]}},
+  {id:'FND-4418',agent:'Agent 004',finding:'Privileged user accessing CUI outside approved hours',ctrl:'AC.2.007',sev:'high',status:'investigating',detail:{vector:'Access Control',file:'User: a.patel@corp',remediation:'Suspend session. Review access entitlements.',timeline:[{t:'01:47',txt:'Access Controller: CUI access at 01:47 AM — anomalous'},{t:'01:47',txt:'Session flagged for review'},{t:'01:48',txt:'Security team notified'},{t:'08:12',txt:'ISSO reviewing — investigation open'}]}},
+  {id:'FND-4417',agent:'Agent 006',finding:'Container exposes port 22 to 0.0.0.0/0',ctrl:'CM.2.061',sev:'medium',status:'acknowledged',detail:{vector:'CI/CD Pipeline',file:'Dockerfile:14 — infra-terraform/compute.tf',remediation:'Remove SSH port exposure. Use Systems Manager for access.',timeline:[{t:'12:15',txt:'Pipeline Orchestrator: port 22 exposed in Terraform config'},{t:'12:15',txt:'Deployment blocked'},{t:'12:16',txt:'DevOps team notified'},{t:'12:30',txt:'Acknowledged — fix scheduled for next sprint'}]}},
+  {id:'FND-4416',agent:'Agent 001',finding:'CMMC control SC-28 evidence 72h overdue',ctrl:'SC-28',sev:'low',status:'resolved',detail:{vector:'Compliance',file:'System: Encryption-at-rest monitoring',remediation:'Auto-remediated: evidence snapshot re-generated.',timeline:[{t:'11:00',txt:'Compliance Scanner: SC-28 evidence gap — 72h stale'},{t:'11:00',txt:'Auto-remediation triggered'},{t:'11:08',txt:'Evidence package regenerated and timestamped'},{t:'11:08',txt:'Gap resolved — AO notified'}]}},
+];
+
 
 const AGENT_LAST_ACTIONS = [
   {num:'001',color:'#72e0a0',lastAct:'AC.1.001 evidence snapshot · 847 endpoints',time:'2m ago'},
@@ -2297,5 +2328,12 @@ function init() {
 
 init();
 </script>
+<script>
+/* Switching dashboard tabs while scrolled down returns to the top of the dashboard */
+document.querySelectorAll('.topbar .tab').forEach(function(t){t.addEventListener('click',function(){
+  var app=document.querySelector('.app');if(!app)return;var y=app.getBoundingClientRect().top+window.scrollY-76;
+  if(window.scrollY>y)window.scrollTo({top:y,behavior:'smooth'});});});
+</script>
+<script src="/assets/site.js"></script>
 </body>
 </html>

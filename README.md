@@ -11,6 +11,7 @@ Static site deployed via Netlify. Push to `main` to trigger a deploy.
 ```
 ├── index.html        # Secure AI Factory homepage
 ├── assets/vanguard.css  # Shared VANGUARD design system (navy/cyan)
+├── assets/site-chrome.css  # Shared site header, footer and page intro (scoped, safe on app pages)
 ├── assets/site.js    # Nav toggle, reveal animations, factory pipeline
 ├── platform.html / warden.html / accord.html / demo.html  # Demos & demo request
 ├── 404.html          # Branded 404 page
