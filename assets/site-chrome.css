@@ -1,0 +1,41 @@
+/* TrustNovaOps shared site chrome — header, footer, page intro.
+   Scoped to .site-header / .site-footer / .page-intro so it can load on
+   app-style pages (e.g. /platform) without touching their own components.
+   Matches the VANGUARD design system in vanguard.css. */
+.site-header,.site-footer,.page-intro{--c-text:#f5f8fc;--c-muted:#8fa1b6;--c-line:rgba(174,205,230,.13);--c-cyan:#66e8d5;--c-blue:#72a7ff;font-family:Inter,Arial,sans-serif;line-height:1.6;color:var(--c-text)}
+.site-header a,.site-footer a,.page-intro a{color:inherit;text-decoration:none}
+.site-header .container,.site-footer .container,.page-intro .container{width:min(1180px,calc(100% - 38px));margin:auto}
+.site-header{position:sticky;top:0;z-index:60;border-bottom:1px solid var(--c-line);background:rgba(5,11,20,.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.site-header .nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px;position:relative}
+.site-header .brand,.site-footer .brand{display:flex;align-items:center;gap:11px}
+.site-header .brandmark,.site-footer .brandmark{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,var(--c-cyan),var(--c-blue));color:#05101c;font-weight:900;font-family:"Space Grotesk",sans-serif}
+.site-header .brand b,.site-footer .brand b{font-family:"Space Grotesk",sans-serif}
+.site-header .brand small,.site-footer .brand small{display:block;color:var(--c-muted);font-size:.68rem;line-height:1.3}
+.site-header .navlinks{display:flex;align-items:center;gap:20px;font-size:.9rem}
+.site-header .navlinks a:hover,.site-header .navlinks a.active{color:var(--c-cyan)}
+.site-header .navcta{border:1px solid rgba(102,232,213,.42);padding:9px 14px;border-radius:999px;color:var(--c-cyan)}
+.site-header .menu{display:none;background:transparent;border:0;color:#fff;font-size:1.5rem;cursor:pointer}
+.site-footer{padding:34px 0;border-top:1px solid var(--c-line);color:var(--c-muted);font-size:15px}
+.site-footer .footer-grid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:30px}
+.site-footer .footer-grid b{font-family:"Space Grotesk",sans-serif;color:var(--c-text)}
+.site-footer .footer-grid a{display:block;margin:7px 0}
+.site-footer .footer-grid a:hover{color:var(--c-cyan)}
+.site-footer .footer-tag{margin-top:16px;font-size:.7rem;letter-spacing:.2em;color:var(--c-cyan);font-weight:800}
+.site-footer .small{font-size:.88rem}
+.site-footer .copyright{margin-top:28px;font-size:.82rem}
+.page-intro{padding:56px 0 34px}
+.page-intro>.container{display:flex;justify-content:space-between;gap:30px;align-items:end}
+.page-intro .eyebrow{text-transform:uppercase;letter-spacing:.17em;font-size:.73rem;font-weight:800;color:var(--c-cyan);margin:0}
+.page-intro h1{font-family:"Space Grotesk",sans-serif;font-size:clamp(2.6rem,5.4vw,5rem);line-height:1;letter-spacing:-.05em;margin:.25em 0}
+.page-intro .gradient-text{background:linear-gradient(100deg,var(--c-cyan),#9bc0ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.page-intro .lead{font-size:1.1rem;color:#ced8e5;max-width:760px;margin:0}
+.page-intro .demo-note{padding:15px 16px;border:1px solid rgba(231,201,121,.25);border-radius:12px;background:rgba(231,201,121,.06);min-width:260px;max-width:340px}
+.page-intro .demo-note b,.page-intro .demo-note span{display:block}
+.page-intro .demo-note b{color:#e7c979;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+.page-intro .demo-note span{color:var(--c-muted);font-size:.78rem;margin-top:5px}
+.page-intro .intro-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.page-intro .intro-actions a{min-height:44px;padding:0 18px;border-radius:12px;display:inline-flex;align-items:center;font-weight:800;font-size:.9rem}
+.page-intro .intro-actions .go{background:linear-gradient(135deg,var(--c-cyan),#8bc4ff);color:#04101c}
+.page-intro .intro-actions .alt{border:1px solid var(--c-line);background:rgba(255,255,255,.035)}
+@media(max-width:980px){.site-header .menu{display:block}.site-header .navlinks{display:none;position:absolute;left:0;right:0;top:76px;flex-direction:column;align-items:stretch;background:#0a1728;border:1px solid var(--c-line);border-radius:16px;padding:18px}.site-header .navlinks.open{display:flex}.site-footer .footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.site-footer .footer-grid{grid-template-columns:1fr}.page-intro>.container{display:block}.page-intro .demo-note{margin-top:20px;max-width:none}}
