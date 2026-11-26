@@ -1,0 +1,310 @@
+PASS  / has title
+PASS  / has meta description (50–170 chars)
+PASS  / canonical matches route
+PASS  / has og:image + twitter card
+PASS  / has exactly one <h1>
+PASS  / has skip link
+PASS  / loads analytics service
+PASS  / has no injected preview script
+PASS  / has no inline GA/gtag snippet
+PASS  / JSON-LD parses
+PASS  / JSON-LD has no ratings/reviews
+PASS  / JSON-LD parses
+PASS  / JSON-LD has no ratings/reviews
+PASS  / carries a demonstration disclosure
+PASS  /platform has title
+PASS  /platform has meta description (50–170 chars)
+PASS  /platform canonical matches route
+PASS  /platform has og:image + twitter card
+PASS  /platform has exactly one <h1>
+PASS  /platform has skip link
+PASS  /platform loads analytics service
+PASS  /platform has no injected preview script
+PASS  /platform has no inline GA/gtag snippet
+PASS  /platform JSON-LD parses
+PASS  /platform JSON-LD has no ratings/reviews
+PASS  /platform JSON-LD parses
+PASS  /platform JSON-LD has no ratings/reviews
+PASS  /platform carries a demonstration disclosure
+PASS  /accord has title
+PASS  /accord has meta description (50–170 chars)
+PASS  /accord canonical matches route
+PASS  /accord has og:image + twitter card
+PASS  /accord has exactly one <h1>
+PASS  /accord has skip link
+PASS  /accord loads analytics service
+PASS  /accord has no injected preview script
+PASS  /accord has no inline GA/gtag snippet
+PASS  /accord JSON-LD parses
+PASS  /accord JSON-LD has no ratings/reviews
+PASS  /accord JSON-LD parses
+PASS  /accord JSON-LD has no ratings/reviews
+PASS  /accord carries a demonstration disclosure
+PASS  /warden has title
+PASS  /warden has meta description (50–170 chars)
+PASS  /warden canonical matches route
+PASS  /warden has og:image + twitter card
+PASS  /warden has exactly one <h1>
+PASS  /warden has skip link
+PASS  /warden loads analytics service
+PASS  /warden has no injected preview script
+PASS  /warden has no inline GA/gtag snippet
+PASS  /warden JSON-LD parses
+PASS  /warden JSON-LD has no ratings/reviews
+PASS  /warden carries a demonstration disclosure
+PASS  /demo has title
+PASS  /demo has meta description (50–170 chars)
+PASS  /demo canonical matches route
+PASS  /demo has og:image + twitter card
+PASS  /demo has exactly one <h1>
+PASS  /demo has skip link
+PASS  /demo loads analytics service
+PASS  /demo has no injected preview script
+PASS  /demo has no inline GA/gtag snippet
+PASS  /demo JSON-LD parses
+PASS  /demo JSON-LD has no ratings/reviews
+PASS  /demo carries a demonstration disclosure
+PASS  /ai-factory-assessment has title
+PASS  /ai-factory-assessment has meta description (50–170 chars)
+PASS  /ai-factory-assessment canonical matches route
+PASS  /ai-factory-assessment has og:image + twitter card
+PASS  /ai-factory-assessment has exactly one <h1>
+PASS  /ai-factory-assessment has skip link
+PASS  /ai-factory-assessment loads analytics service
+PASS  /ai-factory-assessment has no injected preview script
+PASS  /ai-factory-assessment has no inline GA/gtag snippet
+PASS  /ai-factory-assessment JSON-LD parses
+PASS  /ai-factory-assessment JSON-LD has no ratings/reviews
+PASS  /ai-factory-assessment JSON-LD parses
+PASS  /ai-factory-assessment JSON-LD has no ratings/reviews
+PASS  /contact has title
+PASS  /contact has meta description (50–170 chars)
+PASS  /contact canonical matches route
+PASS  /contact has og:image + twitter card
+PASS  /contact has exactly one <h1>
+PASS  /contact has skip link
+PASS  /contact loads analytics service
+PASS  /contact has no injected preview script
+PASS  /contact has no inline GA/gtag snippet
+PASS  /contact JSON-LD parses
+PASS  /contact JSON-LD has no ratings/reviews
+PASS  /contact JSON-LD parses
+PASS  /contact JSON-LD has no ratings/reviews
+PASS  /security has title
+PASS  /security has meta description (50–170 chars)
+PASS  /security canonical matches route
+PASS  /security has og:image + twitter card
+PASS  /security has exactly one <h1>
+PASS  /security has skip link
+PASS  /security loads analytics service
+PASS  /security has no injected preview script
+PASS  /security has no inline GA/gtag snippet
+PASS  /security JSON-LD parses
+PASS  /security JSON-LD has no ratings/reviews
+PASS  /privacy has title
+PASS  /privacy has meta description (50–170 chars)
+PASS  /privacy canonical matches route
+PASS  /privacy has og:image + twitter card
+PASS  /privacy has exactly one <h1>
+PASS  /privacy has skip link
+PASS  /privacy loads analytics service
+PASS  /privacy has no injected preview script
+PASS  /privacy has no inline GA/gtag snippet
+PASS  /privacy JSON-LD parses
+PASS  /privacy JSON-LD has no ratings/reviews
+PASS  /privacy is noindex while draft
+PASS  /privacy shows draft banner
+PASS  /privacy is not homepage content
+PASS  /terms has title
+PASS  /terms has meta description (50–170 chars)
+PASS  /terms canonical matches route
+PASS  /terms has og:image + twitter card
+PASS  /terms has exactly one <h1>
+PASS  /terms has skip link
+PASS  /terms loads analytics service
+PASS  /terms has no injected preview script
+PASS  /terms has no inline GA/gtag snippet
+PASS  /terms JSON-LD parses
+PASS  /terms JSON-LD has no ratings/reviews
+PASS  /terms is noindex while draft
+PASS  /terms shows draft banner
+PASS  /terms is not homepage content
+PASS  /cookies has title
+PASS  /cookies has meta description (50–170 chars)
+PASS  /cookies canonical matches route
+PASS  /cookies has og:image + twitter card
+PASS  /cookies has exactly one <h1>
+PASS  /cookies has skip link
+PASS  /cookies loads analytics service
+PASS  /cookies has no injected preview script
+PASS  /cookies has no inline GA/gtag snippet
+PASS  /cookies JSON-LD parses
+PASS  /cookies JSON-LD has no ratings/reviews
+PASS  /cookies is noindex while draft
+PASS  /cookies shows draft banner
+PASS  /cookies is not homepage content
+PASS  /acceptable-use has title
+PASS  /acceptable-use has meta description (50–170 chars)
+PASS  /acceptable-use canonical matches route
+PASS  /acceptable-use has og:image + twitter card
+PASS  /acceptable-use has exactly one <h1>
+PASS  /acceptable-use has skip link
+PASS  /acceptable-use loads analytics service
+PASS  /acceptable-use has no injected preview script
+PASS  /acceptable-use has no inline GA/gtag snippet
+PASS  /acceptable-use JSON-LD parses
+PASS  /acceptable-use JSON-LD has no ratings/reviews
+PASS  /acceptable-use is noindex while draft
+PASS  /acceptable-use shows draft banner
+PASS  /acceptable-use is not homepage content
+PASS  /privacy-contact has title
+PASS  /privacy-contact has meta description (50–170 chars)
+PASS  /privacy-contact canonical matches route
+PASS  /privacy-contact has og:image + twitter card
+PASS  /privacy-contact has exactly one <h1>
+PASS  /privacy-contact has skip link
+PASS  /privacy-contact loads analytics service
+PASS  /privacy-contact has no injected preview script
+PASS  /privacy-contact has no inline GA/gtag snippet
+PASS  /privacy-contact JSON-LD parses
+PASS  /privacy-contact JSON-LD has no ratings/reviews
+PASS  /privacy-contact is noindex while draft
+PASS  /privacy-contact shows draft banner
+PASS  /privacy-contact is not homepage content
+PASS  index.html: no assessment CTA points to /demo
+PASS  platform.html: no assessment CTA points to /demo
+PASS  accord.html: no assessment CTA points to /demo
+PASS  ai-factory-assessment.html: form "ai-factory-assessment" registered for Netlify Forms
+PASS  ai-factory-assessment.html: honeypot configured
+PASS  ai-factory-assessment.html: hidden form-name present
+PASS  ai-factory-assessment.html: privacy acknowledgment required
+PASS  ai-factory-assessment.html: marketing consent optional & unchecked
+PASS  ai-factory-assessment.html: sensitive-data warning shown
+PASS  ai-factory-assessment.html: UTM hidden fields present
+PASS  ai-factory-assessment.html: field first_name has a <label for>
+PASS  ai-factory-assessment.html: field last_name has a <label for>
+PASS  ai-factory-assessment.html: field email has a <label for>
+PASS  ai-factory-assessment.html: field organization has a <label for>
+PASS  ai-factory-assessment.html: field job_title has a <label for>
+PASS  ai-factory-assessment.html: field industry has a <label for>
+PASS  ai-factory-assessment.html: field organization_size has a <label for>
+PASS  ai-factory-assessment.html: field ai_maturity has a <label for>
+PASS  ai-factory-assessment.html: field primary_interest has a <label for>
+PASS  ai-factory-assessment.html: field business_challenges has a <label for>
+PASS  ai-factory-assessment.html: field phone has a <label for>
+PASS  ai-factory-assessment.html: field additional_info has a <label for>
+PASS  contact.html: form "contact" registered for Netlify Forms
+PASS  contact.html: honeypot configured
+PASS  contact.html: hidden form-name present
+PASS  contact.html: privacy acknowledgment required
+PASS  contact.html: marketing consent optional & unchecked
+PASS  contact.html: sensitive-data warning shown
+PASS  contact.html: UTM hidden fields present
+PASS  contact.html: field inquiry_type has a <label for>
+PASS  contact.html: field first_name has a <label for>
+PASS  contact.html: field last_name has a <label for>
+PASS  contact.html: field email has a <label for>
+PASS  contact.html: field organization has a <label for>
+PASS  contact.html: field job_title has a <label for>
+PASS  contact.html: field phone has a <label for>
+PASS  contact.html: field message has a <label for>
+PASS  demo.html: form "demo-request" registered for Netlify Forms
+PASS  demo.html: honeypot configured
+PASS  demo.html: hidden form-name present
+PASS  demo.html: no false success on failed submit
+PASS  assessment page headline
+PASS  assessment form has first_name
+PASS  assessment form has last_name
+PASS  assessment form has email
+PASS  assessment form has organization
+PASS  assessment form has job_title
+PASS  assessment form has industry
+PASS  assessment form has organization_size
+PASS  assessment form has primary_interest
+PASS  assessment form has ai_maturity
+PASS  assessment form has business_challenges
+PASS  assessment form has preferred_contact
+PASS  assessment form has additional_info
+PASS  assessment page lists 10 areas
+PASS  sitemap includes assessment page
+PASS  sitemap excludes draft legal pages
+PASS  robots.txt references sitemap
+PASS  netlify.toml has no SPA catch-all
+PASS  _redirects removed (single source of truth)
+PASS  CSP shipped report-only
+PASS  accord: xlsx 0.18.5 removed
+PASS  accord: third-party scripts carry SRI
+PASS  runtime-config.js committed default has no GA ID
+PASS  no secrets in published files
+PASS  analytics: 12 required events allow-listed
+PASS  analytics: unknown events blocked
+PASS  analytics: email/unknown props stripped
+PASS  analytics: UTM attribution captured
+PASS  analytics: non-UTM query params never captured
+PASS  analytics: nothing sent without consent
+PASS  analytics: sent after opt-in
+PASS  analytics: stops after opt-out
+PASS  forms: flags classification marking
+PASS  forms: flags AWS key
+PASS  forms: flags password
+PASS  forms: does not flag ordinary CUI mention
+PASS  forms: email validator accepts business email
+PASS  forms: email validator rejects bad email
+PASS  server validation: valid assessment passes
+PASS  server validation: invalid contact flagged
+PASS  GET / → 200
+PASS  GET / serves its own page
+PASS  GET /platform → 200
+PASS  GET /platform serves its own page
+PASS  GET /accord → 200
+PASS  GET /accord serves its own page
+PASS  GET /warden → 200
+PASS  GET /warden serves its own page
+PASS  GET /demo → 200
+PASS  GET /demo serves its own page
+PASS  GET /ai-factory-assessment → 200
+PASS  GET /ai-factory-assessment serves its own page
+PASS  GET /contact → 200
+PASS  GET /contact serves its own page
+PASS  GET /security → 200
+PASS  GET /security serves its own page
+PASS  GET /privacy → 200
+PASS  GET /privacy serves its own page
+PASS  GET /terms → 200
+PASS  GET /terms serves its own page
+PASS  GET /cookies → 200
+PASS  GET /cookies serves its own page
+PASS  GET /acceptable-use → 200
+PASS  GET /acceptable-use serves its own page
+PASS  GET /privacy-contact → 200
+PASS  GET /privacy-contact serves its own page
+PASS  GET /this-page-does-not-exist → 404
+PASS  404 page is branded
+PASS  GET /docs/phase1/PHASE1_WEBSITE_AUDIT.md → 404
+PASS  GET /tests/regression.mjs → 404
+PASS  GET /scripts/write-runtime-config.mjs → 404
+PASS  /privacy-policy → 301 /privacy
+PASS  /terms-of-service → 301 /terms
+PASS  /contact-us → 301 /contact
+PASS  /compliance → 301 /security
+PASS  /pricing → 301 /ai-factory-assessment
+PASS  /agent-007 → 301 /platform
+PASS  /docs → 301 /#experience
+PASS  /status → 301 /
+PASS  header x-content-type-options present
+PASS  header referrer-policy present
+PASS  header permissions-policy present
+PASS  header strict-transport-security present
+PASS  header content-security-policy present
+PASS  header content-security-policy-report-only present
+PASS  header cross-origin-opener-policy present
+PASS  header x-frame-options present
+PASS  GET /sitemap.xml → 200
+PASS  GET /robots.txt → 200
+PASS  GET /.well-known/security.txt → 200
+PASS  GET /assets/analytics.js → 200
+PASS  GET /assets/disclosure.js → 200
+PASS  GET /assets/forms.js → 200
+PASS  GET /assets/img/og-default.jpg → 200
+
+308 passed, 0 failed, 0 warnings  (base: http://localhost:8889)

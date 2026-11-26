@@ -1,0 +1,46 @@
+Browser sweep — Chromium 159 headless (Playwright), base http://localhost:8889, 2026-11-26
+viewport | route | status | console errors | CSP report-only violations | failed requests | horizontal overflow px
+mobile | / | 200 | 0 | 0 | 0 | 0
+mobile | /platform | 200 | 0 | 0 | 0 | 0
+mobile | /accord | 200 | 0 | 0 | 0 | 0
+mobile | /warden | 200 | 0 | 0 | 0 | 0
+mobile | /demo | 200 | 0 | 0 | 0 | 0
+mobile | /ai-factory-assessment | 200 | 0 | 0 | 0 | 0
+mobile | /contact | 200 | 0 | 0 | 0 | 0
+mobile | /privacy | 200 | 0 | 0 | 0 | 0
+mobile | /terms | 200 | 0 | 0 | 0 | 0
+mobile | /cookies | 200 | 0 | 0 | 0 | 0
+mobile | /acceptable-use | 200 | 0 | 0 | 0 | 0
+mobile | /privacy-contact | 200 | 0 | 0 | 0 | 0
+mobile | /security | 200 | 0 | 0 | 0 | 0
+mobile | /nope | 404 | 0 | 0 | 0 | 0
+tablet | / | 200 | 0 | 0 | 0 | 0
+tablet | /platform | 200 | 0 | 0 | 0 | 0
+tablet | /accord | 200 | 0 | 0 | 0 | 0
+tablet | /warden | 200 | 0 | 0 | 0 | 0
+tablet | /demo | 200 | 0 | 0 | 0 | 0
+tablet | /ai-factory-assessment | 200 | 0 | 0 | 0 | 0
+tablet | /contact | 200 | 0 | 0 | 0 | 0
+tablet | /privacy | 200 | 0 | 0 | 0 | 0
+tablet | /terms | 200 | 0 | 0 | 0 | 0
+tablet | /cookies | 200 | 0 | 0 | 0 | 0
+tablet | /acceptable-use | 200 | 0 | 0 | 0 | 0
+tablet | /privacy-contact | 200 | 0 | 0 | 0 | 0
+tablet | /security | 200 | 0 | 0 | 0 | 0
+tablet | /nope | 404 | 0 | 0 | 0 | 0
+desktop | / | 200 | 0 | 0 | 0 | 0
+desktop | /platform | 200 | 0 | 0 | 0 | 0
+desktop | /accord | 200 | 0 | 0 | 0 | 0
+desktop | /warden | 200 | 0 | 0 | 0 | 0
+desktop | /demo | 200 | 0 | 0 | 0 | 0
+desktop | /ai-factory-assessment | 200 | 0 | 0 | 0 | 0
+desktop | /contact | 200 | 0 | 0 | 0 | 0
+desktop | /privacy | 200 | 0 | 0 | 0 | 0
+desktop | /terms | 200 | 0 | 0 | 0 | 0
+desktop | /cookies | 200 | 0 | 0 | 0 | 0
+desktop | /acceptable-use | 200 | 0 | 0 | 0 | 0
+desktop | /privacy-contact | 200 | 0 | 0 | 0 | 0
+desktop | /security | 200 | 0 | 0 | 0 | 0
+desktop | /nope | 404 | 0 | 0 | 0 | 0
+
+Note: the only console message on /nope is the expected 404 document status.
