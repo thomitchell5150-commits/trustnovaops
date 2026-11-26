@@ -1,0 +1,30 @@
+Lighthouse 12.8.2 lab results, 2026-11-26. prod-* = https://www.trustnovaops.com (before); final-* = local netlify dev build (after, uncompressed). m=mobile d=desktop
+run | perf | a11y | best-practices | seo | LCP | CLS | TBT | bytes
+final-d-accord | 88 | 97 | 100 | 100 | 1.0 s | 0.19 | 0 ms | 418 KiB
+final-d-ai-factory-assessment | 97 | 100 | 100 | 100 | 0.8 s | 0.08 | 0 ms | 164 KiB
+final-d-contact | 99 | 100 | 100 | 100 | 0.8 s | 0.008 | 0 ms | 158 KiB
+final-d-demo | 98 | 95 | 100 | 100 | 0.8 s | 0.005 | 0 ms | 163 KiB
+final-d-home | 99 | 98 | 100 | 100 | 0.8 s | 0.001 | 0 ms | 142 KiB
+final-d-platform | 94 | 95 | 100 | 92 | 1.0 s | 0.119 | 0 ms | 282 KiB
+final-d-warden | 98 | 95 | 100 | 100 | 0.9 s | 0.014 | 0 ms | 203 KiB
+final-m-accord | 71 | 97 | 100 | 100 | 4.2 s | 0.14 | 0 ms | 418 KiB
+final-m-ai-factory-assessment | 99 | 100 | 100 | 100 | 1.7 s | 0.045 | 0 ms | 164 KiB
+final-m-contact | 99 | 100 | 100 | 100 | 1.7 s | 0.018 | 0 ms | 149 KiB
+final-m-cookies | 98 | 100 | 100 | 66 | 1.4 s | 0.085 | 0 ms | 146 KiB
+final-m-demo | 95 | 95 | 96 | 100 | 2.4 s | 0.014 | 0 ms | 163 KiB
+final-m-home | 95 | 98 | 100 | 100 | 2.8 s | 0 | 0 ms | 142 KiB
+final-m-platform | 96 | 95 | 100 | 92 | 2.2 s | 0.01 | 0 ms | 282 KiB
+final-m-privacy | 98 | 100 | 100 | 66 | 1.6 s | 0.068 | 0 ms | 150 KiB
+final-m-security | 100 | 100 | 100 | 100 | 1.4 s | 0.039 | 0 ms | 142 KiB
+final-m-terms | 99 | 100 | 100 | 66 | 1.5 s | 0.062 | 0 ms | 146 KiB
+final-m-warden | 92 | 93 | 100 | 100 | 2.7 s | 0.02 | 0 ms | 203 KiB
+prod-d-accord | 86 | 97 | 100 | 100 | 1.1 s | 0.189 | 0 ms | 409 KiB
+prod-d-demo | 99 | 95 | 100 | 100 | 0.8 s | 0.005 | 0 ms | 105 KiB
+prod-d-home | 99 | 97 | 100 | 100 | 0.8 s | 0.001 | 0 ms | 90 KiB
+prod-d-platform | 96 | 94 | 100 | 82 | 0.9 s | 0.084 | 0 ms | 144 KiB
+prod-d-warden | 97 | 95 | 100 | 100 | 1.0 s | 0.015 | 0 ms | 125 KiB
+prod-m-accord | 69 | 97 | 100 | 100 | 4.1 s | 0.14 | 150 ms | 409 KiB
+prod-m-demo | 78 | 95 | 96 | 100 | 1.6 s | 0.541 | 0 ms | 105 KiB
+prod-m-home | 94 | 97 | 100 | 100 | 2.9 s | 0 | 0 ms | 90 KiB
+prod-m-platform | 99 | 94 | 100 | 82 | 1.7 s | 0.004 | 0 ms | 143 KiB
+prod-m-warden | 98 | 95 | 100 | 100 | 1.8 s | 0.018 | 0 ms | 125 KiB
